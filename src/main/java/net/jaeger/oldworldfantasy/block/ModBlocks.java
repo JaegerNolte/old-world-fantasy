@@ -2,9 +2,11 @@ package net.jaeger.oldworldfantasy.block;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.item.ModItems;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -31,25 +33,28 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> LEAD_BLOCK = registerBlock("lead_block",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.METAL)
-                            .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
-                            .requiresCorrectToolForDrops()
-                            .strength(5.0F, 6.0F)
-                            .sound(SoundType.METAL)));
+                    .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+                    .requiresCorrectToolForDrops()
+                    .strength(5.0F, 6.0F)
+                    .sound(SoundType.METAL)));
 
     public static final RegistryObject<Block> RAW_LEAD_BLOCK = registerBlock("raw_lead_block",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY)
                     .instrument(NoteBlockInstrument.BASEDRUM)
                     .requiresCorrectToolForDrops()
-                    .strength(5.0F, 6.0F)));
+                    .strength(5.0F, 6.0F)
+                    .sound(SoundType.METAL)));
 
     public static final RegistryObject<Block> LEAD_ORE = registerBlock("lead_ore",
-            () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).
+            () -> new DropExperienceBlock(UniformInt.of(2, 5), BlockBehaviour.Properties.of().mapColor(MapColor.STONE).
                     instrument(NoteBlockInstrument.BASEDRUM)
                     .requiresCorrectToolForDrops()
-                    .strength(3.0F, 3.0F)));
+                    .strength(3.0F, 3.0F)
+                    .sound(SoundType.STONE)));
 
     public static final RegistryObject<Block> DEEPSLATE_LEAD_ORE = registerBlock("deepslate_lead_ore",
-            () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE)
+            () -> new DropExperienceBlock(UniformInt.of(2, 5), BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE)
+                    .requiresCorrectToolForDrops()
                     .strength(4.5F, 3.0F)
                     .sound(SoundType.DEEPSLATE)));
 
