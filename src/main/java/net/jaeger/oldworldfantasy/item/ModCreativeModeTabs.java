@@ -28,6 +28,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModBlocks.RAW_LEAD_BLOCK.get());
                         pOutput.accept(ModBlocks.LEAD_ORE.get());
                         pOutput.accept(ModBlocks.DEEPSLATE_LEAD_ORE.get());
+                        pOutput.accept(ModBlocks.SOUND_BLOCK.get());
                     }).build());
 
     public static void register(IEventBus eventBus) {

@@ -23,7 +23,7 @@ public class OldWorldFantasyMod {
 
     public static final String MOD_ID = "oldworldfantasy";
 
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOG = LogUtils.getLogger();
 
 
     public OldWorldFantasyMod(FMLJavaModLoadingContext context) {
@@ -61,6 +61,7 @@ public class OldWorldFantasyMod {
             event.accept(ModBlocks.DEEPSLATE_LEAD_ORE);
             event.accept(ModBlocks.LEAD_ORE);
             event.accept(ModBlocks.JARED_BLOCK); // remove
+            event.accept(ModBlocks.SOUND_BLOCK); // remove
         }
     }
 
