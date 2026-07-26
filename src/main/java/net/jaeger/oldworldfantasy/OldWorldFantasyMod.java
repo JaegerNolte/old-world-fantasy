@@ -49,7 +49,7 @@ public class OldWorldFantasyMod {
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.LEAD);
+            event.accept(ModItems.LEAD_INGOT);
             event.accept(ModItems.RAW_LEAD);
         }
 

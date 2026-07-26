@@ -11,7 +11,7 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, OldWorldFantasyMod.MOD_ID);
 
-    public static final RegistryObject<Item> LEAD = ITEMS.register("lead",
+    public static final RegistryObject<Item> LEAD_INGOT = ITEMS.register("lead_ingot",
             () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> RAW_LEAD = ITEMS.register("raw_lead",

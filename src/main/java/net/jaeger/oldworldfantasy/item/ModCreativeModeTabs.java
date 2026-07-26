@@ -18,7 +18,7 @@ public class ModCreativeModeTabs {
     public static final RegistryObject<CreativeModeTab> OLD_WORD_FANTASY_TAB = CREATIVE_MOD_TABS.register("old_world_fantasy_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.LEAD_BLOCK.get()))
                     .title(Component.translatable("creativetab.old_world_fantasy_tab")).displayItems((pParameters, pOutput) -> {
-                        pOutput.accept(ModItems.LEAD.get());
+                        pOutput.accept(ModItems.LEAD_INGOT.get());
                         pOutput.accept(ModItems.RAW_LEAD.get());
 
                         pOutput.accept(ModBlocks.JARED_BLOCK.get());
