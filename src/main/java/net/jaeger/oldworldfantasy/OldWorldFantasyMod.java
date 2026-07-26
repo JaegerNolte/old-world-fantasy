@@ -52,6 +52,7 @@ public class OldWorldFantasyMod {
             event.accept(ModItems.RAW_LEAD);
             event.accept(ModItems.LEAD_INGOT);
             event.accept(ModItems.LEAD_NUGGET);
+            event.accept(ModItems.METAL_DETECTOR); // remove
         }
 
         if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
@@ -59,7 +60,7 @@ public class OldWorldFantasyMod {
             event.accept(ModBlocks.RAW_LEAD_BLOCK);
             event.accept(ModBlocks.DEEPSLATE_LEAD_ORE);
             event.accept(ModBlocks.LEAD_ORE);
-            event.accept(ModBlocks.JARED_BLOCK);
+            event.accept(ModBlocks.JARED_BLOCK); // remove
         }
     }
 

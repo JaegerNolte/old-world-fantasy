@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "group": "gold_ingot",
+  "group": "lead_ingot",
   "key": {
     "#": {
       "item": "oldworldfantasy:lead_nugget"
