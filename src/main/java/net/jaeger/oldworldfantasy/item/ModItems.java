@@ -1,6 +1,7 @@
 package net.jaeger.oldworldfantasy.item;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
+import net.jaeger.oldworldfantasy.item.custom.FuelItem;
 import net.jaeger.oldworldfantasy.item.custom.MetalDetectorItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -26,6 +27,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> RED_WINE = ITEMS.register("red_wine",
             () -> new Item(new Item.Properties().food(ModFoodProperties.RED_WINE)));
+
+    public static final RegistryObject<Item> ARCANE_COAL = ITEMS.register("arcane_coal",
+            () -> new FuelItem(new Item.Properties(), 20000));
 
 
     public static void register(IEventBus eventBus) {

@@ -21,6 +21,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.RAW_LEAD.get());
                         pOutput.accept(ModItems.LEAD_INGOT.get());
                         pOutput.accept(ModItems.LEAD_NUGGET.get());
+                        pOutput.accept(ModItems.ARCANE_COAL.get());
                         pOutput.accept(ModItems.METAL_DETECTOR.get());
                         pOutput.accept(ModItems.RED_WINE.get());
 
