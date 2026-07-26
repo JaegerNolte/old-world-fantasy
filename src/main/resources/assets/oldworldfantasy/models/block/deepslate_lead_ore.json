@@ -1,0 +1,6 @@
+{
+  "parent":"block/cube_all",
+  "textures": {
+    "all": "oldworldfantasy:block/deepslate_lead_ore"
+  }
+}
