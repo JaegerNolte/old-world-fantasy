@@ -53,6 +53,7 @@ public class OldWorldFantasyMod {
             event.accept(ModItems.LEAD_INGOT);
             event.accept(ModItems.LEAD_NUGGET);
             event.accept(ModItems.METAL_DETECTOR); // remove
+            event.accept(ModItems.RED_WINE);
         }
 
         if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
