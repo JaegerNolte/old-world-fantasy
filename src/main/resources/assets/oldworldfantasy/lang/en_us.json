@@ -1,6 +1,10 @@
 {
   "creativetab.old_world_fantasy_tab": "Old World Fantasy",
 
+  "tooltip.oldworldfantasy.metal_detector.tooltip.shift": "Right click on blocks to find valuables",
+  "tooltip.oldworldfantasy.metal_detector.tooltip": "Press §eSHIFT§r to get more information",
+  "tooltip.oldworldfantasy.sound_block": "Plays nice sounds when standing or crouching",
+
   "item.oldworldfantasy.metal_detector.no_valuables": "No Valuables Found!",
 
   "item.oldworldfantasy.metal_detector": "Metal Detector",
