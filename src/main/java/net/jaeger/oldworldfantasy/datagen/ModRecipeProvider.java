@@ -23,7 +23,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     @Override
     protected void buildRecipes(RecipeOutput pRecipeOutput) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.LEAD_BLOCK.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.LEAD_BLOCK.get())
                 .pattern("iii")
                 .pattern("iii")
                 .pattern("iii")
@@ -31,9 +31,27 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_lead_ingot", has(ModItems.LEAD_INGOT.get()))
                 .save(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAW_LEAD_BLOCK.get())
+                .pattern("rrr")
+                .pattern("rrr")
+                .pattern("rrr")
+                .define('r', ModItems.RAW_LEAD.get())
+                .unlockedBy("has_raw_lead", has(ModItems.RAW_LEAD.get()))
+                .save(pRecipeOutput);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.LEAD_INGOT.get(), 9)
                 .requires(ModBlocks.LEAD_BLOCK.get())
                 .unlockedBy("has_lead_block", has(ModBlocks.LEAD_BLOCK.get()))
+                .save(pRecipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.LEAD_NUGGET.get(), 9)
+                .requires(ModItems.LEAD_INGOT.get())
+                .unlockedBy("has_lead_ingot", has(ModItems.LEAD_NUGGET.get()))
+                .save(pRecipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.RAW_LEAD.get(), 9)
+                .requires(ModBlocks.RAW_LEAD_BLOCK.get())
+                .unlockedBy("has_raw_lead_block", has(ModBlocks.RAW_LEAD_BLOCK.get()))
                 .save(pRecipeOutput);
 
         nineBlockStorageRecipes(pRecipeOutput, RecipeCategory.MISC, ModItems.LEAD_INGOT.get(), RecipeCategory.MISC, ModBlocks.LEAD_BLOCK.get());

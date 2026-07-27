@@ -62,8 +62,6 @@ public class OldWorldFantasyMod {
             event.accept(ModBlocks.RAW_LEAD_BLOCK);
             event.accept(ModBlocks.DEEPSLATE_LEAD_ORE);
             event.accept(ModBlocks.LEAD_ORE);
-            event.accept(ModBlocks.JARED_BLOCK); // remove
-            event.accept(ModBlocks.SOUND_BLOCK); // remove
         }
     }
 

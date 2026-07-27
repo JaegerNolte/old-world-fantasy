@@ -22,15 +22,13 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.LEAD_INGOT.get());
                         pOutput.accept(ModItems.LEAD_NUGGET.get());
                         pOutput.accept(ModItems.ARCANE_COAL.get());
-                        pOutput.accept(ModItems.METAL_DETECTOR.get());
+                        pOutput.accept(ModItems.METAL_DETECTOR.get()); // remove
                         pOutput.accept(ModItems.RED_WINE.get());
 
-                        pOutput.accept(ModBlocks.JARED_BLOCK.get());
                         pOutput.accept(ModBlocks.LEAD_BLOCK.get());
                         pOutput.accept(ModBlocks.RAW_LEAD_BLOCK.get());
                         pOutput.accept(ModBlocks.LEAD_ORE.get());
                         pOutput.accept(ModBlocks.DEEPSLATE_LEAD_ORE.get());
-                        pOutput.accept(ModBlocks.SOUND_BLOCK.get());
                     }).build());
 
     public static void register(IEventBus eventBus) {

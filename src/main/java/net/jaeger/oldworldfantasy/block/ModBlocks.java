@@ -1,7 +1,6 @@
 package net.jaeger.oldworldfantasy.block;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.block.custom.SoundBlock;
 import net.jaeger.oldworldfantasy.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
@@ -24,13 +23,6 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, OldWorldFantasyMod.MOD_ID);
 
-
-    public static final RegistryObject<Block> JARED_BLOCK = registerBlock("jared_block",
-            () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.METAL)
-                    .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
-                    .requiresCorrectToolForDrops()
-                    .strength(5.0F, 6.0F)
-                    .sound(SoundType.METAL)));
 
     public static final RegistryObject<Block> LEAD_BLOCK = registerBlock("lead_block",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.METAL)
@@ -58,12 +50,6 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .strength(4.5F, 3.0F)
                     .sound(SoundType.DEEPSLATE)));
-
-    public static final RegistryObject<Block> SOUND_BLOCK = registerBlock("sound_block",
-            () -> new SoundBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL)
-                    .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
-                    .strength(5.0F, 6.0F)
-                    .sound(SoundType.METAL)));
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

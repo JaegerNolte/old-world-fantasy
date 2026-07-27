@@ -30,7 +30,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     protected void generate() {
         dropSelf(ModBlocks.LEAD_BLOCK.get());
         dropSelf(ModBlocks.RAW_LEAD_BLOCK.get());
-        dropSelf(ModBlocks.SOUND_BLOCK.get());
 
         this.add(ModBlocks.LEAD_ORE.get(),
                 block -> createMultipleOreDrops(ModBlocks.LEAD_ORE.get(), ModItems.RAW_LEAD.get(), 2, 5));

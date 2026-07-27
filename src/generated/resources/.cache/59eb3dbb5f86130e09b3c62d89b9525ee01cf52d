@@ -1,0 +1,5 @@
+// 1.21.1	2026-07-27T05:34:11.1368061	Loot Tables
+ed03d0111b81f282b87331c6ae62bdf2e0c942b2 data/oldworldfantasy/loot_table/blocks/deepslate_lead_ore.json
+55a31e968db1c18d8589f9a922695301b7c562de data/oldworldfantasy/loot_table/blocks/lead_block.json
+e25d950f6fc6003db7c757fcc74e9bca49769f93 data/oldworldfantasy/loot_table/blocks/lead_ore.json
+e43eeedb2e50f83e322271e075201e276becbaf8 data/oldworldfantasy/loot_table/blocks/raw_lead_block.json
