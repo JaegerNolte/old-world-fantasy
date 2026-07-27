@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "oldworldfantasy:arcane_coal"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "iA ",
+    "Ai "
+  ],
+  "result": {
+    "count": 2,
+    "id": "oldworldfantasy:rune_hardened_iron_ingot"
+  }
+}

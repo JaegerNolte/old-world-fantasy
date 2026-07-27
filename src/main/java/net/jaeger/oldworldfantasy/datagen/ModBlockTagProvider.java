@@ -30,12 +30,18 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.LEAD_BLOCK.get())
                 .add(ModBlocks.RAW_LEAD_BLOCK.get())
                 .add(ModBlocks.LEAD_BLOCK.get())
-                .add(ModBlocks.DEEPSLATE_LEAD_ORE.get());
+                .add(ModBlocks.DEEPSLATE_LEAD_ORE.get())
+                .add(ModBlocks.ARCANE_COAL_BLOCK.get())
+                .add(ModBlocks.ARCANE_COAL_ORE.get())
+                .add(ModBlocks.DEEPSLATE_ARCANE_COAL_ORE.get());
 
         tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(ModBlocks.LEAD_BLOCK.get())
                 .add(ModBlocks.RAW_LEAD_BLOCK.get())
                 .add(ModBlocks.LEAD_BLOCK.get())
-                .add(ModBlocks.DEEPSLATE_LEAD_ORE.get());
+                .add(ModBlocks.DEEPSLATE_LEAD_ORE.get())
+                .add(ModBlocks.ARCANE_COAL_BLOCK.get())
+                .add(ModBlocks.ARCANE_COAL_ORE.get())
+                .add(ModBlocks.DEEPSLATE_ARCANE_COAL_ORE.get());
     }
 }

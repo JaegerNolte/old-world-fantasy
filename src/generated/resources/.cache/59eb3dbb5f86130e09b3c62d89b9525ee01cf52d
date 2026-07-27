@@ -1,4 +1,7 @@
-// 1.21.1	2026-07-27T06:50:31.4623267	Loot Tables
+// 1.21.1	2026-07-27T11:34:19.5048731	Loot Tables
+bf07d78211c9f89daf4f090cee0de225c67370d2 data/oldworldfantasy/loot_table/blocks/arcane_coal_block.json
+817b66df906809aed2f52e1264b55f53944d8503 data/oldworldfantasy/loot_table/blocks/arcane_coal_ore.json
+fe70e050cf3509faef14475527f6a82617055255 data/oldworldfantasy/loot_table/blocks/deepslate_arcane_coal_ore.json
 ed03d0111b81f282b87331c6ae62bdf2e0c942b2 data/oldworldfantasy/loot_table/blocks/deepslate_lead_ore.json
 55a31e968db1c18d8589f9a922695301b7c562de data/oldworldfantasy/loot_table/blocks/lead_block.json
 e25d950f6fc6003db7c757fcc74e9bca49769f93 data/oldworldfantasy/loot_table/blocks/lead_ore.json

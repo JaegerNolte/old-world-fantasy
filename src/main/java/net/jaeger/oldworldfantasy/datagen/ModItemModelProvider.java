@@ -17,6 +17,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.LEAD_INGOT.get());
         basicItem(ModItems.RAW_LEAD.get());
         basicItem(ModItems.LEAD_NUGGET.get());
+        basicItem(ModItems.RUNE_HARDEN_IRON_INGOT.get());
         basicItem(ModItems.ARCANE_COAL.get());
 
         basicItem(ModItems.RED_WINE.get());

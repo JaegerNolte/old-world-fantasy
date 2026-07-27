@@ -3,6 +3,9 @@
     "oldworldfantasy:lead_block",
     "oldworldfantasy:raw_lead_block",
     "oldworldfantasy:lead_block",
-    "oldworldfantasy:deepslate_lead_ore"
+    "oldworldfantasy:deepslate_lead_ore",
+    "oldworldfantasy:arcane_coal_block",
+    "oldworldfantasy:arcane_coal_ore",
+    "oldworldfantasy:deepslate_arcane_coal_ore"
   ]
 }

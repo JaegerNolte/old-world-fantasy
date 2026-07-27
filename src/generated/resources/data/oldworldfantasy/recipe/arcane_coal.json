@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "oldworldfantasy:arcane_coal_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "oldworldfantasy:arcane_coal"
+  }
+}

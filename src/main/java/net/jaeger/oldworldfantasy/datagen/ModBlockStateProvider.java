@@ -20,6 +20,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.RAW_LEAD_BLOCK);
         blockWithItem(ModBlocks.LEAD_ORE);
         blockWithItem(ModBlocks.DEEPSLATE_LEAD_ORE);
+        blockWithItem(ModBlocks.ARCANE_COAL_BLOCK);
+        blockWithItem(ModBlocks.ARCANE_COAL_ORE);
+        blockWithItem(ModBlocks.DEEPSLATE_ARCANE_COAL_ORE);
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {

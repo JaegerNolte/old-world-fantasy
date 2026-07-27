@@ -6,6 +6,7 @@ import net.jaeger.oldworldfantasy.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
@@ -45,7 +46,24 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("lll")
                 .define('l', ModItems.LEAD_NUGGET.get())
                 .unlockedBy("has_lead_nugget", has(ModItems.LEAD_NUGGET.get()))
-                .save(pRecipeOutput,OldWorldFantasyMod.MOD_ID + ":lead_ingot_from_nuggets");
+                .save(pRecipeOutput, OldWorldFantasyMod.MOD_ID + ":lead_ingot_from_nuggets");
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ARCANE_COAL_BLOCK.get())
+                .pattern("AAA")
+                .pattern("AAA")
+                .pattern("AAA")
+                .define('A', ModItems.ARCANE_COAL.get())
+                .unlockedBy("has_arcane_coal", has(ModItems.ARCANE_COAL.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.RUNE_HARDEN_IRON_INGOT.get(), 2)
+                .pattern("iA ")
+                .pattern("Ai ")
+                .define('A', ModItems.ARCANE_COAL.get())
+                .define('i', Items.IRON_INGOT)
+                .unlockedBy("has_arcane_coal", has(ModItems.ARCANE_COAL.get()))
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
+                .save(pRecipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.LEAD_INGOT.get(), 9)
                 .requires(ModBlocks.LEAD_BLOCK.get())
@@ -60,6 +78,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.RAW_LEAD.get(), 9)
                 .requires(ModBlocks.RAW_LEAD_BLOCK.get())
                 .unlockedBy("has_raw_lead_block", has(ModBlocks.RAW_LEAD_BLOCK.get()))
+                .save(pRecipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.ARCANE_COAL.get(), 9)
+                .requires(ModBlocks.ARCANE_COAL_BLOCK.get())
+                .unlockedBy("has_arcane_coal_block", has(ModBlocks.ARCANE_COAL_BLOCK.get()))
                 .save(pRecipeOutput);
 
         oreSmelting(pRecipeOutput, LEAD_SMELTABLES, RecipeCategory.MISC, ModItems.LEAD_INGOT.get(), 0.25f, 200, "lead");

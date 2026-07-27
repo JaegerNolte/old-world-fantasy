@@ -31,8 +31,8 @@ public class OldWorldFantasyMod {
 
         ModCreativeModeTabs.register(modEventBus);
 
-        ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModItems.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
@@ -52,7 +52,7 @@ public class OldWorldFantasyMod {
             event.accept(ModItems.RAW_LEAD);
             event.accept(ModItems.LEAD_INGOT);
             event.accept(ModItems.LEAD_NUGGET);
-            event.accept(ModItems.METAL_DETECTOR); // remove
+            event.accept(ModItems.RUNE_HARDEN_IRON_INGOT);
             event.accept(ModItems.RED_WINE);
             event.accept(ModItems.ARCANE_COAL);
         }
@@ -62,6 +62,9 @@ public class OldWorldFantasyMod {
             event.accept(ModBlocks.RAW_LEAD_BLOCK);
             event.accept(ModBlocks.DEEPSLATE_LEAD_ORE);
             event.accept(ModBlocks.LEAD_ORE);
+            event.accept(ModBlocks.ARCANE_COAL_BLOCK);
+            event.accept(ModBlocks.ARCANE_COAL_ORE);
+            event.accept(ModBlocks.DEEPSLATE_ARCANE_COAL_ORE);
         }
     }
 
