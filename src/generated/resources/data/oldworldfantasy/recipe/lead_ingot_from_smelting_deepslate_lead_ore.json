@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "lead",
+  "ingredient": {
+    "item": "oldworldfantasy:deepslate_lead_ore"
+  },
+  "result": {
+    "id": "oldworldfantasy:lead_ingot"
+  }
+}

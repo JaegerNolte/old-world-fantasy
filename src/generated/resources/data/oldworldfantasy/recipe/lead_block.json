@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "i": {
+    "l": {
       "item": "oldworldfantasy:lead_ingot"
     }
   },
   "pattern": [
-    "iii",
-    "iii",
-    "iii"
+    "lll",
+    "lll",
+    "lll"
   ],
   "result": {
     "count": 1,

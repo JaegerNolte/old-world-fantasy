@@ -32,15 +32,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.LEAD_BLOCK.get())
                 .add(ModBlocks.DEEPSLATE_LEAD_ORE.get());
 
-        tag(BlockTags.NEEDS_IRON_TOOL)
+        tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(ModBlocks.LEAD_BLOCK.get())
                 .add(ModBlocks.RAW_LEAD_BLOCK.get())
                 .add(ModBlocks.LEAD_BLOCK.get())
                 .add(ModBlocks.DEEPSLATE_LEAD_ORE.get());
-    }
-
-    @Override
-    public String getName() {
-        return "Block Tags";
     }
 }

@@ -1,6 +1,0 @@
-{
-  "parent":"block/cube_all",
-  "textures": {
-    "all": "oldworldfantasy:block/jared_block"
-  }
-}

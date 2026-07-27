@@ -24,20 +24,28 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     @Override
     protected void buildRecipes(RecipeOutput pRecipeOutput) {
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.LEAD_BLOCK.get())
-                .pattern("iii")
-                .pattern("iii")
-                .pattern("iii")
-                .define('i', ModItems.LEAD_INGOT.get())
+                .pattern("lll")
+                .pattern("lll")
+                .pattern("lll")
+                .define('l', ModItems.LEAD_INGOT.get())
                 .unlockedBy("has_lead_ingot", has(ModItems.LEAD_INGOT.get()))
                 .save(pRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAW_LEAD_BLOCK.get())
-                .pattern("rrr")
-                .pattern("rrr")
-                .pattern("rrr")
-                .define('r', ModItems.RAW_LEAD.get())
+                .pattern("lll")
+                .pattern("lll")
+                .pattern("lll")
+                .define('l', ModItems.RAW_LEAD.get())
                 .unlockedBy("has_raw_lead", has(ModItems.RAW_LEAD.get()))
                 .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.LEAD_INGOT.get())
+                .pattern("lll")
+                .pattern("lll")
+                .pattern("lll")
+                .define('l', ModItems.LEAD_NUGGET.get())
+                .unlockedBy("has_lead_nugget", has(ModItems.LEAD_NUGGET.get()))
+                .save(pRecipeOutput,OldWorldFantasyMod.MOD_ID + ":lead_ingot_from_nuggets");
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.LEAD_INGOT.get(), 9)
                 .requires(ModBlocks.LEAD_BLOCK.get())
@@ -54,9 +62,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_raw_lead_block", has(ModBlocks.RAW_LEAD_BLOCK.get()))
                 .save(pRecipeOutput);
 
-        nineBlockStorageRecipes(pRecipeOutput, RecipeCategory.MISC, ModItems.LEAD_INGOT.get(), RecipeCategory.MISC, ModBlocks.LEAD_BLOCK.get());
-        oreSmelting(pRecipeOutput, LEAD_SMELTABLES, RecipeCategory.MISC, ModItems.RAW_LEAD.get(), 0.25f, 200, "lead");
-        oreBlasting(pRecipeOutput, LEAD_SMELTABLES, RecipeCategory.MISC, ModItems.RAW_LEAD.get(), 0.25f, 100, "lead");
+        oreSmelting(pRecipeOutput, LEAD_SMELTABLES, RecipeCategory.MISC, ModItems.LEAD_INGOT.get(), 0.25f, 200, "lead");
+        oreBlasting(pRecipeOutput, LEAD_SMELTABLES, RecipeCategory.MISC, ModItems.LEAD_INGOT.get(), 0.25f, 100, "lead");
 
     }
 
