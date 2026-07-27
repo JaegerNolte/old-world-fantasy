@@ -1,5 +1,6 @@
 package net.jaeger.oldworldfantasy.item.custom;
 
+import net.jaeger.oldworldfantasy.util.ModTags;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
@@ -15,7 +16,6 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.List;
@@ -74,6 +74,6 @@ public class MetalDetectorItem extends Item {
 
     private boolean isValuableBlock(BlockState blockState) {
 
-        return blockState.is(Blocks.IRON_ORE);
+        return blockState.is(ModTags.Blocks.METAL_DETECTOR_VALUABLES);
     }
 }
