@@ -67,7 +67,6 @@ public class MetalDetectorItem extends Item {
 
     // I18N converts block IDs to lang reference
     private void outputValuableCoordinates(BlockPos below, Player player, Block block) {
-
         player.sendSystemMessage(Component.literal("Valuable Found " + I18n.get(block.getDescriptionId())
         + " at (" + below.getX() + ", " + below.getY() + ", " + below.getZ() + ")"));
     }
