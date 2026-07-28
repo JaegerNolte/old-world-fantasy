@@ -53,8 +53,15 @@ public class OldWorldFantasyMod {
             event.accept(ModItems.LEAD_INGOT);
             event.accept(ModItems.LEAD_NUGGET);
             event.accept(ModItems.RUNE_HARDEN_IRON_INGOT);
-            event.accept(ModItems.RED_WINE);
             event.accept(ModItems.ARCANE_COAL);
+
+            event.accept(ModItems.RUNE_HARDENED_IRON_SWORD);
+            event.accept(ModItems.RUNE_HARDENED_IRON_PICKAXE);
+            event.accept(ModItems.RUNE_HARDENED_IRON_SHOVEL);
+            event.accept(ModItems.RUNE_HARDENED_IRON_AXE);
+            event.accept(ModItems.RUNE_HARDENED_IRON_HOE);
+
+            event.accept(ModItems.RED_WINE);
         }
 
         if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {

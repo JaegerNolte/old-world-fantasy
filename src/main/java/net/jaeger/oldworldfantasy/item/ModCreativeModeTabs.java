@@ -17,21 +17,28 @@ public class ModCreativeModeTabs {
 
     public static final RegistryObject<CreativeModeTab> OLD_WORD_FANTASY_TAB = CREATIVE_MOD_TABS.register("old_world_fantasy_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.LEAD_BLOCK.get()))
-                    .title(Component.translatable("creativetab.old_world_fantasy_tab")).displayItems((pParameters, pOutput) -> {
-                        pOutput.accept(ModItems.RAW_LEAD.get());
-                        pOutput.accept(ModItems.LEAD_INGOT.get());
-                        pOutput.accept(ModItems.LEAD_NUGGET.get());
-                        pOutput.accept(ModItems.ARCANE_COAL.get());
-                        pOutput.accept(ModItems.RUNE_HARDEN_IRON_INGOT.get());
-                        pOutput.accept(ModItems.RED_WINE.get());
+                    .title(Component.translatable("creativetab.old_world_fantasy_tab")).displayItems((pParameters, output) -> {
+                        output.accept(ModItems.RAW_LEAD.get());
+                        output.accept(ModItems.LEAD_INGOT.get());
+                        output.accept(ModItems.LEAD_NUGGET.get());
+                        output.accept(ModItems.ARCANE_COAL.get());
+                        output.accept(ModItems.RUNE_HARDEN_IRON_INGOT.get());
 
-                        pOutput.accept(ModBlocks.LEAD_BLOCK.get());
-                        pOutput.accept(ModBlocks.RAW_LEAD_BLOCK.get());
-                        pOutput.accept(ModBlocks.LEAD_ORE.get());
-                        pOutput.accept(ModBlocks.DEEPSLATE_LEAD_ORE.get());
-                        pOutput.accept(ModBlocks.ARCANE_COAL_BLOCK.get());
-                        pOutput.accept(ModBlocks.ARCANE_COAL_ORE.get());
-                        pOutput.accept(ModBlocks.DEEPSLATE_ARCANE_COAL_ORE.get());
+                        output.accept(ModItems.RUNE_HARDENED_IRON_SWORD.get());
+                        output.accept(ModItems.RUNE_HARDENED_IRON_PICKAXE.get());
+                        output.accept(ModItems.RUNE_HARDENED_IRON_SHOVEL.get());
+                        output.accept(ModItems.RUNE_HARDENED_IRON_AXE.get());
+                        output.accept(ModItems.RUNE_HARDENED_IRON_HOE.get());
+
+                        output.accept(ModItems.RED_WINE.get());
+
+                        output.accept(ModBlocks.LEAD_BLOCK.get());
+                        output.accept(ModBlocks.RAW_LEAD_BLOCK.get());
+                        output.accept(ModBlocks.LEAD_ORE.get());
+                        output.accept(ModBlocks.DEEPSLATE_LEAD_ORE.get());
+                        output.accept(ModBlocks.ARCANE_COAL_BLOCK.get());
+                        output.accept(ModBlocks.ARCANE_COAL_ORE.get());
+                        output.accept(ModBlocks.DEEPSLATE_ARCANE_COAL_ORE.get());
                     }).build());
 
     public static void register(IEventBus eventBus) {

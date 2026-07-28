@@ -1,27 +1,27 @@
-[27Jul2026 12:59:28.223] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forge_userdev_data, --assetIndex, 17, --assetsDir, C:\Users\jaege\.gradle\caches\forge_gradle\assets, --gameDir, ., --mod, oldworldfantasy, --all, --output, D:\Repositories\minecraft-mods\old-world-fantasy\src\generated\resources, --existing, D:\Repositories\minecraft-mods\old-world-fantasy\src\main\resources]
-[27Jul2026 12:59:28.225] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: JVM identified as Eclipse Adoptium OpenJDK 64-Bit Server VM 21.0.11+10-LTS
-[27Jul2026 12:59:28.226] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.2.4 starting: java version 21.0.11 by Eclipse Adoptium; OS Windows 11 arch amd64 version 10.0
-[27Jul2026 12:59:28.315] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forge_userdev_data
-[27Jul2026 12:59:28.389] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=jar:file:///C:/Users/jaege/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.7/8ab114ac385e6dbdad5efafe28aba4df8120915f/mixin-0.8.7.jar!/ Service=ModLauncher Env=UNKNOWN
-[27Jul2026 12:59:29.016] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
-[27Jul2026 12:59:29.583] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forge_userdev_data' with arguments [--gameDir, ., --assetsDir, C:\Users\jaege\.gradle\caches\forge_gradle\assets, --assetIndex, 17, --mod, oldworldfantasy, --all, --output, D:\Repositories\minecraft-mods\old-world-fantasy\src\generated\resources, --existing, D:\Repositories\minecraft-mods\old-world-fantasy\src\main\resources]
-[27Jul2026 12:59:33.204] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 52.1.0, for MC 1.21.1 with MCP 20240808.132146
-[27Jul2026 12:59:33.204] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v52.1.0 Initialized
-[27Jul2026 12:59:33.230] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Opening jdk.naming.dns/com.sun.jndi.dns to java.naming
-[27Jul2026 12:59:33.428] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [oldworldfantasy]
-[27Jul2026 12:59:33.479] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/jaege/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1/forge-1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1-recomp.jar%230!/assets/.mcassetsroot' uses unexpected schema
-[27Jul2026 12:59:33.479] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/jaege/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1/forge-1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1-recomp.jar%230!/data/.mcassetsroot' uses unexpected schema
-[27Jul2026 12:59:33.599] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Loot Tables
-[27Jul2026 12:59:33.724] [main/INFO] [net.minecraft.data.DataGenerator/]: Loot Tables finished after 123 ms
-[27Jul2026 12:59:33.725] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Recipes
-[27Jul2026 12:59:33.754] [main/INFO] [net.minecraft.data.DataGenerator/]: Recipes finished after 29 ms
-[27Jul2026 12:59:33.754] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:block mod id oldworldfantasy
-[27Jul2026 12:59:33.765] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:block mod id oldworldfantasy finished after 10 ms
-[27Jul2026 12:59:33.765] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:item mod id oldworldfantasy
-[27Jul2026 12:59:33.766] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:item mod id oldworldfantasy finished after 0 ms
-[27Jul2026 12:59:33.766] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Models: oldworldfantasy
-[27Jul2026 12:59:33.768] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Models: oldworldfantasy finished after 3 ms
-[27Jul2026 12:59:33.769] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block States: oldworldfantasy
-[27Jul2026 12:59:33.831] [main/INFO] [net.minecraft.data.DataGenerator/]: Block States: oldworldfantasy finished after 62 ms
-[27Jul2026 12:59:33.831] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 233 ms
-[27Jul2026 12:59:33.834] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 67, old count: 66, new count: 68, removed stale: 0, written: 1
+[27Jul2026 18:52:23.494] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forge_userdev_data, --assetIndex, 17, --assetsDir, C:\Users\jaege\.gradle\caches\forge_gradle\assets, --gameDir, ., --mod, oldworldfantasy, --all, --output, D:\Repositories\minecraft-mods\old-world-fantasy\src\generated\resources, --existing, D:\Repositories\minecraft-mods\old-world-fantasy\src\main\resources]
+[27Jul2026 18:52:23.497] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: JVM identified as Eclipse Adoptium OpenJDK 64-Bit Server VM 21.0.11+10-LTS
+[27Jul2026 18:52:23.497] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.2.4 starting: java version 21.0.11 by Eclipse Adoptium; OS Windows 11 arch amd64 version 10.0
+[27Jul2026 18:52:23.576] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forge_userdev_data
+[27Jul2026 18:52:23.649] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=jar:file:///C:/Users/jaege/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.7/8ab114ac385e6dbdad5efafe28aba4df8120915f/mixin-0.8.7.jar!/ Service=ModLauncher Env=UNKNOWN
+[27Jul2026 18:52:24.298] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
+[27Jul2026 18:52:24.886] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forge_userdev_data' with arguments [--gameDir, ., --assetsDir, C:\Users\jaege\.gradle\caches\forge_gradle\assets, --assetIndex, 17, --mod, oldworldfantasy, --all, --output, D:\Repositories\minecraft-mods\old-world-fantasy\src\generated\resources, --existing, D:\Repositories\minecraft-mods\old-world-fantasy\src\main\resources]
+[27Jul2026 18:52:28.420] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 52.1.0, for MC 1.21.1 with MCP 20240808.132146
+[27Jul2026 18:52:28.420] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v52.1.0 Initialized
+[27Jul2026 18:52:28.444] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Opening jdk.naming.dns/com.sun.jndi.dns to java.naming
+[27Jul2026 18:52:28.633] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [oldworldfantasy]
+[27Jul2026 18:52:28.689] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/jaege/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1/forge-1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1-recomp.jar%230!/assets/.mcassetsroot' uses unexpected schema
+[27Jul2026 18:52:28.689] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/jaege/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1/forge-1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1-recomp.jar%230!/data/.mcassetsroot' uses unexpected schema
+[27Jul2026 18:52:28.805] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Loot Tables
+[27Jul2026 18:52:28.910] [main/INFO] [net.minecraft.data.DataGenerator/]: Loot Tables finished after 104 ms
+[27Jul2026 18:52:28.911] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Recipes
+[27Jul2026 18:52:28.948] [main/INFO] [net.minecraft.data.DataGenerator/]: Recipes finished after 37 ms
+[27Jul2026 18:52:28.948] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:block mod id oldworldfantasy
+[27Jul2026 18:52:28.957] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:block mod id oldworldfantasy finished after 7 ms
+[27Jul2026 18:52:28.957] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:item mod id oldworldfantasy
+[27Jul2026 18:52:28.957] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:item mod id oldworldfantasy finished after 0 ms
+[27Jul2026 18:52:28.958] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Models: oldworldfantasy
+[27Jul2026 18:52:28.964] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Models: oldworldfantasy finished after 6 ms
+[27Jul2026 18:52:28.964] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block States: oldworldfantasy
+[27Jul2026 18:52:29.024] [main/INFO] [net.minecraft.data.DataGenerator/]: Block States: oldworldfantasy finished after 59 ms
+[27Jul2026 18:52:29.024] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 219 ms
+[27Jul2026 18:52:29.026] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 72, old count: 72, new count: 73, removed stale: 0, written: 0

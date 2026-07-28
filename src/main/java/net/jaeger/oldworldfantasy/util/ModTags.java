@@ -12,7 +12,8 @@ public class ModTags {
 
     public static class Items {
 
-        private static TagKey<Item> tag(String name) {
+
+        private static TagKey<Item> createTag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(OldWorldFantasyMod.MOD_ID, name));
         }
 
@@ -23,10 +24,12 @@ public class ModTags {
 
     public static class Blocks {
 
-        public static final TagKey<Block> METAL_DETECTOR_VALUABLES = tag("metal_detector_valuables");
+        public static final TagKey<Block> LEAD_ORES = createTag("lead_ores");
 
+        public static final TagKey<Block> NEEDS_RUNE_HARDENED_IRON_TOOL = createTag("needs_rune_hardened_iron_tool");
+        public static final TagKey<Block> INCORRECT_FOR_RUNE_HARDENED_IRON_TOOL = createTag("incorrect_for_rune_hardened_iron_tool");
 
-        private static TagKey<Block> tag(String name) {
+        private static TagKey<Block> createTag(String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(OldWorldFantasyMod.MOD_ID, name));
         }
 
