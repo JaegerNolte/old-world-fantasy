@@ -2,6 +2,7 @@ package net.jaeger.oldworldfantasy.item;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.item.custom.FuelItem;
+import net.jaeger.oldworldfantasy.item.custom.GunItem;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -49,7 +50,7 @@ public class ModItems {
                     .attributes(HoeItem.createAttributes(ModToolTiers.RUNE_HARDENED_IRON, 0, -3.0f))));
 
     public static final RegistryObject<Item> BLUNDERBUSS = ITEMS.register("blunderbuss",
-            () -> new BowItem(new Item.Properties().durability(500)));
+            () -> new GunItem(new Item.Properties().durability(500)));
 
 
     public static final RegistryObject<Item> RED_WINE = ITEMS.register("red_wine",
