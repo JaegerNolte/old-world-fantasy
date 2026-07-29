@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "oldworldfantasy:item/blunderbuss_3d"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "oldworldfantasy:item/blunderbuss_3d"
+    },
+    "ground": {
+      "parent": "oldworldfantasy:item/blunderbuss_3d"
+    },
+    "fixed": {
+      "parent": "oldworldfantasy:item/blunderbuss_3d"
+    }
+  }
+}

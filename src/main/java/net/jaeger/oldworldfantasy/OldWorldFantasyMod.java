@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.jaeger.oldworldfantasy.block.ModBlocks;
 import net.jaeger.oldworldfantasy.item.ModCreativeModeTabs;
 import net.jaeger.oldworldfantasy.item.ModItems;
+import net.jaeger.oldworldfantasy.util.ModItemProperties;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -60,6 +61,7 @@ public class OldWorldFantasyMod {
             event.accept(ModItems.RUNE_HARDENED_IRON_SHOVEL);
             event.accept(ModItems.RUNE_HARDENED_IRON_AXE);
             event.accept(ModItems.RUNE_HARDENED_IRON_HOE);
+            event.accept(ModItems.BLUNDERBUSS);
 
             event.accept(ModItems.RED_WINE);
         }
@@ -88,7 +90,7 @@ public class OldWorldFantasyMod {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
 
-
+            ModItemProperties.addCustomItemProperties();
         }
     }
 }

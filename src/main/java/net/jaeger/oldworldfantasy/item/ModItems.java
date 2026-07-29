@@ -48,6 +48,9 @@ public class ModItems {
             () -> new HoeItem(ModToolTiers.RUNE_HARDENED_IRON, new Item.Properties()
                     .attributes(HoeItem.createAttributes(ModToolTiers.RUNE_HARDENED_IRON, 0, -3.0f))));
 
+    public static final RegistryObject<Item> BLUNDERBUSS = ITEMS.register("blunderbuss",
+            () -> new BowItem(new Item.Properties().durability(500)));
+
 
     public static final RegistryObject<Item> RED_WINE = ITEMS.register("red_wine",
             () -> new Item(new Item.Properties().food(ModFoodProperties.RED_WINE)));
