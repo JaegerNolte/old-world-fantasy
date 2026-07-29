@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_arcane_coal": {
+    "has_rune_hardened_iron": {
       "conditions": {
         "items": [
           {
-            "items": "oldworldfantasy:arcane_coal"
+            "items": "oldworldfantasy:rune_hardened_iron_ingot"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oldworldfantasy:rune_hardened_iron_ingot"
+        "recipe": "oldworldfantasy:rune_hardened_iron_shovel"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_arcane_coal"
+      "has_rune_hardened_iron"
     ]
   ],
   "rewards": {
     "recipes": [
-      "oldworldfantasy:rune_hardened_iron_ingot"
+      "oldworldfantasy:rune_hardened_iron_shovel"
     ]
   }
 }

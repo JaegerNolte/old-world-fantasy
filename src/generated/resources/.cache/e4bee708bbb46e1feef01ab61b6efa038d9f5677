@@ -1,4 +1,4 @@
-// 1.21.1	2026-07-27T16:11:03.2646152	Tags for minecraft:block mod id oldworldfantasy
-dcb865fdedf8bdeca06adcc7f6bd516a16f5e7a3 data/minecraft/tags/block/mineable/pickaxe.json
-dcb865fdedf8bdeca06adcc7f6bd516a16f5e7a3 data/minecraft/tags/block/needs_stone_tool.json
+// 1.21.1	2026-07-28T18:03:36.8743551	Tags for minecraft:block mod id oldworldfantasy
+59bebbbf77e6a4285fba5296fcae4b8b5716ba74 data/minecraft/tags/block/mineable/pickaxe.json
+59bebbbf77e6a4285fba5296fcae4b8b5716ba74 data/minecraft/tags/block/needs_stone_tool.json
 a249c46329a41538f49a564e1f14338aaf1be5a0 data/oldworldfantasy/tags/block/needs_rune_hardened_iron_tool.json

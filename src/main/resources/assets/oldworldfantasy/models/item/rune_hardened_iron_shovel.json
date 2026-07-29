@@ -1,6 +1,292 @@
 {
-  "parent": "minecraft:item/handheld",
-  "textures": {
-    "layer0": "oldworldfantasy:item/rune_hardened_iron_shovel"
-  }
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "oldworldfantasy:item/rune_hardened_iron_shovel",
+		"particle": "oldworldfantasy:item/rune_hardened_iron_shovel"
+	},
+	"elements": [
+		{
+			"name": "rune_hardened_iron_shovel_0",
+			"from": [10.5, 10, 0],
+			"to": [12, 12.5, 0.5],
+			"faces": {
+				"north": {"uv": [12, 3.5, 10.5, 6], "texture": "#0"},
+				"east": {"uv": [11.5, 3.5, 12, 6], "texture": "#0"},
+				"south": {"uv": [10.5, 3.5, 12, 6], "texture": "#0"},
+				"west": {"uv": [10.5, 3.5, 11, 6], "texture": "#0"},
+				"up": {"uv": [10.5, 3.5, 12, 4], "texture": "#0"},
+				"down": {"uv": [10.5, 5.5, 12, 6], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_shovel_1",
+			"from": [10, 9.5, 0],
+			"to": [10.5, 12, 0.5],
+			"faces": {
+				"north": {"uv": [10.5, 4, 10, 6.5], "texture": "#0"},
+				"east": {"uv": [10, 4, 10.5, 6.5], "texture": "#0"},
+				"south": {"uv": [10, 4, 10.5, 6.5], "texture": "#0"},
+				"west": {"uv": [10, 4, 10.5, 6.5], "texture": "#0"},
+				"up": {"uv": [10, 4, 10.5, 4.5], "texture": "#0"},
+				"down": {"uv": [10, 6, 10.5, 6.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_shovel_2",
+			"from": [12, 10.5, 0],
+			"to": [12.5, 12, 0.5],
+			"faces": {
+				"north": {"uv": [12.5, 4, 12, 5.5], "texture": "#0"},
+				"east": {"uv": [12, 4, 12.5, 5.5], "texture": "#0"},
+				"south": {"uv": [12, 4, 12.5, 5.5], "texture": "#0"},
+				"west": {"uv": [12, 4, 12.5, 5.5], "texture": "#0"},
+				"up": {"uv": [12, 4, 12.5, 4.5], "texture": "#0"},
+				"down": {"uv": [12, 5, 12.5, 5.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_shovel_3",
+			"from": [9.5, 9, 0],
+			"to": [10, 11.5, 0.5],
+			"faces": {
+				"north": {"uv": [10, 4.5, 9.5, 7], "texture": "#0"},
+				"east": {"uv": [9.5, 4.5, 10, 7], "texture": "#0"},
+				"south": {"uv": [9.5, 4.5, 10, 7], "texture": "#0"},
+				"west": {"uv": [9.5, 4.5, 10, 7], "texture": "#0"},
+				"up": {"uv": [9.5, 4.5, 10, 5], "texture": "#0"},
+				"down": {"uv": [9.5, 6.5, 10, 7], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_shovel_4",
+			"from": [9, 10.5, 0],
+			"to": [9.5, 11, 0.5],
+			"faces": {
+				"north": {"uv": [9.5, 5, 9, 5.5], "texture": "#0"},
+				"east": {"uv": [9, 5, 9.5, 5.5], "texture": "#0"},
+				"south": {"uv": [9, 5, 9.5, 5.5], "texture": "#0"},
+				"west": {"uv": [9, 5, 9.5, 5.5], "texture": "#0"},
+				"up": {"uv": [9, 5, 9.5, 5.5], "texture": "#0"},
+				"down": {"uv": [9, 5, 9.5, 5.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_shovel_5",
+			"from": [9, 8.5, 0],
+			"to": [9.5, 10, 0.5],
+			"faces": {
+				"north": {"uv": [9.5, 6, 9, 7.5], "texture": "#0"},
+				"east": {"uv": [9, 6, 9.5, 7.5], "texture": "#0"},
+				"south": {"uv": [9, 6, 9.5, 7.5], "texture": "#0"},
+				"west": {"uv": [9, 6, 9.5, 7.5], "texture": "#0"},
+				"up": {"uv": [9, 6, 9.5, 6.5], "texture": "#0"},
+				"down": {"uv": [9, 7, 9.5, 7.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_shovel_6",
+			"from": [10.5, 9.5, 0],
+			"to": [11.5, 10, 0.5],
+			"faces": {
+				"north": {"uv": [11.5, 6, 10.5, 6.5], "texture": "#0"},
+				"east": {"uv": [11, 6, 11.5, 6.5], "texture": "#0"},
+				"south": {"uv": [10.5, 6, 11.5, 6.5], "texture": "#0"},
+				"west": {"uv": [10.5, 6, 11, 6.5], "texture": "#0"},
+				"up": {"uv": [10.5, 6, 11.5, 6.5], "texture": "#0"},
+				"down": {"uv": [10.5, 6, 11.5, 6.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_shovel_7",
+			"from": [8.5, 8, 0],
+			"to": [9, 9.5, 0.5],
+			"faces": {
+				"north": {"uv": [9, 6.5, 8.5, 8], "texture": "#0"},
+				"east": {"uv": [8.5, 6.5, 9, 8], "texture": "#0"},
+				"south": {"uv": [8.5, 6.5, 9, 8], "texture": "#0"},
+				"west": {"uv": [8.5, 6.5, 9, 8], "texture": "#0"},
+				"up": {"uv": [8.5, 6.5, 9, 7], "texture": "#0"},
+				"down": {"uv": [8.5, 7.5, 9, 8], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_shovel_8",
+			"from": [10.5, 9, 0],
+			"to": [11, 9.5, 0.5],
+			"faces": {
+				"north": {"uv": [11, 6.5, 10.5, 7], "texture": "#0"},
+				"east": {"uv": [10.5, 6.5, 11, 7], "texture": "#0"},
+				"south": {"uv": [10.5, 6.5, 11, 7], "texture": "#0"},
+				"west": {"uv": [10.5, 6.5, 11, 7], "texture": "#0"},
+				"up": {"uv": [10.5, 6.5, 11, 7], "texture": "#0"},
+				"down": {"uv": [10.5, 6.5, 11, 7], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_shovel_9",
+			"from": [8, 7.5, 0],
+			"to": [8.5, 9, 0.5],
+			"faces": {
+				"north": {"uv": [8.5, 7, 8, 8.5], "texture": "#0"},
+				"east": {"uv": [8, 7, 8.5, 8.5], "texture": "#0"},
+				"south": {"uv": [8, 7, 8.5, 8.5], "texture": "#0"},
+				"west": {"uv": [8, 7, 8.5, 8.5], "texture": "#0"},
+				"up": {"uv": [8, 7, 8.5, 7.5], "texture": "#0"},
+				"down": {"uv": [8, 8, 8.5, 8.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_shovel_10",
+			"from": [7.5, 7, 0],
+			"to": [8, 8.5, 0.5],
+			"faces": {
+				"north": {"uv": [8, 7.5, 7.5, 9], "texture": "#0"},
+				"east": {"uv": [7.5, 7.5, 8, 9], "texture": "#0"},
+				"south": {"uv": [7.5, 7.5, 8, 9], "texture": "#0"},
+				"west": {"uv": [7.5, 7.5, 8, 9], "texture": "#0"},
+				"up": {"uv": [7.5, 7.5, 8, 8], "texture": "#0"},
+				"down": {"uv": [7.5, 8.5, 8, 9], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_shovel_11",
+			"from": [7, 6.5, 0],
+			"to": [7.5, 8, 0.5],
+			"faces": {
+				"north": {"uv": [7.5, 8, 7, 9.5], "texture": "#0"},
+				"east": {"uv": [7, 8, 7.5, 9.5], "texture": "#0"},
+				"south": {"uv": [7, 8, 7.5, 9.5], "texture": "#0"},
+				"west": {"uv": [7, 8, 7.5, 9.5], "texture": "#0"},
+				"up": {"uv": [7, 8, 7.5, 8.5], "texture": "#0"},
+				"down": {"uv": [7, 9, 7.5, 9.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_shovel_12",
+			"from": [6.5, 6, 0],
+			"to": [7, 7.5, 0.5],
+			"faces": {
+				"north": {"uv": [7, 8.5, 6.5, 10], "texture": "#0"},
+				"east": {"uv": [6.5, 8.5, 7, 10], "texture": "#0"},
+				"south": {"uv": [6.5, 8.5, 7, 10], "texture": "#0"},
+				"west": {"uv": [6.5, 8.5, 7, 10], "texture": "#0"},
+				"up": {"uv": [6.5, 8.5, 7, 9], "texture": "#0"},
+				"down": {"uv": [6.5, 9.5, 7, 10], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_shovel_13",
+			"from": [6, 5.5, 0],
+			"to": [6.5, 7, 0.5],
+			"faces": {
+				"north": {"uv": [6.5, 9, 6, 10.5], "texture": "#0"},
+				"east": {"uv": [6, 9, 6.5, 10.5], "texture": "#0"},
+				"south": {"uv": [6, 9, 6.5, 10.5], "texture": "#0"},
+				"west": {"uv": [6, 9, 6.5, 10.5], "texture": "#0"},
+				"up": {"uv": [6, 9, 6.5, 9.5], "texture": "#0"},
+				"down": {"uv": [6, 10, 6.5, 10.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_shovel_14",
+			"from": [5.5, 5, 0],
+			"to": [6, 6.5, 0.5],
+			"faces": {
+				"north": {"uv": [6, 9.5, 5.5, 11], "texture": "#0"},
+				"east": {"uv": [5.5, 9.5, 6, 11], "texture": "#0"},
+				"south": {"uv": [5.5, 9.5, 6, 11], "texture": "#0"},
+				"west": {"uv": [5.5, 9.5, 6, 11], "texture": "#0"},
+				"up": {"uv": [5.5, 9.5, 6, 10], "texture": "#0"},
+				"down": {"uv": [5.5, 10.5, 6, 11], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_shovel_15",
+			"from": [5, 4.5, 0],
+			"to": [5.5, 6, 0.5],
+			"faces": {
+				"north": {"uv": [5.5, 10, 5, 11.5], "texture": "#0"},
+				"east": {"uv": [5, 10, 5.5, 11.5], "texture": "#0"},
+				"south": {"uv": [5, 10, 5.5, 11.5], "texture": "#0"},
+				"west": {"uv": [5, 10, 5.5, 11.5], "texture": "#0"},
+				"up": {"uv": [5, 10, 5.5, 10.5], "texture": "#0"},
+				"down": {"uv": [5, 11, 5.5, 11.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_shovel_16",
+			"from": [4.5, 3.5, 0],
+			"to": [5, 5.5, 0.5],
+			"faces": {
+				"north": {"uv": [5, 10.5, 4.5, 12.5], "texture": "#0"},
+				"east": {"uv": [4.5, 10.5, 5, 12.5], "texture": "#0"},
+				"south": {"uv": [4.5, 10.5, 5, 12.5], "texture": "#0"},
+				"west": {"uv": [4.5, 10.5, 5, 12.5], "texture": "#0"},
+				"up": {"uv": [4.5, 10.5, 5, 11], "texture": "#0"},
+				"down": {"uv": [4.5, 12, 5, 12.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_shovel_17",
+			"from": [3.5, 3.5, 0],
+			"to": [4.5, 5, 0.5],
+			"faces": {
+				"north": {"uv": [4.5, 11, 3.5, 12.5], "texture": "#0"},
+				"east": {"uv": [4, 11, 4.5, 12.5], "texture": "#0"},
+				"south": {"uv": [3.5, 11, 4.5, 12.5], "texture": "#0"},
+				"west": {"uv": [3.5, 11, 4, 12.5], "texture": "#0"},
+				"up": {"uv": [3.5, 11, 4.5, 11.5], "texture": "#0"},
+				"down": {"uv": [3.5, 12, 4.5, 12.5], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [37, 90, 0],
+			"translation": [7.75, 2.25, 1.5],
+			"scale": [1.5, 1.5, 1]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [43, -88, 0],
+			"translation": [-7.75, 2.25, 1.25],
+			"scale": [1.5, 1.5, 1]
+		},
+		"firstperson_righthand": {
+			"rotation": [25, 86, 17],
+			"translation": [8.5, 3, 1.75],
+			"scale": [1.5, 1.5, 1]
+		},
+		"firstperson_lefthand": {
+			"rotation": [25, -86, -17],
+			"translation": [-6.75, 3, 1.75],
+			"scale": [1.5, 1.5, 1]
+		},
+		"ground": {
+			"rotation": [0, 0, 6],
+			"translation": [4.25, 0.5, 9.25],
+			"scale": [1.5, 1.5, 1]
+		},
+		"gui": {
+			"scale": [1.5, 1.5, 1]
+		},
+		"fixed": {
+			"translation": [0, 0, 8],
+			"scale": [1.5, 1.5, 1]
+		},
+		"on_shelf": {
+			"translation": [0, 0, 4.75],
+			"scale": [1.5, 1.5, 1]
+		}
+	},
+	"groups": [
+		{
+			"name": "rune_hardened_iron_shovel",
+			"origin": [8, 8, 8],
+			"scope": 0,
+			"color": 0,
+			"children": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+		}
+	]
 }

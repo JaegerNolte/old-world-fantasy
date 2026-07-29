@@ -1,6 +1,292 @@
 {
-  "parent": "minecraft:item/handheld",
-  "textures": {
-    "layer0": "oldworldfantasy:item/rune_hardened_iron_pickaxe"
-  }
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "oldworldfantasy:item/rune_hardened_iron_pickaxe",
+		"particle": "oldworldfantasy:item/rune_hardened_iron_pickaxe"
+	},
+	"elements": [
+		{
+			"name": "rune_hardened_iron_pickaxe_0",
+			"from": [6, 10, 0],
+			"to": [9.5, 11.5, 0.5],
+			"faces": {
+				"north": {"uv": [9.5, 4.5, 6, 6], "texture": "#0"},
+				"east": {"uv": [9, 4.5, 9.5, 6], "texture": "#0"},
+				"south": {"uv": [6, 4.5, 9.5, 6], "texture": "#0"},
+				"west": {"uv": [6, 4.5, 6.5, 6], "texture": "#0"},
+				"up": {"uv": [6, 4.5, 9.5, 5], "texture": "#0"},
+				"down": {"uv": [6, 5.5, 9.5, 6], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_pickaxe_1",
+			"from": [5.5, 10.5, 0],
+			"to": [6, 11, 0.5],
+			"faces": {
+				"north": {"uv": [6, 5, 5.5, 5.5], "texture": "#0"},
+				"east": {"uv": [5.5, 5, 6, 5.5], "texture": "#0"},
+				"south": {"uv": [5.5, 5, 6, 5.5], "texture": "#0"},
+				"west": {"uv": [5.5, 5, 6, 5.5], "texture": "#0"},
+				"up": {"uv": [5.5, 5, 6, 5.5], "texture": "#0"},
+				"down": {"uv": [5.5, 5, 6, 5.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_pickaxe_2",
+			"from": [9.5, 9, 0],
+			"to": [10.5, 11, 0.5],
+			"faces": {
+				"north": {"uv": [10.5, 5, 9.5, 7], "texture": "#0"},
+				"east": {"uv": [10, 5, 10.5, 7], "texture": "#0"},
+				"south": {"uv": [9.5, 5, 10.5, 7], "texture": "#0"},
+				"west": {"uv": [9.5, 5, 10, 7], "texture": "#0"},
+				"up": {"uv": [9.5, 5, 10.5, 5.5], "texture": "#0"},
+				"down": {"uv": [9.5, 6.5, 10.5, 7], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_pickaxe_3",
+			"from": [10.5, 5.5, 0],
+			"to": [11, 10.5, 0.5],
+			"faces": {
+				"north": {"uv": [11, 5.5, 10.5, 10.5], "texture": "#0"},
+				"east": {"uv": [10.5, 5.5, 11, 10.5], "texture": "#0"},
+				"south": {"uv": [10.5, 5.5, 11, 10.5], "texture": "#0"},
+				"west": {"uv": [10.5, 5.5, 11, 10.5], "texture": "#0"},
+				"up": {"uv": [10.5, 5.5, 11, 6], "texture": "#0"},
+				"down": {"uv": [10.5, 10, 11, 10.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_pickaxe_4",
+			"from": [9, 8.5, 0],
+			"to": [9.5, 10, 0.5],
+			"faces": {
+				"north": {"uv": [9.5, 6, 9, 7.5], "texture": "#0"},
+				"east": {"uv": [9, 6, 9.5, 7.5], "texture": "#0"},
+				"south": {"uv": [9, 6, 9.5, 7.5], "texture": "#0"},
+				"west": {"uv": [9, 6, 9.5, 7.5], "texture": "#0"},
+				"up": {"uv": [9, 6, 9.5, 6.5], "texture": "#0"},
+				"down": {"uv": [9, 7, 9.5, 7.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_pickaxe_5",
+			"from": [8.5, 8, 0],
+			"to": [9, 9.5, 0.5],
+			"faces": {
+				"north": {"uv": [9, 6.5, 8.5, 8], "texture": "#0"},
+				"east": {"uv": [8.5, 6.5, 9, 8], "texture": "#0"},
+				"south": {"uv": [8.5, 6.5, 9, 8], "texture": "#0"},
+				"west": {"uv": [8.5, 6.5, 9, 8], "texture": "#0"},
+				"up": {"uv": [8.5, 6.5, 9, 7], "texture": "#0"},
+				"down": {"uv": [8.5, 7.5, 9, 8], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_pickaxe_6",
+			"from": [11, 6, 0],
+			"to": [11.5, 9.5, 0.5],
+			"faces": {
+				"north": {"uv": [11.5, 6.5, 11, 10], "texture": "#0"},
+				"east": {"uv": [11, 6.5, 11.5, 10], "texture": "#0"},
+				"south": {"uv": [11, 6.5, 11.5, 10], "texture": "#0"},
+				"west": {"uv": [11, 6.5, 11.5, 10], "texture": "#0"},
+				"up": {"uv": [11, 6.5, 11.5, 7], "texture": "#0"},
+				"down": {"uv": [11, 9.5, 11.5, 10], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_pickaxe_7",
+			"from": [8, 7.5, 0],
+			"to": [8.5, 9, 0.5],
+			"faces": {
+				"north": {"uv": [8.5, 7, 8, 8.5], "texture": "#0"},
+				"east": {"uv": [8, 7, 8.5, 8.5], "texture": "#0"},
+				"south": {"uv": [8, 7, 8.5, 8.5], "texture": "#0"},
+				"west": {"uv": [8, 7, 8.5, 8.5], "texture": "#0"},
+				"up": {"uv": [8, 7, 8.5, 7.5], "texture": "#0"},
+				"down": {"uv": [8, 8, 8.5, 8.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_pickaxe_8",
+			"from": [10, 6, 0],
+			"to": [10.5, 9, 0.5],
+			"faces": {
+				"north": {"uv": [10.5, 7, 10, 10], "texture": "#0"},
+				"east": {"uv": [10, 7, 10.5, 10], "texture": "#0"},
+				"south": {"uv": [10, 7, 10.5, 10], "texture": "#0"},
+				"west": {"uv": [10, 7, 10.5, 10], "texture": "#0"},
+				"up": {"uv": [10, 7, 10.5, 7.5], "texture": "#0"},
+				"down": {"uv": [10, 9.5, 10.5, 10], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_pickaxe_9",
+			"from": [7.5, 7, 0],
+			"to": [8, 8.5, 0.5],
+			"faces": {
+				"north": {"uv": [8, 7.5, 7.5, 9], "texture": "#0"},
+				"east": {"uv": [7.5, 7.5, 8, 9], "texture": "#0"},
+				"south": {"uv": [7.5, 7.5, 8, 9], "texture": "#0"},
+				"west": {"uv": [7.5, 7.5, 8, 9], "texture": "#0"},
+				"up": {"uv": [7.5, 7.5, 8, 8], "texture": "#0"},
+				"down": {"uv": [7.5, 8.5, 8, 9], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_pickaxe_10",
+			"from": [7, 6.5, 0],
+			"to": [7.5, 8, 0.5],
+			"faces": {
+				"north": {"uv": [7.5, 8, 7, 9.5], "texture": "#0"},
+				"east": {"uv": [7, 8, 7.5, 9.5], "texture": "#0"},
+				"south": {"uv": [7, 8, 7.5, 9.5], "texture": "#0"},
+				"west": {"uv": [7, 8, 7.5, 9.5], "texture": "#0"},
+				"up": {"uv": [7, 8, 7.5, 8.5], "texture": "#0"},
+				"down": {"uv": [7, 9, 7.5, 9.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_pickaxe_11",
+			"from": [6.5, 6, 0],
+			"to": [7, 7.5, 0.5],
+			"faces": {
+				"north": {"uv": [7, 8.5, 6.5, 10], "texture": "#0"},
+				"east": {"uv": [6.5, 8.5, 7, 10], "texture": "#0"},
+				"south": {"uv": [6.5, 8.5, 7, 10], "texture": "#0"},
+				"west": {"uv": [6.5, 8.5, 7, 10], "texture": "#0"},
+				"up": {"uv": [6.5, 8.5, 7, 9], "texture": "#0"},
+				"down": {"uv": [6.5, 9.5, 7, 10], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_pickaxe_12",
+			"from": [6, 5.5, 0],
+			"to": [6.5, 7, 0.5],
+			"faces": {
+				"north": {"uv": [6.5, 9, 6, 10.5], "texture": "#0"},
+				"east": {"uv": [6, 9, 6.5, 10.5], "texture": "#0"},
+				"south": {"uv": [6, 9, 6.5, 10.5], "texture": "#0"},
+				"west": {"uv": [6, 9, 6.5, 10.5], "texture": "#0"},
+				"up": {"uv": [6, 9, 6.5, 9.5], "texture": "#0"},
+				"down": {"uv": [6, 10, 6.5, 10.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_pickaxe_13",
+			"from": [5.5, 5, 0],
+			"to": [6, 6.5, 0.5],
+			"faces": {
+				"north": {"uv": [6, 9.5, 5.5, 11], "texture": "#0"},
+				"east": {"uv": [5.5, 9.5, 6, 11], "texture": "#0"},
+				"south": {"uv": [5.5, 9.5, 6, 11], "texture": "#0"},
+				"west": {"uv": [5.5, 9.5, 6, 11], "texture": "#0"},
+				"up": {"uv": [5.5, 9.5, 6, 10], "texture": "#0"},
+				"down": {"uv": [5.5, 10.5, 6, 11], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_pickaxe_14",
+			"from": [5, 4.5, 0],
+			"to": [5.5, 6, 0.5],
+			"faces": {
+				"north": {"uv": [5.5, 10, 5, 11.5], "texture": "#0"},
+				"east": {"uv": [5, 10, 5.5, 11.5], "texture": "#0"},
+				"south": {"uv": [5, 10, 5.5, 11.5], "texture": "#0"},
+				"west": {"uv": [5, 10, 5.5, 11.5], "texture": "#0"},
+				"up": {"uv": [5, 10, 5.5, 10.5], "texture": "#0"},
+				"down": {"uv": [5, 11, 5.5, 11.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_pickaxe_15",
+			"from": [4.5, 4, 0],
+			"to": [5, 5.5, 0.5],
+			"faces": {
+				"north": {"uv": [5, 10.5, 4.5, 12], "texture": "#0"},
+				"east": {"uv": [4.5, 10.5, 5, 12], "texture": "#0"},
+				"south": {"uv": [4.5, 10.5, 5, 12], "texture": "#0"},
+				"west": {"uv": [4.5, 10.5, 5, 12], "texture": "#0"},
+				"up": {"uv": [4.5, 10.5, 5, 11], "texture": "#0"},
+				"down": {"uv": [4.5, 11.5, 5, 12], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_pickaxe_16",
+			"from": [4, 3, 0],
+			"to": [4.5, 5, 0.5],
+			"faces": {
+				"north": {"uv": [4.5, 11, 4, 13], "texture": "#0"},
+				"east": {"uv": [4, 11, 4.5, 13], "texture": "#0"},
+				"south": {"uv": [4, 11, 4.5, 13], "texture": "#0"},
+				"west": {"uv": [4, 11, 4.5, 13], "texture": "#0"},
+				"up": {"uv": [4, 11, 4.5, 11.5], "texture": "#0"},
+				"down": {"uv": [4, 12.5, 4.5, 13], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rune_hardened_iron_pickaxe_17",
+			"from": [3, 3, 0],
+			"to": [4, 4.5, 0.5],
+			"faces": {
+				"north": {"uv": [4, 11.5, 3, 13], "texture": "#0"},
+				"east": {"uv": [3.5, 11.5, 4, 13], "texture": "#0"},
+				"south": {"uv": [3, 11.5, 4, 13], "texture": "#0"},
+				"west": {"uv": [3, 11.5, 3.5, 13], "texture": "#0"},
+				"up": {"uv": [3, 11.5, 4, 12], "texture": "#0"},
+				"down": {"uv": [3, 12.5, 4, 13], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [-178.33, 85.95, -151.03],
+			"translation": [8, 3.25, 0.5],
+			"scale": [1.5, 1.5, 1]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [-137, 82.95, 84.24],
+			"translation": [7.75, 4.25, 1],
+			"scale": [1.5, 1.5, 1]
+		},
+		"firstperson_righthand": {
+			"rotation": [63, 86.5, 0],
+			"translation": [9.25, 3.25, 0],
+			"scale": [1.5, 1.5, 1]
+		},
+		"firstperson_lefthand": {
+			"rotation": [63, -86.5, 0],
+			"translation": [-7.25, 3.25, 0],
+			"scale": [1.5, 1.5, 1]
+		},
+		"ground": {
+			"translation": [5.5, 2.75, 9.25],
+			"scale": [1.5, 1.5, 1]
+		},
+		"gui": {
+			"translation": [0.75, 1, 0],
+			"scale": [1.5, 1.5, 1]
+		},
+		"fixed": {
+			"translation": [0, 1.25, 7.75],
+			"scale": [1.5, 1.5, 1]
+		},
+		"on_shelf": {
+			"translation": [1.25, 0, 4.25],
+			"scale": [1.5, 1.5, 1]
+		}
+	},
+	"groups": [
+		{
+			"name": "rune_hardened_iron_pickaxe",
+			"origin": [8, 8, 8],
+			"scope": 0,
+			"color": 0,
+			"children": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+		}
+	]
 }

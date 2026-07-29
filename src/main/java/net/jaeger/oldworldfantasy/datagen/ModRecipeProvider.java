@@ -62,8 +62,53 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('A', ModItems.ARCANE_COAL.get())
                 .define('i', Items.IRON_INGOT)
                 .unlockedBy("has_arcane_coal", has(ModItems.ARCANE_COAL.get()))
-                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
                 .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.RUNE_HARDENED_IRON_SWORD.get())
+                .pattern(" r ")
+                .pattern(" r ")
+                .pattern(" s ")
+                .define('r', ModItems.RUNE_HARDEN_IRON_INGOT.get())
+                .define('s', Items.STICK)
+                .unlockedBy("has_rune_hardened_iron", has(ModItems.RUNE_HARDEN_IRON_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.RUNE_HARDENED_IRON_PICKAXE.get())
+                .pattern("rrr")
+                .pattern(" s ")
+                .pattern(" s ")
+                .define('r', ModItems.RUNE_HARDEN_IRON_INGOT.get())
+                .define('s', Items.STICK)
+                .unlockedBy("has_rune_hardened_iron", has(ModItems.RUNE_HARDEN_IRON_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.RUNE_HARDENED_IRON_SHOVEL.get())
+                .pattern(" r ")
+                .pattern(" s ")
+                .pattern(" s ")
+                .define('r', ModItems.RUNE_HARDEN_IRON_INGOT.get())
+                .define('s', Items.STICK)
+                .unlockedBy("has_rune_hardened_iron", has(ModItems.RUNE_HARDEN_IRON_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.RUNE_HARDENED_IRON_AXE.get())
+                .pattern("rr ")
+                .pattern("rs ")
+                .pattern(" s ")
+                .define('r', ModItems.RUNE_HARDEN_IRON_INGOT.get())
+                .define('s', Items.STICK)
+                .unlockedBy("has_rune_hardened_iron", has(ModItems.RUNE_HARDEN_IRON_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.RUNE_HARDENED_IRON_HOE.get())
+                .pattern("rr ")
+                .pattern(" s ")
+                .pattern(" s ")
+                .define('r', ModItems.RUNE_HARDEN_IRON_INGOT.get())
+                .define('s', Items.STICK)
+                .unlockedBy("has_rune_hardened_iron", has(ModItems.RUNE_HARDEN_IRON_INGOT.get()))
+                .save(pRecipeOutput);
+
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.LEAD_INGOT.get(), 9)
                 .requires(ModBlocks.LEAD_BLOCK.get())
@@ -84,6 +129,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModBlocks.ARCANE_COAL_BLOCK.get())
                 .unlockedBy("has_arcane_coal_block", has(ModBlocks.ARCANE_COAL_BLOCK.get()))
                 .save(pRecipeOutput);
+
 
         oreSmelting(pRecipeOutput, LEAD_SMELTABLES, RecipeCategory.MISC, ModItems.LEAD_INGOT.get(), 0.25f, 200, "lead");
         oreBlasting(pRecipeOutput, LEAD_SMELTABLES, RecipeCategory.MISC, ModItems.LEAD_INGOT.get(), 0.25f, 100, "lead");

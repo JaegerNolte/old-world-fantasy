@@ -2162,18 +2162,18 @@
 			"scale": [1.5, 1.5, 1]
 		},
 		"firstperson_righthand": {
-			"rotation": [0, 87.5, 49],
-			"translation": [5, 8, -0.5],
+			"rotation": [7, 92, 49],
+			"translation": [8.5, 8.25, -0.5],
 			"scale": [1.5, 1.5, 1]
 		},
 		"firstperson_lefthand": {
-			"rotation": [2, 87.5, -49],
-			"translation": [5, 8.5, -0.5],
+			"rotation": [7, 92, -49],
+			"translation": [8.5, 8.25, -0.5],
 			"scale": [1.5, 1.5, 1]
 		},
 		"ground": {
-			"rotation": [0, 0, -40.75],
-			"translation": [12.5, 0.75, 7.5],
+			"rotation": [0, 0, 7],
+			"translation": [12.5, 9.75, 7.5],
 			"scale": [1.5, 1.5, 1]
 		},
 		"gui": {
@@ -2193,6 +2193,7 @@
 		{
 			"name": "rune_hardened_iron_sword",
 			"origin": [8, 8, 8],
+			"scope": 0,
 			"color": 0,
 			"children": [
 				0,
