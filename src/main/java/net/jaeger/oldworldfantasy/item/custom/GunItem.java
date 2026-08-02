@@ -49,8 +49,8 @@ public class GunItem extends ProjectileWeaponItem {
                             player.getZ(),
                             ModSounds.BLUNDERBUSS_USE.get(),
                             SoundSource.PLAYERS,
-                            1.0F,
-                            1.0F / (pLevel.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F
+                            2.0F,
+                            .5F / (pLevel.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F
                     );
                     player.awardStat(Stats.ITEM_USED.get(this));
                 }
@@ -71,8 +71,8 @@ public class GunItem extends ProjectileWeaponItem {
     }
 
     @Override
-    protected void shootProjectile(
-            LivingEntity pShooter, Projectile pProjectile, int pIndex, float pVelocity, float pInaccuracy, float pAngle, @Nullable LivingEntity pTarget
+    protected void shootProjectile(LivingEntity pShooter, Projectile pProjectile, int pIndex,
+                                   float pVelocity, float pInaccuracy, float pAngle, @Nullable LivingEntity pTarget
     ) {
         pProjectile.shootFromRotation(pShooter, pShooter.getXRot(), pShooter.getYRot() + pAngle, 0.0F, pVelocity, pInaccuracy);
     }
