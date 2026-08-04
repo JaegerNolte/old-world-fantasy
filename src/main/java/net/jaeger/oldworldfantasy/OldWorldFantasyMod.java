@@ -2,12 +2,16 @@ package net.jaeger.oldworldfantasy;
 
 import com.mojang.logging.LogUtils;
 import net.jaeger.oldworldfantasy.block.ModBlocks;
+import net.jaeger.oldworldfantasy.entity.ModEntities;
+import net.jaeger.oldworldfantasy.entity.client.NurglingRenderer;
 import net.jaeger.oldworldfantasy.item.ModCreativeModeTabs;
 import net.jaeger.oldworldfantasy.item.ModItems;
 import net.jaeger.oldworldfantasy.sound.ModSounds;
 import net.jaeger.oldworldfantasy.util.ModItemProperties;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -39,6 +43,7 @@ public class OldWorldFantasyMod {
         ModItems.register(modEventBus);
 
         ModSounds.register(modEventBus);
+        ModEntities.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
     }
@@ -92,6 +97,8 @@ public class OldWorldFantasyMod {
         public static void onClientSetup(FMLClientSetupEvent event) {
 
             ModItemProperties.addCustomItemProperties();
+
+            EntityRenderers.register(ModEntities.NURGLING.get(), NurglingRenderer::new);
         }
     }
 }

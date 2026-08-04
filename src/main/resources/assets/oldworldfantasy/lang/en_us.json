@@ -16,11 +16,15 @@
 
   "item.oldworldfantasy.red_wine": "Red Wine",
 
+  "item.oldworldfantasy.nurgling_spawn_egg": "Nurgling Spawn Egg",
+
   "block.oldworldfantasy.lead_block": "Block of Lead",
   "block.oldworldfantasy.raw_lead_block": "Block of Raw Lead",
   "block.oldworldfantasy.lead_ore": "Block of Lead Ore",
   "block.oldworldfantasy.deepslate_lead_ore": "Block of Deepslate Lead Ore",
   "block.oldworldfantasy.arcane_coal_block": "Block of Arcane Coal",
   "block.oldworldfantasy.arcane_coal_ore": "Block of Arcane Coal Ore",
-  "block.oldworldfantasy.deepslate_arcane_coal_ore": "Block of Deepslate Arcane Coal Ore"
+  "block.oldworldfantasy.deepslate_arcane_coal_ore": "Block of Deepslate Arcane Coal Ore",
+
+  "entity.oldworldfantasy.nurgling": "Nurgling"
 }

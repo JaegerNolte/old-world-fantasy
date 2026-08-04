@@ -1,7 +1,8 @@
-// 1.21.1	2026-07-28T17:44:58.3020573	Item Models: oldworldfantasy
+// 1.21.1	2026-08-04T15:38:03.5063808	Item Models: oldworldfantasy
 253686eae1ae94b5994b4092017fb0dcdf517b87 assets/oldworldfantasy/models/item/arcane_coal.json
 bcbbb8cc0af5503f14f1031bcaf811ca14c90089 assets/oldworldfantasy/models/item/lead_ingot.json
 a57882f22ca1d1fe3cc98bbcb280c860043179b4 assets/oldworldfantasy/models/item/lead_nugget.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/oldworldfantasy/models/item/nurgling_spawn_egg.json
 6acf9ca67ad856bf97065295c1340cc2f0896530 assets/oldworldfantasy/models/item/raw_lead.json
 03c19fe3183e0af0a82c48e7782f006bb2bcab62 assets/oldworldfantasy/models/item/red_wine.json
 62507b9a16730b53e7b6bf071d8d466ec5efe85e assets/oldworldfantasy/models/item/rune_hardened_iron_ingot.json

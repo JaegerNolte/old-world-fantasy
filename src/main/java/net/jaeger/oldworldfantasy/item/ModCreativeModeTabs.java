@@ -29,9 +29,12 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.RUNE_HARDENED_IRON_SHOVEL.get());
                         output.accept(ModItems.RUNE_HARDENED_IRON_AXE.get());
                         output.accept(ModItems.RUNE_HARDENED_IRON_HOE.get());
+
                         output.accept(ModItems.BLUNDERBUSS.get());
 
                         output.accept(ModItems.RED_WINE.get());
+
+                        output.accept(ModItems.NURGLING_SPAWN_EGG.get());
 
                         output.accept(ModBlocks.LEAD_BLOCK.get());
                         output.accept(ModBlocks.RAW_LEAD_BLOCK.get());

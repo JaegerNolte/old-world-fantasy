@@ -23,7 +23,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.LEAD_NUGGET.get());
         basicItem(ModItems.RUNE_HARDEN_IRON_INGOT.get());
         basicItem(ModItems.ARCANE_COAL.get());
+
         basicItem(ModItems.RED_WINE.get());
+
+        withExistingParent(ModItems.NURGLING_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
     }
 
     private ItemModelBuilder handHeldItem(RegistryObject<Item> item) {

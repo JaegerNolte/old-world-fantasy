@@ -1,9 +1,11 @@
 package net.jaeger.oldworldfantasy.item;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
+import net.jaeger.oldworldfantasy.entity.ModEntities;
 import net.jaeger.oldworldfantasy.item.custom.FuelItem;
 import net.jaeger.oldworldfantasy.item.custom.GunItem;
 import net.minecraft.world.item.*;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -49,12 +51,17 @@ public class ModItems {
             () -> new HoeItem(ModToolTiers.RUNE_HARDENED_IRON, new Item.Properties()
                     .attributes(HoeItem.createAttributes(ModToolTiers.RUNE_HARDENED_IRON, 0, -3.0f))));
 
+
     public static final RegistryObject<Item> BLUNDERBUSS = ITEMS.register("blunderbuss",
             () -> new GunItem(new Item.Properties().durability(500)));
 
 
     public static final RegistryObject<Item> RED_WINE = ITEMS.register("red_wine",
             () -> new Item(new Item.Properties().food(ModFoodProperties.RED_WINE)));
+
+
+    public static final RegistryObject<Item> NURGLING_SPAWN_EGG = ITEMS.register("nurgling_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.NURGLING, 0x68774c, 0x9ea94b, new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
