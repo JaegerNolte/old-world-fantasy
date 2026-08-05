@@ -13,7 +13,7 @@ public class NurglingRenderer extends MobRenderer<NurglingEntity, NurglingModel<
 
 
     public NurglingRenderer(EntityRendererProvider.Context pContext) {
-        super(pContext, new NurglingModel<>(pContext.bakeLayer(NurglingModel.LAYER_LOCATION)), 0.85f);
+        super(pContext, new NurglingModel<>(pContext.bakeLayer(NurglingModel.LAYER_LOCATION)), 0.4f);
     }
 
     @Override
@@ -24,8 +24,6 @@ public class NurglingRenderer extends MobRenderer<NurglingEntity, NurglingModel<
     @Override
     public void render(NurglingEntity pEntity, float pEntityYaw, float pPartialTicks, PoseStack pPoseStack,
                        MultiBufferSource pBuffer, int pPackedLight) {
-
-        pPoseStack.scale(0.5f, 0.5f, 0.5f);
         super.render(pEntity, pEntityYaw, pPartialTicks, pPoseStack, pBuffer, pPackedLight);
     }
 }

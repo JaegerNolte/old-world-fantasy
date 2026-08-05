@@ -29,7 +29,7 @@ public class NurglingModel<T extends NurglingEntity> extends HierarchicalModel<T
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.offsetAndRotation(-1.0F, 24.0F, 0.0F, 0.0F, -1.5708F, 0.0F));
+		PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.offsetAndRotation(-1.0F, 27.0F, 0.0F, 0.0F, -1.5708F, 0.0F));
 
 		PartDefinition head = body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 16).addBox(-1.0F, -22.0F, -4.0F, 4.0F, 5.0F, 6.0F, new CubeDeformation(0.0F))
 				.texOffs(34, 14).addBox(0.0F, -21.0F, -6.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
@@ -57,8 +57,8 @@ public class NurglingModel<T extends NurglingEntity> extends HierarchicalModel<T
         this.root().getAllParts().forEach(ModelPart::resetPose);
         this.applyHeadRotation(netHeadYaw, headPitch);
 
-        this.animateWalk(NurglingAnimations.ANIM_NURGLING_WALKING, limbSwing, limbSwingAmount, 2f, 2.5f);
-        this.animate(entity.idleAnimationState, NurglingAnimations.ANIM_NURGLING_IDLE, ageInTicks, 1f);
+        this.animateWalk(NurglingAnimations.ANIM_NURGLING_WALKING, limbSwing, limbSwingAmount, 4f, 2.5f);
+        this.animate(entity.idleAnimationState, NurglingAnimations.ANIM_NURGLING_IDLE, ageInTicks, 1.5f);
 	}
 
 	@Override
@@ -67,11 +67,12 @@ public class NurglingModel<T extends NurglingEntity> extends HierarchicalModel<T
 	}
 
     private void applyHeadRotation(float pNetHeadYaw, float pHeadPitch) {
-        pNetHeadYaw = Mth.clamp(pNetHeadYaw, -75.0F, 75.0F);
-        pHeadPitch = Mth.clamp(pHeadPitch, -12.5F, 12.5F);
+        pNetHeadYaw = Mth.clamp(pNetHeadYaw, -25.0f, 25.0f);
+        pHeadPitch = Mth.clamp(pHeadPitch, -2.5f, 2.5f);
 
-        this.head.yRot = pNetHeadYaw * ((float)Math.PI / 180F);
-        this.head.xRot = pHeadPitch * ((float)Math.PI / 180F);
+		this.head.xRot = 0.0f;
+        this.head.zRot = pHeadPitch * ((float)Math.PI / 180f);
+        this.head.yRot = pNetHeadYaw * ((float)Math.PI / 180f);
     }
 
     @Override
