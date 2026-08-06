@@ -1,5 +1,7 @@
 {
-	"format_version": "1.21.6",
+	"format_version": "1.21.11",
+	"gui_light": "front",
+	"ambientocclusion": false,
 	"texture_size": [32, 32],
 	"textures": {
 		"0": "oldworldfantasy:item/rune_hardened_iron_axe",

@@ -148,6 +148,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_rune_hardened_iron", has(ModItems.RUNE_HARDEN_IRON_INGOT.get()))
                 .save(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IMPERIAL_SWORD.get())
+                .pattern(" s ")
+                .pattern(" s ")
+                .pattern(" h ")
+                .define('s', ModItems.STEEL_INGOT.get())
+                .define('h', ModItems.HILT.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
+                .save(pRecipeOutput);
+
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.LEAD_INGOT.get(), 9)
                 .requires(ModBlocks.LEAD_BLOCK.get())

@@ -34,6 +34,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.RUNE_HARDENED_IRON_SHOVEL.get());
                         output.accept(ModItems.RUNE_HARDENED_IRON_AXE.get());
                         output.accept(ModItems.RUNE_HARDENED_IRON_HOE.get());
+                        output.accept(ModItems.IMPERIAL_SWORD.get());
 
                         output.accept(ModItems.BLUNDERBUSS.get());
 

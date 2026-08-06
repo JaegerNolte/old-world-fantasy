@@ -72,6 +72,8 @@ public class OldWorldFantasyMod {
             event.accept(ModItems.RUNE_HARDENED_IRON_SHOVEL);
             event.accept(ModItems.RUNE_HARDENED_IRON_AXE);
             event.accept(ModItems.RUNE_HARDENED_IRON_HOE);
+            event.accept(ModItems.IMPERIAL_SWORD);
+
             event.accept(ModItems.BLUNDERBUSS);
 
             event.accept(ModItems.RED_WINE);

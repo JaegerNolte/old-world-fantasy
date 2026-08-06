@@ -66,6 +66,10 @@ public class ModItems {
             () -> new HoeItem(ModToolTiers.RUNE_HARDENED_IRON, new Item.Properties()
                     .attributes(HoeItem.createAttributes(ModToolTiers.RUNE_HARDENED_IRON, 0, -3.0f))));
 
+    public static final RegistryObject<Item> IMPERIAL_SWORD = ITEMS.register("imperial_sword",
+            () -> new SwordItem(ModToolTiers.STEEL, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(ModToolTiers.STEEL, 3, -2.0f))));
+
 
     public static final RegistryObject<Item> BLUNDERBUSS = ITEMS.register("blunderbuss",
             () -> new GunItem(new Item.Properties().durability(500)));
