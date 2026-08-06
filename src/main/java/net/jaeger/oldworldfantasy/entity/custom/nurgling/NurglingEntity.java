@@ -1,7 +1,12 @@
 package net.jaeger.oldworldfantasy.entity.custom.nurgling;
 
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -46,6 +51,28 @@ public class NurglingEntity extends Monster {
                 .add(Attributes.MOVEMENT_SPEED, 0.30F)
                 .add(Attributes.ATTACK_DAMAGE, 2.0)
                 .add(Attributes.ARMOR, 3.0);
+    }
+
+    @Override
+    public boolean doHurtTarget(Entity pEntity) {
+        if (super.doHurtTarget(pEntity)) {
+            if (pEntity instanceof LivingEntity) {
+                int i = 0;
+                if (this.level().getDifficulty() == Difficulty.NORMAL) {
+                    i = 7;
+                } else if (this.level().getDifficulty() == Difficulty.HARD) {
+                    i = 15;
+                }
+
+                if (i > 0) {
+                    ((LivingEntity)pEntity).addEffect(new MobEffectInstance(MobEffects.POISON, i * 20, 0), this);
+                    ((LivingEntity)pEntity).addEffect(new MobEffectInstance(MobEffects.CONFUSION, i * 30, 0), this);
+                }
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private void setAnimationStates() {

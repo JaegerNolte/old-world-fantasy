@@ -17,7 +17,7 @@ public class ModEntities {
 
     public static final RegistryObject<EntityType<NurglingEntity>> NURGLING =
             ENTITY_TYPES.register("nurgling", () -> EntityType.Builder.of(NurglingEntity::new, MobCategory.MONSTER)
-                    .sized(0.5f, 0.5f).build("nurgling"));
+                    .sized(.5f, 1f).build("nurgling"));
 
 
     public static void register(IEventBus eventBus) {
