@@ -1,6 +1,7 @@
-// 1.21.1	2026-07-29T19:56:43.8770517	Registries
+// 1.21.1	2026-08-05T19:51:45.0510012	Registries
 28e51072adb1a865cf757349a21dab65356bdc8b data/oldworldfantasy/forge/biome_modifier/add_arcane_coal_ore.json
 578345f812b274e798eb4445b7d8faadd78560c1 data/oldworldfantasy/forge/biome_modifier/add_lead_ore.json
+1afe7b5f4632e3ee433160bde4e651e23ed81642 data/oldworldfantasy/forge/biome_modifier/spawn_nurgling.json
 e58e654ab3c061e7dc41ca3196ebb20779ec2dd5 data/oldworldfantasy/worldgen/configured_feature/arcane_coal_ore.json
 0ca3d6ae34e8f73105f04afb398061b7031eacd4 data/oldworldfantasy/worldgen/configured_feature/lead_ore.json
 b26b764ac67281e2a69a91a557a2d2868308f797 data/oldworldfantasy/worldgen/placed_feature/arcane_coal_ore_placed.json
