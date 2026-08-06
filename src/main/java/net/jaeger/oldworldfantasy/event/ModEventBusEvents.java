@@ -3,7 +3,7 @@ package net.jaeger.oldworldfantasy.event;
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.entity.ModEntities;
 import net.jaeger.oldworldfantasy.entity.client.NurglingModel;
-import net.jaeger.oldworldfantasy.entity.custom.NurglingEntity;
+import net.jaeger.oldworldfantasy.entity.custom.nurgling.NurglingEntity;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

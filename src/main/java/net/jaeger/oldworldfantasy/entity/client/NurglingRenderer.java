@@ -2,7 +2,7 @@ package net.jaeger.oldworldfantasy.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.entity.custom.NurglingEntity;
+import net.jaeger.oldworldfantasy.entity.custom.nurgling.NurglingEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
