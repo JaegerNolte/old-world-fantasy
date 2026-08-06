@@ -30,7 +30,7 @@ public class NurglingEntity extends Monster {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0f));
+        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 30.0f));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(7, new FloatGoal(this));
         this.addBehaviourGoals();
@@ -48,7 +48,7 @@ public class NurglingEntity extends Monster {
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.FOLLOW_RANGE, 30.0)
-                .add(Attributes.MOVEMENT_SPEED, 0.30F)
+                .add(Attributes.MOVEMENT_SPEED, 0.25F)
                 .add(Attributes.ATTACK_DAMAGE, 2.0)
                 .add(Attributes.ARMOR, 3.0);
     }

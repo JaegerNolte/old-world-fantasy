@@ -3,7 +3,9 @@
   "biomes": [
     "minecraft:swamp",
     "minecraft:mangrove_swamp",
-    "minecraft:plains"
+    "minecraft:jungle",
+    "minecraft:bamboo_jungle",
+    "minecraft:sparse_jungle"
   ],
   "spawners": {
     "type": "oldworldfantasy:nurgling",
