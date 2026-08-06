@@ -4,6 +4,11 @@ import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.entity.ModEntities;
 import net.jaeger.oldworldfantasy.item.custom.FuelItem;
 import net.jaeger.oldworldfantasy.item.custom.GunItem;
+import net.jaeger.oldworldfantasy.item.custom.PolearmItem;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -69,6 +74,10 @@ public class ModItems {
     public static final RegistryObject<Item> IMPERIAL_SWORD = ITEMS.register("imperial_sword",
             () -> new SwordItem(ModToolTiers.STEEL, new Item.Properties()
                     .attributes(SwordItem.createAttributes(ModToolTiers.STEEL, 3, -2.0f))));
+
+    public static final RegistryObject<Item> IMPERIAL_PIKE = ITEMS.register("imperial_pike",
+            () -> new PolearmItem(ModToolTiers.STEEL, new Item.Properties()
+                    .attributes(PolearmItem.createAttributes(ModToolTiers.STEEL, 3, -2.5f, 1d))));
 
 
     public static final RegistryObject<Item> BLUNDERBUSS = ITEMS.register("blunderbuss",
