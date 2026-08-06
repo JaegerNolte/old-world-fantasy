@@ -17,6 +17,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         blockWithItem(ModBlocks.LEAD_BLOCK);
+        blockWithItem(ModBlocks.STEEL_BLOCK);
         blockWithItem(ModBlocks.RAW_LEAD_BLOCK);
         blockWithItem(ModBlocks.LEAD_ORE);
         blockWithItem(ModBlocks.DEEPSLATE_LEAD_ORE);

@@ -22,6 +22,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider pProvider) {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.LEAD_BLOCK.get())
+                .add(ModBlocks.STEEL_BLOCK.get())
                 .add(ModBlocks.RAW_LEAD_BLOCK.get())
                 .add(ModBlocks.LEAD_BLOCK.get())
                 .add(ModBlocks.LEAD_ORE.get())
@@ -32,6 +33,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(ModBlocks.LEAD_BLOCK.get())
+                .add(ModBlocks.STEEL_BLOCK.get())
                 .add(ModBlocks.RAW_LEAD_BLOCK.get())
                 .add(ModBlocks.LEAD_BLOCK.get())
                 .add(ModBlocks.LEAD_ORE.get())
@@ -42,9 +44,5 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         tag(ModTags.Blocks.NEEDS_RUNE_HARDENED_IRON_TOOL)
                 .addTag(BlockTags.NEEDS_DIAMOND_TOOL);
-
-//        tag(ModTags.Blocks.INCORRECT_FOR_RUNE_HARDENED_IRON_TOOL)
-//                .addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL)
-//                .remove(ModTags.Blocks.NEEDS_RUNE_HARDENED_IRON_TOOL);
     }
 }

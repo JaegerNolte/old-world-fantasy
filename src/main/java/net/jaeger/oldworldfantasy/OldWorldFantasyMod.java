@@ -59,8 +59,13 @@ public class OldWorldFantasyMod {
             event.accept(ModItems.RAW_LEAD);
             event.accept(ModItems.LEAD_INGOT);
             event.accept(ModItems.LEAD_NUGGET);
+            event.accept(ModItems.STEEL_INGOT);
+            event.accept(ModItems.STEEL_NUGGET);
             event.accept(ModItems.RUNE_HARDEN_IRON_INGOT);
             event.accept(ModItems.ARCANE_COAL);
+            event.accept(ModItems.LEATHER_STRAP);
+            event.accept(ModItems.HILT);
+            event.accept(ModItems.POLE);
 
             event.accept(ModItems.RUNE_HARDENED_IRON_SWORD);
             event.accept(ModItems.RUNE_HARDENED_IRON_PICKAXE);
@@ -74,6 +79,7 @@ public class OldWorldFantasyMod {
 
         if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(ModBlocks.LEAD_BLOCK);
+            event.accept(ModBlocks.STEEL_BLOCK);
             event.accept(ModBlocks.RAW_LEAD_BLOCK);
             event.accept(ModBlocks.DEEPSLATE_LEAD_ORE);
             event.accept(ModBlocks.LEAD_ORE);

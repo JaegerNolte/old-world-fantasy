@@ -1,4 +1,4 @@
-// 1.21.1	2026-07-27T11:34:19.5058732	Block States: oldworldfantasy
+// 1.21.1	2026-08-06T11:22:13.1015665	Block States: oldworldfantasy
 d32fdca3661a4b2285423c959022da84b24e7f27 assets/oldworldfantasy/blockstates/arcane_coal_block.json
 d089e2597c2fb46d8bd193b432956d5f940aa934 assets/oldworldfantasy/blockstates/arcane_coal_ore.json
 60e8d3132c8758c35988884f4b23bd6fb6a4bf97 assets/oldworldfantasy/blockstates/deepslate_arcane_coal_ore.json
@@ -6,6 +6,7 @@ d089e2597c2fb46d8bd193b432956d5f940aa934 assets/oldworldfantasy/blockstates/arca
 b2a50ec5dab3c1b39cd7c70cb00fcfc1b344864b assets/oldworldfantasy/blockstates/lead_block.json
 fa7e7e02f66e85529a0ee8403b4c4107d1bb68a6 assets/oldworldfantasy/blockstates/lead_ore.json
 1be5666f84f61daa3852cf87eb1829a1ed91b4b2 assets/oldworldfantasy/blockstates/raw_lead_block.json
+1e0566b6e57f2787c5f5859b7cf348ca6f2b22cb assets/oldworldfantasy/blockstates/steel_block.json
 60cd1b9fe83eac0cbecbbaa48216d9fc49a2b15d assets/oldworldfantasy/models/block/arcane_coal_block.json
 09d2db12160665330ed9518e46d377c49f8d1e8d assets/oldworldfantasy/models/block/arcane_coal_ore.json
 cbe646d594da859c73a1baab073ab25a237b4b16 assets/oldworldfantasy/models/block/deepslate_arcane_coal_ore.json
@@ -13,6 +14,7 @@ ba9a6ccf35a32824b691ccc507e79ae3945cb500 assets/oldworldfantasy/models/block/dee
 9277e83cfeeb40cf5975ad11cbffa7064da5507d assets/oldworldfantasy/models/block/lead_block.json
 b1cfeaafc32c4f0264665f0a5e19637c47af14f2 assets/oldworldfantasy/models/block/lead_ore.json
 b60f1e70e4ea490c60563c4942daf327474fa908 assets/oldworldfantasy/models/block/raw_lead_block.json
+bfccdb9d3367505293e21120f23c7a55c661e4a8 assets/oldworldfantasy/models/block/steel_block.json
 1bc6799f78152ccffc54f3b156acea115a6bc25a assets/oldworldfantasy/models/item/arcane_coal_block.json
 83a4ce3d9972d001c8eae27fa5661e391d0c291d assets/oldworldfantasy/models/item/arcane_coal_ore.json
 090913559b4ee34cc73ea2142916519b242db800 assets/oldworldfantasy/models/item/deepslate_arcane_coal_ore.json
@@ -20,3 +22,4 @@ b60f1e70e4ea490c60563c4942daf327474fa908 assets/oldworldfantasy/models/block/raw
 7c246a6f3878e256d64b62d9f1c7b1582bbef7df assets/oldworldfantasy/models/item/lead_block.json
 14f2761ce206338fb9f0ad803e343abc72e7c8f8 assets/oldworldfantasy/models/item/lead_ore.json
 58b82cfa352b8c254cdf273ffcc8f49b1641df9a assets/oldworldfantasy/models/item/raw_lead_block.json
+fe28d061d94e0fc5542606d65e6624c311b8c407 assets/oldworldfantasy/models/item/steel_block.json

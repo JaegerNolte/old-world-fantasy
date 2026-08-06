@@ -2,17 +2,17 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "l": {
-      "item": "oldworldfantasy:lead_nugget"
+    "s": {
+      "item": "oldworldfantasy:steel_nugget"
     }
   },
   "pattern": [
-    "lll",
-    "lll",
-    "lll"
+    "sss",
+    "sss",
+    "sss"
   ],
   "result": {
     "count": 1,
-    "id": "oldworldfantasy:lead_ingot"
+    "id": "oldworldfantasy:steel_ingot"
   }
 }

@@ -24,11 +24,26 @@ public class ModItems {
     public static final RegistryObject<Item> LEAD_NUGGET = ITEMS.register("lead_nugget",
             () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> STEEL_INGOT = ITEMS.register("steel_ingot",
+            () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> STEEL_NUGGET = ITEMS.register("steel_nugget",
+            () -> new Item(new Item.Properties()));
+
     public static final RegistryObject<Item> RUNE_HARDEN_IRON_INGOT = ITEMS.register("rune_hardened_iron_ingot",
         () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> ARCANE_COAL = ITEMS.register("arcane_coal",
             () -> new FuelItem(new Item.Properties(), 1800));
+
+    public static final RegistryObject<Item> LEATHER_STRAP = ITEMS.register("leather_strap",
+            () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> HILT = ITEMS.register("hilt",
+            () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> POLE = ITEMS.register("pole",
+            () -> new Item(new Item.Properties()));
 
 
     public static final RegistryObject<Item> RUNE_HARDENED_IRON_SWORD = ITEMS.register("rune_hardened_iron_sword",

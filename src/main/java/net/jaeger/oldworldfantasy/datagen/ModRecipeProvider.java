@@ -32,6 +32,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_lead_ingot", has(ModItems.LEAD_INGOT.get()))
                 .save(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STEEL_BLOCK.get())
+                .pattern("sss")
+                .pattern("sss")
+                .pattern("sss")
+                .define('s', ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
+                .save(pRecipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAW_LEAD_BLOCK.get())
                 .pattern("lll")
                 .pattern("lll")
@@ -39,14 +47,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('l', ModItems.RAW_LEAD.get())
                 .unlockedBy("has_raw_lead", has(ModItems.RAW_LEAD.get()))
                 .save(pRecipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.LEAD_INGOT.get())
-                .pattern("lll")
-                .pattern("lll")
-                .pattern("lll")
-                .define('l', ModItems.LEAD_NUGGET.get())
-                .unlockedBy("has_lead_nugget", has(ModItems.LEAD_NUGGET.get()))
-                .save(pRecipeOutput, OldWorldFantasyMod.MOD_ID + ":lead_ingot_from_nuggets");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ARCANE_COAL_BLOCK.get())
                 .pattern("AAA")
@@ -56,12 +56,51 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_arcane_coal", has(ModItems.ARCANE_COAL.get()))
                 .save(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.LEAD_INGOT.get())
+                .pattern("lll")
+                .pattern("lll")
+                .pattern("lll")
+                .define('l', ModItems.LEAD_NUGGET.get())
+                .unlockedBy("has_lead_nugget", has(ModItems.LEAD_NUGGET.get()))
+                .save(pRecipeOutput, OldWorldFantasyMod.MOD_ID + ":lead_ingot_from_nuggets");
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_INGOT.get())
+                .pattern("sss")
+                .pattern("sss")
+                .pattern("sss")
+                .define('s', ModItems.STEEL_NUGGET.get())
+                .unlockedBy("has_steel_nugget", has(ModItems.STEEL_NUGGET.get()))
+                .save(pRecipeOutput, OldWorldFantasyMod.MOD_ID + ":steel_ingot_from_nuggets");
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.RUNE_HARDEN_IRON_INGOT.get(), 2)
                 .pattern("iA ")
                 .pattern("Ai ")
                 .define('A', ModItems.ARCANE_COAL.get())
                 .define('i', Items.IRON_INGOT)
                 .unlockedBy("has_arcane_coal", has(ModItems.ARCANE_COAL.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 2)
+                .pattern("sC ")
+                .pattern("Cs ")
+                .define('C', Items.COAL)
+                .define('s', Items.IRON_INGOT)
+                .unlockedBy("has_coal", has(Items.COAL))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.HILT.get())
+                .pattern("sl ")
+                .define('s', Items.STICK)
+                .define('l', ModItems.LEATHER_STRAP.get())
+                .unlockedBy("has_leather_strap", has(ModItems.LEATHER_STRAP.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.POLE.get())
+                .pattern(" h ")
+                .pattern("s  ")
+                .define('s', Items.STICK)
+                .define('h', ModItems.HILT.get())
+                .unlockedBy("has_hilt", has(ModItems.HILT.get()))
                 .save(pRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.RUNE_HARDENED_IRON_SWORD.get())
@@ -113,11 +152,21 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.LEAD_INGOT.get(), 9)
                 .requires(ModBlocks.LEAD_BLOCK.get())
                 .unlockedBy("has_lead_block", has(ModBlocks.LEAD_BLOCK.get()))
-                .save(pRecipeOutput);
+                .save(pRecipeOutput, OldWorldFantasyMod.MOD_ID + ":lead_ingot_from_lead_block");
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 9)
+                .requires(ModBlocks.STEEL_BLOCK.get())
+                .unlockedBy("has_steel_block", has(ModBlocks.STEEL_BLOCK.get()))
+                .save(pRecipeOutput, OldWorldFantasyMod.MOD_ID + ":steel_ingot_from_steel_block");
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.LEAD_NUGGET.get(), 9)
                 .requires(ModItems.LEAD_INGOT.get())
                 .unlockedBy("has_lead_ingot", has(ModItems.LEAD_NUGGET.get()))
+                .save(pRecipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.STEEL_NUGGET.get(), 9)
+                .requires(ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_NUGGET.get()))
                 .save(pRecipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.RAW_LEAD.get(), 9)
@@ -130,10 +179,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_arcane_coal_block", has(ModBlocks.ARCANE_COAL_BLOCK.get()))
                 .save(pRecipeOutput);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.LEATHER_STRAP.get(), 6)
+                .requires(Items.LEATHER, 2)
+                .unlockedBy("has_leather", has(Items.LEATHER))
+                .save(pRecipeOutput);
+
 
         oreSmelting(pRecipeOutput, LEAD_SMELTABLES, RecipeCategory.MISC, ModItems.LEAD_INGOT.get(), 0.25f, 200, "lead");
         oreBlasting(pRecipeOutput, LEAD_SMELTABLES, RecipeCategory.MISC, ModItems.LEAD_INGOT.get(), 0.25f, 100, "lead");
-
     }
 
     protected static void oreSmelting(RecipeOutput recipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,

@@ -3,16 +3,17 @@
   "category": "misc",
   "key": {
     "l": {
-      "item": "oldworldfantasy:lead_nugget"
+      "item": "oldworldfantasy:leather_strap"
+    },
+    "s": {
+      "item": "minecraft:stick"
     }
   },
   "pattern": [
-    "lll",
-    "lll",
-    "lll"
+    "sl "
   ],
   "result": {
     "count": 1,
-    "id": "oldworldfantasy:lead_ingot"
+    "id": "oldworldfantasy:hilt"
   }
 }

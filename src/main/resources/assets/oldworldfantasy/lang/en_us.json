@@ -4,8 +4,13 @@
   "item.oldworldfantasy.raw_lead": "Raw Lead",
   "item.oldworldfantasy.lead_ingot": "Lead Ingot",
   "item.oldworldfantasy.lead_nugget": "Lead Nugget",
+  "item.oldworldfantasy.steel_ingot": "Steel Ingot",
+  "item.oldworldfantasy.steel_nugget": "Steel Nugget",
   "item.oldworldfantasy.rune_hardened_iron_ingot": "Rune Hardened Iron Ingot",
   "item.oldworldfantasy.arcane_coal": "Arcane Coal",
+  "item.oldworldfantasy.leather_strap": "Leather Strap",
+  "item.oldworldfantasy.hilt": "Hilt",
+  "item.oldworldfantasy.pole": "pole",
 
   "item.oldworldfantasy.rune_hardened_iron_sword": "Rune Hardened Iron Sword",
   "item.oldworldfantasy.rune_hardened_iron_pickaxe": "Rune Hardened Iron Pickaxe",
@@ -19,6 +24,7 @@
   "item.oldworldfantasy.nurgling_spawn_egg": "Nurgling Spawn Egg",
 
   "block.oldworldfantasy.lead_block": "Block of Lead",
+  "block.oldworldfantasy.steel_block": "Block of Steel",
   "block.oldworldfantasy.raw_lead_block": "Block of Raw Lead",
   "block.oldworldfantasy.lead_ore": "Block of Lead Ore",
   "block.oldworldfantasy.deepslate_lead_ore": "Block of Deepslate Lead Ore",

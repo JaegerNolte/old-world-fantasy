@@ -1,8 +1,13 @@
-// 1.21.1	2026-08-04T15:38:03.5063808	Item Models: oldworldfantasy
+// 1.21.1	2026-08-06T13:41:57.8096097	Item Models: oldworldfantasy
 253686eae1ae94b5994b4092017fb0dcdf517b87 assets/oldworldfantasy/models/item/arcane_coal.json
+0c4ceaa2476ac3f010ce4b736f118c381db9425e assets/oldworldfantasy/models/item/hilt.json
 bcbbb8cc0af5503f14f1031bcaf811ca14c90089 assets/oldworldfantasy/models/item/lead_ingot.json
 a57882f22ca1d1fe3cc98bbcb280c860043179b4 assets/oldworldfantasy/models/item/lead_nugget.json
+aa424bab7fb1ef9ad6edfbd9a029c438796377b1 assets/oldworldfantasy/models/item/leather_strap.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/oldworldfantasy/models/item/nurgling_spawn_egg.json
+0411a1d0abf1813568a654d1c326755976756c06 assets/oldworldfantasy/models/item/pole.json
 6acf9ca67ad856bf97065295c1340cc2f0896530 assets/oldworldfantasy/models/item/raw_lead.json
 03c19fe3183e0af0a82c48e7782f006bb2bcab62 assets/oldworldfantasy/models/item/red_wine.json
 62507b9a16730b53e7b6bf071d8d466ec5efe85e assets/oldworldfantasy/models/item/rune_hardened_iron_ingot.json
+8e40309b10eaebe2115b7edb0f3ca13379a5d8ef assets/oldworldfantasy/models/item/steel_ingot.json
+e025c7673f41c62b45d51c767d17423d719c2364 assets/oldworldfantasy/models/item/steel_nugget.json

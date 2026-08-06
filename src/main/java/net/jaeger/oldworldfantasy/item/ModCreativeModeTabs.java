@@ -22,7 +22,12 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.LEAD_INGOT.get());
                         output.accept(ModItems.LEAD_NUGGET.get());
                         output.accept(ModItems.ARCANE_COAL.get());
+                        output.accept(ModItems.STEEL_INGOT.get());
+                        output.accept(ModItems.STEEL_NUGGET.get());
                         output.accept(ModItems.RUNE_HARDEN_IRON_INGOT.get());
+                        output.accept(ModItems.LEATHER_STRAP.get());
+                        output.accept(ModItems.HILT.get());
+                        output.accept(ModItems.POLE.get());
 
                         output.accept(ModItems.RUNE_HARDENED_IRON_SWORD.get());
                         output.accept(ModItems.RUNE_HARDENED_IRON_PICKAXE.get());
@@ -38,6 +43,7 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModBlocks.LEAD_BLOCK.get());
                         output.accept(ModBlocks.RAW_LEAD_BLOCK.get());
+                        output.accept(ModBlocks.STEEL_BLOCK.get());
                         output.accept(ModBlocks.LEAD_ORE.get());
                         output.accept(ModBlocks.DEEPSLATE_LEAD_ORE.get());
                         output.accept(ModBlocks.ARCANE_COAL_BLOCK.get());

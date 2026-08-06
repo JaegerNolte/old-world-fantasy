@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oldworldfantasy:lead_ingot"
+        "recipe": "oldworldfantasy:lead_ingot_from_lead_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "oldworldfantasy:lead_ingot"
+      "oldworldfantasy:lead_ingot_from_lead_block"
     ]
   }
 }
