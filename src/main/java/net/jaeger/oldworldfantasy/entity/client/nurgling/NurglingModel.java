@@ -1,4 +1,4 @@
-package net.jaeger.oldworldfantasy.entity.client;
+package net.jaeger.oldworldfantasy.entity.client.nurgling;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

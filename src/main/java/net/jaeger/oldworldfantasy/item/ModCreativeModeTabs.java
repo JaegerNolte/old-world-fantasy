@@ -44,6 +44,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.RED_WINE.get());
 
                         output.accept(ModItems.NURGLING_SPAWN_EGG.get());
+                        output.accept(ModItems.UNGOR_SPAWN_EGG.get());
 
                         output.accept(ModBlocks.LEAD_BLOCK.get());
                         output.accept(ModBlocks.RAW_LEAD_BLOCK.get());

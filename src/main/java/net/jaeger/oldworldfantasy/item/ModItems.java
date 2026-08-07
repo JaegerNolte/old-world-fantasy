@@ -96,6 +96,9 @@ public class ModItems {
     public static final RegistryObject<Item> NURGLING_SPAWN_EGG = ITEMS.register("nurgling_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.NURGLING, 0x68774c, 0x9ea94b, new Item.Properties()));
 
+    public static final RegistryObject<Item> UNGOR_SPAWN_EGG = ITEMS.register("ungor_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.UNGOR, 0x68774c, 0x9ea94b, new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

@@ -1,4 +1,4 @@
-// 1.21.1	2026-08-06T13:41:57.8096097	Item Models: oldworldfantasy
+// 1.21.1	2026-08-07T17:06:08.834778	Item Models: oldworldfantasy
 253686eae1ae94b5994b4092017fb0dcdf517b87 assets/oldworldfantasy/models/item/arcane_coal.json
 0c4ceaa2476ac3f010ce4b736f118c381db9425e assets/oldworldfantasy/models/item/hilt.json
 bcbbb8cc0af5503f14f1031bcaf811ca14c90089 assets/oldworldfantasy/models/item/lead_ingot.json
@@ -11,3 +11,4 @@ aa424bab7fb1ef9ad6edfbd9a029c438796377b1 assets/oldworldfantasy/models/item/leat
 62507b9a16730b53e7b6bf071d8d466ec5efe85e assets/oldworldfantasy/models/item/rune_hardened_iron_ingot.json
 8e40309b10eaebe2115b7edb0f3ca13379a5d8ef assets/oldworldfantasy/models/item/steel_ingot.json
 e025c7673f41c62b45d51c767d17423d719c2364 assets/oldworldfantasy/models/item/steel_nugget.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/oldworldfantasy/models/item/ungor_spawn_egg.json
