@@ -50,7 +50,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> RUNE_HARDENED_IRON_SWORD = ITEMS.register("rune_hardened_iron_sword",
             () -> new LongswordItem(ModToolTiers.RUNE_HARDENED_IRON, new Item.Properties()
-                    .attributes(LongswordItem.createAttributes(ModToolTiers.RUNE_HARDENED_IRON, 4, -2.8f, 1.0d))));
+                    .attributes(LongswordItem.createAttributes(ModToolTiers.RUNE_HARDENED_IRON, 4, -3.2f, 1.0d))));
 
     public static final RegistryObject<Item> RUNE_HARDENED_IRON_PICKAXE = ITEMS.register("rune_hardened_iron_pickaxe",
             () -> new PickaxeItem(ModToolTiers.RUNE_HARDENED_IRON, new Item.Properties()
