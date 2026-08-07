@@ -72,6 +72,7 @@ public class OldWorldFantasyMod {
             event.accept(ModItems.RUNE_HARDENED_IRON_AXE);
             event.accept(ModItems.RUNE_HARDENED_IRON_HOE);
             event.accept(ModItems.IMPERIAL_SWORD);
+            event.accept(ModItems.IMPERIAL_GREATSWORD);
             event.accept(ModItems.IMPERIAL_PIKE);
             event.accept(ModItems.IMPERIAL_HALBERD);
 

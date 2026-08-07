@@ -72,6 +72,10 @@ public class ModItems {
             () -> new SwordItem(ModToolTiers.STEEL, new Item.Properties()
                     .attributes(SwordItem.createAttributes(ModToolTiers.STEEL, 3, -2.0f))));
 
+    public static final RegistryObject<Item> IMPERIAL_GREATSWORD = ITEMS.register("imperial_greatsword",
+            () -> new LongswordItem(ModToolTiers.STEEL, new Item.Properties()
+                    .attributes(LongswordItem.createAttributes(ModToolTiers.STEEL, 4, -3.5f, 1.0d))));
+
     public static final RegistryObject<Item> IMPERIAL_PIKE = ITEMS.register("imperial_pike",
             () -> new PolearmItem(ModToolTiers.STEEL, new Item.Properties()
                     .attributes(PolearmItem.createAttributes(ModToolTiers.STEEL, 3, -3.2f, 2.5d))));

@@ -157,6 +157,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
                 .save(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IMPERIAL_GREATSWORD.get())
+                .pattern(" s ")
+                .pattern(" s ")
+                .pattern(" p ")
+                .define('s', ModItems.STEEL_INGOT.get())
+                .define('p', ModItems.POLE.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
+                .save(pRecipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IMPERIAL_PIKE.get())
                 .pattern(" S ")
                 .pattern(" s ")
