@@ -13,12 +13,12 @@
     }
   },
   "pattern": [
-    " S ",
-    " s ",
+    "SS ",
+    "Ss ",
     " p "
   ],
   "result": {
     "count": 1,
-    "id": "oldworldfantasy:imperial_pike"
+    "id": "oldworldfantasy:imperial_halberd"
   }
 }

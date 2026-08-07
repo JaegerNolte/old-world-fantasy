@@ -4,11 +4,8 @@ import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.entity.ModEntities;
 import net.jaeger.oldworldfantasy.item.custom.FuelItem;
 import net.jaeger.oldworldfantasy.item.custom.GunItem;
+import net.jaeger.oldworldfantasy.item.custom.LongswordItem;
 import net.jaeger.oldworldfantasy.item.custom.PolearmItem;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EquipmentSlotGroup;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -52,8 +49,8 @@ public class ModItems {
 
 
     public static final RegistryObject<Item> RUNE_HARDENED_IRON_SWORD = ITEMS.register("rune_hardened_iron_sword",
-            () -> new SwordItem(ModToolTiers.RUNE_HARDENED_IRON, new Item.Properties()
-                    .attributes(SwordItem.createAttributes(ModToolTiers.RUNE_HARDENED_IRON, 3, -2.4f))));
+            () -> new LongswordItem(ModToolTiers.RUNE_HARDENED_IRON, new Item.Properties()
+                    .attributes(LongswordItem.createAttributes(ModToolTiers.RUNE_HARDENED_IRON, 4, -2.8f, 1.0d))));
 
     public static final RegistryObject<Item> RUNE_HARDENED_IRON_PICKAXE = ITEMS.register("rune_hardened_iron_pickaxe",
             () -> new PickaxeItem(ModToolTiers.RUNE_HARDENED_IRON, new Item.Properties()
@@ -77,7 +74,11 @@ public class ModItems {
 
     public static final RegistryObject<Item> IMPERIAL_PIKE = ITEMS.register("imperial_pike",
             () -> new PolearmItem(ModToolTiers.STEEL, new Item.Properties()
-                    .attributes(PolearmItem.createAttributes(ModToolTiers.STEEL, 3, -2.5f, 1d))));
+                    .attributes(PolearmItem.createAttributes(ModToolTiers.STEEL, 3, -3.2f, 2.5d))));
+
+    public static final RegistryObject<Item> IMPERIAL_HALBERD = ITEMS.register("imperial_halberd",
+            () -> new PolearmItem(ModToolTiers.STEEL, new Item.Properties()
+                    .attributes(PolearmItem.createAttributes(ModToolTiers.STEEL, 4, -3.5f, 2.5d))));
 
 
     public static final RegistryObject<Item> BLUNDERBUSS = ITEMS.register("blunderbuss",

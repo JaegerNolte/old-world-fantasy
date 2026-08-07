@@ -36,8 +36,9 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.RUNE_HARDENED_IRON_HOE.get());
                         output.accept(ModItems.IMPERIAL_SWORD.get());
                         output.accept(ModItems.IMPERIAL_PIKE.get());
+                        output.accept(ModItems.IMPERIAL_HALBERD.get());
 
-                        output.accept(ModItems.BLUNDERBUSS.get());
+//                        output.accept(ModItems.BLUNDERBUSS.get());
 
                         output.accept(ModItems.RED_WINE.get());
 

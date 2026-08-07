@@ -11,7 +11,6 @@ import net.jaeger.oldworldfantasy.util.ModItemProperties;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -73,8 +72,10 @@ public class OldWorldFantasyMod {
             event.accept(ModItems.RUNE_HARDENED_IRON_AXE);
             event.accept(ModItems.RUNE_HARDENED_IRON_HOE);
             event.accept(ModItems.IMPERIAL_SWORD);
+            event.accept(ModItems.IMPERIAL_PIKE);
+            event.accept(ModItems.IMPERIAL_HALBERD);
 
-            event.accept(ModItems.BLUNDERBUSS);
+//            event.accept(ModItems.BLUNDERBUSS);
 
             event.accept(ModItems.RED_WINE);
         }
