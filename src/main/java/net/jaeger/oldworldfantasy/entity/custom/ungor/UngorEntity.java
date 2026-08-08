@@ -52,7 +52,7 @@ public class UngorEntity extends Monster {
         return Monster.createMonsterAttributes()
                 .add(Attributes.FOLLOW_RANGE, 30.0)
                 .add(Attributes.MOVEMENT_SPEED, 0.30F)
-                .add(Attributes.ATTACK_DAMAGE, 2.0)
+                .add(Attributes.ATTACK_DAMAGE, 5.0)
                 .add(Attributes.ARMOR, 2.0);
     }
 

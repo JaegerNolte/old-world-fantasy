@@ -27,6 +27,7 @@
   "item.oldworldfantasy.red_wine": "Red Wine",
 
   "item.oldworldfantasy.nurgling_spawn_egg": "Nurgling Spawn Egg",
+  "item.oldworldfantasy.ungor_spawn_egg": "Ungor Spawn Egg",
 
   "block.oldworldfantasy.lead_block": "Block of Lead",
   "block.oldworldfantasy.steel_block": "Block of Steel",
@@ -37,5 +38,6 @@
   "block.oldworldfantasy.arcane_coal_ore": "Block of Arcane Coal Ore",
   "block.oldworldfantasy.deepslate_arcane_coal_ore": "Block of Deepslate Arcane Coal Ore",
 
-  "entity.oldworldfantasy.nurgling": "Nurgling"
+  "entity.oldworldfantasy.nurgling": "Nurgling",
+  "entity.oldworldfantasy.ungor": "Ungor"
 }

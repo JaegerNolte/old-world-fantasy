@@ -22,7 +22,7 @@ public class ModEntities {
 
     public static final RegistryObject<EntityType<UngorEntity>> UNGOR =
             ENTITY_TYPES.register("ungor", () -> EntityType.Builder.of(UngorEntity::new, MobCategory.MONSTER)
-                    .sized(1f, 1f).build("ungor"));
+                    .sized(1f, 2f).build("ungor"));
 
 
     public static void register(IEventBus eventBus) {

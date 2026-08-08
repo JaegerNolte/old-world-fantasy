@@ -51,7 +51,7 @@ public class ModBiomeModifiers {
         context.register(SPAWN_UNGOR, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 HolderSet.direct(biomes.getOrThrow(Biomes.FOREST), biomes.getOrThrow(Biomes.DARK_FOREST),
                         biomes.getOrThrow(Biomes.BIRCH_FOREST), biomes.getOrThrow(Biomes.OLD_GROWTH_SPRUCE_TAIGA), biomes.getOrThrow(Biomes.TAIGA)),
-                List.of(new MobSpawnSettings.SpawnerData(ModEntities.UNGOR.get(), 25, 1, 3))));
+                List.of(new MobSpawnSettings.SpawnerData(ModEntities.UNGOR.get(), 25, 1, 1))));
     }
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {
