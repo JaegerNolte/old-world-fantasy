@@ -1,6 +1,7 @@
 package net.jaeger.oldworldfantasy.entity;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
+import net.jaeger.oldworldfantasy.entity.custom.gor.GorEntity;
 import net.jaeger.oldworldfantasy.entity.custom.nurgling.NurglingEntity;
 import net.jaeger.oldworldfantasy.entity.custom.ungor.UngorEntity;
 import net.minecraft.world.entity.EntityType;
@@ -23,6 +24,10 @@ public class ModEntities {
     public static final RegistryObject<EntityType<UngorEntity>> UNGOR =
             ENTITY_TYPES.register("ungor", () -> EntityType.Builder.of(UngorEntity::new, MobCategory.MONSTER)
                     .sized(1f, 2f).build("ungor"));
+
+    public static final RegistryObject<EntityType<GorEntity>> GOR =
+            ENTITY_TYPES.register("gor", () -> EntityType.Builder.of(GorEntity::new, MobCategory.MONSTER)
+                    .sized(1f, 2f).build("gor"));
 
 
     public static void register(IEventBus eventBus) {

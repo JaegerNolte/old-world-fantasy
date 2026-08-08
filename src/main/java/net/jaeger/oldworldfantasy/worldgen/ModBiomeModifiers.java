@@ -24,6 +24,7 @@ public class ModBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> SPAWN_NURGLING = registerKey("spawn_nurgling");
     public static final ResourceKey<BiomeModifier> SPAWN_UNGOR = registerKey("spawn_ungor");
+    public static final ResourceKey<BiomeModifier> SPAWN_GOR = registerKey("spawn_gor");
 
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
@@ -52,6 +53,11 @@ public class ModBiomeModifiers {
                 HolderSet.direct(biomes.getOrThrow(Biomes.FOREST), biomes.getOrThrow(Biomes.DARK_FOREST),
                         biomes.getOrThrow(Biomes.BIRCH_FOREST), biomes.getOrThrow(Biomes.OLD_GROWTH_SPRUCE_TAIGA), biomes.getOrThrow(Biomes.TAIGA)),
                 List.of(new MobSpawnSettings.SpawnerData(ModEntities.UNGOR.get(), 25, 1, 1))));
+
+        context.register(SPAWN_GOR, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
+                HolderSet.direct(biomes.getOrThrow(Biomes.FOREST), biomes.getOrThrow(Biomes.DARK_FOREST),
+                        biomes.getOrThrow(Biomes.BIRCH_FOREST), biomes.getOrThrow(Biomes.OLD_GROWTH_SPRUCE_TAIGA), biomes.getOrThrow(Biomes.TAIGA)),
+                List.of(new MobSpawnSettings.SpawnerData(ModEntities.GOR.get(), 25, 1, 1))));
     }
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {
