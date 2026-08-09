@@ -2,10 +2,7 @@ package net.jaeger.oldworldfantasy.item;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.entity.ModEntities;
-import net.jaeger.oldworldfantasy.item.custom.FuelItem;
-import net.jaeger.oldworldfantasy.item.custom.GunItem;
-import net.jaeger.oldworldfantasy.item.custom.LongswordItem;
-import net.jaeger.oldworldfantasy.item.custom.PolearmItem;
+import net.jaeger.oldworldfantasy.item.custom.*;
 import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -83,6 +80,23 @@ public class ModItems {
     public static final RegistryObject<Item> IMPERIAL_HALBERD = ITEMS.register("imperial_halberd",
             () -> new PolearmItem(ModToolTiers.STEEL, new Item.Properties()
                     .attributes(PolearmItem.createAttributes(ModToolTiers.STEEL, 4, -3.5f, 2.5d))));
+
+
+    public static final RegistryObject<Item> IMPERIAL_HELMET = ITEMS.register("imperial_helmet",
+            () -> new ImperialArmorItem(ModArmorMaterials.IMPERIAL_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(18))));
+
+    public static final RegistryObject<Item> IMPERIAL_CHESTPLATE = ITEMS.register("imperial_chestplate",
+            () -> new ImperialArmorItem(ModArmorMaterials.IMPERIAL_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(18))));
+
+    public static final RegistryObject<Item> IMPERIAL_LEGGINGS = ITEMS.register("imperial_leggings",
+            () -> new ImperialArmorItem(ModArmorMaterials.IMPERIAL_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(18))));
+
+    public static final RegistryObject<Item> IMPERIAL_BOOTS = ITEMS.register("imperial_boots",
+            () -> new ImperialArmorItem(ModArmorMaterials.IMPERIAL_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
+                    new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(18))));
 
 
     public static final RegistryObject<Item> BLUNDERBUSS = ITEMS.register("blunderbuss",

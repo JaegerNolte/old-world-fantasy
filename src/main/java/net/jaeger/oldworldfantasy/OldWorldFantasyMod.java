@@ -78,6 +78,11 @@ public class OldWorldFantasyMod {
             event.accept(ModItems.IMPERIAL_PIKE);
             event.accept(ModItems.IMPERIAL_HALBERD);
 
+            event.accept(ModItems.IMPERIAL_HELMET);
+            event.accept(ModItems.IMPERIAL_CHESTPLATE);
+            event.accept(ModItems.IMPERIAL_LEGGINGS);
+            event.accept(ModItems.IMPERIAL_BOOTS);
+
 //            event.accept(ModItems.BLUNDERBUSS);
 
             event.accept(ModItems.RED_WINE);

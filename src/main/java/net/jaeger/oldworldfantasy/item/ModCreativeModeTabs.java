@@ -39,6 +39,12 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.IMPERIAL_PIKE.get());
                         output.accept(ModItems.IMPERIAL_HALBERD.get());
 
+                        output.accept(ModItems.IMPERIAL_HELMET.get());
+                        output.accept(ModItems.IMPERIAL_CHESTPLATE.get());
+                        output.accept(ModItems.IMPERIAL_LEGGINGS.get());
+                        output.accept(ModItems.IMPERIAL_BOOTS.get());
+
+
 //                        output.accept(ModItems.BLUNDERBUSS.get());
 
                         output.accept(ModItems.RED_WINE.get());

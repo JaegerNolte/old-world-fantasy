@@ -29,6 +29,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.HILT.get());
         basicItem(ModItems.POLE.get());
 
+        basicItem(ModItems.IMPERIAL_HELMET.get());
+        basicItem(ModItems.IMPERIAL_CHESTPLATE.get());
+        basicItem(ModItems.IMPERIAL_LEGGINGS.get());
+        basicItem(ModItems.IMPERIAL_BOOTS.get());
+
         basicItem(ModItems.RED_WINE.get());
 
         withExistingParent(ModItems.NURGLING_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
