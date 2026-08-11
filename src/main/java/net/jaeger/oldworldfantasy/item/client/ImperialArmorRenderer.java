@@ -1,7 +1,7 @@
 package net.jaeger.oldworldfantasy.item.client;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.item.custom.ImperialArmorItem;
+import net.jaeger.oldworldfantasy.item.custom.items.armor.ImperialArmorItem;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.DefaultedItemGeoModel;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;

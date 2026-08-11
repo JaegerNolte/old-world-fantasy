@@ -1,4 +1,4 @@
-package net.jaeger.oldworldfantasy.item.custom;
+package net.jaeger.oldworldfantasy.item.custom.items.weapons;
 
 import net.jaeger.oldworldfantasy.sound.ModSounds;
 import net.minecraft.server.level.ServerLevel;

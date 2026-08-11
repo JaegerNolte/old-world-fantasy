@@ -1,4 +1,4 @@
-package net.jaeger.oldworldfantasy.item.custom;
+package net.jaeger.oldworldfantasy.item.custom.items.armor;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;

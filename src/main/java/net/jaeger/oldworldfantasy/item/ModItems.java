@@ -2,7 +2,11 @@ package net.jaeger.oldworldfantasy.item;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.entity.ModEntities;
-import net.jaeger.oldworldfantasy.item.custom.*;
+import net.jaeger.oldworldfantasy.item.custom.items.armor.ImperialArmorItem;
+import net.jaeger.oldworldfantasy.item.custom.items.FuelItem;
+import net.jaeger.oldworldfantasy.item.custom.items.weapons.GunItem;
+import net.jaeger.oldworldfantasy.item.custom.items.weapons.LongswordItem;
+import net.jaeger.oldworldfantasy.item.custom.items.weapons.PolearmItem;
 import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;

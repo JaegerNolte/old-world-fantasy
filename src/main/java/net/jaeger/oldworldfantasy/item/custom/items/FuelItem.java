@@ -1,4 +1,4 @@
-package net.jaeger.oldworldfantasy.item.custom;
+package net.jaeger.oldworldfantasy.item.custom.items;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;

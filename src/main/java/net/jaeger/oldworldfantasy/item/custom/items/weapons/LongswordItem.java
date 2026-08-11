@@ -1,4 +1,4 @@
-package net.jaeger.oldworldfantasy.item.custom;
+package net.jaeger.oldworldfantasy.item.custom.items.weapons;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.minecraft.core.BlockPos;
@@ -11,7 +11,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TieredItem;
@@ -23,11 +22,11 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.List;
 
-public class PolearmItem extends TieredItem {
+public class LongswordItem extends TieredItem {
 
     private static final ResourceLocation BASE_ATTACK_RANGE_ID = ResourceLocation.fromNamespaceAndPath(OldWorldFantasyMod.MOD_ID, "attack_range");
 
-    public PolearmItem(Tier pTier, Item.Properties pProperties) {
+    public LongswordItem(Tier pTier, Properties pProperties) {
         super(pTier, pProperties.component(DataComponents.TOOL, createToolProperties()));
     }
 
