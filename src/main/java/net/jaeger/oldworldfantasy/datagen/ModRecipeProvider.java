@@ -187,6 +187,37 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(pRecipeOutput);
 
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IMPERIAL_HELMET.get())
+                .pattern("sss")
+                .pattern("s s")
+                .define('s', ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IMPERIAL_CHESTPLATE.get())
+                .pattern("s s")
+                .pattern("sss")
+                .pattern("sss")
+                .define('s', ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IMPERIAL_LEGGINGS.get())
+                .pattern("sss")
+                .pattern("s s")
+                .pattern("s s")
+                .define('s', ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IMPERIAL_BOOTS.get())
+                .pattern("s s")
+                .pattern("s s")
+                .define('s', ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
+                .save(pRecipeOutput);
+
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.LEAD_INGOT.get(), 9)
                 .requires(ModBlocks.LEAD_BLOCK.get())
                 .unlockedBy("has_lead_block", has(ModBlocks.LEAD_BLOCK.get()))
