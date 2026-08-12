@@ -1,6 +1,11 @@
 package net.jaeger.oldworldfantasy.entity.custom.nurgling;
 
+import net.jaeger.oldworldfantasy.sound.ModSounds;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AnimationState;
@@ -17,6 +22,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 
 
 public class NurglingEntity extends Monster {
@@ -73,6 +79,30 @@ public class NurglingEntity extends Monster {
         } else {
             return false;
         }
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return ModSounds.NURGLING_ROAR.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource pDamageSource) {
+        return ModSounds.NURGLING_HURT.get();
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return ModSounds.NURGLING_DEATH.get();
+    }
+
+    protected SoundEvent getStepSound() {
+        return SoundEvents.ZOMBIE_STEP;
+    }
+
+    @Override
+    protected void playStepSound(BlockPos pPos, BlockState pBlock) {
+        this.playSound(this.getStepSound(), 0.15F, 1.0F);
     }
 
     private void setAnimationStates() {

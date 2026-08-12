@@ -1,8 +1,50 @@
 {
-  "blunderbuss_use": {
-    "subtitle": "sounds.oldworldfantasy.blunderbuss_use",
+  "beastmen_roar": {
+    "subtitle": "sounds.oldworldfantasy.beastmen_roar",
     "sounds": [
-      "oldworldfantasy:blunderbuss_use"
+      "oldworldfantasy:beastmen_roar"
+    ]
+  },
+  "beastmen_walk": {
+    "subtitle": "sounds.oldworldfantasy.beastmen_walk",
+    "sounds": [
+      "oldworldfantasy:beastmen_walk"
+    ]
+  },
+  "beastmen_hurt": {
+    "subtitle": "sounds.oldworldfantasy.beastmen_hur",
+    "sounds": [
+      "oldworldfantasy:beastmen_hurt"
+    ]
+  },
+  "beastmen_death": {
+    "subtitle": "sounds.oldworldfantasy.beastmen_death",
+    "sounds": [
+      "oldworldfantasy:beastmen_death"
+    ]
+  },
+  "nurgling_roar": {
+    "subtitle": "sounds.oldworldfantasy.nurgling_roar",
+    "sounds": [
+      "oldworldfantasy:nurgling_roar"
+    ]
+  },
+  "nurgling_walk": {
+    "subtitle": "sounds.oldworldfantasy.nurgling_walk",
+    "sounds": [
+      "oldworldfantasy:nurgling_walk"
+    ]
+  },
+  "nurgling_hurt": {
+    "subtitle": "sounds.oldworldfantasy.nurgling_hurt",
+    "sounds": [
+      "oldworldfantasy:nurgling_hurt"
+    ]
+  },
+  "nurgling_death": {
+    "subtitle": "sounds.oldworldfantasy.nurgling_death",
+    "sounds": [
+      "oldworldfantasy:nurgling_death"
     ]
   }
 }
