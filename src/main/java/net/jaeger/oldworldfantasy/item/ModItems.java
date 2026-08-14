@@ -2,6 +2,7 @@ package net.jaeger.oldworldfantasy.item;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.entity.ModEntities;
+import net.jaeger.oldworldfantasy.item.custom.items.ModBaseShield;
 import net.jaeger.oldworldfantasy.item.custom.items.armor.ImperialArmorItem;
 import net.jaeger.oldworldfantasy.item.custom.items.FuelItem;
 import net.jaeger.oldworldfantasy.item.custom.items.weapons.GunItem;
@@ -101,6 +102,10 @@ public class ModItems {
     public static final RegistryObject<Item> IMPERIAL_BOOTS = ITEMS.register("imperial_boots",
             () -> new ImperialArmorItem(ModArmorMaterials.IMPERIAL_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
                     new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(18))));
+
+
+    public static final RegistryObject<Item> IMPERIAL_SHIELD = ITEMS.register("imperial_shield",
+            () -> new ModBaseShield(new Item.Properties().durability(336)));
 
 
     public static final RegistryObject<Item> BLUNDERBUSS = ITEMS.register("blunderbuss",

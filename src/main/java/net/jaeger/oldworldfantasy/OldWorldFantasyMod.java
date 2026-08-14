@@ -11,6 +11,7 @@ import net.jaeger.oldworldfantasy.item.ModItems;
 import net.jaeger.oldworldfantasy.sound.ModSounds;
 import net.jaeger.oldworldfantasy.util.ModItemProperties;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -29,6 +30,10 @@ import org.slf4j.Logger;
 public class OldWorldFantasyMod {
 
     public static final String MOD_ID = "oldworldfantasy";
+
+    public static ResourceLocation res(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+    }
 
     public static final Logger LOG = LogUtils.getLogger();
 
@@ -82,6 +87,8 @@ public class OldWorldFantasyMod {
             event.accept(ModItems.IMPERIAL_CHESTPLATE);
             event.accept(ModItems.IMPERIAL_LEGGINGS);
             event.accept(ModItems.IMPERIAL_BOOTS);
+
+            event.accept(ModItems.IMPERIAL_SHIELD);
 
 //            event.accept(ModItems.BLUNDERBUSS);
 

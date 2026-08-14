@@ -44,6 +44,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.IMPERIAL_LEGGINGS.get());
                         output.accept(ModItems.IMPERIAL_BOOTS.get());
 
+                        output.accept(ModItems.IMPERIAL_SHIELD.get());
 
 //                        output.accept(ModItems.BLUNDERBUSS.get());
 
