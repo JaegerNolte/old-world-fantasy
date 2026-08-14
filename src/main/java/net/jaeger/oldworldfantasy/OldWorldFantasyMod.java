@@ -90,8 +90,6 @@ public class OldWorldFantasyMod {
 
             event.accept(ModItems.IMPERIAL_SHIELD);
 
-//            event.accept(ModItems.BLUNDERBUSS);
-
             event.accept(ModItems.RED_WINE);
         }
 
