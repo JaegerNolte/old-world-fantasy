@@ -18,20 +18,10 @@ public class ModBlockEntityWithoutLevelRenderer extends BlockEntityWithoutLevelR
 
     private Model model;
 
-    public ModBlockEntityWithoutLevelRenderer(
-            BlockEntityRenderDispatcher blockEntityRenderDispatcher,
-            EntityModelSet entityModelSet
-    ) {
-        super(
-                blockEntityRenderDispatcher,
-                entityModelSet
-        );
-
-        this.model = new ImperialShieldModel(
-                entityModelSet.bakeLayer(
-                        ImperialShieldModel.LAYER_LOCATION
-                )
-        );
+    public ModBlockEntityWithoutLevelRenderer(BlockEntityRenderDispatcher blockEntityRenderDispatcher,
+                                              EntityModelSet entityModelSet) {
+        super(blockEntityRenderDispatcher, entityModelSet);
+        this.model = new ImperialShieldModel(entityModelSet.bakeLayer(ImperialShieldModel.LAYER_LOCATION));
     }
 
     public void setModel(Model model) {
@@ -44,15 +34,9 @@ public class ModBlockEntityWithoutLevelRenderer extends BlockEntityWithoutLevelR
             System.out.println("CUSTOM SHIELD RENDER: " + context);
             poseStack.pushPose();
             poseStack.scale(1.0F, -1.0F, -1.0F);
-            VertexConsumer vertexConsumer =
-                    bufferSource.getBuffer(RenderType.entitySolid(OldWorldFantasyMod.res("textures/entity/shield/imperial_shield.png")));
-        shieldModel.renderToBuffer(
-                    poseStack,
-                    vertexConsumer,
-                    packedLight,
-                    packedOverlay,
-                    0xFFFFFFFF
-            );
+            // needs to find the texture of the registered item dynamically
+            VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.entitySolid(OldWorldFantasyMod.res("textures/entity/shield/imperial_shield.png")));
+        shieldModel.renderToBuffer(poseStack, vertexConsumer, packedLight, packedOverlay, 0xFFFFFFFF);
             poseStack.popPose();
         }
     }

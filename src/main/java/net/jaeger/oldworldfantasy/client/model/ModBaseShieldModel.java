@@ -13,7 +13,7 @@ public class ModBaseShieldModel extends Model {
 
     public ModBaseShieldModel(ModelPart root)
     {
-        super(RenderType::entityCutout);
+        super(RenderType::entitySolid);
         this.root = root;
         this.plate = new ModelPart[]{root.getChild("plate")};
         this.handle = root.getChild("handle");
