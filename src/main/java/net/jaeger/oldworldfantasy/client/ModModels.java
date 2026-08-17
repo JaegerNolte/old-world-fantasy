@@ -12,7 +12,7 @@ public class ModModels extends ModModelsProvider {
 
     public static final ModModels INSTANCE = new ModModels(OldWorldFantasyMod.MOD_ID);
 
-    public static final ModelLayerLocation IMPERIAL_SHIELD = INSTANCE.addModel("imperial_shield", ImperialShieldModel::createBodyLayer);
+    public static final ModelLayerLocation IMPERIAL_SHIELD = INSTANCE.addShieldModel("imperial_shield", ImperialShieldModel::createBodyLayer, ImperialShieldModel::new);
 
 
     protected ModModels(String modId) {
