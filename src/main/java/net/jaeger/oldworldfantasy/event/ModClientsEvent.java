@@ -1,10 +1,10 @@
 package net.jaeger.oldworldfantasy.event;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.client.ModModels;
+import net.jaeger.oldworldfantasy.client.model.ModModels;
 import net.jaeger.oldworldfantasy.item.ModItems;
-import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.resources.ResourceLocation;
+import net.jaeger.oldworldfantasy.item.custom.items.shield.ModShieldItem;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,8 +21,14 @@ public class ModClientsEvent {
 
     @SubscribeEvent
     public static void onFMLClientSetup(FMLClientSetupEvent event) {
-        ItemProperties.register(ModItems.IMPERIAL_SHIELD.get(), ResourceLocation.withDefaultNamespace("blocking"), (itemStack, level, entity, useDur) ->
-                entity != null && entity.isUsingItem() && entity.getUseItem() == itemStack ? 1.0F : 0.0F
-        );
+        event.enqueueWork(() -> {
+            ModItems.ITEMS.getEntries().forEach(entry -> {
+                Item item = entry.get();
+
+                if (item instanceof ModShieldItem shield) {
+                    shield.registerModelProperty();
+                }
+            });
+        });
     }
 }

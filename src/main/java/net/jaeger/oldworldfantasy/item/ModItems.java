@@ -2,9 +2,9 @@ package net.jaeger.oldworldfantasy.item;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.entity.ModEntities;
-import net.jaeger.oldworldfantasy.item.custom.items.shield.ModBaseShield;
+import net.jaeger.oldworldfantasy.item.custom.items.shield.ModShieldItem;
 import net.jaeger.oldworldfantasy.item.custom.items.armor.ImperialArmorItem;
-import net.jaeger.oldworldfantasy.item.custom.items.FuelItem;
+import net.jaeger.oldworldfantasy.item.custom.items.misc.FuelItem;
 import net.jaeger.oldworldfantasy.item.custom.items.weapons.LongswordItem;
 import net.jaeger.oldworldfantasy.item.custom.items.weapons.PolearmItem;
 import net.minecraft.world.item.*;
@@ -104,7 +104,7 @@ public class ModItems {
 
 
     public static final RegistryObject<Item> IMPERIAL_SHIELD = ITEMS.register("imperial_shield",
-            () -> new ModBaseShield(new Item.Properties().durability(336)));
+            () -> new ModShieldItem(new Item.Properties().durability(336)));
 
 
     public static final RegistryObject<Item> RED_WINE = ITEMS.register("red_wine",

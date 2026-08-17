@@ -1,4 +1,4 @@
-package net.jaeger.oldworldfantasy.client;
+package net.jaeger.oldworldfantasy.client.render.tileentity;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;

@@ -1,6 +1,6 @@
-package net.jaeger.oldworldfantasy.api.client.model;
+package net.jaeger.oldworldfantasy.api.client.render.model;
 
-import net.jaeger.oldworldfantasy.client.model.ModBaseShieldModel;
+import net.jaeger.oldworldfantasy.client.model.item.ModBaseShieldModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.builders.LayerDefinition;

@@ -1,8 +1,8 @@
-package net.jaeger.oldworldfantasy.client;
+package net.jaeger.oldworldfantasy.client.model;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.api.client.model.ModModelsProvider;
-import net.jaeger.oldworldfantasy.client.model.ImperialShieldModel;
+import net.jaeger.oldworldfantasy.api.client.render.model.ModModelsProvider;
+import net.jaeger.oldworldfantasy.client.model.item.ImperialShieldModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;

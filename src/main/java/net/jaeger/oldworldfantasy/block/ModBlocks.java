@@ -2,7 +2,7 @@ package net.jaeger.oldworldfantasy.block;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.item.ModItems;
-import net.jaeger.oldworldfantasy.item.custom.items.FuelBlockItem;
+import net.jaeger.oldworldfantasy.item.custom.items.misc.FuelBlockItem;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
