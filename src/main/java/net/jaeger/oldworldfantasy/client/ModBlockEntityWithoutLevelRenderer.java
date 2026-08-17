@@ -21,7 +21,7 @@ public class ModBlockEntityWithoutLevelRenderer extends BlockEntityWithoutLevelR
     public ModBlockEntityWithoutLevelRenderer(BlockEntityRenderDispatcher blockEntityRenderDispatcher,
                                               EntityModelSet entityModelSet) {
         super(blockEntityRenderDispatcher, entityModelSet);
-        this.model = new ImperialShieldModel(entityModelSet.bakeLayer(ImperialShieldModel.LAYER_LOCATION));
+        this.model = new ImperialShieldModel(entityModelSet.bakeLayer(ModModels.IMPERIAL_SHIELD));
     }
 
     public void setModel(Model model) {

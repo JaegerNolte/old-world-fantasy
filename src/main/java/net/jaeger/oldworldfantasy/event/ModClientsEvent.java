@@ -1,7 +1,7 @@
 package net.jaeger.oldworldfantasy.event;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.client.model.ImperialShieldModel;
+import net.jaeger.oldworldfantasy.client.ModModels;
 import net.jaeger.oldworldfantasy.item.ModItems;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
@@ -16,10 +16,7 @@ public class ModClientsEvent {
 
     @SubscribeEvent
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(
-                ImperialShieldModel.LAYER_LOCATION,
-                ImperialShieldModel::createBodyLayer
-        );
+        ModModels.INSTANCE.layers.forEach(event::registerLayerDefinition);
     }
 
     @SubscribeEvent

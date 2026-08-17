@@ -1,14 +1,10 @@
 package net.jaeger.oldworldfantasy.client.model;
 
-import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
 public class ImperialShieldModel extends ModBaseShieldModel {
-
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(OldWorldFantasyMod.res("imperial_shield"), "main");
 
     public ImperialShieldModel(ModelPart root) {
         super(root);
