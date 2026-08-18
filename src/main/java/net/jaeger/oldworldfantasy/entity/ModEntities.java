@@ -23,7 +23,7 @@ public class ModEntities {
 
     public static final RegistryObject<EntityType<UngorEntity>> UNGOR =
             ENTITY_TYPES.register("ungor", () -> EntityType.Builder.of(UngorEntity::new, MobCategory.MONSTER)
-                    .sized(1f, 1.5f).build("ungor"));
+                    .sized(1f, 2f).build("ungor"));
 
     public static final RegistryObject<EntityType<GorEntity>> GOR =
             ENTITY_TYPES.register("gor", () -> EntityType.Builder.of(GorEntity::new, MobCategory.MONSTER)

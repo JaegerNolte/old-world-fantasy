@@ -3,6 +3,7 @@ package net.jaeger.oldworldfantasy.entity.custom.gor;
 import net.jaeger.oldworldfantasy.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -31,6 +32,7 @@ public class GorEntity extends Monster {
 
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
+    private final int ambientSoundInterval = 1000;
 
     public GorEntity(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -55,8 +57,8 @@ public class GorEntity extends Monster {
 
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
-                .add(Attributes.FOLLOW_RANGE, 30.0)
-                .add(Attributes.MOVEMENT_SPEED, 0.30F)
+                .add(Attributes.FOLLOW_RANGE, 40.0)
+                .add(Attributes.MOVEMENT_SPEED, 0.40F)
                 .add(Attributes.ATTACK_DAMAGE, 8.0)
                 .add(Attributes.ARMOR, 3.0);
     }
@@ -82,9 +84,29 @@ public class GorEntity extends Monster {
         }
     }
 
+
+    public int getAmbientSoundInterval() {
+        return ambientSoundInterval;
+    }
+
+    public void playAmbientSound() {
+        this.makeSound(ModSounds.BEASTMEN_ROAR.get());
+    }
+
     @Override
-    protected SoundEvent getAmbientSound() {
-        return ModSounds.BEASTMEN_ROAR.get();
+    public void baseTick() {
+        super.baseTick();
+        this.level().getProfiler().push("mobBaseTick");
+        if (this.isAlive() && this.random.nextInt(1000) < this.ambientSoundTime++) {
+            this.resetAmbientSoundTime();
+            this.playAmbientSound();
+        }
+
+        this.level().getProfiler().pop();
+    }
+
+    private void resetAmbientSoundTime() {
+        this.ambientSoundTime = -this.getAmbientSoundInterval();
     }
 
     @Override
@@ -98,12 +120,12 @@ public class GorEntity extends Monster {
     }
 
     protected SoundEvent getStepSound() {
-        return ModSounds.BEASTMEN_WALK.get();
+        return SoundEvents.SHEEP_STEP;
     }
 
     @Override
     protected void playStepSound(BlockPos pPos, BlockState pBlock) {
-        this.playSound(this.getStepSound(), 0.15F, 1.0F);
+        this.playSound(this.getStepSound(), 0.25F, 0.9F);
     }
 
     private void setAnimationStates() {

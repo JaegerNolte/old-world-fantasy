@@ -3,6 +3,7 @@ package net.jaeger.oldworldfantasy.entity.custom.ungor;
 import net.jaeger.oldworldfantasy.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -31,6 +32,7 @@ public class UngorEntity extends Monster {
 
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
+    private final int ambientSoundInterval = 1000;
 
     public UngorEntity(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -83,9 +85,33 @@ public class UngorEntity extends Monster {
     }
 
 
+    public int getAmbientSoundInterval() {
+        return ambientSoundInterval;
+    }
+
     @Override
+    public void playAmbientSound() {
+        this.playSound(this.getAmbientSound(), 0.15F, 1.2F);
+    }
+
     protected SoundEvent getAmbientSound() {
         return ModSounds.BEASTMEN_ROAR.get();
+    }
+
+    @Override
+    public void baseTick() {
+        super.baseTick();
+        this.level().getProfiler().push("mobBaseTick");
+        if (this.isAlive() && this.random.nextInt(1000) < this.ambientSoundTime++) {
+            this.resetAmbientSoundTime();
+            this.playAmbientSound();
+        }
+
+        this.level().getProfiler().pop();
+    }
+
+    private void resetAmbientSoundTime() {
+        this.ambientSoundTime = -this.getAmbientSoundInterval();
     }
 
     @Override
@@ -99,12 +125,12 @@ public class UngorEntity extends Monster {
     }
 
     protected SoundEvent getStepSound() {
-        return ModSounds.BEASTMEN_WALK.get();
+        return SoundEvents.SHEEP_STEP;
     }
 
     @Override
     protected void playStepSound(BlockPos pPos, BlockState pBlock) {
-        this.playSound(this.getStepSound(), 0.15F, 1.0F);
+        this.playSound(this.getStepSound(), 0.15F, 0.9F);
     }
 
     private void setAnimationStates() {

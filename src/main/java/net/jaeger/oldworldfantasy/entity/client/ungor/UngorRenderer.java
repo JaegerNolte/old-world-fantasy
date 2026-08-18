@@ -13,7 +13,7 @@ public class UngorRenderer extends MobRenderer<UngorEntity, UngorModel<UngorEnti
 
 
     public UngorRenderer(EntityRendererProvider.Context pContext) {
-        super(pContext, new UngorModel<>(pContext.bakeLayer(UngorModel.LAYER_LOCATION)), 0.5f);
+        super(pContext, new UngorModel<>(pContext.bakeLayer(UngorModel.LAYER_LOCATION)), 0.4f);
     }
 
     @Override
@@ -24,6 +24,7 @@ public class UngorRenderer extends MobRenderer<UngorEntity, UngorModel<UngorEnti
     @Override
     public void render(UngorEntity pEntity, float pEntityYaw, float pPartialTicks, PoseStack pPoseStack,
                        MultiBufferSource pBuffer, int pPackedLight) {
+        pPoseStack.scale(0.8f, 0.8f,0.8f);
         super.render(pEntity, pEntityYaw, pPartialTicks, pPoseStack, pBuffer, pPackedLight);
     }
 }
