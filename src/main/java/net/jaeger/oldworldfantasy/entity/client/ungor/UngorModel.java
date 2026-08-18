@@ -3,7 +3,7 @@ package net.jaeger.oldworldfantasy.entity.client.ungor;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.entity.custom.beastmen.ungor.UngorEntity;
+import net.jaeger.oldworldfantasy.entity.custom.beastmen.ungor.Ungor;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -13,7 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 
-public class UngorModel<T extends UngorEntity> extends HierarchicalModel<T> {
+public class UngorModel<T extends Ungor> extends HierarchicalModel<T> {
 
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(OldWorldFantasyMod.MOD_ID, "ungor"), "main");
 	private final ModelPart body;
@@ -82,7 +82,7 @@ public class UngorModel<T extends UngorEntity> extends HierarchicalModel<T> {
     }
 
 	@Override
-	public void setupAnim(UngorEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void setupAnim(Ungor entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.root().getAllParts().forEach(ModelPart::resetPose);
         this.applyHeadRotation(netHeadYaw, headPitch);
 

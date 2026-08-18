@@ -16,7 +16,7 @@ public abstract class ModRaider extends Raider {
         super(pEntityType, pLevel);
     }
 
-    protected class HoldGroundAttackGoal extends Goal {
+    public static class HoldGroundAttackGoal extends Goal {
         private final ModRaider mob;
         private final float hostileRadiusSqr;
         public final TargetingConditions shoutTargeting = TargetingConditions.forNonCombat().range(8.0).ignoreLineOfSight().ignoreInvisibilityTesting();

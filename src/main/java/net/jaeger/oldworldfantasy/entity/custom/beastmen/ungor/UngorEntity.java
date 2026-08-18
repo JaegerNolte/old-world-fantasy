@@ -27,7 +27,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-
+@Deprecated
 public class UngorEntity extends Monster {
 
     public final AnimationState idleAnimationState = new AnimationState();

@@ -6,7 +6,7 @@ import net.jaeger.oldworldfantasy.entity.client.gor.GorModel;
 import net.jaeger.oldworldfantasy.entity.client.nurgling.NurglingModel;
 import net.jaeger.oldworldfantasy.entity.client.ungor.UngorModel;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.gor.Gor;
-import net.jaeger.oldworldfantasy.entity.custom.beastmen.ungor.UngorEntity;
+import net.jaeger.oldworldfantasy.entity.custom.beastmen.ungor.Ungor;
 import net.jaeger.oldworldfantasy.entity.custom.nurgling.NurglingEntity;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.monster.Monster;
@@ -30,7 +30,7 @@ public class ModEventBusEvents {
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntities.NURGLING.get(), NurglingEntity.createAttributes().build());
-        event.put(ModEntities.UNGOR.get(), UngorEntity.createAttributes().build());
+        event.put(ModEntities.UNGOR.get(), Ungor.createAttributes().build());
         event.put(ModEntities.GOR.get(), Gor.createAttributes().build());
     }
 
