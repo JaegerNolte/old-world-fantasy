@@ -6,12 +6,12 @@ import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.RenderType;
 
-public class ModBaseShieldModel extends Model {
+public class ModShieldModel extends Model {
     private final ModelPart root;
     private final ModelPart[] plate;
     private final ModelPart handle;
 
-    public ModBaseShieldModel(ModelPart root)
+    public ModShieldModel(ModelPart root)
     {
         super(RenderType::entitySolid);
         this.root = root;

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "l": {
+      "item": "minecraft:leather"
+    },
+    "s": {
+      "item": "oldworldfantasy:steel_ingot"
+    }
+  },
+  "pattern": [
+    "sss",
+    " l ",
+    "sss"
+  ],
+  "result": {
+    "count": 1,
+    "id": "oldworldfantasy:imperial_shield"
+  }
+}

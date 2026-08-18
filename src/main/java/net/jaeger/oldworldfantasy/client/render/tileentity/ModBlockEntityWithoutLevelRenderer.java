@@ -3,7 +3,7 @@ package net.jaeger.oldworldfantasy.client.render.tileentity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.jaeger.oldworldfantasy.client.model.ModModels;
-import net.jaeger.oldworldfantasy.client.model.item.shield.ModBaseShieldModel;
+import net.jaeger.oldworldfantasy.client.model.item.shield.ModShieldModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -24,28 +24,28 @@ import java.util.function.Function;
 public class ModBlockEntityWithoutLevelRenderer extends BlockEntityWithoutLevelRenderer {
 
     private final EntityModelSet entityModelSet;
-    private final Map<ModelLayerLocation, ModBaseShieldModel> models = new HashMap<>();
+    private final Map<ModelLayerLocation, ModShieldModel> models = new HashMap<>();
 
     public ModBlockEntityWithoutLevelRenderer(BlockEntityRenderDispatcher blockEntityRenderDispatcher, EntityModelSet entityModelSet) {
         super(blockEntityRenderDispatcher, entityModelSet);
         this.entityModelSet = entityModelSet;
     }
 
-    private ModBaseShieldModel getModel(Item item) {
+    private ModShieldModel getModel(Item item) {
         ModelLayerLocation location = ModModels.INSTANCE.getModel(item);
         if (location == null) {
             return null;
         }
         return models.computeIfAbsent(location, layer -> {
             ModelPart root = entityModelSet.bakeLayer(layer);
-            Function<ModelPart, ? extends ModBaseShieldModel> factory = ModModels.INSTANCE.getModelFactory(layer);
+            Function<ModelPart, ? extends ModShieldModel> factory = ModModels.INSTANCE.getModelFactory(layer);
             return factory.apply(root);
         });
     }
 
     @Override
     public void renderByItem(ItemStack stack, ItemDisplayContext context, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
-        ModBaseShieldModel model = getModel(stack.getItem());
+        ModShieldModel model = getModel(stack.getItem());
         if (model == null) {
             return;
         }

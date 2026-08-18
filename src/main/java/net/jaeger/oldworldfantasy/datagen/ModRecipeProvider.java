@@ -217,6 +217,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
                 .save(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IMPERIAL_SHIELD.get())
+                .pattern("sss")
+                .pattern("rlw")
+                .pattern("sss")
+                .define('s', ModItems.STEEL_INGOT.get())
+                .define('l', Items.LEATHER)
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
+                .save(pRecipeOutput);
+
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.LEAD_INGOT.get(), 9)
                 .requires(ModBlocks.LEAD_BLOCK.get())

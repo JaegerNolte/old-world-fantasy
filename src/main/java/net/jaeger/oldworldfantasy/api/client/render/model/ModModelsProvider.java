@@ -1,6 +1,6 @@
 package net.jaeger.oldworldfantasy.api.client.render.model;
 
-import net.jaeger.oldworldfantasy.client.model.item.shield.ModBaseShieldModel;
+import net.jaeger.oldworldfantasy.client.model.item.shield.ModShieldModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
@@ -20,13 +20,13 @@ public abstract class ModModelsProvider {
 
     public final String MOD_ID;
     public final Map<ModelLayerLocation, Supplier<LayerDefinition>> layers = new HashMap<>();
-    public final Map<ModelLayerLocation, Function<ModelPart, ? extends ModBaseShieldModel>> modelFactories = new HashMap<>();
+    public final Map<ModelLayerLocation, Function<ModelPart, ? extends ModShieldModel>> modelFactories = new HashMap<>();
 
     protected ModModelsProvider(String modId) {
         this.MOD_ID = modId;
     }
 
-    public ModelLayerLocation addShieldModel(String name, Supplier<LayerDefinition> definition, Function<ModelPart, ? extends ModBaseShieldModel> modelFactory) {
+    public ModelLayerLocation addShieldModel(String name, Supplier<LayerDefinition> definition, Function<ModelPart, ? extends ModShieldModel> modelFactory) {
         ModelLayerLocation location = createLocation(name);
 
         layers.put(location, definition);
@@ -47,7 +47,7 @@ public abstract class ModModelsProvider {
         return modelFactories.containsKey(location) ? location : null;
     }
 
-    public Function<ModelPart, ? extends ModBaseShieldModel> getModelFactory( ModelLayerLocation location) {
+    public Function<ModelPart, ? extends ModShieldModel> getModelFactory(ModelLayerLocation location) {
         return modelFactories.get(location);
     }
 }
