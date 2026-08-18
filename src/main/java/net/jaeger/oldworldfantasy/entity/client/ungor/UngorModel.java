@@ -3,7 +3,7 @@ package net.jaeger.oldworldfantasy.entity.client.ungor;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.entity.custom.ungor.UngorEntity;
+import net.jaeger.oldworldfantasy.entity.custom.beastmen.ungor.UngorEntity;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;

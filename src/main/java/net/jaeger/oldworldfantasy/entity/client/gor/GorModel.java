@@ -3,7 +3,7 @@ package net.jaeger.oldworldfantasy.entity.client.gor;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.entity.custom.gor.GorEntity;
+import net.jaeger.oldworldfantasy.entity.custom.beastmen.gor.Gor;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -13,7 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 
-public class GorModel<T extends GorEntity> extends HierarchicalModel<T> {
+public class GorModel<T extends Gor> extends HierarchicalModel<T> {
 
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(OldWorldFantasyMod.MOD_ID, "gor"), "main");
 	private final ModelPart body;
@@ -105,7 +105,7 @@ public class GorModel<T extends GorEntity> extends HierarchicalModel<T> {
     }
 
 	@Override
-	public void setupAnim(GorEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void setupAnim(Gor entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.root().getAllParts().forEach(ModelPart::resetPose);
         this.applyHeadRotation(netHeadYaw, headPitch);
 

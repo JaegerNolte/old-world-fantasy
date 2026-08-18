@@ -1,4 +1,4 @@
-package net.jaeger.oldworldfantasy.entity.custom.ungor;
+package net.jaeger.oldworldfantasy.entity.custom.beastmen.ungor;
 
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 

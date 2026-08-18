@@ -1,4 +1,4 @@
-package net.jaeger.oldworldfantasy.entity.custom.gor;
+package net.jaeger.oldworldfantasy.entity.custom.beastmen.ungor;
 
 import net.jaeger.oldworldfantasy.sound.ModSounds;
 import net.minecraft.core.BlockPos;
@@ -28,13 +28,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 
-public class GorEntity extends Monster {
+public class UngorEntity extends Monster {
 
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
     private final int ambientSoundInterval = 1000;
 
-    public GorEntity(EntityType<? extends Monster> pEntityType, Level pLevel) {
+    public UngorEntity(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
@@ -47,7 +47,7 @@ public class GorEntity extends Monster {
     }
 
     protected void addBehaviourGoals() {
-        this.goalSelector.addGoal(2, new GorAttackGoal(this, 1.0, false));
+        this.goalSelector.addGoal(2, new UngorAttackGoal(this, 1.0, false));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
@@ -57,10 +57,10 @@ public class GorEntity extends Monster {
 
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
-                .add(Attributes.FOLLOW_RANGE, 40.0)
-                .add(Attributes.MOVEMENT_SPEED, 0.40F)
-                .add(Attributes.ATTACK_DAMAGE, 8.0)
-                .add(Attributes.ARMOR, 3.0);
+                .add(Attributes.FOLLOW_RANGE, 30.0)
+                .add(Attributes.MOVEMENT_SPEED, 0.30F)
+                .add(Attributes.ATTACK_DAMAGE, 5.0)
+                .add(Attributes.ARMOR, 2.0);
     }
 
     @Override
@@ -89,8 +89,13 @@ public class GorEntity extends Monster {
         return ambientSoundInterval;
     }
 
+    @Override
     public void playAmbientSound() {
-        this.makeSound(ModSounds.BEASTMEN_ROAR.get());
+        this.playSound(this.getAmbientSound(), 0.15F, 1.2F);
+    }
+
+    protected SoundEvent getAmbientSound() {
+        return ModSounds.BEASTMEN_ROAR.get();
     }
 
     @Override
@@ -125,7 +130,7 @@ public class GorEntity extends Monster {
 
     @Override
     protected void playStepSound(BlockPos pPos, BlockState pBlock) {
-        this.playSound(this.getStepSound(), 0.25F, 0.9F);
+        this.playSound(this.getStepSound(), 0.15F, 0.9F);
     }
 
     private void setAnimationStates() {

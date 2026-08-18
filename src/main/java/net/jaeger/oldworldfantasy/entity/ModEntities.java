@@ -1,9 +1,9 @@
 package net.jaeger.oldworldfantasy.entity;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.entity.custom.gor.GorEntity;
+import net.jaeger.oldworldfantasy.entity.custom.beastmen.gor.Gor;
+import net.jaeger.oldworldfantasy.entity.custom.beastmen.ungor.UngorEntity;
 import net.jaeger.oldworldfantasy.entity.custom.nurgling.NurglingEntity;
-import net.jaeger.oldworldfantasy.entity.custom.ungor.UngorEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -25,8 +25,8 @@ public class ModEntities {
             ENTITY_TYPES.register("ungor", () -> EntityType.Builder.of(UngorEntity::new, MobCategory.MONSTER)
                     .sized(1f, 2f).build("ungor"));
 
-    public static final RegistryObject<EntityType<GorEntity>> GOR =
-            ENTITY_TYPES.register("gor", () -> EntityType.Builder.of(GorEntity::new, MobCategory.MONSTER)
+    public static final RegistryObject<EntityType<Gor>> GOR =
+            ENTITY_TYPES.register("gor", () -> EntityType.Builder.of(Gor::new, MobCategory.MONSTER)
                     .sized(1f, 2f).build("gor"));
 
 

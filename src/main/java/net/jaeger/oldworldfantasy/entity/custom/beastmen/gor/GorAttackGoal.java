@@ -1,14 +1,14 @@
-package net.jaeger.oldworldfantasy.entity.custom.gor;
+package net.jaeger.oldworldfantasy.entity.custom.beastmen.gor;
 
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 
 public class GorAttackGoal extends MeleeAttackGoal {
 
-    private final GorEntity gor;
+    private final Gor gor;
     private int raiseArmTicks;
 
 
-    public GorAttackGoal(GorEntity pGor, double pSpeedModifier, boolean pFollowingTargetEvenIfNotSeen) {
+    public GorAttackGoal(Gor pGor, double pSpeedModifier, boolean pFollowingTargetEvenIfNotSeen) {
         super(pGor, pSpeedModifier, pFollowingTargetEvenIfNotSeen);
         this.gor = pGor;
     }
