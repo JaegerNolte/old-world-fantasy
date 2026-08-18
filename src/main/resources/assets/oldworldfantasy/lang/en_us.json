@@ -1,6 +1,10 @@
 {
   "creativetab.old_world_fantasy_tab": "Old World Fantasy",
 
+  "maxdamageblock": "Max Block Damage: %s",
+  "weight": "Weight: %s",
+  "encumbered": "Encumbered",
+
   "item.oldworldfantasy.raw_lead": "Raw Lead",
   "item.oldworldfantasy.lead_ingot": "Lead Ingot",
   "item.oldworldfantasy.lead_nugget": "Lead Nugget",

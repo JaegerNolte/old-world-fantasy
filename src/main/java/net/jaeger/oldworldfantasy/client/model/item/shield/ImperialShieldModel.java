@@ -1,4 +1,4 @@
-package net.jaeger.oldworldfantasy.client.model.item;
+package net.jaeger.oldworldfantasy.client.model.item.shield;
 
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;

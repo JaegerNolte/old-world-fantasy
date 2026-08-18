@@ -3,7 +3,7 @@ package net.jaeger.oldworldfantasy.client.render.tileentity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.jaeger.oldworldfantasy.client.model.ModModels;
-import net.jaeger.oldworldfantasy.client.model.item.ModBaseShieldModel;
+import net.jaeger.oldworldfantasy.client.model.item.shield.ModBaseShieldModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;

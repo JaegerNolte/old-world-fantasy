@@ -2,9 +2,9 @@ package net.jaeger.oldworldfantasy.item;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.entity.ModEntities;
-import net.jaeger.oldworldfantasy.item.custom.items.shield.ModShieldItem;
 import net.jaeger.oldworldfantasy.item.custom.items.armor.ImperialArmorItem;
 import net.jaeger.oldworldfantasy.item.custom.items.misc.FuelItem;
+import net.jaeger.oldworldfantasy.item.custom.items.shield.ModShieldItem;
 import net.jaeger.oldworldfantasy.item.custom.items.weapons.LongswordItem;
 import net.jaeger.oldworldfantasy.item.custom.items.weapons.PolearmItem;
 import net.minecraft.world.item.*;
@@ -13,6 +13,8 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import static net.jaeger.oldworldfantasy.item.custom.items.shield.ShieldsConfig.SHIELDS_CONFIG;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -104,7 +106,7 @@ public class ModItems {
 
 
     public static final RegistryObject<Item> IMPERIAL_SHIELD = ITEMS.register("imperial_shield",
-            () -> new ModShieldItem(new Item.Properties().durability(336)));
+            () -> new ModShieldItem(ModItemTier.STEEL, SHIELDS_CONFIG.get("imperialShield")));
 
 
     public static final RegistryObject<Item> RED_WINE = ITEMS.register("red_wine",

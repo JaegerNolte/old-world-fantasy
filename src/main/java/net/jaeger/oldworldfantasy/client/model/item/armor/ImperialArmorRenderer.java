@@ -1,4 +1,4 @@
-package net.jaeger.oldworldfantasy.item.client;
+package net.jaeger.oldworldfantasy.client.model.item.armor;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.item.custom.items.armor.ImperialArmorItem;

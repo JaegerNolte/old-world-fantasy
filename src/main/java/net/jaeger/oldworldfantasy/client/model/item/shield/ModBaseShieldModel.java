@@ -1,4 +1,4 @@
-package net.jaeger.oldworldfantasy.client.model.item;
+package net.jaeger.oldworldfantasy.client.model.item.shield;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
