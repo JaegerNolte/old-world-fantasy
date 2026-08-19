@@ -1,4 +1,4 @@
-package net.jaeger.oldworldfantasy.entity.client.gor;
+package net.jaeger.oldworldfantasy.entity.client.beastmen.gor;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;

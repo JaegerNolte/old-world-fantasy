@@ -3,11 +3,9 @@ package net.jaeger.oldworldfantasy.worldgen.spawners;
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.config.spawndata.SpawnDataHelper;
 import net.jaeger.oldworldfantasy.entity.ModEntities;
-import net.jaeger.oldworldfantasy.entity.ModEntityTags;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.gor.Gor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.RandomSource;
@@ -22,14 +20,11 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static net.jaeger.oldworldfantasy.config.spawndata.SpawnData.BEASTMEN_WEIGHTS;
 
-public class ModMobPatrolSpawner implements CustomSpawner {
-    private int nextTick = 0;
-    private final int PATROL_COOLDOWN = 20;
+public class BeastmanPatrolSpawner implements CustomSpawner {
+    private int NEXT_TICK = 0;
+    private final int PATROL_COOLDOWN = 12000;
     private final EntityType<Gor> PATROL_LEADER = ModEntities.GOR.get();
 
     @Override
@@ -40,22 +35,24 @@ public class ModMobPatrolSpawner implements CustomSpawner {
             return 0;
         } else {
             RandomSource randomsource = pLevel.random;
-            this.nextTick--;
-            if (this.nextTick > 0) {
+            this.NEXT_TICK--;
+            if (this.NEXT_TICK > 0) {
                 return 0;
             } else {
-                this.nextTick = this.nextTick + PATROL_COOLDOWN + randomsource.nextInt(PATROL_COOLDOWN);
+
+                this.NEXT_TICK = this.NEXT_TICK + PATROL_COOLDOWN + randomsource.nextInt(PATROL_COOLDOWN);
                 long i = pLevel.getDayTime() / 24000L;
-//                if (i < 5L || !pLevel.isDay()) {
-//                    return 0;
-//                }
-                if (!pLevel.isDay()) {
+
+                if (i < 5L || !pLevel.isDay()) {
                     return 0;
                 } else if (randomsource.nextInt(5) != 0) {
+
                     return 0;
                 } else {
+
                     int j = pLevel.players().size();
                     if (j < 1) {
+
                         return 0;
                     } else {
 
@@ -94,8 +91,6 @@ public class ModMobPatrolSpawner implements CustomSpawner {
                                 if (holder.is(BiomeTags.WITHOUT_PATROL_SPAWNS)) {
                                     return 0;
                                 } else {
-
-                                    OldWorldFantasyMod.LOG.info("ALL PATROL SPAWN CONDITIONS PASSED");
                                     int j1 = 0;
                                     int k1 = (int)Math.ceil((double)pLevel.getCurrentDifficultyAt(blockpos$mutableblockpos).getEffectiveDifficulty()) + 1;
 
@@ -106,7 +101,6 @@ public class ModMobPatrolSpawner implements CustomSpawner {
                                         );
                                         if (l1 == 0) {
                                             if (!this.spawnPatrolMember(pLevel, blockpos$mutableblockpos, randomsource, true)) {
-                                                OldWorldFantasyMod.LOG.info("Leader spawn failed");
                                                 break;
                                             }
                                         } else {
@@ -131,6 +125,8 @@ public class ModMobPatrolSpawner implements CustomSpawner {
         }
     }
 
+
+    // HELPER METHODS
     private boolean spawnPatrolMember(ServerLevel pLevel, BlockPos pPos, RandomSource pRandom, boolean pLeader) {
 
         BlockState blockstate = pLevel.getBlockState(pPos);
@@ -142,12 +138,11 @@ public class ModMobPatrolSpawner implements CustomSpawner {
             entityType = getRandomBeastman(pRandom);
         }
 
-        if (!NaturalSpawner.isValidEmptySpawnBlock(pLevel, pPos, blockstate, blockstate.getFluidState(), ModEntities.UNGOR.get())) {
+        if (!NaturalSpawner.isValidEmptySpawnBlock(pLevel, pPos, blockstate, blockstate.getFluidState(), entityType)) {
             return false;
         } else {
 
             PatrollingMonster patrollingMonster = entityType.create(pLevel);
-
             if (patrollingMonster != null) {
                 if (pLeader) {
                     patrollingMonster.setPatrolLeader(true);
@@ -165,35 +160,16 @@ public class ModMobPatrolSpawner implements CustomSpawner {
         }
     }
 
-    private static EntityType<? extends PatrollingMonster> getRandomBeastman(RandomSource random) {
 
+    private static EntityType<? extends PatrollingMonster> getRandomBeastman(RandomSource random) {
         int totalWeight = BEASTMEN_WEIGHTS.stream().mapToInt(SpawnDataHelper::weight).sum();
         int roll = random.nextInt(totalWeight);
-
         for (SpawnDataHelper data : BEASTMEN_WEIGHTS) {
             roll -= data.weight();
-
             if (roll < 0) {
                 return data.entityType();
             }
         }
-
         return BEASTMEN_WEIGHTS.getFirst().entityType();
-    }
-
-    private static List<EntityType<?>> getBeastmenTypes() {
-
-        List<EntityType<?>> beastmen = new ArrayList<>();
-        for (Holder<EntityType<?>> holder :
-                BuiltInRegistries.ENTITY_TYPE.getTagOrEmpty(ModEntityTags.BEASTMEN)) {
-
-            EntityType<?> type = holder.value();
-            OldWorldFantasyMod.LOG.info("BEASTMEN TAG CONTAINS: {}", BuiltInRegistries.ENTITY_TYPE.getKey(type));
-
-            beastmen.add(holder.value());
-        }
-
-        OldWorldFantasyMod.LOG.info("BEASTMEN TAG COUNT: {}", beastmen.size());
-        return beastmen;
     }
 }

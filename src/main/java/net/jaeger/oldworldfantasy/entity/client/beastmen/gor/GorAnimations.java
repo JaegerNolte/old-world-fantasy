@@ -1,4 +1,4 @@
-package net.jaeger.oldworldfantasy.entity.client.gor;
+package net.jaeger.oldworldfantasy.entity.client.beastmen.gor;
 
 import net.minecraft.client.animation.AnimationChannel;
 import net.minecraft.client.animation.AnimationDefinition;

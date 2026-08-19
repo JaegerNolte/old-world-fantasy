@@ -19,10 +19,6 @@ public abstract class AbstractBeastmen extends ModRaider {
         super(pEntityType, pLevel);
     }
 
-    public final boolean isBeastman() {
-        return this.getType().is(ModEntityTags.BEASTMEN);
-    }
-
     @Override
     protected void registerGoals() {
         super.registerGoals();
@@ -62,5 +58,9 @@ public abstract class AbstractBeastmen extends ModRaider {
         public boolean canUse() {
             return super.canUse() && AbstractBeastmen.this.hasActiveRaid();
         }
+    }
+
+    public final boolean isBeastman() {
+        return this.getType().is(ModEntityTags.BEASTMEN);
     }
 }

@@ -1,6 +1,6 @@
 package net.jaeger.oldworldfantasy.mixin;
 
-import net.jaeger.oldworldfantasy.worldgen.spawners.ModMobPatrolSpawner;
+import net.jaeger.oldworldfantasy.worldgen.spawners.BeastmanPatrolSpawner;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.CustomSpawner;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,7 +19,7 @@ public class MinecraftServerMixin {
     )
     private List<CustomSpawner> addModSpawners(List<CustomSpawner> spawners) {
         List<CustomSpawner> modified = new ArrayList<>(spawners);
-        modified.add(new ModMobPatrolSpawner());
+        modified.add(new BeastmanPatrolSpawner());
         return modified;
     }
 }

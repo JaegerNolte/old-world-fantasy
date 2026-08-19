@@ -1,4 +1,4 @@
-package net.jaeger.oldworldfantasy.entity.client.ungor;
+package net.jaeger.oldworldfantasy.entity.client.beastmen.ungor;
 
 import net.minecraft.client.animation.AnimationChannel;
 import net.minecraft.client.animation.AnimationDefinition;
