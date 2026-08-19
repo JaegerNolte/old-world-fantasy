@@ -1,7 +1,6 @@
 package net.jaeger.oldworldfantasy.mixin;
 
-import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.worldgen.ModMobPatrolSpawner;
+import net.jaeger.oldworldfantasy.worldgen.spawners.ModMobPatrolSpawner;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.CustomSpawner;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,9 +19,7 @@ public class MinecraftServerMixin {
     )
     private List<CustomSpawner> addModSpawners(List<CustomSpawner> spawners) {
         List<CustomSpawner> modified = new ArrayList<>(spawners);
-        OldWorldFantasyMod.LOG.info("Spawners before modification: {}", modified.size());
         modified.add(new ModMobPatrolSpawner());
-        OldWorldFantasyMod.LOG.info("Spawners after modification: {}", modified.size());
         return modified;
     }
 }

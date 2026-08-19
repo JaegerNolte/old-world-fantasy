@@ -1,5 +1,6 @@
 package net.jaeger.oldworldfantasy.entity.custom.beastmen;
 
+import net.jaeger.oldworldfantasy.entity.ModEntityTags;
 import net.jaeger.oldworldfantasy.entity.ModRaider;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -12,10 +13,14 @@ import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.raid.Raider;
 import net.minecraft.world.level.Level;
 
-public class AbstractBeastmen extends ModRaider {
+public abstract class AbstractBeastmen extends ModRaider {
 
     protected AbstractBeastmen(EntityType<? extends Raider> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
+    }
+
+    public final boolean isBeastman() {
+        return this.getType().is(ModEntityTags.BEASTMEN);
     }
 
     @Override
@@ -47,7 +52,6 @@ public class AbstractBeastmen extends ModRaider {
             return !pEntity.getType().is(EntityTypeTags.ILLAGER_FRIENDS) ? false : this.getTeam() == null && pEntity.getTeam() == null;
         }
     }
-
 
     protected class RaiderOpenDoorGoal extends OpenDoorGoal {
         public RaiderOpenDoorGoal(final Raider pRaider) {
