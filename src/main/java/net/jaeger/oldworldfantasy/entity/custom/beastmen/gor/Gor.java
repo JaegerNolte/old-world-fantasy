@@ -1,6 +1,7 @@
 package net.jaeger.oldworldfantasy.entity.custom.beastmen.gor;
 
 import net.jaeger.oldworldfantasy.entity.ModRaider;
+import net.jaeger.oldworldfantasy.entity.ai.GorAttackGoal;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.AbstractBeastmen;
 import net.jaeger.oldworldfantasy.sound.ModSounds;
 import net.minecraft.core.BlockPos;
@@ -11,9 +12,10 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -29,16 +31,25 @@ import net.minecraft.world.entity.raid.Raider;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.animation.AnimationController;
+import software.bernie.geckolib.animation.PlayState;
+import software.bernie.geckolib.animation.RawAnimation;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.function.Predicate;
 
-public class Gor extends AbstractBeastmen {
+public class Gor extends AbstractBeastmen implements GeoEntity {
+
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    private static final RawAnimation ATTACK_ANIMATION = RawAnimation.begin().thenPlay("ANIM_GOR_ATTACKING");
+    private final String axeAttack = "axe_swing";
 
     static final Predicate<Difficulty> DOOR_BREAKING_PREDICATE = p_34082_ -> p_34082_ == Difficulty.NORMAL || p_34082_ == Difficulty.HARD;
-    public final AnimationState idleAnimationState = new AnimationState();
-    private int idleAnimationTimeout = 0;
     private final int ambientSoundInterval = 1000;
 
     public Gor(EntityType<? extends Raider> pEntityType, Level pLevel) {
@@ -52,7 +63,7 @@ public class Gor extends AbstractBeastmen {
         this.goalSelector.addGoal(1, new Gor.GorBreakDoorGoal(this));
         this.goalSelector.addGoal(2, new AbstractBeastmen.RaiderOpenDoorGoal(this));
         this.goalSelector.addGoal(3, new ModRaider.HoldGroundAttackGoal(this, 10.0F));
-        this.goalSelector.addGoal(4, new GorAttackGoal(this, 1.0, false));
+        this.goalSelector.addGoal(4, new GorAttackGoal(this, 1.0, false, axeAttack));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this, ModRaider.class).setAlertOthers());
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
@@ -79,28 +90,6 @@ public class Gor extends AbstractBeastmen {
                 .add(Attributes.ATTACK_DAMAGE, 8.0)
                 .add(Attributes.ARMOR, 3.0);
     }
-
-    @Override
-    public boolean doHurtTarget(Entity pEntity) {
-        if (super.doHurtTarget(pEntity)) {
-            if (pEntity instanceof LivingEntity) {
-                int i = 0;
-                if (this.level().getDifficulty() == Difficulty.NORMAL) {
-                    i = 7;
-                } else if (this.level().getDifficulty() == Difficulty.HARD) {
-                    i = 15;
-                }
-
-                if (i > 0) {
-                    ((LivingEntity)pEntity).addEffect(new MobEffectInstance(MobEffects.WEAKNESS, i * 20, 0), this);
-                }
-            }
-            return true;
-        } else {
-            return false;
-        }
-    }
-
 
     @Override
     public SoundEvent getCelebrateSound() {
@@ -161,21 +150,33 @@ public class Gor extends AbstractBeastmen {
         this.playSound(this.getStepSound(), 0.25F, 0.9F);
     }
 
-    private void setAnimationStates() {
-        if (this.idleAnimationTimeout <= 0) {
-            this.idleAnimationTimeout = 40;
-            this.idleAnimationState.start(this.tickCount);
-        } else {
-            --this.idleAnimationTimeout;
-        }
-    }
-
         @Override
         public void applyRaidBuffs (ServerLevel pLevel,int pWave, boolean pUnused){
 
         }
 
-        static class GorBreakDoorGoal extends BreakDoorGoal {
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "movement", 0, state -> {
+            if (state.isMoving()) {
+                return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_GOR_WALKING"));
+            }
+            return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_GOR_IDLE"));
+        }
+        ));
+
+        controllers.add(new AnimationController<>(this, "attack", 1, state ->
+                PlayState.CONTINUE).setAnimationSpeed(2.00).triggerableAnim(axeAttack, ATTACK_ANIMATION));
+    }
+
+
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.cache;
+    }
+
+    static class GorBreakDoorGoal extends BreakDoorGoal {
             public GorBreakDoorGoal(Mob p_34112_) {
                 super(p_34112_, 6, Gor.DOOR_BREAKING_PREDICATE);
                 this.setFlags(EnumSet.of(Goal.Flag.MOVE));
@@ -198,13 +199,10 @@ public class Gor extends AbstractBeastmen {
                 super.start();
                 this.mob.setNoActionTime(0);
             }
-        }
+    }
 
     @Override
     public void tick() {
         super.tick();
-        if (this.level().isClientSide){
-            this.setAnimationStates();
-        }
     }
 }
