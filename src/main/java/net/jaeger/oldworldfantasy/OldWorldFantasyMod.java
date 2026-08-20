@@ -4,8 +4,8 @@ import com.mojang.logging.LogUtils;
 import net.jaeger.oldworldfantasy.block.ModBlocks;
 import net.jaeger.oldworldfantasy.entity.ModEntities;
 import net.jaeger.oldworldfantasy.entity.client.beastmen.gor.GorRenderer;
-import net.jaeger.oldworldfantasy.entity.client.nurgling.NurglingRenderer;
 import net.jaeger.oldworldfantasy.entity.client.beastmen.ungor.UngorRenderer;
+import net.jaeger.oldworldfantasy.entity.client.nurgling.NurglingRenderer;
 import net.jaeger.oldworldfantasy.item.ModCreativeModeTabs;
 import net.jaeger.oldworldfantasy.item.ModItems;
 import net.jaeger.oldworldfantasy.sound.ModSounds;
@@ -40,7 +40,6 @@ public class OldWorldFantasyMod {
 
     public OldWorldFantasyMod(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();
-        modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
 
         ModCreativeModeTabs.register(modEventBus);
@@ -52,6 +51,7 @@ public class OldWorldFantasyMod {
         ModEntities.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
+        modEventBus.addListener(this::commonSetup);
     }
 
 

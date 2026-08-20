@@ -4,7 +4,6 @@ import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.entity.ModEntities;
 import net.jaeger.oldworldfantasy.entity.client.beastmen.gor.GorModel;
 import net.jaeger.oldworldfantasy.entity.client.nurgling.NurglingModel;
-import net.jaeger.oldworldfantasy.entity.client.beastmen.ungor.UngorModel;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.gor.Gor;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.ungor.Ungor;
 import net.jaeger.oldworldfantasy.entity.custom.nurgling.NurglingEntity;
@@ -23,7 +22,6 @@ public class ModEventBusEvents {
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(NurglingModel.LAYER_LOCATION, NurglingModel::createBodyLayer);
-        event.registerLayerDefinition(UngorModel.LAYER_LOCATION, UngorModel::createBodyLayer);
         event.registerLayerDefinition(GorModel.LAYER_LOCATION, GorModel::createBodyLayer);
     }
 

@@ -1,21 +1,25 @@
 package net.jaeger.oldworldfantasy.entity.custom.beastmen.ungor;
 
 import net.jaeger.oldworldfantasy.entity.ModRaider;
+import net.jaeger.oldworldfantasy.entity.ai.goals.RangedBowAttackGoal;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.AbstractBeastmen;
 import net.jaeger.oldworldfantasy.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.IronGolem;
@@ -33,17 +37,26 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.animation.AnimationController;
+import software.bernie.geckolib.animation.PlayState;
+import software.bernie.geckolib.animation.RawAnimation;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 
-public class Ungor extends AbstractBeastmen implements RangedAttackMob {
+public class Ungor extends AbstractBeastmen implements RangedAttackMob, GeoEntity {
+
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    private static final RawAnimation ATTACK_ANIMATION = RawAnimation.begin().thenPlay("ANIM_UNGOR_ATTACK");
+
 
     private static final int HARD_ATTACK_INTERVAL = 20;
     private static final int NORMAL_ATTACK_INTERVAL = 40;
-    public final AnimationState idleAnimationState = new AnimationState();
-    private int idleAnimationTimeout = 0;
     private final int ambientSoundInterval = 1000;
-    private final RangedBowAttackGoal<Ungor> bowGoal = new RangedBowAttackGoal<>(this, 1.0, 20, 15.0F);
+    private final RangedBowAttackGoal<Ungor> bowGoal = new RangedBowAttackGoal<>(this, 1.0, 20, 15.0F, "attack");
 
     private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2, false) {
         @Override
@@ -61,6 +74,8 @@ public class Ungor extends AbstractBeastmen implements RangedAttackMob {
 
     public Ungor(EntityType<? extends Ungor> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
+
+        this.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.BOW));
     }
 
     @Override
@@ -135,6 +150,7 @@ public class Ungor extends AbstractBeastmen implements RangedAttackMob {
     protected void populateDefaultEquipmentSlots(RandomSource pRandom, DifficultyInstance pDifficulty) {
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
     }
+
 
     public void reassessWeaponGoal() {
         if (this.level() != null && !this.level().isClientSide) {
@@ -225,31 +241,22 @@ public class Ungor extends AbstractBeastmen implements RangedAttackMob {
         this.playSound(this.getStepSound(), 0.15F, 0.9F);
     }
 
-    private void setAnimationStates() {
-        if (this.idleAnimationTimeout <= 0) {
-            this.idleAnimationTimeout = 40;
-            this.idleAnimationState.start(this.tickCount);
-        } else {
-            --this.idleAnimationTimeout;
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "movement", 0, state -> {
+            if (state.isMoving()) {
+                return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_UNGOR_WALKING"));
+            }
+            return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_UNGOR_IDLE"));
         }
+        ));
+
+        controllers.add(new AnimationController<>(this, "attack", 1, state ->
+                PlayState.STOP).triggerableAnim("attack", ATTACK_ANIMATION));
     }
 
     @Override
-    public void tick() {
-        super.tick();
-        if (this.level().isClientSide){
-            this.setAnimationStates();
-        }
-    }
-
-
-    @Override
-    public void applyRaidBuffs(ServerLevel pLevel, int pWave, boolean pUnused) {
-
-    }
-
-    @Override
-    public SoundEvent getCelebrateSound() {
-        return SoundEvents.PILLAGER_CELEBRATE;
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.cache;
     }
 }
