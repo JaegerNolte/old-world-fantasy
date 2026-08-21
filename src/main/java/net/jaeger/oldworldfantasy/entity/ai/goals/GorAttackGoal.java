@@ -32,13 +32,11 @@ public class GorAttackGoal extends MeleeAttackGoal {
             shouldCountToNextAttack = true;
 
             if (isTimeToStartAttackAnimation()) {
-                System.out.println(" === PERFORMING ANIMATION ===");
                 this.gor.triggerAnim("attack", rawAnimation); // time animation
                 gor.setAggressive(true);
             }
 
             if (isTimeToAttack()) {
-                System.out.println("=== PERFORMING ATTACK ===");
                 this.gor.getLookControl().setLookAt(pTarget.getX(), pTarget.getY(), pTarget.getZ());
                 performAttack(pTarget);
             }
@@ -67,7 +65,6 @@ public class GorAttackGoal extends MeleeAttackGoal {
     }
 
     protected void performAttack(LivingEntity pTarget) {
-        System.out.println("PERFORMED ATTACK on target: " + gor.getTarget());
         this.resetAttackCooldown();
         this.gor.swing(InteractionHand.MAIN_HAND);
         this.gor.doHurtTarget(pTarget);

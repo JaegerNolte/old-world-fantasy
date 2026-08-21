@@ -61,8 +61,7 @@ public class Bestigor extends AbstractBeastmen implements GeoEntity {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new Bestigor.BestigorBreakDoorGoal(this));
         this.goalSelector.addGoal(2, new AbstractBeastmen.RaiderOpenDoorGoal(this));
-        this.goalSelector.addGoal(3, new ModRaider.HoldGroundAttackGoal(this, 10.0F));
-        this.goalSelector.addGoal(4, new BestigorAttackGoal(this, 1.0, false, axeAttack));
+        this.goalSelector.addGoal(3, new BestigorAttackGoal(this, 1.0, false, axeAttack));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this, ModRaider.class).setAlertOthers());
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
@@ -157,16 +156,19 @@ public class Bestigor extends AbstractBeastmen implements GeoEntity {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "movement", 0, state -> {
+        controllers.add(new AnimationController<>(this, "movement", 1, state -> {
             if (state.isMoving()) {
+                state.setControllerSpeed(2);
                 return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_BESTIGOR_WALKING"));
+            } else {
+                state.setControllerSpeed(1);
+                return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_BESTIGOR_IDLE"));
             }
-            return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_BESTIGOR_IDLE"));
         }
         ));
 
-        controllers.add(new AnimationController<>(this, "attack", 1, state ->
-                PlayState.CONTINUE).setAnimationSpeed(2.00).triggerableAnim(axeAttack, ATTACK_ANIMATION));
+        controllers.add(new AnimationController<>(this, "attack", 0, state ->
+                PlayState.STOP).setAnimationSpeed(2.00).triggerableAnim(axeAttack, ATTACK_ANIMATION));
     }
 
 

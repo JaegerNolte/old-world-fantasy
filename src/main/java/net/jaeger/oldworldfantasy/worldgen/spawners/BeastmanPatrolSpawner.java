@@ -24,7 +24,7 @@ import static net.jaeger.oldworldfantasy.config.spawndata.SpawnData.BEASTMEN_WEI
 
 public class BeastmanPatrolSpawner implements CustomSpawner {
     private int NEXT_TICK = 0;
-    private final int PATROL_COOLDOWN = 12000;
+    private final int PATROL_COOLDOWN = 1200; // 12000 is every ten minutes
     private final EntityType<Bestigor> PATROL_LEADER = ModEntities.BESTIGOR.get();
 
     @Override
@@ -43,7 +43,7 @@ public class BeastmanPatrolSpawner implements CustomSpawner {
                 this.NEXT_TICK = this.NEXT_TICK + PATROL_COOLDOWN + randomsource.nextInt(PATROL_COOLDOWN);
                 long i = pLevel.getDayTime() / 24000L;
 
-                if (i < 5L || !pLevel.isDay()) {
+                if (!pLevel.isDay()) { // i < 5L || !pLevel.isDay()
                     return 0;
                 } else if (randomsource.nextInt(5) != 0) {
 

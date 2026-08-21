@@ -32,13 +32,11 @@ public class BestigorAttackGoal extends MeleeAttackGoal {
             shouldCountToNextAttack = true;
 
             if (isTimeToStartAttackAnimation()) {
-                System.out.println(" === PERFORMING ANIMATION ===");
                 this.bestigor.triggerAnim("attack", rawAnimation); // time animation
                 bestigor.setAggressive(true);
             }
 
             if (isTimeToAttack()) {
-                System.out.println("=== PERFORMING ATTACK ===");
                 this.bestigor.getLookControl().setLookAt(pTarget.getX(), pTarget.getY(), pTarget.getZ());
                 performAttack(pTarget);
             }
@@ -67,7 +65,6 @@ public class BestigorAttackGoal extends MeleeAttackGoal {
     }
 
     protected void performAttack(LivingEntity pTarget) {
-        System.out.println("PERFORMED ATTACK on target: " + bestigor.getTarget());
         this.resetAttackCooldown();
         this.bestigor.swing(InteractionHand.MAIN_HAND);
         this.bestigor.doHurtTarget(pTarget);

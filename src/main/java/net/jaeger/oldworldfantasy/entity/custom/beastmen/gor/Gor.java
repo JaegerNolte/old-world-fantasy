@@ -62,8 +62,7 @@ public class Gor extends AbstractBeastmen implements GeoEntity {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new Gor.GorBreakDoorGoal(this));
         this.goalSelector.addGoal(2, new AbstractBeastmen.RaiderOpenDoorGoal(this));
-        this.goalSelector.addGoal(3, new ModRaider.HoldGroundAttackGoal(this, 10.0F));
-        this.goalSelector.addGoal(4, new GorAttackGoal(this, 1.0, false, axeAttack));
+        this.goalSelector.addGoal(3, new GorAttackGoal(this, 1.0, false, axeAttack));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this, ModRaider.class).setAlertOthers());
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
@@ -160,9 +159,12 @@ public class Gor extends AbstractBeastmen implements GeoEntity {
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "movement", 0, state -> {
             if (state.isMoving()) {
+                state.setControllerSpeed(2);
                 return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_GOR_WALKING"));
+            } else {
+                state.setControllerSpeed(1);
+                return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_GOR_IDLE"));
             }
-            return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_GOR_IDLE"));
         }
         ));
 

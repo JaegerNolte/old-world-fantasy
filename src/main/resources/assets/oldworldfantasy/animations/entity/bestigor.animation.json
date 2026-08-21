@@ -336,7 +336,7 @@
 				}
 			}
 		},
-		"ANIM_BESTIGOR_ATTACK": {
+		"ANIM_BESTIGOR_ATTACKING": {
 			"animation_length": 3,
 			"bones": {
 				"left_leg": {
