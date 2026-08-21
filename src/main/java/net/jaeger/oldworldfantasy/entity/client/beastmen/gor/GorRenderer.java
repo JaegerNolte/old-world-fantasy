@@ -12,7 +12,7 @@ public class GorRenderer extends GeoEntityRenderer<Gor> {
 
     public GorRenderer(EntityRendererProvider.Context context) {
         super(context, new GorModel());
-        this.shadowRadius = .05f;
+        this.shadowRadius = .5f;
     }
 
     @Override

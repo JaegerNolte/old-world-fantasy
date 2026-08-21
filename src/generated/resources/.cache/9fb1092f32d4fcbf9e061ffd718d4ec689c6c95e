@@ -1,4 +1,4 @@
-// 1.21.1	2026-08-18T09:51:57.1123394	Recipes
+// 1.21.1	2026-08-21T16:32:38.2914619	Recipes
 2de26029eeaf20c2ea1606cb10032528698b0220 data/oldworldfantasy/advancement/recipes/building_blocks/arcane_coal_block.json
 810a93982926b113829715edaa2b0f02aa7753f0 data/oldworldfantasy/advancement/recipes/building_blocks/lead_block.json
 4543e3867e2cd11e7a1afb8571ce1f7e072e0560 data/oldworldfantasy/advancement/recipes/building_blocks/raw_lead_block.json
@@ -46,7 +46,7 @@ f1473e39e9fd13326c8befc12d1d29c0c180607b data/oldworldfantasy/recipe/imperial_bo
 cbcc45e51502b642d11e3cd19565d0b98444ac5b data/oldworldfantasy/recipe/imperial_helmet.json
 55edf79c23ae377aa0ff608c896c5baa2169a732 data/oldworldfantasy/recipe/imperial_leggings.json
 167562764582cd51aa6bf8425c87f6dc0d37d2de data/oldworldfantasy/recipe/imperial_pike.json
-63173f9f430362b430c01e8aabf46229b97a391c data/oldworldfantasy/recipe/imperial_shield.json
+bab441325714e50c1899a7f39498e8269d6f9372 data/oldworldfantasy/recipe/imperial_shield.json
 4f9232f402cad8d1bbcfb0422dfeba80af8f2ddf data/oldworldfantasy/recipe/imperial_sword.json
 ade8d2cfa296ef1554545ac39562d8efd2d17aa1 data/oldworldfantasy/recipe/lead_block.json
 c61ac08ad55862d61046397a726706807e5dad94 data/oldworldfantasy/recipe/lead_ingot_from_blasting_deepslate_lead_ore.json

@@ -218,8 +218,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(pRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IMPERIAL_SHIELD.get())
-                .pattern("sss")
-                .pattern("rlw")
+                .pattern(" ss")
+                .pattern("sls")
                 .pattern("sss")
                 .define('s', ModItems.STEEL_INGOT.get())
                 .define('l', Items.LEATHER)

@@ -3,6 +3,7 @@ package net.jaeger.oldworldfantasy;
 import com.mojang.logging.LogUtils;
 import net.jaeger.oldworldfantasy.block.ModBlocks;
 import net.jaeger.oldworldfantasy.entity.ModEntities;
+import net.jaeger.oldworldfantasy.entity.client.beastmen.bestigor.BestigorRenderer;
 import net.jaeger.oldworldfantasy.entity.client.beastmen.gor.GorRenderer;
 import net.jaeger.oldworldfantasy.entity.client.beastmen.ungor.UngorRenderer;
 import net.jaeger.oldworldfantasy.entity.client.nurgling.NurglingRenderer;
@@ -123,6 +124,7 @@ public class OldWorldFantasyMod {
             EntityRenderers.register(ModEntities.NURGLING.get(), NurglingRenderer::new);
             EntityRenderers.register(ModEntities.UNGOR.get(), UngorRenderer::new);
             EntityRenderers.register(ModEntities.GOR.get(), GorRenderer::new);
+            EntityRenderers.register(ModEntities.BESTIGOR.get(), BestigorRenderer::new);
         }
     }
 }

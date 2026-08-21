@@ -1,7 +1,7 @@
-package net.jaeger.oldworldfantasy.entity.custom.beastmen.gor;
+package net.jaeger.oldworldfantasy.entity.custom.beastmen.bestigor;
 
 import net.jaeger.oldworldfantasy.entity.ModRaider;
-import net.jaeger.oldworldfantasy.entity.ai.goals.GorAttackGoal;
+import net.jaeger.oldworldfantasy.entity.ai.goals.BestigorAttackGoal;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.AbstractBeastmen;
 import net.jaeger.oldworldfantasy.sound.ModSounds;
 import net.minecraft.core.BlockPos;
@@ -43,16 +43,15 @@ import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.function.Predicate;
 
-public class Gor extends AbstractBeastmen implements GeoEntity {
-
+public class Bestigor extends AbstractBeastmen implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    private static final RawAnimation ATTACK_ANIMATION = RawAnimation.begin().thenPlay("ANIM_GOR_ATTACKING");
-    private final String axeAttack = "axe_swing";
+    private static final RawAnimation ATTACK_ANIMATION = RawAnimation.begin().thenPlay("ANIM_BESTIGOR_ATTACKING");
+    private final String axeAttack = "greataxe_swing";
 
     static final Predicate<Difficulty> DOOR_BREAKING_PREDICATE = p_34082_ -> p_34082_ == Difficulty.NORMAL || p_34082_ == Difficulty.HARD;
     private final int ambientSoundInterval = 1000;
 
-    public Gor(EntityType<? extends Raider> pEntityType, Level pLevel) {
+    public Bestigor(EntityType<? extends Raider> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
@@ -60,10 +59,10 @@ public class Gor extends AbstractBeastmen implements GeoEntity {
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new Gor.GorBreakDoorGoal(this));
+        this.goalSelector.addGoal(1, new Bestigor.BestigorBreakDoorGoal(this));
         this.goalSelector.addGoal(2, new AbstractBeastmen.RaiderOpenDoorGoal(this));
         this.goalSelector.addGoal(3, new ModRaider.HoldGroundAttackGoal(this, 10.0F));
-        this.goalSelector.addGoal(4, new GorAttackGoal(this, 1.0, false, axeAttack));
+        this.goalSelector.addGoal(4, new BestigorAttackGoal(this, 1.0, false, axeAttack));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this, ModRaider.class).setAlertOthers());
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
@@ -86,10 +85,10 @@ public class Gor extends AbstractBeastmen implements GeoEntity {
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.FOLLOW_RANGE, 40.0)
-                .add(Attributes.MOVEMENT_SPEED, 0.40F)
+                .add(Attributes.MOVEMENT_SPEED, 0.35F)
                 .add(Attributes.MAX_HEALTH, 32)
-                .add(Attributes.ATTACK_DAMAGE, 8.0)
-                .add(Attributes.ARMOR, 3.0);
+                .add(Attributes.ATTACK_DAMAGE, 12.0)
+                .add(Attributes.ARMOR, 8.0);
     }
 
     @Override
@@ -151,18 +150,18 @@ public class Gor extends AbstractBeastmen implements GeoEntity {
         this.playSound(this.getStepSound(), 0.25F, 0.9F);
     }
 
-        @Override
-        public void applyRaidBuffs (ServerLevel pLevel,int pWave, boolean pUnused){
+    @Override
+    public void applyRaidBuffs (ServerLevel pLevel,int pWave, boolean pUnused){
 
-        }
+    }
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "movement", 0, state -> {
             if (state.isMoving()) {
-                return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_GOR_WALKING"));
+                return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_BESTIGOR_WALKING"));
             }
-            return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_GOR_IDLE"));
+            return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_BESTIGOR_IDLE"));
         }
         ));
 
@@ -177,29 +176,29 @@ public class Gor extends AbstractBeastmen implements GeoEntity {
         return this.cache;
     }
 
-    static class GorBreakDoorGoal extends BreakDoorGoal {
-            public GorBreakDoorGoal(Mob p_34112_) {
-                super(p_34112_, 6, Gor.DOOR_BREAKING_PREDICATE);
-                this.setFlags(EnumSet.of(Goal.Flag.MOVE));
-            }
+    static class BestigorBreakDoorGoal extends BreakDoorGoal {
+        public BestigorBreakDoorGoal(Mob p_34112_) {
+            super(p_34112_, 6, Bestigor.DOOR_BREAKING_PREDICATE);
+            this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+        }
 
-            @Override
-            public boolean canContinueToUse() {
-                Gor gor = (Gor) this.mob;
-                return gor.hasActiveRaid() && super.canContinueToUse();
-            }
+        @Override
+        public boolean canContinueToUse() {
+            Bestigor bestigor = (Bestigor) this.mob;
+            return bestigor.hasActiveRaid() && super.canContinueToUse();
+        }
 
-            @Override
-            public boolean canUse() {
-                Gor gor = (Gor) this.mob;
-                return gor.hasActiveRaid() && gor.random.nextInt(reducedTickDelay(10)) == 0 && super.canUse();
-            }
+        @Override
+        public boolean canUse() {
+            Bestigor bestigor = (Bestigor) this.mob;
+            return bestigor.hasActiveRaid() && bestigor.random.nextInt(reducedTickDelay(10)) == 0 && super.canUse();
+        }
 
-            @Override
-            public void start() {
-                super.start();
-                this.mob.setNoActionTime(0);
-            }
+        @Override
+        public void start() {
+            super.start();
+            this.mob.setNoActionTime(0);
+        }
     }
 
     @Override

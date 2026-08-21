@@ -1,6 +1,7 @@
 package net.jaeger.oldworldfantasy.entity;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
+import net.jaeger.oldworldfantasy.entity.custom.beastmen.bestigor.Bestigor;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.gor.Gor;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.ungor.Ungor;
 import net.jaeger.oldworldfantasy.entity.custom.nurgling.NurglingEntity;
@@ -28,6 +29,10 @@ public class ModEntities {
     public static final RegistryObject<EntityType<Gor>> GOR =
             ENTITY_TYPES.register("gor", () -> EntityType.Builder.of(Gor::new, MobCategory.MONSTER)
                     .sized(1f, 2f).build("gor"));
+
+    public static final RegistryObject<EntityType<Bestigor>> BESTIGOR =
+            ENTITY_TYPES.register("bestigor", () -> EntityType.Builder.of(Bestigor::new, MobCategory.MONSTER)
+                    .sized(1f, 2f).build("bestigor"));
 
 
     public static void register(IEventBus eventBus) {

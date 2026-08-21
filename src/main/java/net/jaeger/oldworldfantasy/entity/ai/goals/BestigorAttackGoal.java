@@ -1,21 +1,21 @@
-package net.jaeger.oldworldfantasy.entity.ai;
+package net.jaeger.oldworldfantasy.entity.ai.goals;
 
-import net.jaeger.oldworldfantasy.entity.custom.beastmen.gor.Gor;
+import net.jaeger.oldworldfantasy.entity.custom.beastmen.bestigor.Bestigor;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 
-public class GorAttackGoal extends MeleeAttackGoal {
+public class BestigorAttackGoal extends MeleeAttackGoal {
 
-    private final Gor gor;
+    private final Bestigor bestigor;
     private final String rawAnimation;
     private int attackDelay = 20;
     private int ticksUntilNextAttack = 40;
     private boolean shouldCountToNextAttack = false;
 
-    public GorAttackGoal(Gor pGor, double pSpeedModifier, boolean pFollowingTargetEvenIfNotSeen, String rawAnimation) {
-        super(pGor, pSpeedModifier, pFollowingTargetEvenIfNotSeen);
-        this.gor = pGor;
+    public BestigorAttackGoal(Bestigor bestigor, double pSpeedModifier, boolean pFollowingTargetEvenIfNotSeen, String rawAnimation) {
+        super(bestigor, pSpeedModifier, pFollowingTargetEvenIfNotSeen);
+        this.bestigor = bestigor;
         this.rawAnimation = rawAnimation;
     }
 
@@ -33,25 +33,25 @@ public class GorAttackGoal extends MeleeAttackGoal {
 
             if (isTimeToStartAttackAnimation()) {
                 System.out.println(" === PERFORMING ANIMATION ===");
-                this.gor.triggerAnim("attack", rawAnimation); // time animation
-                gor.setAggressive(true);
+                this.bestigor.triggerAnim("attack", rawAnimation); // time animation
+                bestigor.setAggressive(true);
             }
 
             if (isTimeToAttack()) {
                 System.out.println("=== PERFORMING ATTACK ===");
-                this.gor.getLookControl().setLookAt(pTarget.getX(), pTarget.getY(), pTarget.getZ());
+                this.bestigor.getLookControl().setLookAt(pTarget.getX(), pTarget.getY(), pTarget.getZ());
                 performAttack(pTarget);
             }
         } else {
             resetAttackCooldown();
             shouldCountToNextAttack = false;
-            gor.setAggressive(false);
-            gor.attackAnim = 0;
+            bestigor.setAggressive(false);
+            bestigor.attackAnim = 0;
         }
     }
 
     private boolean isEnemyWithinAttackDistance(LivingEntity pTarget){
-        return this.gor.distanceTo(pTarget) <= 2f; // Modify distance?
+        return this.bestigor.distanceTo(pTarget) <= 2f; // Modify distance?
     }
 
     protected void resetAttackCooldown() {
@@ -67,10 +67,10 @@ public class GorAttackGoal extends MeleeAttackGoal {
     }
 
     protected void performAttack(LivingEntity pTarget) {
-        System.out.println("PERFORMED ATTACK on target: " + gor.getTarget());
+        System.out.println("PERFORMED ATTACK on target: " + bestigor.getTarget());
         this.resetAttackCooldown();
-        this.gor.swing(InteractionHand.MAIN_HAND);
-        this.gor.doHurtTarget(pTarget);
+        this.bestigor.swing(InteractionHand.MAIN_HAND);
+        this.bestigor.doHurtTarget(pTarget);
     }
 
     @Override
@@ -83,7 +83,7 @@ public class GorAttackGoal extends MeleeAttackGoal {
 
     @Override
     public void stop() {
-        this.gor.setAggressive(false);
+        this.bestigor.setAggressive(false);
         super.stop();
     }
 }

@@ -28,15 +28,12 @@ public class ModEventBusEvents {
         event.put(ModEntities.NURGLING.get(), NurglingEntity.createAttributes().build());
         event.put(ModEntities.UNGOR.get(), Ungor.createAttributes().build());
         event.put(ModEntities.GOR.get(), Gor.createAttributes().build());
+        event.put(ModEntities.BESTIGOR.get(), Gor.createAttributes().build());
     }
 
     @SubscribeEvent
     public static void registerSpawnPlacements(SpawnPlacementRegisterEvent event) {
         event.register(ModEntities.NURGLING.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
-        event.register(ModEntities.UNGOR.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
-        event.register(ModEntities.GOR.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
     }
 }

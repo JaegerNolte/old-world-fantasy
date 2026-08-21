@@ -3,7 +3,7 @@ package net.jaeger.oldworldfantasy.worldgen.spawners;
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.config.spawndata.SpawnDataHelper;
 import net.jaeger.oldworldfantasy.entity.ModEntities;
-import net.jaeger.oldworldfantasy.entity.custom.beastmen.gor.Gor;
+import net.jaeger.oldworldfantasy.entity.custom.beastmen.bestigor.Bestigor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
@@ -25,7 +25,7 @@ import static net.jaeger.oldworldfantasy.config.spawndata.SpawnData.BEASTMEN_WEI
 public class BeastmanPatrolSpawner implements CustomSpawner {
     private int NEXT_TICK = 0;
     private final int PATROL_COOLDOWN = 12000;
-    private final EntityType<Gor> PATROL_LEADER = ModEntities.GOR.get();
+    private final EntityType<Bestigor> PATROL_LEADER = ModEntities.BESTIGOR.get();
 
     @Override
     public int tick(ServerLevel pLevel, boolean pSpawnEnemies, boolean pSpawnFriendlies) {
