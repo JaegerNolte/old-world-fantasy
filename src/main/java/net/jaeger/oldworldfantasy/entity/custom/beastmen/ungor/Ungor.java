@@ -199,11 +199,11 @@ public class Ungor extends AbstractBeastmen implements RangedAttackMob, GeoEntit
 
     @Override
     public void playAmbientSound() {
-        this.playSound(this.getAmbientSound(), 0.15F, 1.2F);
+        this.playSound(this.getAmbientSound(), 0.5F, 0.5F);
     }
 
     protected SoundEvent getAmbientSound() {
-        return ModSounds.BEASTMEN_ROAR.get();
+        return SoundEvents.SHEEP_AMBIENT;
     }
 
     @Override

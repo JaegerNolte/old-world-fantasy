@@ -1,6 +1,7 @@
 package net.jaeger.oldworldfantasy.entity.custom.beastmen.wargor;
 
 import net.jaeger.oldworldfantasy.entity.ModRaider;
+import net.jaeger.oldworldfantasy.entity.ai.goals.FrenzyBeastmenAlliesGoal;
 import net.jaeger.oldworldfantasy.entity.ai.goals.WargorAttackGoal;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.AbstractBeastmen;
 import net.jaeger.oldworldfantasy.sound.ModSounds;
@@ -9,7 +10,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
@@ -18,7 +18,6 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.BreakDoorGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
@@ -43,8 +42,6 @@ import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
-import java.util.EnumSet;
-import java.util.function.Predicate;
 
 public class Wargor extends AbstractBeastmen implements GeoEntity {
 
@@ -52,7 +49,6 @@ public class Wargor extends AbstractBeastmen implements GeoEntity {
     private static final RawAnimation ATTACK_ANIMATION = RawAnimation.begin().thenPlay("ANIM_WARGOR_ATTACKING");
     private final String axeAttack = "axe_swing";
 
-    static final Predicate<Difficulty> DOOR_BREAKING_PREDICATE = p_34082_ -> p_34082_ == Difficulty.NORMAL || p_34082_ == Difficulty.HARD;
     private final int ambientSoundInterval = 1000;
 
     public Wargor(EntityType<? extends Raider> pEntityType, Level pLevel) {
@@ -63,13 +59,12 @@ public class Wargor extends AbstractBeastmen implements GeoEntity {
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new Wargor.GorBreakDoorGoal(this));
-        this.goalSelector.addGoal(2, new RaiderOpenDoorGoal(this));
+        this.goalSelector.addGoal(1, new FrenzyBeastmenAlliesGoal(this, 30.0D, 120, 1));
         this.goalSelector.addGoal(3, new WargorAttackGoal(this, 1.0, false, axeAttack));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this, ModRaider.class).setAlertOthers());
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
         this.goalSelector.addGoal(8, new RandomStrollGoal(this, 0.6));
         this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
@@ -114,8 +109,13 @@ public class Wargor extends AbstractBeastmen implements GeoEntity {
         return ambientSoundInterval;
     }
 
+    public SoundEvent getAmbientSound(){
+        return ModSounds.BEASTMEN_ROAR.get();
+    }
+
+    @Override
     public void playAmbientSound() {
-        this.makeSound(ModSounds.BEASTMEN_ROAR.get());
+        this.playSound(this.getAmbientSound(), 0.5F, 0.9F);
     }
 
     @Override
@@ -153,11 +153,6 @@ public class Wargor extends AbstractBeastmen implements GeoEntity {
         this.playSound(this.getStepSound(), 0.25F, 0.9F);
     }
 
-        @Override
-        public void applyRaidBuffs (ServerLevel pLevel,int pWave, boolean pUnused){
-
-        }
-
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "movement", 0, state -> {
@@ -175,36 +170,9 @@ public class Wargor extends AbstractBeastmen implements GeoEntity {
                 PlayState.CONTINUE).setAnimationSpeed(2.00).triggerableAnim(axeAttack, ATTACK_ANIMATION));
     }
 
-
-
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return this.cache;
-    }
-
-    static class GorBreakDoorGoal extends BreakDoorGoal {
-            public GorBreakDoorGoal(Mob p_34112_) {
-                super(p_34112_, 6, Wargor.DOOR_BREAKING_PREDICATE);
-                this.setFlags(EnumSet.of(Flag.MOVE));
-            }
-
-            @Override
-            public boolean canContinueToUse() {
-                Wargor gor = (Wargor) this.mob;
-                return gor.hasActiveRaid() && super.canContinueToUse();
-            }
-
-            @Override
-            public boolean canUse() {
-                Wargor gor = (Wargor) this.mob;
-                return gor.hasActiveRaid() && gor.random.nextInt(reducedTickDelay(10)) == 0 && super.canUse();
-            }
-
-            @Override
-            public void start() {
-                super.start();
-                this.mob.setNoActionTime(0);
-            }
     }
 
     @Override

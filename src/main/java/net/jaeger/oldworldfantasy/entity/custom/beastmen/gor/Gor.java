@@ -111,8 +111,13 @@ public class Gor extends AbstractBeastmen implements GeoEntity {
         return ambientSoundInterval;
     }
 
+    public SoundEvent getAmbientSound(){
+        return ModSounds.BEASTMEN_ROAR.get();
+    }
+
+    @Override
     public void playAmbientSound() {
-        this.makeSound(ModSounds.BEASTMEN_ROAR.get());
+        this.playSound(this.getAmbientSound(), 0.5F, 0.9F);
     }
 
     @Override
