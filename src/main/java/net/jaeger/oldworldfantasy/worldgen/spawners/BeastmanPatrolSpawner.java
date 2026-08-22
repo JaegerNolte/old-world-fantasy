@@ -3,7 +3,7 @@ package net.jaeger.oldworldfantasy.worldgen.spawners;
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.config.spawndata.SpawnDataHelper;
 import net.jaeger.oldworldfantasy.entity.ModEntities;
-import net.jaeger.oldworldfantasy.entity.custom.beastmen.bestigor.Bestigor;
+import net.jaeger.oldworldfantasy.entity.custom.beastmen.wargor.Wargor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
@@ -24,8 +24,8 @@ import static net.jaeger.oldworldfantasy.config.spawndata.SpawnData.BEASTMEN_WEI
 
 public class BeastmanPatrolSpawner implements CustomSpawner {
     private int NEXT_TICK = 0;
-    private final int PATROL_COOLDOWN = 1200; // 12000 is every ten minutes
-    private final EntityType<Bestigor> PATROL_LEADER = ModEntities.BESTIGOR.get();
+    private final int PATROL_COOLDOWN = 12000; // 12000 is every ten minutes
+    private final EntityType<Wargor> PATROL_LEADER = ModEntities.WARGOR.get();
 
     @Override
     public int tick(ServerLevel pLevel, boolean pSpawnEnemies, boolean pSpawnFriendlies) {
@@ -43,7 +43,7 @@ public class BeastmanPatrolSpawner implements CustomSpawner {
                 this.NEXT_TICK = this.NEXT_TICK + PATROL_COOLDOWN + randomsource.nextInt(PATROL_COOLDOWN);
                 long i = pLevel.getDayTime() / 24000L;
 
-                if (!pLevel.isDay()) { // i < 5L || !pLevel.isDay()
+                if (i < 5L || !pLevel.isDay()) {
                     return 0;
                 } else if (randomsource.nextInt(5) != 0) {
 

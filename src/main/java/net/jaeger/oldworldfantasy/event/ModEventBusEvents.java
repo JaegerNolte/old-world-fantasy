@@ -3,8 +3,10 @@ package net.jaeger.oldworldfantasy.event;
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.entity.ModEntities;
 import net.jaeger.oldworldfantasy.entity.client.nurgling.NurglingModel;
+import net.jaeger.oldworldfantasy.entity.custom.beastmen.bestigor.Bestigor;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.gor.Gor;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.ungor.Ungor;
+import net.jaeger.oldworldfantasy.entity.custom.beastmen.wargor.Wargor;
 import net.jaeger.oldworldfantasy.entity.custom.nurgling.NurglingEntity;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.monster.Monster;
@@ -28,7 +30,8 @@ public class ModEventBusEvents {
         event.put(ModEntities.NURGLING.get(), NurglingEntity.createAttributes().build());
         event.put(ModEntities.UNGOR.get(), Ungor.createAttributes().build());
         event.put(ModEntities.GOR.get(), Gor.createAttributes().build());
-        event.put(ModEntities.BESTIGOR.get(), Gor.createAttributes().build());
+        event.put(ModEntities.BESTIGOR.get(), Bestigor.createAttributes().build());
+        event.put(ModEntities.WARGOR.get(), Wargor.createAttributes().build());
     }
 
     @SubscribeEvent

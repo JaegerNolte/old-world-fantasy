@@ -7,7 +7,8 @@ import java.util.List;
 public class SpawnData {
 
     public static final List<SpawnDataHelper> BEASTMEN_WEIGHTS = List.of(
-            new SpawnDataHelper(ModEntities.UNGOR.get(), 60),
-            new SpawnDataHelper(ModEntities.GOR.get(), 25),
-            new SpawnDataHelper(ModEntities.BESTIGOR.get(), 15));
+            new SpawnDataHelper(ModEntities.UNGOR.get(), 40),
+            new SpawnDataHelper(ModEntities.GOR.get(), 35),
+            new SpawnDataHelper(ModEntities.BESTIGOR.get(), 25),
+            new SpawnDataHelper(ModEntities.WARGOR.get(), 15));
 }

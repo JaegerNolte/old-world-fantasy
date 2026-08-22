@@ -125,6 +125,9 @@ public class ModItems {
     public static final RegistryObject<Item> BESTIGOR_SPAWN_EGG = ITEMS.register("bestigor_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.BESTIGOR, 0x361311, 0x5D0009, new Item.Properties()));
 
+    public static final RegistryObject<Item> WARGOR_SPAWN_EGG = ITEMS.register("wargor_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.WARGOR, 0x361311, 0x5D0009, new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

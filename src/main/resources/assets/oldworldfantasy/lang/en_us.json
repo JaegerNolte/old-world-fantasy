@@ -39,6 +39,7 @@
   "item.oldworldfantasy.ungor_spawn_egg": "Ungor Spawn Egg",
   "item.oldworldfantasy.gor_spawn_egg": "Gor Spawn Egg",
   "item.oldworldfantasy.bestigor_spawn_egg": "Bestigor Spawn Egg",
+  "item.oldworldfantasy.wargor_spawn_egg": "Wargor Spawn Egg",
 
   "block.oldworldfantasy.lead_block": "Block of Lead",
   "block.oldworldfantasy.steel_block": "Block of Steel",
@@ -52,5 +53,6 @@
   "entity.oldworldfantasy.nurgling": "Nurgling",
   "entity.oldworldfantasy.ungor": "Ungor",
   "entity.oldworldfantasy.gor": "Gor",
-  "entity.oldworldfantasy.bestigor": "Bestigor"
+  "entity.oldworldfantasy.bestigor": "Bestigor",
+  "entity.oldworldfantasy.wargor": "Wargor"
 }
