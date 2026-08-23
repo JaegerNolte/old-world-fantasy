@@ -5,6 +5,7 @@ import net.jaeger.oldworldfantasy.entity.custom.beastmen.bestigor.Bestigor;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.gor.Gor;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.ungor.Ungor;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.wargor.Wargor;
+import net.jaeger.oldworldfantasy.entity.custom.greenskin.goblin.Goblin;
 import net.jaeger.oldworldfantasy.entity.custom.nurgling.NurglingEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -21,7 +22,7 @@ public class ModEntities {
 
     public static final RegistryObject<EntityType<NurglingEntity>> NURGLING =
             ENTITY_TYPES.register("nurgling", () -> EntityType.Builder.of(NurglingEntity::new, MobCategory.MONSTER)
-                    .sized(.5f, 1f).build("nurgling"));
+                    .sized(0.5f, 1f).build("nurgling"));
 
     public static final RegistryObject<EntityType<Ungor>> UNGOR =
             ENTITY_TYPES.register("ungor", () -> EntityType.Builder.of(Ungor::new, MobCategory.MONSTER)
@@ -38,6 +39,10 @@ public class ModEntities {
     public static final RegistryObject<EntityType<Wargor>> WARGOR =
             ENTITY_TYPES.register("wargor", () -> EntityType.Builder.of(Wargor::new, MobCategory.MONSTER)
                     .sized(1f, 2f).build("wargor"));
+
+    public static final RegistryObject<EntityType<Goblin>> GOBLIN =
+            ENTITY_TYPES.register("goblin", () -> EntityType.Builder.of(Goblin::new, MobCategory.MONSTER)
+                    .sized(0.5f, 1f).build("goblin"));
 
 
     public static void register(IEventBus eventBus) {

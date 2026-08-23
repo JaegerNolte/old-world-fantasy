@@ -3,6 +3,7 @@ package net.jaeger.oldworldfantasy.entity.custom.beastmen.ungor;
 import net.jaeger.oldworldfantasy.entity.ModRaider;
 import net.jaeger.oldworldfantasy.entity.ai.goals.RangedBowAttackGoal;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.AbstractBeastmen;
+import net.jaeger.oldworldfantasy.entity.custom.greenskin.AbstractGreenskin;
 import net.jaeger.oldworldfantasy.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -90,6 +91,7 @@ public class Ungor extends AbstractBeastmen implements RangedAttackMob, GeoEntit
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractGreenskin.class, false));
     }
 
     public static AttributeSupplier.Builder createAttributes() {

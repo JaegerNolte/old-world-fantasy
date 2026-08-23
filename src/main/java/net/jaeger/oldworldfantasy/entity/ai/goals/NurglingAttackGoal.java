@@ -1,5 +1,6 @@
-package net.jaeger.oldworldfantasy.entity.custom.nurgling;
+package net.jaeger.oldworldfantasy.entity.ai.goals;
 
+import net.jaeger.oldworldfantasy.entity.custom.nurgling.NurglingEntity;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 
 public class NurglingAttackGoal extends MeleeAttackGoal {

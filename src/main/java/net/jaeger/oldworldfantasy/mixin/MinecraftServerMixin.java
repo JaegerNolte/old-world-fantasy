@@ -1,6 +1,7 @@
 package net.jaeger.oldworldfantasy.mixin;
 
 import net.jaeger.oldworldfantasy.worldgen.spawners.BeastmanPatrolSpawner;
+import net.jaeger.oldworldfantasy.worldgen.spawners.GreenskinPatrolSpawner;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.CustomSpawner;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,6 +21,7 @@ public class MinecraftServerMixin {
     private List<CustomSpawner> addModSpawners(List<CustomSpawner> spawners) {
         List<CustomSpawner> modified = new ArrayList<>(spawners);
         modified.add(new BeastmanPatrolSpawner());
+        modified.add(new GreenskinPatrolSpawner());
         return modified;
     }
 }

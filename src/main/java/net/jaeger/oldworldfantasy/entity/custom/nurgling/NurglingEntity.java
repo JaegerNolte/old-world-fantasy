@@ -1,5 +1,6 @@
 package net.jaeger.oldworldfantasy.entity.custom.nurgling;
 
+import net.jaeger.oldworldfantasy.entity.ai.goals.NurglingAttackGoal;
 import net.jaeger.oldworldfantasy.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;

@@ -1,16 +1,15 @@
-package net.jaeger.oldworldfantasy.entity.custom.beastmen.wargor;
+package net.jaeger.oldworldfantasy.entity.custom.greenskin.goblin;
 
 import net.jaeger.oldworldfantasy.entity.ModRaider;
-import net.jaeger.oldworldfantasy.entity.ai.goals.FrenzyBeastmenAlliesGoal;
-import net.jaeger.oldworldfantasy.entity.ai.goals.WargorAttackGoal;
+import net.jaeger.oldworldfantasy.entity.ai.goals.GoblinAttackGoal;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.AbstractBeastmen;
 import net.jaeger.oldworldfantasy.entity.custom.greenskin.AbstractGreenskin;
-import net.jaeger.oldworldfantasy.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
@@ -19,9 +18,7 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
@@ -43,16 +40,19 @@ import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
+import java.util.EnumSet;
+import java.util.function.Predicate;
 
-public class Wargor extends AbstractBeastmen implements GeoEntity {
+public class Goblin extends AbstractGreenskin implements GeoEntity {
 
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    private static final RawAnimation ATTACK_ANIMATION = RawAnimation.begin().thenPlay("ANIM_WARGOR_ATTACKING");
-    private final String axeAttack = "axe_swing";
+    private static final RawAnimation ATTACK_ANIMATION = RawAnimation.begin().thenPlay("ANIM_GOBLIN_ATTACKING");
+    private final String axeAttack = "greataxe_swing";
 
+    static final Predicate<Difficulty> DOOR_BREAKING_PREDICATE = p_34082_ -> p_34082_ == Difficulty.NORMAL || p_34082_ == Difficulty.HARD;
     private final int ambientSoundInterval = 1000;
 
-    public Wargor(EntityType<? extends Raider> pEntityType, Level pLevel) {
+    public Goblin(EntityType<? extends Raider> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
@@ -60,13 +60,14 @@ public class Wargor extends AbstractBeastmen implements GeoEntity {
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new FrenzyBeastmenAlliesGoal(this, 30.0D, 200, 1));
-        this.goalSelector.addGoal(3, new WargorAttackGoal(this, 1.0, false, axeAttack));
+        this.goalSelector.addGoal(1, new Goblin.GoblinBreakDoorGoal(this));
+        this.goalSelector.addGoal(2, new AbstractGreenskin.RaiderOpenDoorGoal(this));
+        this.goalSelector.addGoal(3, new GoblinAttackGoal(this, 1.0, false, axeAttack));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this, ModRaider.class).setAlertOthers());
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, true));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractGreenskin.class, false));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractBeastmen.class, false));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
         this.goalSelector.addGoal(8, new RandomStrollGoal(this, 0.6));
         this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
@@ -84,12 +85,11 @@ public class Wargor extends AbstractBeastmen implements GeoEntity {
 
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
-                .add(Attributes.FOLLOW_RANGE, 40.0)
-                .add(Attributes.MOVEMENT_SPEED, 0.40F)
-                .add(Attributes.MAX_HEALTH, 28)
-                .add(Attributes.ATTACK_DAMAGE, 12.0)
-                .add(Attributes.ARMOR, 3.0)
-                .add(Attributes.ATTACK_KNOCKBACK, 2.0);
+                .add(Attributes.FOLLOW_RANGE, 25.0F)
+                .add(Attributes.MOVEMENT_SPEED, 0.30F)
+                .add(Attributes.MAX_HEALTH, 18)
+                .add(Attributes.ATTACK_DAMAGE, 8.0F)
+                .add(Attributes.ARMOR, 1.0F);
     }
 
     @Override
@@ -113,7 +113,7 @@ public class Wargor extends AbstractBeastmen implements GeoEntity {
     }
 
     public SoundEvent getAmbientSound(){
-        return ModSounds.BEASTMEN_ROAR.get();
+        return SoundEvents.PILLAGER_AMBIENT;
     }
 
     @Override
@@ -139,43 +139,70 @@ public class Wargor extends AbstractBeastmen implements GeoEntity {
 
     @Override
     protected SoundEvent getHurtSound(DamageSource pDamageSource) {
-        return ModSounds.BEASTMEN_HURT.get();
+        return SoundEvents.PILLAGER_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.BEASTMEN_DEATH.get();
+        return SoundEvents.PILLAGER_DEATH;
     }
 
     protected SoundEvent getStepSound() {
-        return SoundEvents.SHEEP_STEP;
+        return SoundEvents.ZOGLIN_STEP;
     }
 
     @Override
     protected void playStepSound(BlockPos pPos, BlockState pBlock) {
-        this.playSound(this.getStepSound(), 0.25F, 0.9F);
+        this.playSound(this.getStepSound(), 1F, 1F);
     }
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "movement", 0, state -> {
+        controllers.add(new AnimationController<>(this, "movement", 1, state -> {
             if (state.isMoving()) {
                 state.setControllerSpeed(2);
-                return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_WARGOR_WALKING"));
+                return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_GOBLIN_WALKING"));
             } else {
                 state.setControllerSpeed(1);
-                return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_WARGOR_IDLE"));
+                return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_GOBLIN_IDLE"));
             }
         }
         ));
 
-        controllers.add(new AnimationController<>(this, "attack", 1, state ->
-                PlayState.CONTINUE).setAnimationSpeed(2.00).triggerableAnim(axeAttack, ATTACK_ANIMATION));
+        controllers.add(new AnimationController<>(this, "attack", 0, state ->
+                PlayState.STOP).setAnimationSpeed(2.00).triggerableAnim(axeAttack, ATTACK_ANIMATION));
     }
+
+
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return this.cache;
+    }
+
+    static class GoblinBreakDoorGoal extends BreakDoorGoal {
+        public GoblinBreakDoorGoal(Mob p_34112_) {
+            super(p_34112_, 6, Goblin.DOOR_BREAKING_PREDICATE);
+            this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            Goblin goblin = (Goblin) this.mob;
+            return goblin.hasActiveRaid() && super.canContinueToUse();
+        }
+
+        @Override
+        public boolean canUse() {
+            Goblin goblin = (Goblin) this.mob;
+            return goblin.hasActiveRaid() && goblin.random.nextInt(reducedTickDelay(10)) == 0 && super.canUse();
+        }
+
+        @Override
+        public void start() {
+            super.start();
+            this.mob.setNoActionTime(0);
+        }
     }
 
     @Override
