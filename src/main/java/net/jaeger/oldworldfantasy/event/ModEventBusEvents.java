@@ -8,6 +8,7 @@ import net.jaeger.oldworldfantasy.entity.custom.beastmen.gor.Gor;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.ungor.Ungor;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.wargor.Wargor;
 import net.jaeger.oldworldfantasy.entity.custom.greenskin.goblin.Goblin;
+import net.jaeger.oldworldfantasy.entity.custom.greenskin.orc.Orc;
 import net.jaeger.oldworldfantasy.entity.custom.nurgling.NurglingEntity;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.monster.Monster;
@@ -34,6 +35,7 @@ public class ModEventBusEvents {
         event.put(ModEntities.BESTIGOR.get(), Bestigor.createAttributes().build());
         event.put(ModEntities.WARGOR.get(), Wargor.createAttributes().build());
         event.put(ModEntities.GOBLIN.get(), Goblin.createAttributes().build());
+        event.put(ModEntities.ORC.get(), Orc.createAttributes().build());
     }
 
     @SubscribeEvent

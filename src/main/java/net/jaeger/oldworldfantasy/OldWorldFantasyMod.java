@@ -8,6 +8,7 @@ import net.jaeger.oldworldfantasy.entity.client.beastmen.gor.GorRenderer;
 import net.jaeger.oldworldfantasy.entity.client.beastmen.ungor.UngorRenderer;
 import net.jaeger.oldworldfantasy.entity.client.beastmen.wargor.WargorRenderer;
 import net.jaeger.oldworldfantasy.entity.client.greenskin.goblin.GoblinRenderer;
+import net.jaeger.oldworldfantasy.entity.client.greenskin.orc.OrcRenderer;
 import net.jaeger.oldworldfantasy.entity.client.nurgling.NurglingRenderer;
 import net.jaeger.oldworldfantasy.item.ModCreativeModeTabs;
 import net.jaeger.oldworldfantasy.item.ModItems;
@@ -129,6 +130,7 @@ public class OldWorldFantasyMod {
             EntityRenderers.register(ModEntities.BESTIGOR.get(), BestigorRenderer::new);
             EntityRenderers.register(ModEntities.WARGOR.get(), WargorRenderer::new);
             EntityRenderers.register(ModEntities.GOBLIN.get(), GoblinRenderer::new);
+            EntityRenderers.register(ModEntities.ORC.get(), OrcRenderer::new);
         }
     }
 }

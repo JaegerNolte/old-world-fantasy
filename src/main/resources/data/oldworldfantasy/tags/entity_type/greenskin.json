@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "oldworldfantasy:goblin"
+    "oldworldfantasy:goblin",
+    "oldworldfantasy:orc"
   ]
 }

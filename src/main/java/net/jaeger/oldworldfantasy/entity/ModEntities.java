@@ -6,6 +6,7 @@ import net.jaeger.oldworldfantasy.entity.custom.beastmen.gor.Gor;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.ungor.Ungor;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.wargor.Wargor;
 import net.jaeger.oldworldfantasy.entity.custom.greenskin.goblin.Goblin;
+import net.jaeger.oldworldfantasy.entity.custom.greenskin.orc.Orc;
 import net.jaeger.oldworldfantasy.entity.custom.nurgling.NurglingEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -43,6 +44,10 @@ public class ModEntities {
     public static final RegistryObject<EntityType<Goblin>> GOBLIN =
             ENTITY_TYPES.register("goblin", () -> EntityType.Builder.of(Goblin::new, MobCategory.MONSTER)
                     .sized(0.5f, 1f).build("goblin"));
+
+    public static final RegistryObject<EntityType<Orc>> ORC =
+            ENTITY_TYPES.register("orc", () -> EntityType.Builder.of(Orc::new, MobCategory.MONSTER)
+                    .sized(1f, 2f).build("orc"));
 
 
     public static void register(IEventBus eventBus) {

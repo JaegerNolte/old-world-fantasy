@@ -56,6 +56,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.BESTIGOR_SPAWN_EGG.get());
                         output.accept(ModItems.WARGOR_SPAWN_EGG.get());
                         output.accept(ModItems.GOBLIN_SPAWN_EGG.get());
+                        output.accept(ModItems.ORC_SPAWN_EGG.get());
 
                         output.accept(ModBlocks.LEAD_BLOCK.get());
                         output.accept(ModBlocks.RAW_LEAD_BLOCK.get());

@@ -24,7 +24,7 @@ import static net.jaeger.oldworldfantasy.config.spawndata.SpawnData.BEASTMEN_WEI
 
 public class BeastmanPatrolSpawner implements CustomSpawner {
     private int NEXT_TICK = 0;
-    private final int PATROL_COOLDOWN = 12000; // 12000 is every ten minutes
+    private final int PATROL_COOLDOWN = 12000;
     private final EntityType<Wargor> PATROL_LEADER = ModEntities.WARGOR.get();
 
     @Override

@@ -1,4 +1,4 @@
-// 1.21.1	2026-08-22T20:47:21.8235069	Item Models: oldworldfantasy
+// 1.21.1	2026-08-23T22:06:38.7571968	Item Models: oldworldfantasy
 253686eae1ae94b5994b4092017fb0dcdf517b87 assets/oldworldfantasy/models/item/arcane_coal.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/oldworldfantasy/models/item/bestigor_spawn_egg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/oldworldfantasy/models/item/goblin_spawn_egg.json
@@ -12,6 +12,7 @@ bcbbb8cc0af5503f14f1031bcaf811ca14c90089 assets/oldworldfantasy/models/item/lead
 a57882f22ca1d1fe3cc98bbcb280c860043179b4 assets/oldworldfantasy/models/item/lead_nugget.json
 aa424bab7fb1ef9ad6edfbd9a029c438796377b1 assets/oldworldfantasy/models/item/leather_strap.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/oldworldfantasy/models/item/nurgling_spawn_egg.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/oldworldfantasy/models/item/orc_spawn_egg.json
 0411a1d0abf1813568a654d1c326755976756c06 assets/oldworldfantasy/models/item/pole.json
 6acf9ca67ad856bf97065295c1340cc2f0896530 assets/oldworldfantasy/models/item/raw_lead.json
 03c19fe3183e0af0a82c48e7782f006bb2bcab62 assets/oldworldfantasy/models/item/red_wine.json
