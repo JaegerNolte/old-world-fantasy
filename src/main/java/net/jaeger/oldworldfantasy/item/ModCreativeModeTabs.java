@@ -50,7 +50,6 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModItems.RED_WINE.get());
 
-                        output.accept(ModItems.NURGLING_SPAWN_EGG.get());
                         output.accept(ModItems.UNGOR_SPAWN_EGG.get());
                         output.accept(ModItems.GOR_SPAWN_EGG.get());
                         output.accept(ModItems.BESTIGOR_SPAWN_EGG.get());
@@ -58,6 +57,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.GOBLIN_SPAWN_EGG.get());
                         output.accept(ModItems.ORC_SPAWN_EGG.get());
                         output.accept(ModItems.BIGUNS_SPAWN_EGG.get());
+                        output.accept(ModItems.ORCWARBOSS_SPAWN_EGG.get());
 
                         output.accept(ModBlocks.LEAD_BLOCK.get());
                         output.accept(ModBlocks.RAW_LEAD_BLOCK.get());

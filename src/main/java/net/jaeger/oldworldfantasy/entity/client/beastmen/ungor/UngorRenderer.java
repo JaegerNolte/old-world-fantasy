@@ -3,7 +3,7 @@ package net.jaeger.oldworldfantasy.entity.client.beastmen.ungor;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.entity.custom.beastmen.ungor.Ungor;
+import net.jaeger.oldworldfantasy.entity.mobs.beastmen.ungor.Ungor;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;

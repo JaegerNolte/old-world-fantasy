@@ -113,9 +113,6 @@ public class ModItems {
             () -> new Item(new Item.Properties().food(ModFoodProperties.RED_WINE)));
 
 
-    public static final RegistryObject<Item> NURGLING_SPAWN_EGG = ITEMS.register("nurgling_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntities.NURGLING, 0x68774c, 0x9ea94b, new Item.Properties()));
-
     public static final RegistryObject<Item> UNGOR_SPAWN_EGG = ITEMS.register("ungor_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.UNGOR, 0x361311, 0x5D0009, new Item.Properties()));
 
@@ -136,6 +133,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> BIGUNS_SPAWN_EGG = ITEMS.register("biguns_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.BIGUNS, 0x286546, 0x37895f, new Item.Properties()));
+
+    public static final RegistryObject<Item> ORCWARBOSS_SPAWN_EGG = ITEMS.register("orcwarboss_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.ORCWARBOSS, 0x286546, 0x37895f, new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

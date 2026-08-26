@@ -1,6 +1,6 @@
 package net.jaeger.oldworldfantasy.entity.ai.goals;
 
-import net.jaeger.oldworldfantasy.entity.custom.greenskin.biguns.BigUns;
+import net.jaeger.oldworldfantasy.entity.mobs.greenskin.biguns.BigUns;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;

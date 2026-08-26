@@ -2,7 +2,7 @@ package net.jaeger.oldworldfantasy.entity.client.greenskin.biguns;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.entity.custom.greenskin.biguns.BigUns;
+import net.jaeger.oldworldfantasy.entity.mobs.greenskin.biguns.BigUns;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.cache.object.BakedGeoModel;

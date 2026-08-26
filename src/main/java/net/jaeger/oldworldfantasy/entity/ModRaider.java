@@ -1,6 +1,6 @@
 package net.jaeger.oldworldfantasy.entity;
 
-import net.jaeger.oldworldfantasy.entity.custom.beastmen.AbstractBeastmen;
+import net.jaeger.oldworldfantasy.entity.mobs.beastmen.AbstractBeastmen;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;

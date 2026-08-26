@@ -12,7 +12,7 @@
     ]
   },
   "beastmen_hurt": {
-    "subtitle": "sounds.oldworldfantasy.beastmen_hur",
+    "subtitle": "sounds.oldworldfantasy.beastmen_hurt",
     "sounds": [
       "oldworldfantasy:beastmen_hurt"
     ]
@@ -21,30 +21,6 @@
     "subtitle": "sounds.oldworldfantasy.beastmen_death",
     "sounds": [
       "oldworldfantasy:beastmen_death"
-    ]
-  },
-  "nurgling_roar": {
-    "subtitle": "sounds.oldworldfantasy.nurgling_roar",
-    "sounds": [
-      "oldworldfantasy:nurgling_roar"
-    ]
-  },
-  "nurgling_walk": {
-    "subtitle": "sounds.oldworldfantasy.nurgling_walk",
-    "sounds": [
-      "oldworldfantasy:nurgling_walk"
-    ]
-  },
-  "nurgling_hurt": {
-    "subtitle": "sounds.oldworldfantasy.nurgling_hurt",
-    "sounds": [
-      "oldworldfantasy:nurgling_hurt"
-    ]
-  },
-  "nurgling_death": {
-    "subtitle": "sounds.oldworldfantasy.nurgling_death",
-    "sounds": [
-      "oldworldfantasy:nurgling_death"
     ]
   }
 }

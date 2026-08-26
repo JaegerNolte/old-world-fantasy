@@ -1,7 +1,7 @@
 package net.jaeger.oldworldfantasy.entity.client.beastmen.ungor;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.entity.custom.beastmen.ungor.Ungor;
+import net.jaeger.oldworldfantasy.entity.mobs.beastmen.ungor.Ungor;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
 

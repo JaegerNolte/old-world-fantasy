@@ -1,7 +1,7 @@
 package net.jaeger.oldworldfantasy.entity.client.greenskin.orc;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.entity.custom.greenskin.orc.Orc;
+import net.jaeger.oldworldfantasy.entity.mobs.greenskin.orc.Orc;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
 

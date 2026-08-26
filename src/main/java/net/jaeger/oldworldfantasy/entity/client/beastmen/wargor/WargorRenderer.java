@@ -1,7 +1,7 @@
 package net.jaeger.oldworldfantasy.entity.client.beastmen.wargor;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.entity.custom.beastmen.wargor.Wargor;
+import net.jaeger.oldworldfantasy.entity.mobs.beastmen.wargor.Wargor;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;

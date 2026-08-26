@@ -1,7 +1,7 @@
 package net.jaeger.oldworldfantasy.entity.client.greenskin.biguns;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.entity.custom.greenskin.biguns.BigUns;
+import net.jaeger.oldworldfantasy.entity.mobs.greenskin.biguns.BigUns;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
 

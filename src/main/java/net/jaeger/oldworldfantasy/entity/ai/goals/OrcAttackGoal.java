@@ -1,6 +1,6 @@
 package net.jaeger.oldworldfantasy.entity.ai.goals;
 
-import net.jaeger.oldworldfantasy.entity.custom.greenskin.orc.Orc;
+import net.jaeger.oldworldfantasy.entity.mobs.greenskin.orc.Orc;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;

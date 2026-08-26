@@ -3,7 +3,7 @@ package net.jaeger.oldworldfantasy.worldgen.spawners;
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.config.spawndata.SpawnDataHelper;
 import net.jaeger.oldworldfantasy.entity.ModEntities;
-import net.jaeger.oldworldfantasy.entity.custom.greenskin.biguns.BigUns;
+import net.jaeger.oldworldfantasy.entity.mobs.greenskin.warboss.OrcWarboss;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
@@ -24,8 +24,8 @@ import static net.jaeger.oldworldfantasy.config.spawndata.SpawnData.GREENSKIN_WE
 
 public class GreenskinPatrolSpawner implements CustomSpawner {
     private int NEXT_TICK = 0;
-    private final int PATROL_COOLDOWN = 12000;
-    private final EntityType<BigUns> PATROL_LEADER = ModEntities.BIGUNS.get();
+    private final int PATROL_COOLDOWN = 8000;
+    private final EntityType<OrcWarboss> PATROL_LEADER = ModEntities.ORCWARBOSS.get();
 
     @Override
     public int tick(ServerLevel pLevel, boolean pSpawnEnemies, boolean pSpawnFriendlies) {

@@ -10,7 +10,7 @@ import net.jaeger.oldworldfantasy.entity.client.beastmen.wargor.WargorRenderer;
 import net.jaeger.oldworldfantasy.entity.client.greenskin.biguns.BigUnsRenderer;
 import net.jaeger.oldworldfantasy.entity.client.greenskin.goblin.GoblinRenderer;
 import net.jaeger.oldworldfantasy.entity.client.greenskin.orc.OrcRenderer;
-import net.jaeger.oldworldfantasy.entity.client.nurgling.NurglingRenderer;
+import net.jaeger.oldworldfantasy.entity.client.greenskin.warboss.OrcWarbossRenderer;
 import net.jaeger.oldworldfantasy.item.ModCreativeModeTabs;
 import net.jaeger.oldworldfantasy.item.ModItems;
 import net.jaeger.oldworldfantasy.sound.ModSounds;
@@ -125,7 +125,6 @@ public class OldWorldFantasyMod {
 
             ModItemProperties.addCustomItemProperties();
 
-            EntityRenderers.register(ModEntities.NURGLING.get(), NurglingRenderer::new);
             EntityRenderers.register(ModEntities.UNGOR.get(), UngorRenderer::new);
             EntityRenderers.register(ModEntities.GOR.get(), GorRenderer::new);
             EntityRenderers.register(ModEntities.BESTIGOR.get(), BestigorRenderer::new);
@@ -133,6 +132,7 @@ public class OldWorldFantasyMod {
             EntityRenderers.register(ModEntities.GOBLIN.get(), GoblinRenderer::new);
             EntityRenderers.register(ModEntities.ORC.get(), OrcRenderer::new);
             EntityRenderers.register(ModEntities.BIGUNS.get(), BigUnsRenderer::new);
+            EntityRenderers.register(ModEntities.ORCWARBOSS.get(), OrcWarbossRenderer::new);
         }
     }
 }

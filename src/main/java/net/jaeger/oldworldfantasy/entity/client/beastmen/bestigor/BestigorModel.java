@@ -1,7 +1,7 @@
 package net.jaeger.oldworldfantasy.entity.client.beastmen.bestigor;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.entity.custom.beastmen.bestigor.Bestigor;
+import net.jaeger.oldworldfantasy.entity.mobs.beastmen.bestigor.Bestigor;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
 

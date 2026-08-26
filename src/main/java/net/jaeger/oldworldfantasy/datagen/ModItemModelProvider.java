@@ -36,7 +36,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         basicItem(ModItems.RED_WINE.get());
 
-        withExistingParent(ModItems.NURGLING_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.UNGOR_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.GOR_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.BESTIGOR_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
@@ -44,6 +43,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent(ModItems.GOBLIN_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.ORC_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.BIGUNS_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+        withExistingParent(ModItems.ORCWARBOSS_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
     }
 
     private ItemModelBuilder handHeldItem(RegistryObject<Item> item) {

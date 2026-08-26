@@ -1,4 +1,4 @@
-package net.jaeger.oldworldfantasy.entity.custom.beastmen;
+package net.jaeger.oldworldfantasy.entity.mobs.beastmen;
 
 import net.jaeger.oldworldfantasy.entity.ModEntityTags;
 import net.jaeger.oldworldfantasy.entity.ModRaider;

@@ -1,6 +1,6 @@
 package net.jaeger.oldworldfantasy.entity.ai.goals;
 
-import net.jaeger.oldworldfantasy.entity.custom.beastmen.bestigor.Bestigor;
+import net.jaeger.oldworldfantasy.entity.mobs.beastmen.bestigor.Bestigor;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;

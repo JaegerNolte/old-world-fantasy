@@ -1,8 +1,8 @@
-package net.jaeger.oldworldfantasy.entity.client.greenskin.biguns;
+package net.jaeger.oldworldfantasy.entity.client.greenskin.warboss;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.jaeger.oldworldfantasy.entity.mobs.greenskin.biguns.BigUns;
+import net.jaeger.oldworldfantasy.entity.mobs.greenskin.warboss.OrcWarboss;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
@@ -12,16 +12,16 @@ import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
 import java.util.Optional;
 
-public class BigUnsArmorLayer extends GeoRenderLayer<BigUns> {
+public class OrcWarbossArmorLayer extends GeoRenderLayer<OrcWarboss> {
 
-    private final BigUnsArmorModel armorModel = new BigUnsArmorModel();
+    private final OrcWarbossArmorModel armorModel = new OrcWarbossArmorModel();
 
-    public BigUnsArmorLayer(GeoRenderer<BigUns> renderer) {
+    public OrcWarbossArmorLayer(GeoRenderer<OrcWarboss> renderer) {
         super(renderer);
     }
 
     @Override
-    public void render(PoseStack poseStack, BigUns animatable, BakedGeoModel bakedModel, RenderType renderType,
+    public void render(PoseStack poseStack, OrcWarboss animatable, BakedGeoModel bakedModel, RenderType renderType,
                        MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
 
         BakedGeoModel armorBakedModel = armorModel.getBakedModel(armorModel.getModelResource(animatable));

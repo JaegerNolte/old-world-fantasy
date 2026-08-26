@@ -1,4 +1,4 @@
-package net.jaeger.oldworldfantasy.entity.custom.greenskin;
+package net.jaeger.oldworldfantasy.entity.mobs.greenskin;
 
 import net.jaeger.oldworldfantasy.entity.ModEntityTags;
 import net.jaeger.oldworldfantasy.entity.ModRaider;

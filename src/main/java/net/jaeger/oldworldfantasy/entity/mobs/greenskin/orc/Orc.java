@@ -1,11 +1,9 @@
-package net.jaeger.oldworldfantasy.entity.custom.beastmen.bestigor;
+package net.jaeger.oldworldfantasy.entity.mobs.greenskin.orc;
 
 import net.jaeger.oldworldfantasy.entity.ModRaider;
-import net.jaeger.oldworldfantasy.entity.ai.goals.BestigorAttackGoal;
-import net.jaeger.oldworldfantasy.entity.custom.beastmen.AbstractBeastmen;
-import net.jaeger.oldworldfantasy.entity.custom.greenskin.AbstractGreenskin;
-import net.jaeger.oldworldfantasy.sound.ModSounds;
-import net.minecraft.core.BlockPos;
+import net.jaeger.oldworldfantasy.entity.ai.goals.OrcAttackGoal;
+import net.jaeger.oldworldfantasy.entity.mobs.beastmen.AbstractBeastmen;
+import net.jaeger.oldworldfantasy.entity.mobs.greenskin.AbstractGreenskin;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -19,7 +17,10 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.BreakDoorGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
@@ -31,7 +32,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.raid.Raider;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.state.BlockState;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.AnimatableManager;
@@ -44,15 +44,16 @@ import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.function.Predicate;
 
-public class Bestigor extends AbstractBeastmen implements GeoEntity {
+public class Orc extends AbstractGreenskin implements GeoEntity {
+
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    private static final RawAnimation ATTACK_ANIMATION = RawAnimation.begin().thenPlay("ANIM_BESTIGOR_ATTACKING");
-    private final String axeAttack = "greataxe_swing";
+    private static final RawAnimation ATTACK_ANIMATION = RawAnimation.begin().thenPlay("ANIM_ORC_ATTACKING");
+    private final String attack = "sword_attack";
 
     static final Predicate<Difficulty> DOOR_BREAKING_PREDICATE = p_34082_ -> p_34082_ == Difficulty.NORMAL || p_34082_ == Difficulty.HARD;
     private final int ambientSoundInterval = 1000;
 
-    public Bestigor(EntityType<? extends Raider> pEntityType, Level pLevel) {
+    public Orc(EntityType<? extends Raider> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
@@ -60,14 +61,14 @@ public class Bestigor extends AbstractBeastmen implements GeoEntity {
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new Bestigor.BestigorBreakDoorGoal(this));
-        this.goalSelector.addGoal(2, new AbstractBeastmen.RaiderOpenDoorGoal(this));
-        this.goalSelector.addGoal(3, new BestigorAttackGoal(this, 1.0, false, axeAttack));
+        this.goalSelector.addGoal(1, new Orc.OrcBreakDoorGoal(this));
+        this.goalSelector.addGoal(2, new RaiderOpenDoorGoal(this));
+        this.goalSelector.addGoal(3, new OrcAttackGoal(this, 1.0, false, attack));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this, ModRaider.class).setAlertOthers());
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractBeastmen.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractGreenskin.class, false));
         this.goalSelector.addGoal(8, new RandomStrollGoal(this, 0.6));
         this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
@@ -85,11 +86,11 @@ public class Bestigor extends AbstractBeastmen implements GeoEntity {
 
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
-                .add(Attributes.FOLLOW_RANGE, 40.0)
+                .add(Attributes.FOLLOW_RANGE, 30.0F)
                 .add(Attributes.MOVEMENT_SPEED, 0.35F)
                 .add(Attributes.MAX_HEALTH, 32)
-                .add(Attributes.ATTACK_DAMAGE, 12.0)
-                .add(Attributes.ARMOR, 8.0);
+                .add(Attributes.ATTACK_DAMAGE, 12.0F)
+                .add(Attributes.ARMOR, 3.0F);
     }
 
     @Override
@@ -113,12 +114,22 @@ public class Bestigor extends AbstractBeastmen implements GeoEntity {
     }
 
     public SoundEvent getAmbientSound(){
-        return ModSounds.BEASTMEN_ROAR.get();
+        return SoundEvents.PILLAGER_AMBIENT;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource pDamageSource) {
+        return SoundEvents.ZOGLIN_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.ZOGLIN_DEATH;
     }
 
     @Override
     public void playAmbientSound() {
-        this.playSound(this.getAmbientSound(), 0.5F, 0.9F);
+        this.playSound(this.getAmbientSound(), 0.8F, 0.5F);
     }
 
     @Override
@@ -138,44 +149,20 @@ public class Bestigor extends AbstractBeastmen implements GeoEntity {
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource pDamageSource) {
-        return ModSounds.BEASTMEN_HURT.get();
-    }
-
-    @Override
-    protected SoundEvent getDeathSound() {
-        return ModSounds.BEASTMEN_DEATH.get();
-    }
-
-    protected SoundEvent getStepSound() {
-        return SoundEvents.SHEEP_STEP;
-    }
-
-    @Override
-    protected void playStepSound(BlockPos pPos, BlockState pBlock) {
-        this.playSound(this.getStepSound(), 0.25F, 0.9F);
-    }
-
-    @Override
-    public void applyRaidBuffs (ServerLevel pLevel,int pWave, boolean pUnused){
-
-    }
-
-    @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "movement", 1, state -> {
             if (state.isMoving()) {
                 state.setControllerSpeed(2);
-                return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_BESTIGOR_WALKING"));
+                return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_ORC_WALKING"));
             } else {
                 state.setControllerSpeed(1);
-                return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_BESTIGOR_IDLE"));
+                return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_ORC_IDLE"));
             }
         }
         ));
 
         controllers.add(new AnimationController<>(this, "attack", 0, state ->
-                PlayState.STOP).setAnimationSpeed(2.00).triggerableAnim(axeAttack, ATTACK_ANIMATION));
+                PlayState.STOP).setAnimationSpeed(2.00).triggerableAnim(attack, ATTACK_ANIMATION));
     }
 
 
@@ -185,22 +172,22 @@ public class Bestigor extends AbstractBeastmen implements GeoEntity {
         return this.cache;
     }
 
-    static class BestigorBreakDoorGoal extends BreakDoorGoal {
-        public BestigorBreakDoorGoal(Mob p_34112_) {
-            super(p_34112_, 6, Bestigor.DOOR_BREAKING_PREDICATE);
-            this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+    static class OrcBreakDoorGoal extends BreakDoorGoal {
+        public OrcBreakDoorGoal(Mob p_34112_) {
+            super(p_34112_, 6, Orc.DOOR_BREAKING_PREDICATE);
+            this.setFlags(EnumSet.of(Flag.MOVE));
         }
 
         @Override
         public boolean canContinueToUse() {
-            Bestigor bestigor = (Bestigor) this.mob;
-            return bestigor.hasActiveRaid() && super.canContinueToUse();
+            Orc orc = (Orc) this.mob;
+            return orc.hasActiveRaid() && super.canContinueToUse();
         }
 
         @Override
         public boolean canUse() {
-            Bestigor bestigor = (Bestigor) this.mob;
-            return bestigor.hasActiveRaid() && bestigor.random.nextInt(reducedTickDelay(10)) == 0 && super.canUse();
+            Orc orc = (Orc) this.mob;
+            return orc.hasActiveRaid() && orc.random.nextInt(reducedTickDelay(10)) == 0 && super.canUse();
         }
 
         @Override

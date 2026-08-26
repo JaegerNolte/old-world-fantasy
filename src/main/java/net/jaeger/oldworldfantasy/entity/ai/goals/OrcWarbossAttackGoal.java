@@ -1,21 +1,21 @@
 package net.jaeger.oldworldfantasy.entity.ai.goals;
 
-import net.jaeger.oldworldfantasy.entity.mobs.greenskin.goblin.Goblin;
+import net.jaeger.oldworldfantasy.entity.mobs.greenskin.warboss.OrcWarboss;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 
-public class GoblinAttackGoal extends MeleeAttackGoal {
+public class OrcWarbossAttackGoal extends MeleeAttackGoal {
 
-    private final Goblin goblin;
+    private final OrcWarboss orcWarboss;
     private final String rawAnimation;
     private int attackDelay = 20;
     private int ticksUntilNextAttack = 40;
     private boolean shouldCountToNextAttack = false;
 
-    public GoblinAttackGoal(Goblin goblin, double pSpeedModifier, boolean pFollowingTargetEvenIfNotSeen, String rawAnimation) {
-        super(goblin, pSpeedModifier, pFollowingTargetEvenIfNotSeen);
-        this.goblin = goblin;
+    public OrcWarbossAttackGoal(OrcWarboss orcWarboss, double pSpeedModifier, boolean pFollowingTargetEvenIfNotSeen, String rawAnimation) {
+        super(orcWarboss, pSpeedModifier, pFollowingTargetEvenIfNotSeen);
+        this.orcWarboss = orcWarboss;
         this.rawAnimation = rawAnimation;
     }
 
@@ -32,24 +32,24 @@ public class GoblinAttackGoal extends MeleeAttackGoal {
             shouldCountToNextAttack = true;
 
             if (isTimeToStartAttackAnimation()) {
-                this.goblin.triggerAnim("attack", rawAnimation); // time animation
-                goblin.setAggressive(true);
+                this.orcWarboss.triggerAnim("attack", rawAnimation); // time animation
+                orcWarboss.setAggressive(true);
             }
 
             if (isTimeToAttack()) {
-                this.goblin.getLookControl().setLookAt(pTarget.getX(), pTarget.getY(), pTarget.getZ());
+                this.orcWarboss.getLookControl().setLookAt(pTarget.getX(), pTarget.getY(), pTarget.getZ());
                 performAttack(pTarget);
             }
         } else {
             resetAttackCooldown();
             shouldCountToNextAttack = false;
-            goblin.setAggressive(false);
-            goblin.attackAnim = 0;
+            orcWarboss.setAggressive(false);
+            orcWarboss.attackAnim = 0;
         }
     }
 
     private boolean isEnemyWithinAttackDistance(LivingEntity pTarget){
-        return this.goblin.distanceTo(pTarget) <= 3f; // Modify distance?
+        return this.orcWarboss.distanceTo(pTarget) <= 2f; // Modify distance?
     }
 
     protected void resetAttackCooldown() {
@@ -66,8 +66,8 @@ public class GoblinAttackGoal extends MeleeAttackGoal {
 
     protected void performAttack(LivingEntity pTarget) {
         this.resetAttackCooldown();
-        this.goblin.swing(InteractionHand.MAIN_HAND);
-        this.goblin.doHurtTarget(pTarget);
+        this.orcWarboss.swing(InteractionHand.MAIN_HAND);
+        this.orcWarboss.doHurtTarget(pTarget);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class GoblinAttackGoal extends MeleeAttackGoal {
 
     @Override
     public void stop() {
-        this.goblin.setAggressive(false);
+        this.orcWarboss.setAggressive(false);
         super.stop();
     }
 }

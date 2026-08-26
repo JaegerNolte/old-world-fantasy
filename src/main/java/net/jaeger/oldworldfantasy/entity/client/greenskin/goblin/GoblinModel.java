@@ -1,7 +1,7 @@
 package net.jaeger.oldworldfantasy.entity.client.greenskin.goblin;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.entity.custom.greenskin.goblin.Goblin;
+import net.jaeger.oldworldfantasy.entity.mobs.greenskin.goblin.Goblin;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
 

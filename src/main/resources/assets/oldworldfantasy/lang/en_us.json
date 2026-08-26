@@ -43,6 +43,7 @@
   "item.oldworldfantasy.goblin_spawn_egg": "Goblin Spawn Egg",
   "item.oldworldfantasy.orc_spawn_egg": "Orc Spawn Egg",
   "item.oldworldfantasy.biguns_spawn_egg": "Big Uns Spawn Egg",
+  "item.oldworldfantasy.orcwarboss_spawn_egg": "Orc Warboss Spawn Egg",
 
   "block.oldworldfantasy.lead_block": "Block of Lead",
   "block.oldworldfantasy.steel_block": "Block of Steel",
@@ -60,5 +61,6 @@
   "entity.oldworldfantasy.wargor": "Wargor",
   "entity.oldworldfantasy.goblin": "Goblin",
   "entity.oldworldfantasy.orc": "Orc",
-  "entity.oldworldfantasy.biguns": "Orc Big Uns"
+  "entity.oldworldfantasy.biguns": "Orc Big Uns",
+  "entity.oldworldfantasy.orcwarboss": "Orc Warboss"
 }
