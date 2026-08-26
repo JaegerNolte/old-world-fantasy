@@ -36,6 +36,7 @@ public class ModEventBusEvents {
         event.put(ModEntities.WARGOR.get(), Wargor.createAttributes().build());
         event.put(ModEntities.GOBLIN.get(), Goblin.createAttributes().build());
         event.put(ModEntities.ORC.get(), Orc.createAttributes().build());
+        event.put(ModEntities.BIGUNS.get(), Orc.createAttributes().build());
     }
 
     @SubscribeEvent

@@ -5,6 +5,7 @@ import net.jaeger.oldworldfantasy.entity.custom.beastmen.bestigor.Bestigor;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.gor.Gor;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.ungor.Ungor;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.wargor.Wargor;
+import net.jaeger.oldworldfantasy.entity.custom.greenskin.biguns.BigUns;
 import net.jaeger.oldworldfantasy.entity.custom.greenskin.goblin.Goblin;
 import net.jaeger.oldworldfantasy.entity.custom.greenskin.orc.Orc;
 import net.jaeger.oldworldfantasy.entity.custom.nurgling.NurglingEntity;
@@ -48,6 +49,10 @@ public class ModEntities {
     public static final RegistryObject<EntityType<Orc>> ORC =
             ENTITY_TYPES.register("orc", () -> EntityType.Builder.of(Orc::new, MobCategory.MONSTER)
                     .sized(1f, 2f).build("orc"));
+
+    public static final RegistryObject<EntityType<BigUns>> BIGUNS =
+            ENTITY_TYPES.register("biguns", () -> EntityType.Builder.of(BigUns::new, MobCategory.MONSTER)
+                    .sized(1f, 2f).build("biguns"));
 
 
     public static void register(IEventBus eventBus) {

@@ -1,7 +1,7 @@
-package net.jaeger.oldworldfantasy.entity.custom.greenskin.orc;
+package net.jaeger.oldworldfantasy.entity.custom.greenskin.biguns;
 
 import net.jaeger.oldworldfantasy.entity.ModRaider;
-import net.jaeger.oldworldfantasy.entity.ai.goals.OrcAttackGoal;
+import net.jaeger.oldworldfantasy.entity.ai.goals.BigUnsAttackGoal;
 import net.jaeger.oldworldfantasy.entity.custom.beastmen.AbstractBeastmen;
 import net.jaeger.oldworldfantasy.entity.custom.greenskin.AbstractGreenskin;
 import net.minecraft.server.level.ServerLevel;
@@ -44,16 +44,16 @@ import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.function.Predicate;
 
-public class Orc extends AbstractGreenskin implements GeoEntity {
+public class BigUns extends AbstractGreenskin implements GeoEntity {
 
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    private static final RawAnimation ATTACK_ANIMATION = RawAnimation.begin().thenPlay("ANIM_ORC_ATTACKING");
-    private final String attack = "sword_attack";
+    private static final RawAnimation ATTACK_ANIMATION = RawAnimation.begin().thenPlay("ANIM_BIGUNS_ATTACKING");
+    private final String attack = "axe_attack";
 
     static final Predicate<Difficulty> DOOR_BREAKING_PREDICATE = p_34082_ -> p_34082_ == Difficulty.NORMAL || p_34082_ == Difficulty.HARD;
     private final int ambientSoundInterval = 1000;
 
-    public Orc(EntityType<? extends Raider> pEntityType, Level pLevel) {
+    public BigUns(EntityType<? extends Raider> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
@@ -61,9 +61,9 @@ public class Orc extends AbstractGreenskin implements GeoEntity {
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new Orc.OrcBreakDoorGoal(this));
+        this.goalSelector.addGoal(1, new BigUns.BigUnsBreakDoorGoal(this));
         this.goalSelector.addGoal(2, new RaiderOpenDoorGoal(this));
-        this.goalSelector.addGoal(3, new OrcAttackGoal(this, 1.0, false, attack));
+        this.goalSelector.addGoal(3, new BigUnsAttackGoal(this, 1.0, false, attack));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this, ModRaider.class).setAlertOthers());
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
@@ -88,9 +88,9 @@ public class Orc extends AbstractGreenskin implements GeoEntity {
         return Monster.createMonsterAttributes()
                 .add(Attributes.FOLLOW_RANGE, 30.0F)
                 .add(Attributes.MOVEMENT_SPEED, 0.35F)
-                .add(Attributes.MAX_HEALTH, 32)
+                .add(Attributes.MAX_HEALTH, 36)
                 .add(Attributes.ATTACK_DAMAGE, 12.0F)
-                .add(Attributes.ARMOR, 3.0F);
+                .add(Attributes.ARMOR, 5.0F);
     }
 
     @Override
@@ -153,10 +153,10 @@ public class Orc extends AbstractGreenskin implements GeoEntity {
         controllers.add(new AnimationController<>(this, "movement", 1, state -> {
             if (state.isMoving()) {
                 state.setControllerSpeed(2);
-                return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_ORC_WALKING"));
+                return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_BIGUNS_WALKING"));
             } else {
                 state.setControllerSpeed(1);
-                return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_ORC_IDLE"));
+                return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_BIGUNS_IDLE"));
             }
         }
         ));
@@ -172,21 +172,21 @@ public class Orc extends AbstractGreenskin implements GeoEntity {
         return this.cache;
     }
 
-    static class OrcBreakDoorGoal extends BreakDoorGoal {
-        public OrcBreakDoorGoal(Mob p_34112_) {
-            super(p_34112_, 6, Orc.DOOR_BREAKING_PREDICATE);
+    static class BigUnsBreakDoorGoal extends BreakDoorGoal {
+        public BigUnsBreakDoorGoal(Mob p_34112_) {
+            super(p_34112_, 6, BigUns.DOOR_BREAKING_PREDICATE);
             this.setFlags(EnumSet.of(Flag.MOVE));
         }
 
         @Override
         public boolean canContinueToUse() {
-            Orc orc = (Orc) this.mob;
+            BigUns orc = (BigUns) this.mob;
             return orc.hasActiveRaid() && super.canContinueToUse();
         }
 
         @Override
         public boolean canUse() {
-            Orc orc = (Orc) this.mob;
+            BigUns orc = (BigUns) this.mob;
             return orc.hasActiveRaid() && orc.random.nextInt(reducedTickDelay(10)) == 0 && super.canUse();
         }
 

@@ -43,7 +43,7 @@ public class BeastmanPatrolSpawner implements CustomSpawner {
                 this.NEXT_TICK = this.NEXT_TICK + PATROL_COOLDOWN + randomsource.nextInt(PATROL_COOLDOWN);
                 long i = pLevel.getDayTime() / 24000L;
 
-                if (i < 5L || !pLevel.isDay()) {
+                if (i < 5L) {
                     return 0;
                 } else if (randomsource.nextInt(5) != 0) {
 

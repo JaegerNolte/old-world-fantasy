@@ -14,5 +14,6 @@ public class SpawnData {
 
     public static final List<SpawnDataHelper> GREENSKIN_WEIGHTS = List.of(
             new SpawnDataHelper(ModEntities.GOBLIN.get(), 40),
-            new SpawnDataHelper(ModEntities.ORC.get(), 35));
+            new SpawnDataHelper(ModEntities.ORC.get(), 40),
+            new SpawnDataHelper(ModEntities.BIGUNS.get(), 35));
 }
