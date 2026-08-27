@@ -6,7 +6,9 @@ import net.jaeger.oldworldfantasy.item.custom.items.armor.ImperialArmorItem;
 import net.jaeger.oldworldfantasy.item.custom.items.misc.FuelItem;
 import net.jaeger.oldworldfantasy.item.custom.items.shield.ModShieldItem;
 import net.jaeger.oldworldfantasy.item.custom.items.weapons.LongswordItem;
+import net.jaeger.oldworldfantasy.item.custom.items.weapons.ModWeaponItem;
 import net.jaeger.oldworldfantasy.item.custom.items.weapons.PolearmItem;
+import net.jaeger.oldworldfantasy.item.custom.items.weapons.WeaponTypes;
 import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -87,6 +89,9 @@ public class ModItems {
             () -> new PolearmItem(ModToolTiers.STEEL, new Item.Properties()
                     .attributes(PolearmItem.createAttributes(ModToolTiers.STEEL, 4, -3.5f, 2.5d))));
 
+    public static final RegistryObject<Item> CHOPPA_SWORD = ITEMS.register("choppa_sword",
+            () -> new ModWeaponItem(ModItemTier.SCRAP, WeaponTypes.CHOPPA_SWORD));
+
 
     public static final RegistryObject<Item> IMPERIAL_HELMET = ITEMS.register("imperial_helmet",
             () -> new ImperialArmorItem(ModArmorMaterials.IMPERIAL_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
@@ -106,7 +111,7 @@ public class ModItems {
 
 
     public static final RegistryObject<Item> IMPERIAL_SHIELD = ITEMS.register("imperial_shield",
-            () -> new ModShieldItem(ModItemTier.STEEL, SHIELDS_CONFIG.get("imperialShield")));
+            () -> new ModShieldItem(ModItemTier.STEEL, SHIELDS_CONFIG.get("imperial_shield")));
 
 
     public static final RegistryObject<Item> RED_WINE = ITEMS.register("red_wine",

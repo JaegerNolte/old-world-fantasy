@@ -20,18 +20,15 @@ public class GoblinRenderer extends GeoEntityRenderer<Goblin> {
         super(context, new GoblinModel());
         this.shadowRadius = 0.5f;
 
-        addRenderLayer(new BlockAndItemGeoLayer<>(
-                this,
+        addRenderLayer(new BlockAndItemGeoLayer<>(this,
                 (bone, animatable) -> {
                     if (bone.getName().equals("RightHandItem")) {
                         return animatable.getMainHandItem();
                     }
 
                     return null;
-                },
-                (bone, animatable) -> null
+                }, (bone, animatable) -> null) {
 
-        ) {
             @Override
             protected ItemDisplayContext getTransformTypeForStack(GeoBone bone, ItemStack stack, Goblin animatable) {
                 return ItemDisplayContext.THIRD_PERSON_RIGHT_HAND;
@@ -49,7 +46,6 @@ public class GoblinRenderer extends GeoEntityRenderer<Goblin> {
                 super.renderStackForBone(poseStack, bone, stack, animatable, bufferSource, partialTick, packedLight, packedOverlay);
             }
         });
-
     }
 
     @Override

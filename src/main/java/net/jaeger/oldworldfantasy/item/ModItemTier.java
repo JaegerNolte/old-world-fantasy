@@ -22,6 +22,7 @@ public class ModItemTier implements Tier {
     private final TagKey<Block> incorrectBlocks;
 
     public static ModItemTier STEEL = new ModItemTier("steel", BlockTags.INCORRECT_FOR_IRON_TOOL, 400, 6.0F, 2.5F, 14, "c:ingots/steel", 2);
+    public static ModItemTier SCRAP = new ModItemTier("scrap", BlockTags.INCORRECT_FOR_IRON_TOOL, 300, 4.0F, 1.2F, 5, "c:ingots/scrap", 2);
 
     public ModItemTier(String name, Tier tier, float density) {
         this.name = name;
@@ -73,5 +74,9 @@ public class ModItemTier implements Tier {
     @Override
     public Ingredient getRepairIngredient() {
         return repairIngredient.get();
+    }
+
+    public float getDensity() {
+        return density;
     }
 }

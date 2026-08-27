@@ -1,8 +1,9 @@
-// 1.21.1	2026-08-21T16:32:38.2914619	Recipes
+// 1.21.1	2026-08-27T14:18:37.047928	Recipes
 2de26029eeaf20c2ea1606cb10032528698b0220 data/oldworldfantasy/advancement/recipes/building_blocks/arcane_coal_block.json
 810a93982926b113829715edaa2b0f02aa7753f0 data/oldworldfantasy/advancement/recipes/building_blocks/lead_block.json
 4543e3867e2cd11e7a1afb8571ce1f7e072e0560 data/oldworldfantasy/advancement/recipes/building_blocks/raw_lead_block.json
 d5931650d393a5492c95f3670b1317f0178e479a data/oldworldfantasy/advancement/recipes/building_blocks/steel_block.json
+c97569c18cacc501f49bb940bcb7750999804c93 data/oldworldfantasy/advancement/recipes/combat/choppa_sword.json
 3dba1e430e454254b39829aebcd706cd67cbd6b6 data/oldworldfantasy/advancement/recipes/combat/imperial_boots.json
 d4d636eb33a0dcceae52bfa0263d043335bdac12 data/oldworldfantasy/advancement/recipes/combat/imperial_chestplate.json
 9dee3023e889395bccdd1a1e059064cbbcee804e data/oldworldfantasy/advancement/recipes/combat/imperial_greatsword.json
@@ -38,6 +39,7 @@ bcaae8c2e922a414b5cbe458d69d506c4e4f9440 data/oldworldfantasy/advancement/recipe
 e2798b2ef512829e8ab224477c9e52d181f39ad7 data/oldworldfantasy/advancement/recipes/tools/rune_hardened_iron_shovel.json
 9cf275a6955cd322691af55d1a7a28d15300bbca data/oldworldfantasy/recipe/arcane_coal.json
 8d50dc0b81f9342b8c52b69637ee69c8e1c9f980 data/oldworldfantasy/recipe/arcane_coal_block.json
+e98a181305e1ea307ebb781d537949553af6e518 data/oldworldfantasy/recipe/choppa_sword.json
 c719632fc21fbd9e71a899d414b0fbe4d451638c data/oldworldfantasy/recipe/hilt.json
 f1473e39e9fd13326c8befc12d1d29c0c180607b data/oldworldfantasy/recipe/imperial_boots.json
 4346cc595cb760d92ec318da3071de66f598d976 data/oldworldfantasy/recipe/imperial_chestplate.json

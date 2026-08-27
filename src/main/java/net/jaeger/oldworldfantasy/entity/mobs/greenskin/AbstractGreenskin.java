@@ -58,7 +58,7 @@ public abstract class AbstractGreenskin extends ModRaider {
         }
     }
 
-    public final boolean isBeastman() {
-        return this.getType().is(ModEntityTags.BEASTMEN);
+    public final boolean isGreenskin() {
+        return this.getType().is(ModEntityTags.GREENSKIN);
     }
 }

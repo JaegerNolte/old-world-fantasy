@@ -2,6 +2,7 @@ package net.jaeger.oldworldfantasy;
 
 import com.mojang.logging.LogUtils;
 import net.jaeger.oldworldfantasy.block.ModBlocks;
+import net.jaeger.oldworldfantasy.component.ModDataComponents;
 import net.jaeger.oldworldfantasy.entity.ModEntities;
 import net.jaeger.oldworldfantasy.entity.client.beastmen.bestigor.BestigorRenderer;
 import net.jaeger.oldworldfantasy.entity.client.beastmen.gor.GorRenderer;
@@ -49,6 +50,7 @@ public class OldWorldFantasyMod {
 
         ModCreativeModeTabs.register(modEventBus);
 
+        ModDataComponents.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModItems.register(modEventBus);
 
@@ -87,6 +89,7 @@ public class OldWorldFantasyMod {
             event.accept(ModItems.IMPERIAL_GREATSWORD);
             event.accept(ModItems.IMPERIAL_PIKE);
             event.accept(ModItems.IMPERIAL_HALBERD);
+            event.accept(ModItems.CHOPPA_SWORD);
 
             event.accept(ModItems.IMPERIAL_HELMET);
             event.accept(ModItems.IMPERIAL_CHESTPLATE);

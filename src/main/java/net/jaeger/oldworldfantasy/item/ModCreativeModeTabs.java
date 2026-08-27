@@ -38,6 +38,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.IMPERIAL_GREATSWORD.get());
                         output.accept(ModItems.IMPERIAL_PIKE.get());
                         output.accept(ModItems.IMPERIAL_HALBERD.get());
+                        output.accept(ModItems.CHOPPA_SWORD.get());
 
                         output.accept(ModItems.IMPERIAL_HELMET.get());
                         output.accept(ModItems.IMPERIAL_CHESTPLATE.get());

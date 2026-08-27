@@ -20,7 +20,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 
-import static net.jaeger.oldworldfantasy.config.spawndata.SpawnData.GREENSKIN_WEIGHTS;
+import static net.jaeger.oldworldfantasy.config.spawndata.PatrolSpawnConfig.GREENSKIN_WEIGHTS;
 
 public class GreenskinPatrolSpawner implements CustomSpawner {
     private int NEXT_TICK = 0;
