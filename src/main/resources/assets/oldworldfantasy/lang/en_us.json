@@ -26,6 +26,8 @@
   "item.oldworldfantasy.leather_strap": "Leather Strap",
   "item.oldworldfantasy.hilt": "Hilt",
   "item.oldworldfantasy.pole": "pole",
+  "item.oldworldfantasy.scrap": "Scrap",
+  "item.oldworldfantasy.teef": "Teef",
 
   "item.oldworldfantasy.rune_hardened_iron_sword": "Rune Hardened Iron Sword",
   "item.oldworldfantasy.rune_hardened_iron_pickaxe": "Rune Hardened Iron Pickaxe",
@@ -37,6 +39,7 @@
   "item.oldworldfantasy.imperial_pike": "Imperial Pike",
   "item.oldworldfantasy.imperial_halberd": "Imperial Halberd",
   "item.oldworldfantasy.choppa_sword": "Choppa (sword variant)",
+  "item.oldworldfantasy.choppa_axe": "Choppa (axe variant)",
 
   "item.oldworldfantasy.imperial_helmet": "Imperial Helmet",
   "item.oldworldfantasy.imperial_chestplate": "Imperial Chestplate",

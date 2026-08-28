@@ -10,12 +10,12 @@
     }
   },
   "pattern": [
-    " s ",
-    " s ",
+    "ss ",
+    "sb ",
     " b "
   ],
   "result": {
     "count": 1,
-    "id": "oldworldfantasy:choppa_sword"
+    "id": "oldworldfantasy:choppa_axe"
   }
 }

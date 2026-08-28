@@ -28,6 +28,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.LEATHER_STRAP.get());
         basicItem(ModItems.HILT.get());
         basicItem(ModItems.POLE.get());
+        basicItem(ModItems.SCRAP.get());
+        basicItem(ModItems.TEEF.get());
 
         basicItem(ModItems.IMPERIAL_HELMET.get());
         basicItem(ModItems.IMPERIAL_CHESTPLATE.get());

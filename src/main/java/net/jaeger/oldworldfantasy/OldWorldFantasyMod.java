@@ -79,6 +79,8 @@ public class OldWorldFantasyMod {
             event.accept(ModItems.LEATHER_STRAP);
             event.accept(ModItems.HILT);
             event.accept(ModItems.POLE);
+            event.accept(ModItems.SCRAP);
+            event.accept(ModItems.TEEF);
 
             event.accept(ModItems.RUNE_HARDENED_IRON_SWORD);
             event.accept(ModItems.RUNE_HARDENED_IRON_PICKAXE);
@@ -90,6 +92,7 @@ public class OldWorldFantasyMod {
             event.accept(ModItems.IMPERIAL_PIKE);
             event.accept(ModItems.IMPERIAL_HALBERD);
             event.accept(ModItems.CHOPPA_SWORD);
+            event.accept(ModItems.CHOPPA_AXE);
 
             event.accept(ModItems.IMPERIAL_HELMET);
             event.accept(ModItems.IMPERIAL_CHESTPLATE);

@@ -26,25 +26,36 @@ public class BigUnsRenderer extends GeoEntityRenderer<BigUns> {
                     if (bone.getName().equals("RightHandItem")) {
                         return animatable.getMainHandItem();
                     }
-
+                    if (bone.getName().equals("LeftHandItem")) {
+                        return animatable.getOffhandItem();
+                    }
                     return null;
                 }, (bone, animatable) -> null) {
 
             @Override
             protected ItemDisplayContext getTransformTypeForStack(GeoBone bone, ItemStack stack, BigUns animatable) {
-                return ItemDisplayContext.THIRD_PERSON_RIGHT_HAND;
+                return switch (bone.getName()) {
+                    case "LeftHandItem" -> ItemDisplayContext.THIRD_PERSON_LEFT_HAND;
+                    case "RightHandItem" -> ItemDisplayContext.THIRD_PERSON_RIGHT_HAND;
+                    default -> super.getTransformTypeForStack(bone, stack, animatable);
+                };
             }
 
             @Override
             protected void renderStackForBone(PoseStack poseStack, GeoBone bone,
                                               ItemStack stack, BigUns animatable, MultiBufferSource bufferSource,
                                               float partialTick, int packedLight, int packedOverlay) {
+                if (bone.getName().equals("LeftHandItem")) {
+                    poseStack.translate(-0.05, -1.30, -0.90);
+                    poseStack.scale(1.5f, 1.5f, 1.5f);
+                    poseStack.mulPose(Axis.XP.rotationDegrees(210));
+                    poseStack.mulPose(Axis.ZP.rotationDegrees(180));
+                }
                 if (bone.getName().equals("RightHandItem")) {
                     poseStack.translate(0.05, -1.00, -0.40);
                     poseStack.scale(1.5f, 1.5f, 1.5f);
                     poseStack.mulPose(Axis.XP.rotationDegrees(-75));
                 }
-
                 super.renderStackForBone(poseStack, bone, stack, animatable, bufferSource, partialTick, packedLight, packedOverlay);
             }
         });

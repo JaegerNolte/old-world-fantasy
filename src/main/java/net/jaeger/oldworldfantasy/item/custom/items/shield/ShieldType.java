@@ -5,31 +5,31 @@ import net.minecraft.world.item.Tier;
 public class ShieldType {
 
     private int baseDurability;
-    private float materialFactor;
+    private float materialModifier;
     private float weight;
     private float maxBlockDamage;
     private boolean repairable = false;
-    private boolean enabled = true;
 
-    public ShieldType() {}
+    public ShieldType() {
 
-    public static ShieldType of(int baseDurability, float materialFactor, float weight, float maxBlockDamage, boolean enabled, boolean repairable) {
+    }
+
+    public static ShieldType of(int baseDurability, float materialModifier, float weight, float maxBlockDamage, boolean repairable) {
         ShieldType shield = new ShieldType();
         shield.baseDurability = baseDurability;
-        shield.materialFactor = materialFactor;
+        shield.materialModifier = materialModifier;
         shield.weight = weight;
         shield.maxBlockDamage = maxBlockDamage;
-        shield.enabled = enabled;
         shield.repairable = repairable;
         return shield;
     }
 
-    public static ShieldType of(int baseDurability, float materialFactor, float weight, float maxBlockDamage) {
-        return of(baseDurability, materialFactor, weight, maxBlockDamage, true, false);
+    public static ShieldType of(int baseDurability, float materialModifier, float weight, float maxBlockDamage) {
+        return of(baseDurability, materialModifier, weight, maxBlockDamage, false);
     }
 
     public int getDurability(Tier material) {
-        return (int) (this.baseDurability + this.materialFactor * material.getUses());
+        return (int) (this.baseDurability + this.materialModifier * material.getUses());
     }
 
     public int getBaseDurability() {
@@ -37,7 +37,7 @@ public class ShieldType {
     }
 
     public float getMaterialFactor() {
-        return this.materialFactor;
+        return this.materialModifier;
     }
 
     public float getWeight() {
@@ -50,9 +50,5 @@ public class ShieldType {
 
     public boolean isRepairable() {
         return this.repairable;
-    }
-
-    public boolean isDisabled() {
-        return !this.enabled;
     }
 }

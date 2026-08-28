@@ -1,7 +1,6 @@
 package net.jaeger.oldworldfantasy.item.custom.items.shield;
 
 import net.jaeger.oldworldfantasy.client.render.tileentity.ModClientRenderer;
-import net.jaeger.oldworldfantasy.item.IHasModelProperty;
 import net.jaeger.oldworldfantasy.item.ModItemTier;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -23,7 +22,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class ModShieldItem extends ShieldItem implements IHasModelProperty {
+public class ModShieldItem extends ShieldItem {
 
     private final ShieldType type;
     private Supplier<Ingredient> repairItem = () -> Ingredient.of(ItemTags.PLANKS);
@@ -69,20 +68,16 @@ public class ModShieldItem extends ShieldItem implements IHasModelProperty {
         list.add(Component.translatable("weight", this.getWeight()).withStyle(ChatFormatting.YELLOW));
         if (this.getWeight() >= 10)
             list.add(Component.translatable("encumbered").withStyle(ChatFormatting.RED));
-
-        BannerItem.appendHoverTextFromBannerBlockEntityTag(stack, list);
     }
 
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int i, boolean selected) {
-        if (this.getWeight() >= 10 && entity instanceof LivingEntity livingentity && (livingentity.getOffhandItem() == stack || livingentity.getMainHandItem() == stack))
-        {
+        if (this.getWeight() >= 10 && entity instanceof LivingEntity livingentity && (livingentity.getOffhandItem() == stack || livingentity.getMainHandItem() == stack)) {
             livingentity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 0, false, false, false));
         }
         super.inventoryTick(stack, level, entity, i, selected);
     }
 
-    @Override
     public void registerModelProperty() {
         ItemProperties.register(this, ResourceLocation.withDefaultNamespace("blocking"), (itemStack, level, entity, useDur) ->
                 entity != null && entity.isUsingItem() && entity.getUseItem() == itemStack ? 1.0F : 0.0F

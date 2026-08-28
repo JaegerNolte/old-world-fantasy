@@ -28,6 +28,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.LEATHER_STRAP.get());
                         output.accept(ModItems.HILT.get());
                         output.accept(ModItems.POLE.get());
+                        output.accept(ModItems.SCRAP.get());
+                        output.accept(ModItems.TEEF.get());
 
                         output.accept(ModItems.RUNE_HARDENED_IRON_SWORD.get());
                         output.accept(ModItems.RUNE_HARDENED_IRON_PICKAXE.get());
@@ -39,6 +41,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.IMPERIAL_PIKE.get());
                         output.accept(ModItems.IMPERIAL_HALBERD.get());
                         output.accept(ModItems.CHOPPA_SWORD.get());
+                        output.accept(ModItems.CHOPPA_AXE.get());
 
                         output.accept(ModItems.IMPERIAL_HELMET.get());
                         output.accept(ModItems.IMPERIAL_CHESTPLATE.get());
@@ -46,8 +49,6 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.IMPERIAL_BOOTS.get());
 
                         output.accept(ModItems.IMPERIAL_SHIELD.get());
-
-//                        output.accept(ModItems.BLUNDERBUSS.get());
 
                         output.accept(ModItems.RED_WINE.get());
 

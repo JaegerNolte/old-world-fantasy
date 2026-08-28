@@ -60,6 +60,7 @@ public class BigUns extends AbstractGreenskin implements GeoEntity {
         super(pEntityType, pLevel);
 
         this.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(ModItems.CHOPPA_SWORD.get()));
+        this.setItemInHand(InteractionHand.OFF_HAND, new ItemStack(ModItems.CHOPPA_SWORD.get()));
     }
 
     @Override

@@ -59,7 +59,7 @@ public class OrcWarboss extends AbstractGreenskin implements GeoEntity {
     public OrcWarboss(EntityType<? extends Raider> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
 
-        this.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(ModItems.CHOPPA_SWORD.get()));
+        this.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(ModItems.CHOPPA_AXE.get()));
     }
 
     @Override

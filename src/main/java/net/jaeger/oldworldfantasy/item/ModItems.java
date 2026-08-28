@@ -52,6 +52,12 @@ public class ModItems {
     public static final RegistryObject<Item> POLE = ITEMS.register("pole",
             () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> SCRAP = ITEMS.register("scrap",
+            () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> TEEF = ITEMS.register("teef",
+            () -> new Item(new Item.Properties()));
+
 
     public static final RegistryObject<Item> RUNE_HARDENED_IRON_SWORD = ITEMS.register("rune_hardened_iron_sword",
             () -> new LongswordItem(ModToolTiers.RUNE_HARDENED_IRON, new Item.Properties()
@@ -91,6 +97,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> CHOPPA_SWORD = ITEMS.register("choppa_sword",
             () -> new ModWeaponItem(ModItemTier.SCRAP, WeaponTypes.CHOPPA_SWORD));
+
+    public static final RegistryObject<Item> CHOPPA_AXE = ITEMS.register("choppa_axe",
+            () -> new ModWeaponItem(ModItemTier.SCRAP, WeaponTypes.CHOPPA_AXE));
 
 
     public static final RegistryObject<Item> IMPERIAL_HELMET = ITEMS.register("imperial_helmet",
