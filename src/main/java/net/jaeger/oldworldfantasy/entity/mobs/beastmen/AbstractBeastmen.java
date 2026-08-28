@@ -17,7 +17,7 @@ import net.minecraft.world.level.LevelReader;
 
 public abstract class AbstractBeastmen extends ModRaider {
 
-    protected AbstractBeastmen(EntityType<? extends Raider> pEntityType, Level pLevel) {
+    protected AbstractBeastmen(EntityType<? extends ModRaider> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
