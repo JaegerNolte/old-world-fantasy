@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "oldworldfantasy:greenskin_ruins",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 1642136475,
+    "spacing": 42,
+    "separation": 6,
+    "type": "minecraft:random_spread"
+  }
+}

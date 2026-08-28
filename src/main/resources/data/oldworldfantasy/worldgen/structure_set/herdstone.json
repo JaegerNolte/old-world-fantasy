@@ -4,7 +4,7 @@
   "structures": [
     {
       "structure": "oldworldfantasy:herdstone",
-      "weight": 1
+      "weight": 2
     }
   ],
   "placement": {
@@ -12,7 +12,7 @@
     "salt": 1642136474,
 
     // The average distance apart in chunks for spawn attempts
-    "spacing": 20,
+    "spacing": 52,
 
     // Minimum distance apart in chunks for spawn attempts
     // MUST ALWAYS BE SMALLER THAN spacing ABOVE

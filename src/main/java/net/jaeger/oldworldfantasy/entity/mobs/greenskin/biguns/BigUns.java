@@ -171,7 +171,6 @@ public class BigUns extends AbstractGreenskin implements GeoEntity {
     }
 
 
-
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return this.cache;

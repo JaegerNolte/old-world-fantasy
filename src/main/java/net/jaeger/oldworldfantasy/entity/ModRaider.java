@@ -1,6 +1,5 @@
 package net.jaeger.oldworldfantasy.entity;
 
-import net.jaeger.oldworldfantasy.entity.mobs.beastmen.AbstractBeastmen;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
@@ -21,7 +20,7 @@ public abstract class ModRaider extends Raider {
         private final float hostileRadiusSqr;
         public final TargetingConditions shoutTargeting = TargetingConditions.forNonCombat().range(8.0).ignoreLineOfSight().ignoreInvisibilityTesting();
 
-        public HoldGroundAttackGoal(final AbstractBeastmen pMob, final float pHostileRadiusSquare) {
+        public HoldGroundAttackGoal(final ModRaider pMob, final float pHostileRadiusSquare) {
             this.mob = pMob;
             this.hostileRadiusSqr = pHostileRadiusSquare * pHostileRadiusSquare;
             this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
@@ -42,7 +41,7 @@ public abstract class ModRaider extends Raider {
             super.start();
             this.mob.getNavigation().stop();
 
-            for (Raider raider : this.mob.level().getNearbyEntities(Raider.class, this.shoutTargeting, this.mob, this.mob.getBoundingBox().inflate(8.0, 8.0, 8.0))) {
+            for (ModRaider raider : this.mob.level().getNearbyEntities(ModRaider.class, this.shoutTargeting, this.mob, this.mob.getBoundingBox().inflate(8.0, 8.0, 8.0))) {
                 raider.setTarget(this.mob.getTarget());
             }
         }
@@ -52,9 +51,9 @@ public abstract class ModRaider extends Raider {
             super.stop();
             LivingEntity livingentity = this.mob.getTarget();
             if (livingentity != null) {
-                for (Raider raider : this.mob
+                for (ModRaider raider : this.mob
                         .level()
-                        .getNearbyEntities(Raider.class, this.shoutTargeting, this.mob, this.mob.getBoundingBox().inflate(8.0, 8.0, 8.0))) {
+                        .getNearbyEntities(ModRaider.class, this.shoutTargeting, this.mob, this.mob.getBoundingBox().inflate(8.0, 8.0, 8.0))) {
                     raider.setTarget(livingentity);
                     raider.setAggressive(true);
                 }
