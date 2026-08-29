@@ -2,9 +2,11 @@ package net.jaeger.oldworldfantasy.worldgen.raids;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.effect.ModEffects;
 import net.jaeger.oldworldfantasy.entity.ModEntities;
 import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
+import net.jaeger.oldworldfantasy.sound.ModSounds;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.SectionPos;
@@ -17,7 +19,6 @@ import net.minecraft.network.protocol.game.ClientboundSoundPacket;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
@@ -44,7 +45,7 @@ public class ModRaid {
     private static final int ATTEMPT_RAID_FARTHEST = 0;
     private static final int ATTEMPT_RAID_CLOSE = 1;
     private static final int ATTEMPT_RAID_INSIDE = 2;
-    private static final int VILLAGE_SEARCH_RADIUS = 32;
+    private static final int VILLAGE_SEARCH_RADIUS = 2; // set to 32
     private static final int RAID_TIMEOUT_TICKS = 48000;
     private static final int NUM_SPAWN_ATTEMPTS = 3;
     private static final String RAIDERS_REMAINING = "event.oldworldfantasy.raid.raiders_remaining";
@@ -170,12 +171,11 @@ public class ModRaid {
 
     private Predicate<ServerPlayer> validPlayer() {
         return player -> {
-            BlockPos blockPos = player.blockPosition();
+            if (!player.isAlive() || player.isSpectator()) {
+                return false;
+            }
 
-            ModRaid raid = ModRaids.get(this.level)
-                    .getRaidAt(blockPos);
-
-            return player.isAlive() && raid == this;
+            return this.center.distSqr(player.blockPosition()) <= VALID_RAID_RADIUS_SQR;
         };
     }
 
@@ -231,12 +231,12 @@ public class ModRaid {
     }
 
     public void tick() {
-        System.out.println("TICKING RAID: " + this.getId());
         if (!this.isStopped()) {
             if (this.status == ModRaid.RaidStatus.ONGOING) {
                 boolean flag = this.active;
                 this.active = this.level.hasChunkAt(this.center);
                 if (this.level.getDifficulty() == Difficulty.PEACEFUL) {
+                    OldWorldFantasyMod.LOG.info("Raid stopped difficulty is set to: {}", this.level.getDifficulty());
                     this.stop();
                     return;
                 }
@@ -307,8 +307,9 @@ public class ModRaid {
                     this.updateRaiders();
                     if (i > 0) {
                         if (i <= 2) {
+                            this.trackRemainingRaiders();
                             this.raidEvent
-                                    .setName(RAID_NAME_COMPONENT.copy().append(" - ").append(Component.translatable("event.minecraft.raid.raiders_remaining", i)));
+                                    .setName(RAID_NAME_COMPONENT.copy().append(" - ").append(Component.translatable("event.oldworldfantasy.raid.raiders_remaining", i)));
                         } else {
                             this.raidEvent.setName(RAID_NAME_COMPONENT);
                         }
@@ -319,7 +320,6 @@ public class ModRaid {
 
                 boolean flag3 = false;
                 int k = 0;
-
                 while (this.shouldSpawnGroup()) {
                     BlockPos blockpos = this.waveSpawnPos.isPresent() ? this.waveSpawnPos.get() : this.findRandomSpawnPos(k, 20);
                     if (blockpos != null) {
@@ -331,9 +331,10 @@ public class ModRaid {
                         }
                     } else {
                         k++;
+                        OldWorldFantasyMod.LOG.info("Could not find spawn position. Attempt: {}", k);
                     }
-
                     if (k > 3) {
+                        OldWorldFantasyMod.LOG.info("Stopping raid because no valid spawn position was found");
                         this.stop();
                         break;
                     }
@@ -381,16 +382,10 @@ public class ModRaid {
                 }
             }
         }
-        System.out.println("ModRaid tick");
-        System.out.println("Raid status: " + this.status);
-        System.out.println("Raiders alive: " + this.getTotalRaidersAlive());
-        System.out.println("Has more waves: " + this.hasMoreWaves());
-        System.out.println("Should spawn group: " + this.shouldSpawnGroup());
-        System.out.println("Cooldown: " + this.raidCooldownTicks);
     }
 
     private void moveRaidCenterToNearbyVillageSection() {
-        Stream<SectionPos> stream = SectionPos.cube(SectionPos.of(this.center), 2);
+        Stream<SectionPos> stream = SectionPos.cube(SectionPos.of(this.center), VILLAGE_SEARCH_RADIUS);
         stream.filter(this.level::isVillage)
                 .map(SectionPos::center)
                 .min(Comparator.comparingDouble(p_37766_ -> p_37766_.distSqr(this.center)))
@@ -476,12 +471,11 @@ public class ModRaid {
             double d2 = vec3.z + 13.0 / d0 * (vec31.z - vec3.z);
             if (d0 <= 64.0 || collection.contains(serverplayer)) {
                 serverplayer.connection
-                        .send(new ClientboundSoundPacket(SoundEvents.RAID_HORN, SoundSource.NEUTRAL, d1, serverplayer.getY(), d2, 64.0F, 1.0F, j));
+                        .send(new ClientboundSoundPacket(ModSounds.CHAOS_HORN.getHolder().get(), SoundSource.NEUTRAL, d1, serverplayer.getY(), d2, 74.0F, 0.8F, j));
             }
         }
     }
 
-// TODO: Make generic
     private void spawnGroup(BlockPos pPos) {
         boolean flag = false;
         int i = this.groupsSpawned + 1;
@@ -517,15 +511,11 @@ public class ModRaid {
                             raider1 = ModEntities.WARGOR.get().create(this.level);
                         }
                     }
-
                     k++;
                     if (raider1 != null) {
                         this.joinRaid(i, raider1, pPos, false);
-                        raider1.moveTo(pPos, 0.0F, 0.0F);
-                        raider1.startRiding(raider);
                     }
                 }
-                System.out.println("CREATING RAIDER");
             }
         }
 
@@ -619,13 +609,12 @@ public class ModRaid {
             blockpos$mutableblockpos.set(j, k, l);
             if (!this.level.isVillage(blockpos$mutableblockpos) || pOffsetMultiplier >= 2) {
                 int j1 = 10;
-                if (this.level
-                        .hasChunksAt(
-                                blockpos$mutableblockpos.getX() - 10,
-                                blockpos$mutableblockpos.getZ() - 10,
-                                blockpos$mutableblockpos.getX() + 10,
-                                blockpos$mutableblockpos.getZ() + 10
-                        )
+                if (this.level.hasChunksAt(
+                        blockpos$mutableblockpos.getX() - 10,
+                        blockpos$mutableblockpos.getZ() - 10,
+                        blockpos$mutableblockpos.getX() + 10,
+                        blockpos$mutableblockpos.getZ() + 10
+                )
                         && this.level.isPositionEntityTicking(blockpos$mutableblockpos)
                         && (
                         spawnplacementtype.isSpawnPositionOk(this.level, blockpos$mutableblockpos, EntityType.RAVAGER)
@@ -772,6 +761,14 @@ public class ModRaid {
         this.heroesOfTheVillage.add(pPlayer.getUUID());
     }
 
+    private void trackRemainingRaiders() {
+        for (ModRaider raider : this.getAllRaiders()) {
+            if (raider.isAlive()) {
+                raider.addEffect(new MobEffectInstance(MobEffects.GLOWING, 12000, 0, false, false));
+            }
+        }
+    }
+
     static enum RaidStatus {
         ONGOING,
         VICTORY,
@@ -795,17 +792,17 @@ public class ModRaid {
         }
     }
 
-    static enum RaiderType implements net.minecraftforge.common.IExtensibleEnum {
-        UNGOR(ModEntities.UNGOR.get(), new int[]{3, 0, 2, 0, 1, 4, 2, 5}),
-        GOR(ModEntities.GOR.get(), new int[]{0, 1, 2, 3, 0, 1, 1, 2}),
-        BESTIGOR(ModEntities.BESTIGOR.get(), new int[]{0, 4, 3, 3, 4, 4, 4, 2}),
-        WARGOR(ModEntities.WARGOR.get(), new int[]{0, 0, 0, 1, 0, 1, 0, 2});
+    enum RaiderType implements net.minecraftforge.common.IExtensibleEnum {
+        UNGOR(ModEntities.UNGOR.get(), new int[]{1, 0, 2, 0, 1, 2, 2, 3}),
+        GOR(ModEntities.GOR.get(), new int[]{0, 1, 0, 0, 0, 1, 1, 2}),
+        BESTIGOR(ModEntities.BESTIGOR.get(), new int[]{0, 0, 0, 0, 2, 2, 2, 2}),
+        WARGOR(ModEntities.WARGOR.get(), new int[]{0, 1, 0, 1, 0, 1, 0, 2});
 
         static RaiderType[] VALUES = values();
         final EntityType<? extends ModRaider> entityType;
         final int[] spawnsPerWaveBeforeBonus;
 
-        private RaiderType(final EntityType<? extends ModRaider> pEntityType, final int[] pSpawnsPerWaveBeforeBonus) {
+        RaiderType(final EntityType<? extends ModRaider> pEntityType, final int[] pSpawnsPerWaveBeforeBonus) {
             this.entityType = pEntityType;
             this.spawnsPerWaveBeforeBonus = pSpawnsPerWaveBeforeBonus;
         }

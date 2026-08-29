@@ -15,6 +15,7 @@ import net.jaeger.oldworldfantasy.entity.client.greenskin.orc.OrcRenderer;
 import net.jaeger.oldworldfantasy.entity.client.greenskin.warboss.OrcWarbossRenderer;
 import net.jaeger.oldworldfantasy.item.ModCreativeModeTabs;
 import net.jaeger.oldworldfantasy.item.ModItems;
+import net.jaeger.oldworldfantasy.loot.ModLootModifiers;
 import net.jaeger.oldworldfantasy.sound.ModSounds;
 import net.jaeger.oldworldfantasy.util.ModItemProperties;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -51,6 +52,7 @@ public class OldWorldFantasyMod {
 
         ModCreativeModeTabs.register(modEventBus);
 
+        ModEffects.register(modEventBus);
         ModDataComponents.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModItems.register(modEventBus);
@@ -58,7 +60,7 @@ public class OldWorldFantasyMod {
         ModSounds.register(modEventBus);
         ModEntities.register(modEventBus);
 
-        ModEffects.register(modEventBus);
+        ModLootModifiers.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(this::commonSetup);
@@ -84,6 +86,7 @@ public class OldWorldFantasyMod {
             event.accept(ModItems.POLE);
             event.accept(ModItems.SCRAP);
             event.accept(ModItems.TEEF);
+            event.accept(ModItems.TAINTED_HORN);
 
             event.accept(ModItems.RUNE_HARDENED_IRON_SWORD);
             event.accept(ModItems.RUNE_HARDENED_IRON_PICKAXE);

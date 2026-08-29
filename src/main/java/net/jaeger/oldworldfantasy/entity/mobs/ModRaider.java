@@ -1,6 +1,7 @@
 package net.jaeger.oldworldfantasy.entity.mobs;
 
 import com.google.common.collect.Lists;
+import net.jaeger.oldworldfantasy.entity.ai.goals.PathfindToRaidGoal;
 import net.jaeger.oldworldfantasy.worldgen.raids.ModRaid;
 import net.jaeger.oldworldfantasy.worldgen.raids.ModRaids;
 import net.minecraft.core.BlockPos;
@@ -15,7 +16,6 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.jaeger.oldworldfantasy.entity.ai.goals.PathfindToRaidGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.ai.util.DefaultRandomPos;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
@@ -252,13 +252,13 @@ public abstract class ModRaider extends PatrollingMonster {
     @Nullable
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pSpawnType, @Nullable SpawnGroupData pSpawnGroupData) {
-        this.setCanJoinRaid(this.getType() != EntityType.WITCH || pSpawnType != MobSpawnType.NATURAL);
+        this.setCanJoinRaid(pSpawnType != MobSpawnType.NATURAL);
         return super.finalizeSpawn(pLevel, pDifficulty, pSpawnType, pSpawnGroupData);
     }
 
     public abstract SoundEvent getCelebrateSound();
 
-    protected class HoldGroundAttackGoal<T extends ModRaider> extends Goal {
+    protected static class HoldGroundAttackGoal<T extends ModRaider> extends Goal {
         private final T mob;
         private final float hostileRadiusSqr;
         public final TargetingConditions shoutTargeting = TargetingConditions.forNonCombat().range(8.0).ignoreLineOfSight().ignoreInvisibilityTesting();

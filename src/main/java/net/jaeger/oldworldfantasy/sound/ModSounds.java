@@ -13,16 +13,12 @@ public class ModSounds {
     public static final DeferredRegister<SoundEvent> SOUNDS_EVENTS =
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, OldWorldFantasyMod.MOD_ID);
 
-
-    public static final RegistryObject<SoundEvent> BLUNDERBUSS_USE = registerSoundEvent("blunderbuss_use");
-
     public static final RegistryObject<SoundEvent> BEASTMEN_ROAR = registerSoundEvent("beastmen_roar");
     public static final RegistryObject<SoundEvent> BEASTMEN_WALK = registerSoundEvent("beastmen_walk");
     public static final RegistryObject<SoundEvent> BEASTMEN_HURT = registerSoundEvent("beastmen_hurt");
     public static final RegistryObject<SoundEvent> BEASTMEN_DEATH = registerSoundEvent("beastmen_death");
-    public static final RegistryObject<SoundEvent> NURGLING_ROAR = registerSoundEvent("nurgling_roar");
-    public static final RegistryObject<SoundEvent> NURGLING_HURT = registerSoundEvent("nurgling_hurt");
-    public static final RegistryObject<SoundEvent> NURGLING_DEATH = registerSoundEvent("nurgling_death");
+
+    public static final RegistryObject<SoundEvent> CHAOS_HORN = registerSoundEvent("chaos_horn");
 
 
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {

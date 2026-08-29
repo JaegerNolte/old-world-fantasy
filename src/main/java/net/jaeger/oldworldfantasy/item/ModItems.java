@@ -1,9 +1,11 @@
 package net.jaeger.oldworldfantasy.item;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
+import net.jaeger.oldworldfantasy.effect.ModEffects;
 import net.jaeger.oldworldfantasy.entity.ModEntities;
 import net.jaeger.oldworldfantasy.item.custom.items.armor.ImperialArmorItem;
 import net.jaeger.oldworldfantasy.item.custom.items.misc.FuelItem;
+import net.jaeger.oldworldfantasy.item.custom.items.misc.RaidItem;
 import net.jaeger.oldworldfantasy.item.custom.items.shield.ModShieldItem;
 import net.jaeger.oldworldfantasy.item.custom.items.weapons.LongswordItem;
 import net.jaeger.oldworldfantasy.item.custom.items.weapons.ModWeaponItem;
@@ -57,6 +59,10 @@ public class ModItems {
 
     public static final RegistryObject<Item> TEEF = ITEMS.register("teef",
             () -> new Item(new Item.Properties()));
+
+
+    public static final RegistryObject<Item> TAINTED_HORN = ITEMS.register("tainted_horn",
+            () -> new RaidItem(ModEffects.BEASTMEN_OMEN.getHolder().get()));
 
 
     public static final RegistryObject<Item> RUNE_HARDENED_IRON_SWORD = ITEMS.register("rune_hardened_iron_sword",

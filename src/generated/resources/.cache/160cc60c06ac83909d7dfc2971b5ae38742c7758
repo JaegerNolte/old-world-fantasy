@@ -1,4 +1,4 @@
-// 1.21.1	2026-08-28T15:45:07.1764302	Item Models: oldworldfantasy
+// 1.21.1	2026-08-29T14:25:35.1639712	Item Models: oldworldfantasy
 253686eae1ae94b5994b4092017fb0dcdf517b87 assets/oldworldfantasy/models/item/arcane_coal.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/oldworldfantasy/models/item/bestigor_spawn_egg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/oldworldfantasy/models/item/biguns_spawn_egg.json
@@ -21,6 +21,7 @@ aa424bab7fb1ef9ad6edfbd9a029c438796377b1 assets/oldworldfantasy/models/item/leat
 d30247d0514d9a5bb4978f555790347ff9975311 assets/oldworldfantasy/models/item/scrap.json
 8e40309b10eaebe2115b7edb0f3ca13379a5d8ef assets/oldworldfantasy/models/item/steel_ingot.json
 e025c7673f41c62b45d51c767d17423d719c2364 assets/oldworldfantasy/models/item/steel_nugget.json
+0dba0eab835a6c369029796f838935aef811f38d assets/oldworldfantasy/models/item/tainted_horn.json
 d33579e8cb729513d4221a43c0b9c664e7c8249f assets/oldworldfantasy/models/item/teef.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/oldworldfantasy/models/item/ungor_spawn_egg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/oldworldfantasy/models/item/wargor_spawn_egg.json

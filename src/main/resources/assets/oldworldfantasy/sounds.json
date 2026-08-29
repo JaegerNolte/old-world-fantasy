@@ -22,5 +22,11 @@
     "sounds": [
       "oldworldfantasy:beastmen_death"
     ]
-  }
+  },
+    "chaos_horn": {
+      "subtitle": "sounds.oldworldfantasy.chaos_horn",
+      "sounds": [
+        "oldworldfantasy:chaos_horn"
+      ]
+    }
 }

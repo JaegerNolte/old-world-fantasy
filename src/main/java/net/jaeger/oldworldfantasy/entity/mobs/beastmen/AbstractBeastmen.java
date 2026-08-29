@@ -1,8 +1,11 @@
 package net.jaeger.oldworldfantasy.entity.mobs.beastmen;
 
+import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.entity.ModEntityTags;
 import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.Entity;
@@ -13,6 +16,7 @@ import net.minecraft.world.entity.ai.goal.OpenDoorGoal;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.storage.loot.LootTable;
 
 public abstract class AbstractBeastmen extends ModRaider {
 
@@ -63,6 +67,14 @@ public abstract class AbstractBeastmen extends ModRaider {
 
     public final boolean isBeastman() {
         return this.getType().is(ModEntityTags.BEASTMEN);
+    }
+
+    @Override
+    protected ResourceKey<LootTable> getDefaultLootTable() {
+        return ResourceKey.create(
+                Registries.LOOT_TABLE,
+                OldWorldFantasyMod.res("entities/beastmen")
+        );
     }
 
     @Override

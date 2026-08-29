@@ -35,15 +35,12 @@ public class ModEventBusForge {
         if (player.tickCount % 20 != 0) {
             return;
         }
-
         ServerLevel level = player.serverLevel();
         if (!player.hasEffect(ModEffects.BEASTMEN_OMEN.getHolder().get())) {
             return;
         }
-
         ModRaids modRaids = ModRaids.get(level);
         ModRaid existingRaid = modRaids.getRaidAt(player.blockPosition());
-
         if (existingRaid == null) {
             ModRaid raid = modRaids.createOrExtendRaid(player, player.blockPosition());
 

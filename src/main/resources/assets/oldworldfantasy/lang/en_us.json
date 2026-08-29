@@ -20,6 +20,14 @@
   "twohandedpenalty_1": "Attack speed or/and damage reduced due to ",
   "twohandedpenalty_2": "single-handed use of two-handed weapon",
 
+  "sounds.oldworldfantasy.beastmen_roar": "Beastman ambient sounds",
+  "sounds.oldworldfantasy.beastmen_walk": "Beastman walk sounds",
+  "sounds.oldworldfantasy.beastmen_hurt": "Beastman hurt sounds",
+  "sounds.oldworldfantasy.beastmen_death": "Beastman death sounds",
+  "sounds.oldworldfantasy.chaos_horn": "Chaos horn sounds",
+
+  "effect.oldworldfantasy.beastmen_omen": "Call of the Beastmen",
+
   "item.oldworldfantasy.raw_lead": "Raw Lead",
   "item.oldworldfantasy.lead_ingot": "Lead Ingot",
   "item.oldworldfantasy.lead_nugget": "Lead Nugget",
@@ -29,9 +37,10 @@
   "item.oldworldfantasy.arcane_coal": "Arcane Coal",
   "item.oldworldfantasy.leather_strap": "Leather Strap",
   "item.oldworldfantasy.hilt": "Hilt",
-  "item.oldworldfantasy.pole": "pole",
+  "item.oldworldfantasy.pole": "Pole",
   "item.oldworldfantasy.scrap": "Scrap",
   "item.oldworldfantasy.teef": "Teef",
+  "item.oldworldfantasy.tainted_horn": "Tainted Horn",
 
   "item.oldworldfantasy.rune_hardened_iron_sword": "Rune Hardened Iron Sword",
   "item.oldworldfantasy.rune_hardened_iron_pickaxe": "Rune Hardened Iron Pickaxe",

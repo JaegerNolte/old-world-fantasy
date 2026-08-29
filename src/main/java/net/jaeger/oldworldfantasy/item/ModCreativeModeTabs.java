@@ -30,6 +30,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.POLE.get());
                         output.accept(ModItems.SCRAP.get());
                         output.accept(ModItems.TEEF.get());
+                        output.accept(ModItems.TAINTED_HORN.get());
 
                         output.accept(ModItems.RUNE_HARDENED_IRON_SWORD.get());
                         output.accept(ModItems.RUNE_HARDENED_IRON_PICKAXE.get());

@@ -70,8 +70,6 @@ public class ModRaids extends SavedData {
         if (this.tick % 200 == 0) {
             this.setDirty();
         }
-
-//        OldWorldFantasyMod.LOG.debug("Level: {}, Active Mod Raids: {}", this.level.dimension().location(), this.raidMap.size());
     }
 
     public static boolean canJoinRaid(ModRaider pRaider, ModRaid pRaid) {
@@ -95,6 +93,11 @@ public class ModRaids extends SavedData {
                         .getPoiManager()
                         .getInRange(p_219845_ -> p_219845_.is(PoiTypeTags.VILLAGE), pPos, 64, PoiManager.Occupancy.IS_OCCUPIED)
                         .toList();
+
+                if (list.isEmpty()) {
+                    return null;
+                }
+
                 int i = 0;
                 Vec3 vec3 = Vec3.ZERO;
 
@@ -133,10 +136,8 @@ public class ModRaids extends SavedData {
     }
 
     public static ModRaids get(ServerLevel level) {
-        return level.getDataStorage().computeIfAbsent(
-                new Factory<>(() -> new ModRaids(level), (tag, provider) -> ModRaids.load(level, tag), DataFixTypes.SAVED_DATA_RAIDS),
-                RAID_FILE_ID
-        );
+        return level.getDataStorage().computeIfAbsent(new Factory<>(() -> new ModRaids(level),
+                (tag, provider) -> ModRaids.load(level, tag), DataFixTypes.SAVED_DATA_RAIDS), RAID_FILE_ID);
     }
 
     public static ModRaids load(ServerLevel pLevel, CompoundTag pTag) {
