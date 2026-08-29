@@ -1,6 +1,6 @@
 package net.jaeger.oldworldfantasy.entity.mobs.beastmen.wargor;
 
-import net.jaeger.oldworldfantasy.entity.ModRaider;
+import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
 import net.jaeger.oldworldfantasy.entity.ai.goals.FrenzyBeastmenAlliesGoal;
 import net.jaeger.oldworldfantasy.entity.ai.goals.WargorAttackGoal;
 import net.jaeger.oldworldfantasy.entity.mobs.beastmen.AbstractBeastmen;
@@ -30,7 +30,6 @@ import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.raid.Raider;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
@@ -52,7 +51,7 @@ public class Wargor extends AbstractBeastmen implements GeoEntity {
 
     private final int ambientSoundInterval = 1000;
 
-    public Wargor(EntityType<? extends Raider> pEntityType, Level pLevel) {
+    public Wargor(EntityType<? extends ModRaider> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
@@ -62,7 +61,7 @@ public class Wargor extends AbstractBeastmen implements GeoEntity {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new FrenzyBeastmenAlliesGoal(this, 30.0D, 200, 1));
         this.goalSelector.addGoal(3, new WargorAttackGoal(this, 1.0, false, axeAttack));
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this, ModRaider.class).setAlertOthers());
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this, AbstractBeastmen.class).setAlertOthers());
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));

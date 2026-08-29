@@ -1,6 +1,6 @@
 package net.jaeger.oldworldfantasy.entity.mobs.beastmen.bestigor;
 
-import net.jaeger.oldworldfantasy.entity.ModRaider;
+import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
 import net.jaeger.oldworldfantasy.entity.ai.goals.BestigorAttackGoal;
 import net.jaeger.oldworldfantasy.entity.mobs.beastmen.AbstractBeastmen;
 import net.jaeger.oldworldfantasy.entity.mobs.greenskin.AbstractGreenskin;
@@ -28,7 +28,6 @@ import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.raid.Raider;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
@@ -52,7 +51,7 @@ public class Bestigor extends AbstractBeastmen implements GeoEntity {
     static final Predicate<Difficulty> DOOR_BREAKING_PREDICATE = p_34082_ -> p_34082_ == Difficulty.NORMAL || p_34082_ == Difficulty.HARD;
     private final int ambientSoundInterval = 1000;
 
-    public Bestigor(EntityType<? extends Raider> pEntityType, Level pLevel) {
+    public Bestigor(EntityType<? extends ModRaider> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
@@ -63,7 +62,7 @@ public class Bestigor extends AbstractBeastmen implements GeoEntity {
         this.goalSelector.addGoal(1, new Bestigor.BestigorBreakDoorGoal(this));
         this.goalSelector.addGoal(2, new AbstractBeastmen.RaiderOpenDoorGoal(this));
         this.goalSelector.addGoal(3, new BestigorAttackGoal(this, 1.0, false, axeAttack));
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this, ModRaider.class).setAlertOthers());
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this, AbstractBeastmen.class).setAlertOthers());
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));

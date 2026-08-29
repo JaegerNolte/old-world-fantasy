@@ -1,6 +1,11 @@
 {
   "creativetab.old_world_fantasy_tab": "Old World Fantasy",
 
+  "event.oldworldfantasy.raid": "Brayherd Invasion",
+  "event.oldworldfantasy.raid.victory.full": "Brayherd Vanquished",
+  "event.oldworldfantasy.raid.raiders_remaining": "Raiders Remaining: %s",
+  "event.oldworldfantasy.raid.defeat.full": "Rise of the unnatural order",
+
   "weight": "Weight: %s",
   "encumbered": "Encumbered",
   "halberd.hurt": "Has a chance to push the enemy off the horse",

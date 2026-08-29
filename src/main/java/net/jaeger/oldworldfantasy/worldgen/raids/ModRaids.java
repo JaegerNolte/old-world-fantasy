@@ -1,9 +1,7 @@
-package net.jaeger.oldworldfantasy.worldgen.entity.raid;
+package net.jaeger.oldworldfantasy.worldgen.raids;
 
 import com.google.common.collect.Maps;
-import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.entity.ModRaid;
-import net.jaeger.oldworldfantasy.entity.ModRaider;
+import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
@@ -33,8 +31,8 @@ public class ModRaids extends SavedData {
     private int nextAvailableID;
     private int tick;
 
-    public static SavedData.Factory<ModRaids> factory(ServerLevel level) {
-        return new SavedData.Factory<>(
+    public static Factory<ModRaids> factory(ServerLevel level) {
+        return new Factory<>(
                 () -> new ModRaids(level),
                 (tag, provider) -> ModRaids.load(level, tag),
                 DataFixTypes.SAVED_DATA_RAIDS
@@ -73,7 +71,7 @@ public class ModRaids extends SavedData {
             this.setDirty();
         }
 
-        OldWorldFantasyMod.LOG.debug("Level: {}, Active Mod Raids: {}", this.level.dimension().location(), this.raidMap.size());
+//        OldWorldFantasyMod.LOG.debug("Level: {}, Active Mod Raids: {}", this.level.dimension().location(), this.raidMap.size());
     }
 
     public static boolean canJoinRaid(ModRaider pRaider, ModRaid pRaid) {
@@ -136,11 +134,7 @@ public class ModRaids extends SavedData {
 
     public static ModRaids get(ServerLevel level) {
         return level.getDataStorage().computeIfAbsent(
-                new SavedData.Factory<>(
-                        () -> new ModRaids(level),
-                        (tag, provider) -> ModRaids.load(level, tag),
-                        DataFixTypes.SAVED_DATA_RAIDS
-                ),
+                new Factory<>(() -> new ModRaids(level), (tag, provider) -> ModRaids.load(level, tag), DataFixTypes.SAVED_DATA_RAIDS),
                 RAID_FILE_ID
         );
     }

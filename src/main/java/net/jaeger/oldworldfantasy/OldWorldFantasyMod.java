@@ -3,6 +3,7 @@ package net.jaeger.oldworldfantasy;
 import com.mojang.logging.LogUtils;
 import net.jaeger.oldworldfantasy.block.ModBlocks;
 import net.jaeger.oldworldfantasy.component.ModDataComponents;
+import net.jaeger.oldworldfantasy.effect.ModEffects;
 import net.jaeger.oldworldfantasy.entity.ModEntities;
 import net.jaeger.oldworldfantasy.entity.client.beastmen.bestigor.BestigorRenderer;
 import net.jaeger.oldworldfantasy.entity.client.beastmen.gor.GorRenderer;
@@ -56,6 +57,8 @@ public class OldWorldFantasyMod {
 
         ModSounds.register(modEventBus);
         ModEntities.register(modEventBus);
+
+        ModEffects.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(this::commonSetup);

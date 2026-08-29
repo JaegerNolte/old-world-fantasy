@@ -1,11 +1,12 @@
-package net.jaeger.oldworldfantasy.entity;
+package net.jaeger.oldworldfantasy.worldgen.raids;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import net.jaeger.oldworldfantasy.worldgen.entity.raid.ModRaids;
+import net.jaeger.oldworldfantasy.effect.ModEffects;
+import net.jaeger.oldworldfantasy.entity.ModEntities;
+import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.SectionPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -46,8 +47,7 @@ public class ModRaid {
     private static final int VILLAGE_SEARCH_RADIUS = 32;
     private static final int RAID_TIMEOUT_TICKS = 48000;
     private static final int NUM_SPAWN_ATTEMPTS = 3;
-//    private static final Component OMINOUS_BANNER_PATTERN_NAME = Component.translatable("block.oldworldfantasy.ominous_banner").withStyle(ChatFormatting.GOLD);
-//    private static final String RAIDERS_REMAINING = "event.oldworldfantasy.raid.raiders_remaining";
+    private static final String RAIDERS_REMAINING = "event.oldworldfantasy.raid.raiders_remaining";
     public static final int VILLAGE_RADIUS_BUFFER = 16;
     private static final int POST_RAID_TICK_LIMIT = 40;
     private static final int DEFAULT_PRE_RAID_TICKS = 300;
@@ -57,9 +57,9 @@ public class ModRaid {
     public static final int TICKS_PER_DAY = 24000;
     public static final int DEFAULT_MAX_RAID_OMEN_LEVEL = 5;
     private static final int LOW_MOB_THRESHOLD = 2;
-    private static final Component RAID_NAME_COMPONENT = Component.translatable("event.oldworldfantasy.modraid");
-    private static final Component RAID_BAR_VICTORY_COMPONENT = Component.translatable("event.oldworldfantasy.modraid.victory.full");
-    private static final Component RAID_BAR_DEFEAT_COMPONENT = Component.translatable("event.oldworldfantasy.modraid.defeat.full");
+    private static final Component RAID_NAME_COMPONENT = Component.translatable("event.oldworldfantasy.raid");
+    private static final Component RAID_BAR_VICTORY_COMPONENT = Component.translatable("event.oldworldfantasy.raid.victory.full");
+    private static final Component RAID_BAR_DEFEAT_COMPONENT = Component.translatable("event.oldworldfantasy.raid.defeat.full");
     private static final int HERO_OF_THE_VILLAGE_DURATION = 48000;
     public static final int VALID_RAID_RADIUS_SQR = 9216;
     public static final int RAID_REMOVAL_THRESHOLD_SQR = 12544;
@@ -209,7 +209,7 @@ public class ModRaid {
     }
 
     public boolean absorbRaidOmen(ServerPlayer pPlayer) {
-        MobEffectInstance mobeffectinstance = pPlayer.getEffect(MobEffects.RAID_OMEN);
+        MobEffectInstance mobeffectinstance = pPlayer.getEffect(ModEffects.BEASTMEN_OMEN.getHolder().get());
         if (mobeffectinstance == null) {
             return false;
         } else {
@@ -231,6 +231,7 @@ public class ModRaid {
     }
 
     public void tick() {
+        System.out.println("TICKING RAID: " + this.getId());
         if (!this.isStopped()) {
             if (this.status == ModRaid.RaidStatus.ONGOING) {
                 boolean flag = this.active;
@@ -380,6 +381,12 @@ public class ModRaid {
                 }
             }
         }
+        System.out.println("ModRaid tick");
+        System.out.println("Raid status: " + this.status);
+        System.out.println("Raiders alive: " + this.getTotalRaidersAlive());
+        System.out.println("Has more waves: " + this.hasMoreWaves());
+        System.out.println("Should spawn group: " + this.shouldSpawnGroup());
+        System.out.println("Cooldown: " + this.raidCooldownTicks);
     }
 
     private void moveRaidCenterToNearbyVillageSection() {
@@ -502,12 +509,12 @@ public class ModRaid {
                 if (raid$raidertype.entityType == ModEntities.UNGOR.get()) {
                     ModRaider raider1 = null;
                     if (i == this.getNumGroups(Difficulty.NORMAL)) {
-                        raider1 = ModEntities.GOR.create(this.level);
+                        raider1 = ModEntities.GOR.get().create(this.level);
                     } else if (i >= this.getNumGroups(Difficulty.HARD)) {
                         if (k == 0) {
-                            raider1 = ModEntities.BESTIGOR.create(this.level);
+                            raider1 = ModEntities.BESTIGOR.get().create(this.level);
                         } else {
-                            raider1 = ModEntities.WARGOR.create(this.level);
+                            raider1 = ModEntities.WARGOR.get().create(this.level);
                         }
                     }
 
@@ -518,6 +525,7 @@ public class ModRaid {
                         raider1.startRiding(raider);
                     }
                 }
+                System.out.println("CREATING RAIDER");
             }
         }
 

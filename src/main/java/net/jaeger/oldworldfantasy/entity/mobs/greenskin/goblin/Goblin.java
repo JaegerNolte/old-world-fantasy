@@ -1,6 +1,6 @@
 package net.jaeger.oldworldfantasy.entity.mobs.greenskin.goblin;
 
-import net.jaeger.oldworldfantasy.entity.ModRaider;
+import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
 import net.jaeger.oldworldfantasy.entity.ai.goals.GoblinAttackGoal;
 import net.jaeger.oldworldfantasy.entity.mobs.beastmen.AbstractBeastmen;
 import net.jaeger.oldworldfantasy.entity.mobs.greenskin.AbstractGreenskin;
@@ -28,7 +28,6 @@ import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.raid.Raider;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -53,7 +52,7 @@ public class Goblin extends AbstractGreenskin implements GeoEntity {
     static final Predicate<Difficulty> DOOR_BREAKING_PREDICATE = p_34082_ -> p_34082_ == Difficulty.NORMAL || p_34082_ == Difficulty.HARD;
     private final int ambientSoundInterval = 1000;
 
-    public Goblin(EntityType<? extends Raider> pEntityType, Level pLevel) {
+    public Goblin(EntityType<? extends ModRaider> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
 
         this.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(ModItems.IMPERIAL_PIKE.get()));
@@ -66,7 +65,7 @@ public class Goblin extends AbstractGreenskin implements GeoEntity {
         this.goalSelector.addGoal(1, new Goblin.GoblinBreakDoorGoal(this));
         this.goalSelector.addGoal(2, new AbstractGreenskin.RaiderOpenDoorGoal(this));
         this.goalSelector.addGoal(3, new GoblinAttackGoal(this, 1.0, false, spearAttack));
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this, ModRaider.class).setAlertOthers());
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this, AbstractGreenskin.class).setAlertOthers());
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractBeastmen.class, false));

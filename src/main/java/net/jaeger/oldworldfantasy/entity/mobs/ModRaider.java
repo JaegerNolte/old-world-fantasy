@@ -1,7 +1,8 @@
-package net.jaeger.oldworldfantasy.entity;
+package net.jaeger.oldworldfantasy.entity.mobs;
 
 import com.google.common.collect.Lists;
-import net.jaeger.oldworldfantasy.worldgen.entity.raid.ModRaids;
+import net.jaeger.oldworldfantasy.worldgen.raids.ModRaid;
+import net.jaeger.oldworldfantasy.worldgen.raids.ModRaids;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
@@ -14,7 +15,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.goal.PathfindToRaidGoal;
+import net.jaeger.oldworldfantasy.entity.ai.goals.PathfindToRaidGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.ai.util.DefaultRandomPos;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
@@ -81,7 +82,8 @@ public abstract class ModRaider extends PatrollingMonster {
             if (this.canJoinRaid()) {
                 if (raid == null) {
                     if (this.level().getGameTime() % 20L == 0L) {
-                        ModRaid raid1 = ((ServerLevel)this.level()).getRaidAt(this.blockPosition());
+                        ModRaid raid1 = ModRaids.get((ServerLevel) this.level())
+                                .getRaidAt(this.blockPosition());
                         if (raid1 != null && ModRaids.canJoinRaid(this, raid1)) {
                             raid1.joinRaid(raid1.getGroupsSpawned(), this, null, true);
                         }
@@ -185,7 +187,7 @@ public abstract class ModRaider extends PatrollingMonster {
         this.canJoinRaid = pCompound.getBoolean("CanJoinRaid");
         if (pCompound.contains("RaidId", 3)) {
             if (this.level() instanceof ServerLevel) {
-                this.raid = ((ServerLevel)this.level()).getRaids().get(pCompound.getInt("RaidId"));
+                this.raid = ModRaids.get((ServerLevel) this.level()).get(pCompound.getInt("RaidId"));
             }
 
             if (this.raid != null) {
@@ -369,16 +371,16 @@ public abstract class ModRaider extends PatrollingMonster {
     }
 
     public class RaiderCelebration extends Goal {
-        private final Raider mob;
+        private final ModRaider mob;
 
-        RaiderCelebration(final Raider pMob) {
+        RaiderCelebration(final ModRaider pMob) {
             this.mob = pMob;
             this.setFlags(EnumSet.of(Goal.Flag.MOVE));
         }
 
         @Override
         public boolean canUse() {
-            Raid raid = this.mob.getCurrentRaid();
+            ModRaid raid = this.mob.getCurrentRaid();
             return this.mob.isAlive() && this.mob.getTarget() == null && raid != null && raid.isLoss();
         }
 

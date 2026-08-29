@@ -1,7 +1,7 @@
 package net.jaeger.oldworldfantasy.entity.mobs.beastmen;
 
 import net.jaeger.oldworldfantasy.entity.ModEntityTags;
-import net.jaeger.oldworldfantasy.entity.ModRaider;
+import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -10,7 +10,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.goal.OpenDoorGoal;
-import net.minecraft.world.entity.raid.Raider;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -52,7 +51,7 @@ public abstract class AbstractBeastmen extends ModRaider {
     }
 
     protected class RaiderOpenDoorGoal extends OpenDoorGoal {
-        public RaiderOpenDoorGoal(final Raider pRaider) {
+        public RaiderOpenDoorGoal(final ModRaider pRaider) {
             super(pRaider, false);
         }
 
