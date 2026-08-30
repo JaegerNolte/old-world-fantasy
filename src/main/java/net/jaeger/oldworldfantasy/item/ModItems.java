@@ -7,11 +7,14 @@ import net.jaeger.oldworldfantasy.item.custom.items.armor.ImperialArmorItem;
 import net.jaeger.oldworldfantasy.item.custom.items.misc.FuelItem;
 import net.jaeger.oldworldfantasy.item.custom.items.misc.RaidItem;
 import net.jaeger.oldworldfantasy.item.custom.items.shield.ModShieldItem;
-import net.jaeger.oldworldfantasy.item.custom.items.weapons.LongswordItem;
+import net.jaeger.oldworldfantasy.item.custom.items.tools.ModHoeItem;
+import net.jaeger.oldworldfantasy.item.custom.items.tools.ModPickaxeItem;
+import net.jaeger.oldworldfantasy.item.custom.items.tools.ModShoveltem;
+import net.jaeger.oldworldfantasy.config.ToolsConfig;
 import net.jaeger.oldworldfantasy.item.custom.items.weapons.ModWeaponItem;
-import net.jaeger.oldworldfantasy.item.custom.items.weapons.PolearmItem;
 import net.jaeger.oldworldfantasy.item.custom.items.weapons.WeaponTypes;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -24,6 +27,7 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, OldWorldFantasyMod.MOD_ID);
 
+    // Crafting
     public static final RegistryObject<Item> RAW_LEAD = ITEMS.register("raw_lead",
             () -> new Item(new Item.Properties()));
 
@@ -60,46 +64,37 @@ public class ModItems {
     public static final RegistryObject<Item> TEEF = ITEMS.register("teef",
             () -> new Item(new Item.Properties()));
 
-
+    // Summons
     public static final RegistryObject<Item> TAINTED_HORN = ITEMS.register("tainted_horn",
             () -> new RaidItem(ModEffects.BEASTMEN_OMEN.getHolder().get()));
 
-
+    // Tools and Weapons
     public static final RegistryObject<Item> RUNE_HARDENED_IRON_SWORD = ITEMS.register("rune_hardened_iron_sword",
-            () -> new LongswordItem(ModToolTiers.RUNE_HARDENED_IRON, new Item.Properties()
-                    .attributes(LongswordItem.createAttributes(ModToolTiers.RUNE_HARDENED_IRON, 4, -3.2f, 1.0d))));
+            () -> new ModWeaponItem(ModItemTier.RUNE_HARDENED_IRON, WeaponTypes.RUNE_HARDENED_SWORD));
 
     public static final RegistryObject<Item> RUNE_HARDENED_IRON_PICKAXE = ITEMS.register("rune_hardened_iron_pickaxe",
-            () -> new PickaxeItem(ModToolTiers.RUNE_HARDENED_IRON, new Item.Properties()
-                    .attributes(PickaxeItem.createAttributes(ModToolTiers.RUNE_HARDENED_IRON, 1, -2.8f))));
+            () -> new ModPickaxeItem(ModItemTier.RUNE_HARDENED_IRON, ToolsConfig.BASE_PICKAXE));
 
     public static final RegistryObject<Item> RUNE_HARDENED_IRON_AXE = ITEMS.register("rune_hardened_iron_axe",
-            () -> new AxeItem(ModToolTiers.RUNE_HARDENED_IRON, new Item.Properties()
-                    .attributes(AxeItem.createAttributes(ModToolTiers.RUNE_HARDENED_IRON, 6, -3.2f))));
+            () -> new ModWeaponItem(ModItemTier.RUNE_HARDENED_IRON, WeaponTypes.RUNE_HARDENED_AXE));
 
     public static final RegistryObject<Item> RUNE_HARDENED_IRON_SHOVEL = ITEMS.register("rune_hardened_iron_shovel",
-            () -> new ShovelItem(ModToolTiers.RUNE_HARDENED_IRON, new Item.Properties()
-                    .attributes(ShovelItem.createAttributes(ModToolTiers.RUNE_HARDENED_IRON, 1.5f, -3.0f))));
+            () -> new ModShoveltem(ModItemTier.RUNE_HARDENED_IRON, ToolsConfig.BASE_SHOVEL));
 
     public static final RegistryObject<Item> RUNE_HARDENED_IRON_HOE = ITEMS.register("rune_hardened_iron_hoe",
-            () -> new HoeItem(ModToolTiers.RUNE_HARDENED_IRON, new Item.Properties()
-                    .attributes(HoeItem.createAttributes(ModToolTiers.RUNE_HARDENED_IRON, 0, -3.0f))));
+            () -> new ModHoeItem(ModItemTier.RUNE_HARDENED_IRON, ToolsConfig.BASE_HOE));
 
     public static final RegistryObject<Item> IMPERIAL_SWORD = ITEMS.register("imperial_sword",
-            () -> new SwordItem(ModToolTiers.STEEL, new Item.Properties()
-                    .attributes(SwordItem.createAttributes(ModToolTiers.STEEL, 3, -2.0f))));
+            () -> new ModWeaponItem(ModItemTier.STEEL, WeaponTypes.IMPERIAL_SWORD));
 
     public static final RegistryObject<Item> IMPERIAL_GREATSWORD = ITEMS.register("imperial_greatsword",
-            () -> new LongswordItem(ModToolTiers.STEEL, new Item.Properties()
-                    .attributes(LongswordItem.createAttributes(ModToolTiers.STEEL, 4, -3.5f, 1.0d))));
+            () -> new ModWeaponItem(ModItemTier.STEEL, WeaponTypes.IMPERIAL_GREATSWORD));
 
     public static final RegistryObject<Item> IMPERIAL_PIKE = ITEMS.register("imperial_pike",
-            () -> new PolearmItem(ModToolTiers.STEEL, new Item.Properties()
-                    .attributes(PolearmItem.createAttributes(ModToolTiers.STEEL, 3, -3.2f, 2.5d))));
+            () -> new ModWeaponItem(ModItemTier.STEEL, WeaponTypes.IMPERIAL_PIKE));
 
     public static final RegistryObject<Item> IMPERIAL_HALBERD = ITEMS.register("imperial_halberd",
-            () -> new PolearmItem(ModToolTiers.STEEL, new Item.Properties()
-                    .attributes(PolearmItem.createAttributes(ModToolTiers.STEEL, 4, -3.5f, 2.5d))));
+            () ->new ModWeaponItem(ModItemTier.STEEL, WeaponTypes.IMPERIAL_HALBERD));
 
     public static final RegistryObject<Item> CHOPPA_SWORD = ITEMS.register("choppa_sword",
             () -> new ModWeaponItem(ModItemTier.SCRAP, WeaponTypes.CHOPPA_SWORD));
@@ -107,7 +102,7 @@ public class ModItems {
     public static final RegistryObject<Item> CHOPPA_AXE = ITEMS.register("choppa_axe",
             () -> new ModWeaponItem(ModItemTier.SCRAP, WeaponTypes.CHOPPA_AXE));
 
-
+    // Armor
     public static final RegistryObject<Item> IMPERIAL_HELMET = ITEMS.register("imperial_helmet",
             () -> new ImperialArmorItem(ModArmorMaterials.IMPERIAL_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
                     new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(18))));
@@ -124,15 +119,15 @@ public class ModItems {
             () -> new ImperialArmorItem(ModArmorMaterials.IMPERIAL_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
                     new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(18))));
 
-
+    // Shields
     public static final RegistryObject<Item> IMPERIAL_SHIELD = ITEMS.register("imperial_shield",
             () -> new ModShieldItem(ModItemTier.STEEL, SHIELDS_CONFIG.get("imperial_shield")));
 
-
+    // Foods
     public static final RegistryObject<Item> RED_WINE = ITEMS.register("red_wine",
             () -> new Item(new Item.Properties().food(ModFoodProperties.RED_WINE)));
 
-
+    // Spawn Items
     public static final RegistryObject<Item> UNGOR_SPAWN_EGG = ITEMS.register("ungor_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.UNGOR, 0x361311, 0x5D0009, new Item.Properties()));
 

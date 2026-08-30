@@ -7,6 +7,14 @@
 		"0": "oldworldfantasy:item/imperial_greatsword",
 		"particle": "oldworldfantasy:item/imperial_greatsword"
 	},
+	"overrides": [
+		{
+			"predicate": {
+				"blocking": 1
+			},
+			"model": "oldworldfantasy:item/imperial_greatsword_blocking"
+		}
+	],
 	"elements": [
 		{
 			"name": "imperial_greatsword_0",
@@ -487,7 +495,7 @@
 			"scale": [1.5, 1.5, 1]
 		},
 		"ground": {
-			"translation": [0, 8.75, 0],
+			"translation": [0, 8.75, 7.75],
 			"scale": [1.5, 1.5, 1]
 		},
 		"head": {

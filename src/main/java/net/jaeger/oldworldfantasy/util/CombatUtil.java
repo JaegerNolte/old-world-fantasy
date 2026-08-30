@@ -50,10 +50,6 @@ public class CombatUtil {
         return 14.0f * (baseattackspeed + 4.0f) / (5.0f * type.getTwoHanded() + 10.0f) - 4.0f;
     }
 
-    public static float getSilverAttackDamage(ModItemTier material, WeaponType type)
-    {
-        return Math.round(6.0F / type.getAttackSpeed(material) * 100.0f) / 100.0f;
-    }
 
     public static float getArmorPiercingFactor(Entity attacker) {
         float f = 1.0f;

@@ -64,10 +64,10 @@ public class ModShieldItem extends ShieldItem {
 
     @Override
     public void appendHoverText(@NotNull ItemStack stack, TooltipContext tooltipContext, List<Component> list, TooltipFlag flag) {
-        list.add(Component.translatable("maxdamageblock", this.getMaxBlockDamage()).withStyle(ChatFormatting.BLUE));
-        list.add(Component.translatable("weight", this.getWeight()).withStyle(ChatFormatting.YELLOW));
+        list.add(Component.translatable("tooltip.oldworldfantasy.maxdamageblock", this.getMaxBlockDamage()).withStyle(ChatFormatting.BLUE));
+        list.add(Component.translatable("tooltip.oldworldfantasy.weight", this.getWeight()).withStyle(ChatFormatting.YELLOW));
         if (this.getWeight() >= 10)
-            list.add(Component.translatable("encumbered").withStyle(ChatFormatting.RED));
+            list.add(Component.translatable("tooltip.oldworldfantasy.overencumbered").withStyle(ChatFormatting.RED));
     }
 
     @Override

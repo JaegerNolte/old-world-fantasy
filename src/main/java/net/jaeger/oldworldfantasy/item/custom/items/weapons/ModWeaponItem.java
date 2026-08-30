@@ -87,41 +87,41 @@ public class ModWeaponItem extends SwordItem {
         super.inventoryTick(stack, level, entity, i, selected);
     }
 
-    public boolean onHurtEntity(DamageSource source, LivingEntity victim, float damage) {
-        if (victim.level().isClientSide() || ModDamageSources.isAdditional(source) || !(source.getEntity() instanceof LivingEntity attacker))
+    public boolean onHurtEntity(DamageSource source, LivingEntity entity, float damage) {
+        if (entity.level().isClientSide() || ModDamageSources.isAdditional(source) || !(source.getEntity() instanceof LivingEntity attacker))
             return true;
 
         float attackscale = source.getEntity() instanceof LivingEntity livingentity ? damage / this.getAttackDamage(livingentity.getMainHandItem()) : 1.0f;
 
-        if (type.isHalberd() && victim.isPassenger() && victim.level().getRandom().nextInt(20) * attackscale >= 14)
-            victim.stopRiding();
+        if (type.isHalberd() && entity.isPassenger() && entity.level().getRandom().nextInt(20) * attackscale >= 14)
+            entity.stopRiding();
 
         boolean flag = false;
-        if (!flag && this.type.getArmorPiercing() != 0 && victim.getArmorValue() > 0)
-            flag = this.dealArmorPiercingDamage(source, attacker, victim, damage);
+        if (!flag && this.type.getArmorPiercing() != 0 && entity.getArmorValue() > 0)
+            flag = this.dealArmorPiercingDamage(source, attacker, entity, damage);
 
-        postHurtEnemy(attacker.getWeaponItem(), attacker, victim);
+        postHurtEnemy(attacker.getWeaponItem(), attacker, entity);
         return flag;
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext tooltipContext, List<Component> tooltip, TooltipFlag flag) {
         if (type.isHalberd())
-            tooltip.add(Component.translatable("halberd.hurt").withStyle(ChatFormatting.BLUE));
+            tooltip.add(Component.translatable("tooltip.oldworldfantasy.halberd.hurt").withStyle(ChatFormatting.BLUE));
         if (type.getArmorPiercing() != 0)
-            tooltip.add(Component.translatable("armorpiercing", this.type.getArmorPiercing()).withStyle(ChatFormatting.BLUE));
+            tooltip.add(Component.translatable("tooltip.oldworldfantasy.armorpiercing", this.type.getArmorPiercing()).withStyle(ChatFormatting.BLUE));
         if (this.isLong())
-            tooltip.add(Component.translatable("bonusattackreach", this.type.getBonusAttackReach()).withStyle(ChatFormatting.BLUE));
+            tooltip.add(Component.translatable("tooltip.oldworldfantasy.bonusattackreach", this.type.getBonusAttackReach()).withStyle(ChatFormatting.BLUE));
         if (type.getTwoHanded() == 1)
-            tooltip.add(Component.translatable("twohandedi").withStyle(ChatFormatting.BLUE));
+            tooltip.add(Component.translatable("tooltip.oldworldfantasy.twohandedi").withStyle(ChatFormatting.BLUE));
         else if (type.getTwoHanded() > 1)
-            tooltip.add(Component.translatable("twohandedii").withStyle(ChatFormatting.BLUE));
+            tooltip.add(Component.translatable("tooltip.oldworldfantasy.twohandedii").withStyle(ChatFormatting.BLUE));
         if (this.canBlock())
-            tooltip.add(Component.translatable("maxdamageblock", this.getMaxBlockDamage()).withStyle(ChatFormatting.BLUE));
-        tooltip.add(Component.translatable("kgweight", this.getWeight()).withStyle(ChatFormatting.BLUE));
+            tooltip.add(Component.translatable("tooltip.oldworldfantasy.maxdamageblock", this.getMaxBlockDamage()).withStyle(ChatFormatting.BLUE));
+        tooltip.add(Component.translatable("tooltip.oldworldfantasy.weight", this.getWeight()).withStyle(ChatFormatting.YELLOW));
         if (this.hasTwoHandedPenalty(stack)) {
-            tooltip.add(Component.translatable("twohandedpenalty_1").withStyle(ChatFormatting.RED));
-            tooltip.add(Component.translatable("twohandedpenalty_2").withStyle(ChatFormatting.RED));
+            tooltip.add(Component.translatable("tooltip.oldworldfantasy.twohandedpenalty_1").withStyle(ChatFormatting.RED));
+            tooltip.add(Component.translatable("tooltip.oldworldfantasy.twohandedpenalty_2").withStyle(ChatFormatting.RED));
         }
         super.appendHoverText(stack, tooltipContext, tooltip, flag);
     }
@@ -190,7 +190,7 @@ public class ModWeaponItem extends SwordItem {
         return (canBlock() && blockingPriority) ? UseAnim.BLOCK : super.getUseAnimation(stack);
     }
 
-    public void onBlocked(ItemStack stack, float damage, LivingEntity victim, DamageSource source)
+    public void onBlocked(ItemStack stack, float damage, LivingEntity entity, DamageSource source)
     {
         if (!this.canBlock() || ModDamageSources.isAdditional(source))
             return;
@@ -199,18 +199,18 @@ public class ModWeaponItem extends SwordItem {
         float f = CombatUtil.getArmorPiercingFactor(attacker);
 
         if (source.is(DamageTypes.PLAYER_EXPLOSION) || source.is(DamageTypes.EXPLOSION)) {
-            victim.hurt(ModDamageSources.additional(), damage);
+            entity.hurt(ModDamageSources.additional(), damage);
         }
-        else if (!haveBlocked(victim.level().getRandom(), source)) {
-            victim.hurt(ModDamageSources.additional(), damage);
+        else if (!haveBlocked(entity.getRandom(), source)) {
+            entity.hurt(ModDamageSources.additional(), damage);
         }
         else if (damage > this.getMaxBlockDamage()) {
             f *= 1.5f;
             float damage1 = damage - getMaxBlockDamage();
-            victim.hurt(ModDamageSources.additional(), damage1);
+            entity.hurt(ModDamageSources.additional(), damage1);
         }
 
-        stack.hurtAndBreak((int) (f * damage), victim, EquipmentSlot.MAINHAND);
+        stack.hurtAndBreak((int) (f * damage), entity, EquipmentSlot.MAINHAND);
     }
 
     public boolean dealArmorPiercingDamage(DamageSource source, LivingEntity attacker, LivingEntity victim, float damage) {
