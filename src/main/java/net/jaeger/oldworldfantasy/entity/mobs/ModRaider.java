@@ -2,8 +2,8 @@ package net.jaeger.oldworldfantasy.entity.mobs;
 
 import com.google.common.collect.Lists;
 import net.jaeger.oldworldfantasy.entity.ai.goals.PathfindToRaidGoal;
-import net.jaeger.oldworldfantasy.worldgen.raids.ModRaid;
-import net.jaeger.oldworldfantasy.worldgen.raids.ModRaids;
+import net.jaeger.oldworldfantasy.world.raids.ModRaid;
+import net.jaeger.oldworldfantasy.world.raids.ModRaids;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
@@ -28,6 +28,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
+import software.bernie.geckolib.animatable.GeoEntity;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -36,7 +37,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-public abstract class ModRaider extends PatrollingMonster {
+public abstract class ModRaider extends PatrollingMonster implements GeoEntity {
 
     protected static final EntityDataAccessor<Boolean> IS_CELEBRATING = SynchedEntityData.defineId(ModRaider.class, EntityDataSerializers.BOOLEAN);
     static final Predicate<ItemEntity> ALLOWED_ITEMS = p_341493_ -> !p_341493_.hasPickUpDelay() && p_341493_.isAlive();

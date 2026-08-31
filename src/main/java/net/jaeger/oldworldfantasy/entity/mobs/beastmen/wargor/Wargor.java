@@ -1,8 +1,8 @@
 package net.jaeger.oldworldfantasy.entity.mobs.beastmen.wargor;
 
-import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
+import net.jaeger.oldworldfantasy.entity.ai.goals.BeastmenAttackGoal;
 import net.jaeger.oldworldfantasy.entity.ai.goals.FrenzyBeastmenAlliesGoal;
-import net.jaeger.oldworldfantasy.entity.ai.goals.WargorAttackGoal;
+import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
 import net.jaeger.oldworldfantasy.entity.mobs.beastmen.AbstractBeastmen;
 import net.jaeger.oldworldfantasy.entity.mobs.greenskin.AbstractGreenskin;
 import net.jaeger.oldworldfantasy.sound.ModSounds;
@@ -33,7 +33,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
-import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.AnimatableManager;
 import software.bernie.geckolib.animation.AnimationController;
@@ -43,7 +42,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 
-public class Wargor extends AbstractBeastmen implements GeoEntity {
+public class Wargor extends AbstractBeastmen {
 
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private static final RawAnimation ATTACK_ANIMATION = RawAnimation.begin().thenPlay("ANIM_WARGOR_ATTACKING");
@@ -60,7 +59,7 @@ public class Wargor extends AbstractBeastmen implements GeoEntity {
         super.registerGoals();
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new FrenzyBeastmenAlliesGoal(this, 30.0D, 200, 1));
-        this.goalSelector.addGoal(3, new WargorAttackGoal(this, 1.0, false, axeAttack));
+        this.goalSelector.addGoal(3, new BeastmenAttackGoal(this, 1.0, false, axeAttack));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this, AbstractBeastmen.class).setAlertOthers());
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));

@@ -2,8 +2,8 @@ package net.jaeger.oldworldfantasy.event;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.effect.ModEffects;
-import net.jaeger.oldworldfantasy.worldgen.raids.ModRaid;
-import net.jaeger.oldworldfantasy.worldgen.raids.ModRaids;
+import net.jaeger.oldworldfantasy.world.raids.ModRaid;
+import net.jaeger.oldworldfantasy.world.raids.ModRaids;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.TickEvent;
@@ -11,7 +11,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = OldWorldFantasyMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class ModEventBusForge {
+public class ModEvents {
 
     @SubscribeEvent
     public static void onLevelTick(TickEvent.LevelTickEvent event) {

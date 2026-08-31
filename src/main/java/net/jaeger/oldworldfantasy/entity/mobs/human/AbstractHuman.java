@@ -3,6 +3,7 @@ package net.jaeger.oldworldfantasy.entity.mobs.human;
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.entity.ModEntityTags;
 import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
+import net.jaeger.oldworldfantasy.world.item.trading.ModMerchant;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -18,7 +19,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.storage.loot.LootTable;
 
-public abstract class AbstractHuman extends ModRaider {
+public abstract class AbstractHuman extends ModRaider implements ModMerchant {
 
     protected AbstractHuman(EntityType<? extends ModRaider> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -47,7 +48,7 @@ public abstract class AbstractHuman extends ModRaider {
 
     @Override
     public boolean isAlliedTo(Entity pEntity) {
-        if (super.isAlliedTo(pEntity) || isEmpire()) {
+        if (super.isAlliedTo(pEntity)) {
             return true;
         } else {
             return !pEntity.getType().is(ModEntityTags.EMPIRE) ? false : this.getTeam() == null && pEntity.getTeam() == null;

@@ -1,9 +1,9 @@
 package net.jaeger.oldworldfantasy.entity.ai.goals;
 
 import com.google.common.collect.Sets;
-import net.jaeger.oldworldfantasy.worldgen.raids.ModRaid;
+import net.jaeger.oldworldfantasy.world.raids.ModRaid;
 import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
-import net.jaeger.oldworldfantasy.worldgen.raids.ModRaids;
+import net.jaeger.oldworldfantasy.world.raids.ModRaids;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.util.DefaultRandomPos;

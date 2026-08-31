@@ -13,6 +13,9 @@ import net.jaeger.oldworldfantasy.entity.client.greenskin.biguns.BigUnsRenderer;
 import net.jaeger.oldworldfantasy.entity.client.greenskin.goblin.GoblinRenderer;
 import net.jaeger.oldworldfantasy.entity.client.greenskin.orc.OrcRenderer;
 import net.jaeger.oldworldfantasy.entity.client.greenskin.warboss.OrcWarbossRenderer;
+import net.jaeger.oldworldfantasy.entity.client.human.archlector.EmpireArchLectorRenderer;
+import net.jaeger.oldworldfantasy.entity.client.human.captian.EmpireCaptainRenderer;
+import net.jaeger.oldworldfantasy.entity.client.human.crossbowmen.EmpireCrossbowmenRenderer;
 import net.jaeger.oldworldfantasy.entity.client.human.spearmen.EmpireSpearmenRenderer;
 import net.jaeger.oldworldfantasy.entity.client.human.swordsmen.EmpireSwordsmenRenderer;
 import net.jaeger.oldworldfantasy.item.ModCreativeModeTabs;
@@ -149,6 +152,9 @@ public class OldWorldFantasyMod {
             EntityRenderers.register(ModEntities.ORCWARBOSS.get(), OrcWarbossRenderer::new);
             EntityRenderers.register(ModEntities.EMPIRE_SWORDSMEN.get(), EmpireSwordsmenRenderer::new);
             EntityRenderers.register(ModEntities.EMPIRE_SPEARMEN.get(), EmpireSpearmenRenderer::new);
+            EntityRenderers.register(ModEntities.EMPIRE_CROSSBOWMEN.get(), EmpireCrossbowmenRenderer::new);
+            EntityRenderers.register(ModEntities.EMPIRE_CAPTAIN.get(), EmpireCaptainRenderer::new);
+            EntityRenderers.register(ModEntities.EMPIRE_ARCH_LECTOR.get(), EmpireArchLectorRenderer::new);
         }
     }
 }

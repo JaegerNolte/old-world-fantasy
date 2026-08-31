@@ -3,7 +3,7 @@ package net.jaeger.oldworldfantasy.item.custom.items.armor;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.jaeger.oldworldfantasy.client.model.item.armor.ImperialArmorRenderer;
-import net.jaeger.oldworldfantasy.entity.mobs.human.swordsmen.EmpireSwordsmen;
+import net.jaeger.oldworldfantasy.entity.mobs.human.empire.swordsmen.EmpireSwordsmen;
 import net.jaeger.oldworldfantasy.item.ModItems;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.core.Holder;

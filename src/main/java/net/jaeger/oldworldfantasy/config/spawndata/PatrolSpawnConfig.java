@@ -19,6 +19,9 @@ public class PatrolSpawnConfig {
             new SpawnDataHelper(ModEntities.ORCWARBOSS.get(), 15));
 
     public static final List<SpawnDataHelper> EMPIRE_WEIGHTS = List.of(
-            new SpawnDataHelper(ModEntities.EMPIRE_SPEARMEN.get(), 40),
-            new SpawnDataHelper(ModEntities.EMPIRE_SWORDSMEN.get(), 40));
+            new SpawnDataHelper(ModEntities.EMPIRE_SPEARMEN.get(), 35),
+            new SpawnDataHelper(ModEntities.EMPIRE_SWORDSMEN.get(), 35),
+            new SpawnDataHelper(ModEntities.EMPIRE_CROSSBOWMEN.get(), 40),
+            new SpawnDataHelper(ModEntities.EMPIRE_ARCH_LECTOR.get(), 25),
+            new SpawnDataHelper(ModEntities.EMPIRE_CAPTAIN.get(), 15));
 }

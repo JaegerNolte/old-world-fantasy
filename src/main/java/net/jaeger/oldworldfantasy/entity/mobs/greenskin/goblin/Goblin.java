@@ -1,7 +1,7 @@
 package net.jaeger.oldworldfantasy.entity.mobs.greenskin.goblin;
 
+import net.jaeger.oldworldfantasy.entity.ai.goals.GreenskinAttackGoal;
 import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
-import net.jaeger.oldworldfantasy.entity.ai.goals.GoblinAttackGoal;
 import net.jaeger.oldworldfantasy.entity.mobs.beastmen.AbstractBeastmen;
 import net.jaeger.oldworldfantasy.entity.mobs.greenskin.AbstractGreenskin;
 import net.jaeger.oldworldfantasy.item.ModItems;
@@ -31,7 +31,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.AnimatableManager;
 import software.bernie.geckolib.animation.AnimationController;
@@ -43,7 +42,7 @@ import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.function.Predicate;
 
-public class Goblin extends AbstractGreenskin implements GeoEntity {
+public class Goblin extends AbstractGreenskin {
 
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private static final RawAnimation ATTACK_ANIMATION = RawAnimation.begin().thenPlay("ANIM_GOBLIN_ATTACKING");
@@ -64,7 +63,7 @@ public class Goblin extends AbstractGreenskin implements GeoEntity {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new Goblin.GoblinBreakDoorGoal(this));
         this.goalSelector.addGoal(2, new AbstractGreenskin.RaiderOpenDoorGoal(this));
-        this.goalSelector.addGoal(3, new GoblinAttackGoal(this, 1.0, false, spearAttack));
+        this.goalSelector.addGoal(3, new GreenskinAttackGoal(this, 1.0, false, spearAttack));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this, AbstractGreenskin.class).setAlertOthers());
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));

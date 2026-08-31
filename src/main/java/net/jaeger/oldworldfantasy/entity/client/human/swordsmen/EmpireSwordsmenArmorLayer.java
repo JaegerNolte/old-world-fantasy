@@ -2,7 +2,7 @@ package net.jaeger.oldworldfantasy.entity.client.human.swordsmen;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.jaeger.oldworldfantasy.entity.mobs.human.swordsmen.EmpireSwordsmen;
+import net.jaeger.oldworldfantasy.entity.mobs.human.empire.swordsmen.EmpireSwordsmen;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import software.bernie.geckolib.cache.object.BakedGeoModel;

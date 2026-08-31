@@ -35,7 +35,6 @@ import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
-import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.AnimatableManager;
 import software.bernie.geckolib.animation.AnimationController;
@@ -45,7 +44,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 
-public class Ungor extends AbstractBeastmen implements RangedAttackMob, GeoEntity {
+public class Ungor extends AbstractBeastmen implements RangedAttackMob {
 
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private static final RawAnimation ATTACK_ANIMATION = RawAnimation.begin().thenPlay("ANIM_UNGOR_ATTACK");
@@ -54,7 +53,7 @@ public class Ungor extends AbstractBeastmen implements RangedAttackMob, GeoEntit
     private static final int HARD_ATTACK_INTERVAL = 20;
     private static final int NORMAL_ATTACK_INTERVAL = 40;
     private final int ambientSoundInterval = 1000;
-    private final RangedBowAttackGoal<Ungor> bowGoal = new RangedBowAttackGoal<>(this, 1.0, 20, 15.0F, "attack");
+    private final RangedBowAttackGoal bowGoal = new RangedBowAttackGoal(this, 1.0, 20, 15.0F, "attack");
 
     private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2, false) {
         @Override

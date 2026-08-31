@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "oldworldfantasy:empire_swordsmen",
-    "oldworldfantasy:empire_spearmen"
+    "oldworldfantasy:empire_spearmen",
+    "oldworldfantasy:empire_crossbowmen"
   ]
 }

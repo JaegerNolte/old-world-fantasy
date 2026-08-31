@@ -1,21 +1,21 @@
 package net.jaeger.oldworldfantasy.entity.ai.goals;
 
-import net.jaeger.oldworldfantasy.entity.mobs.beastmen.gor.Gor;
+import net.jaeger.oldworldfantasy.entity.mobs.greenskin.AbstractGreenskin;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 
-public class GorAttackGoal extends MeleeAttackGoal {
+public class GreenskinAttackGoal extends MeleeAttackGoal {
 
-    private final Gor gor;
+    private final AbstractGreenskin greenskin;
     private final String rawAnimation;
     private int attackDelay = 20;
     private int ticksUntilNextAttack = 40;
     private boolean shouldCountToNextAttack = false;
 
-    public GorAttackGoal(Gor pGor, double pSpeedModifier, boolean pFollowingTargetEvenIfNotSeen, String rawAnimation) {
-        super(pGor, pSpeedModifier, pFollowingTargetEvenIfNotSeen);
-        this.gor = pGor;
+    public GreenskinAttackGoal(AbstractGreenskin greenskin, double pSpeedModifier, boolean pFollowingTargetEvenIfNotSeen, String rawAnimation) {
+        super(greenskin, pSpeedModifier, pFollowingTargetEvenIfNotSeen);
+        this.greenskin= greenskin;
         this.rawAnimation = rawAnimation;
     }
 
@@ -32,24 +32,24 @@ public class GorAttackGoal extends MeleeAttackGoal {
             shouldCountToNextAttack = true;
 
             if (isTimeToStartAttackAnimation()) {
-                this.gor.triggerAnim("attack", rawAnimation); // time animation
-                gor.setAggressive(true);
+                this.greenskin.triggerAnim("attack", rawAnimation); // time animation
+                greenskin.setAggressive(true);
             }
 
             if (isTimeToAttack()) {
-                this.gor.getLookControl().setLookAt(pTarget.getX(), pTarget.getY(), pTarget.getZ());
+                this.greenskin.getLookControl().setLookAt(pTarget.getX(), pTarget.getY(), pTarget.getZ());
                 performAttack(pTarget);
             }
         } else {
             resetAttackCooldown();
             shouldCountToNextAttack = false;
-            gor.setAggressive(false);
-            gor.attackAnim = 0;
+            greenskin.setAggressive(false);
+            greenskin.attackAnim = 0;
         }
     }
 
     private boolean isEnemyWithinAttackDistance(LivingEntity pTarget){
-        return this.gor.distanceTo(pTarget) <= 2f; // Modify distance?
+        return this.greenskin.distanceTo(pTarget) <= 2f; // Modify distance?
     }
 
     protected void resetAttackCooldown() {
@@ -66,8 +66,8 @@ public class GorAttackGoal extends MeleeAttackGoal {
 
     protected void performAttack(LivingEntity pTarget) {
         this.resetAttackCooldown();
-        this.gor.swing(InteractionHand.MAIN_HAND);
-        this.gor.doHurtTarget(pTarget);
+        this.greenskin.swing(InteractionHand.MAIN_HAND);
+        this.greenskin.doHurtTarget(pTarget);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class GorAttackGoal extends MeleeAttackGoal {
 
     @Override
     public void stop() {
-        this.gor.setAggressive(false);
+        this.greenskin.setAggressive(false);
         super.stop();
     }
 }

@@ -2,7 +2,7 @@ package net.jaeger.oldworldfantasy.entity.client.human.spearmen;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.jaeger.oldworldfantasy.entity.mobs.human.spearmen.EmpireSpearmen;
+import net.jaeger.oldworldfantasy.entity.mobs.human.empire.spearmen.EmpireSpearmen;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import software.bernie.geckolib.cache.object.BakedGeoModel;

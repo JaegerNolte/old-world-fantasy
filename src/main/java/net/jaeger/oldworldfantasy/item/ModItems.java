@@ -158,6 +158,15 @@ public class ModItems {
     public static final RegistryObject<Item> EMPIRE_SPEARMEN_SPAWN_EGG = ITEMS.register("empire_spearmen_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.EMPIRE_SPEARMEN, 0x8f7772, 0xffc1c2, new Item.Properties()));
 
+    public static final RegistryObject<Item> EMPIRE_CROSSBOWMEN_SPAWN_EGG = ITEMS.register("empire_crossbowmen_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.EMPIRE_CROSSBOWMEN, 0x8f7772, 0xffc1c2, new Item.Properties()));
+
+    public static final RegistryObject<Item> EMPIRE_CAPTAIN_SPAWN_EGG = ITEMS.register("empire_captain_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.EMPIRE_CAPTAIN, 0x8f7772, 0xffc1c2, new Item.Properties()));
+
+    public static final RegistryObject<Item> EMPIRE_ARCH_LECTOR_SPAWN_EGG = ITEMS.register("empire_arch_lector_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.EMPIRE_ARCH_LECTOR, 0x8f7772, 0xffc1c2, new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

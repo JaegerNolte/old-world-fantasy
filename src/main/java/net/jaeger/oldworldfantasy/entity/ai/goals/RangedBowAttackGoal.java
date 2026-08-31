@@ -1,16 +1,16 @@
 package net.jaeger.oldworldfantasy.entity.ai.goals;
 
+import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.BowItem;
-import software.bernie.geckolib.animatable.GeoEntity;
 
 import java.util.EnumSet;
 
-public class RangedBowAttackGoal<T extends net.minecraft.world.entity.Mob & RangedAttackMob & GeoEntity> extends Goal {
+public class RangedBowAttackGoal<T extends ModRaider & RangedAttackMob> extends Goal {
 
     private final T mob;
     private final double speedModifier;

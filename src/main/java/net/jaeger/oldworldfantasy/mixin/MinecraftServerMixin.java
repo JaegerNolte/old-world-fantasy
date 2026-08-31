@@ -1,6 +1,7 @@
 package net.jaeger.oldworldfantasy.mixin;
 
 import net.jaeger.oldworldfantasy.worldgen.spawners.BeastmanPatrolSpawner;
+import net.jaeger.oldworldfantasy.worldgen.spawners.EmpirePatrolSpawner;
 import net.jaeger.oldworldfantasy.worldgen.spawners.GreenskinPatrolSpawner;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.CustomSpawner;
@@ -22,6 +23,7 @@ public class MinecraftServerMixin {
         List<CustomSpawner> modEvents = new ArrayList<>(spawners);
         modEvents.add(new BeastmanPatrolSpawner());
         modEvents.add(new GreenskinPatrolSpawner());
+        modEvents.add(new EmpirePatrolSpawner());
         return modEvents;
     }
 }

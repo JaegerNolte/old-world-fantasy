@@ -1,7 +1,7 @@
 package net.jaeger.oldworldfantasy.entity.client.human.spearmen;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.entity.mobs.human.spearmen.EmpireSpearmen;
+import net.jaeger.oldworldfantasy.entity.mobs.human.empire.spearmen.EmpireSpearmen;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
 

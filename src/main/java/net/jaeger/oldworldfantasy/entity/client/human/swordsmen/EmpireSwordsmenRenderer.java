@@ -2,8 +2,8 @@ package net.jaeger.oldworldfantasy.entity.client.human.swordsmen;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.entity.mobs.human.swordsmen.EmpireSwordsmen;
+import net.jaeger.oldworldfantasy.entity.mobs.human.empire.EmpireVariant;
+import net.jaeger.oldworldfantasy.entity.mobs.human.empire.swordsmen.EmpireSwordsmen;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -13,6 +13,7 @@ import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 import software.bernie.geckolib.renderer.layer.BlockAndItemGeoLayer;
+
 
 public class EmpireSwordsmenRenderer extends GeoEntityRenderer<EmpireSwordsmen> {
 
@@ -61,7 +62,7 @@ public class EmpireSwordsmenRenderer extends GeoEntityRenderer<EmpireSwordsmen> 
 
     @Override
     public ResourceLocation getTextureLocation(EmpireSwordsmen animatable) {
-        return OldWorldFantasyMod.res("textures/entity/empire_soldier/empire_soldier.png");
+        return EmpireVariant.LOCATION_BY_VARIANT.get(animatable.getVariant());
     }
 
     @Override

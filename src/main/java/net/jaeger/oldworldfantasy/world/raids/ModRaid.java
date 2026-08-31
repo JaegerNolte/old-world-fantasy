@@ -1,4 +1,4 @@
-package net.jaeger.oldworldfantasy.worldgen.raids;
+package net.jaeger.oldworldfantasy.world.raids;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;

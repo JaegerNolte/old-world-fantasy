@@ -1,7 +1,7 @@
 package net.jaeger.oldworldfantasy.entity.client.human.swordsmen;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.entity.mobs.human.swordsmen.EmpireSwordsmen;
+import net.jaeger.oldworldfantasy.entity.mobs.human.empire.swordsmen.EmpireSwordsmen;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
 

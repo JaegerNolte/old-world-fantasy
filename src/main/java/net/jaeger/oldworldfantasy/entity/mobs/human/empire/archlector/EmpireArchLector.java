@@ -1,4 +1,4 @@
-package net.jaeger.oldworldfantasy.entity.mobs.human.swordsmen;
+package net.jaeger.oldworldfantasy.entity.mobs.human.empire.archlector;
 
 import net.jaeger.oldworldfantasy.entity.ai.goals.HumanAttackGoal;
 import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
@@ -7,11 +7,15 @@ import net.jaeger.oldworldfantasy.entity.mobs.greenskin.AbstractGreenskin;
 import net.jaeger.oldworldfantasy.entity.mobs.human.AbstractHuman;
 import net.jaeger.oldworldfantasy.item.ModItems;
 import net.jaeger.oldworldfantasy.sound.ModSounds;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -27,9 +31,12 @@ import net.minecraft.world.entity.ai.util.GoalUtils;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.ItemCost;
+import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.AnimatableManager;
 import software.bernie.geckolib.animation.AnimationController;
@@ -41,24 +48,30 @@ import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.function.Predicate;
 
-public class EmpireSwordsmen extends AbstractHuman implements GeoEntity {
+import static net.jaeger.oldworldfantasy.OldWorldFantasyMod.LOG;
 
-    public EmpireSwordsmen(EntityType<? extends ModRaider> pEntityType, Level pLevel) {
-        super(pEntityType, pLevel);
-    }
+public class EmpireArchLector extends AbstractHuman {
 
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private static final RawAnimation ATTACK_ANIMATION = RawAnimation.begin().thenPlay("ANIM_EMPIRE_SOLDIER_ATTACKING");
     private final String attack = "sword_attack";
-
     static final Predicate<Difficulty> DOOR_BREAKING_PREDICATE = p_34082_ -> p_34082_ == Difficulty.NORMAL || p_34082_ == Difficulty.HARD;
     private final int ambientSoundInterval = 1000;
+
+    @Nullable
+    private Player tradingPlayer;
+    private MerchantOffers offers = new MerchantOffers();
+    private int mobXp;
+
+    public EmpireArchLector(EntityType<? extends ModRaider> pEntityType, Level pLevel) {
+        super(pEntityType, pLevel);
+    }
 
     @Override
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new EmpireSwordsmen.SoldierBreakDoorGoal(this));
+        this.goalSelector.addGoal(1, new EmpireArchLector.EmpireArchLectorBreakDoorGoal(this));
         this.goalSelector.addGoal(2, new AbstractHuman.RaiderOpenDoorGoal(this));
         this.goalSelector.addGoal(3, new HumanAttackGoal(this, 1.0, false, attack));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this, AbstractHuman.class).setAlertOthers());
@@ -95,6 +108,7 @@ public class EmpireSwordsmen extends AbstractHuman implements GeoEntity {
     @Nullable
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pSpawnType, @Nullable SpawnGroupData pSpawnGroupData) {
+
         ((GroundPathNavigation) this.getNavigation()).setCanOpenDoors(true);
         this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.IMPERIAL_HELMET.get()));
         this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModItems.IMPERIAL_CHESTPLATE.get()));
@@ -111,6 +125,9 @@ public class EmpireSwordsmen extends AbstractHuman implements GeoEntity {
                 EquipmentSlot.FEET,
                 EquipmentSlot.OFFHAND
         }) {this.setDropChance(slot, 0.0F);}
+
+        this.offers.add(
+                new MerchantOffer(new ItemCost(Items.EMERALD, 5), new ItemStack(Items.IRON_INGOT, 3), 10, 1, 0.05F));
 
         return pSpawnGroupData;
     }
@@ -177,21 +194,21 @@ public class EmpireSwordsmen extends AbstractHuman implements GeoEntity {
         return this.cache;
     }
 
-    static class SoldierBreakDoorGoal extends BreakDoorGoal {
-        public SoldierBreakDoorGoal(Mob p_34112_) {
-            super(p_34112_, 6, EmpireSwordsmen.DOOR_BREAKING_PREDICATE);
+    static class EmpireArchLectorBreakDoorGoal extends BreakDoorGoal {
+        public EmpireArchLectorBreakDoorGoal(Mob p_34112_) {
+            super(p_34112_, 6, EmpireArchLector.DOOR_BREAKING_PREDICATE);
             this.setFlags(EnumSet.of(Flag.MOVE));
         }
 
         @Override
         public boolean canContinueToUse() {
-            EmpireSwordsmen soldier = (EmpireSwordsmen) this.mob;
+            EmpireArchLector soldier = (EmpireArchLector) this.mob;
             return soldier.hasActiveRaid() && super.canContinueToUse();
         }
 
         @Override
         public boolean canUse() {
-            EmpireSwordsmen soldier = (EmpireSwordsmen) this.mob;
+            EmpireArchLector soldier = (EmpireArchLector) this.mob;
             return soldier.hasActiveRaid() && soldier.random.nextInt(reducedTickDelay(10)) == 0 && super.canUse();
         }
 
@@ -200,6 +217,103 @@ public class EmpireSwordsmen extends AbstractHuman implements GeoEntity {
             super.start();
             this.mob.setNoActionTime(0);
         }
+    }
+
+    @Override
+    protected InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
+
+        if (!this.level().isClientSide) {
+            if (!this.getOffers().isEmpty()) {
+                this.setTradingPlayer(pPlayer);
+
+                this.openTradingScreen(
+                        pPlayer,
+                        this.getDisplayName(),
+                        1
+                );
+            }
+        }
+
+        return InteractionResult.sidedSuccess(this.level().isClientSide);
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag pCompound) {
+        super.addAdditionalSaveData(pCompound);
+
+        MerchantOffers.CODEC.encodeStart(
+                        NbtOps.INSTANCE,
+                        this.offers
+                ).resultOrPartial(LOG::error)
+                .ifPresent(offersTag -> pCompound.put("Offers", offersTag));
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag pCompound) {
+        super.readAdditionalSaveData(pCompound);
+
+        if (pCompound.contains("Offers")) {
+            MerchantOffers.CODEC.parse(
+                    NbtOps.INSTANCE,
+                    pCompound.get("Offers")
+            ).resultOrPartial(LOG::error).ifPresent(offers ->
+                    this.offers = offers);
+        }
+    }
+
+    @Override
+    public void setTradingPlayer(@org.jetbrains.annotations.Nullable Player pTradingPlayer) {
+        this.tradingPlayer = pTradingPlayer;
+    }
+
+    @Override
+    public @Nullable Player getTradingPlayer() {
+        return this.tradingPlayer;
+    }
+
+    @Override
+    public MerchantOffers getOffers() {
+        return this.offers;
+    }
+
+    @Override
+    public void overrideOffers(MerchantOffers pOffers) {
+        this.offers = pOffers;
+    }
+
+    @Override
+    public void notifyTrade(MerchantOffer pOffer) {
+
+    }
+
+    @Override
+    public void notifyTradeUpdated(ItemStack pStack) {
+
+    }
+
+    @Override
+    public int getVillagerXp() {
+        return this.mobXp;
+    }
+
+    @Override
+    public void overrideXp(int pXp) {
+        this.mobXp = pXp;
+    }
+
+    @Override
+    public boolean showProgressBar() {
+        return false;
+    }
+
+    @Override
+    public SoundEvent getNotifyTradeSound() {
+        return SoundEvents.VILLAGER_YES;
+    }
+
+    @Override
+    public boolean isClientSide() {
+        return this.level().isClientSide;
     }
 
     @Override

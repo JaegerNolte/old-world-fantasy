@@ -9,8 +9,11 @@ import net.jaeger.oldworldfantasy.entity.mobs.greenskin.biguns.BigUns;
 import net.jaeger.oldworldfantasy.entity.mobs.greenskin.goblin.Goblin;
 import net.jaeger.oldworldfantasy.entity.mobs.greenskin.orc.Orc;
 import net.jaeger.oldworldfantasy.entity.mobs.greenskin.warboss.OrcWarboss;
-import net.jaeger.oldworldfantasy.entity.mobs.human.spearmen.EmpireSpearmen;
-import net.jaeger.oldworldfantasy.entity.mobs.human.swordsmen.EmpireSwordsmen;
+import net.jaeger.oldworldfantasy.entity.mobs.human.empire.archlector.EmpireArchLector;
+import net.jaeger.oldworldfantasy.entity.mobs.human.empire.captain.EmpireCaptain;
+import net.jaeger.oldworldfantasy.entity.mobs.human.empire.crossbowmen.EmpireCrossbowmen;
+import net.jaeger.oldworldfantasy.entity.mobs.human.empire.spearmen.EmpireSpearmen;
+import net.jaeger.oldworldfantasy.entity.mobs.human.empire.swordsmen.EmpireSwordsmen;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -63,6 +66,18 @@ public class ModEntities {
     public static final RegistryObject<EntityType<EmpireSpearmen>> EMPIRE_SPEARMEN =
             ENTITY_TYPES.register("empire_spearmen", () -> EntityType.Builder.of(EmpireSpearmen::new, MobCategory.MONSTER)
                     .sized(1f, 2f).build("empire_spearmen"));
+
+    public static final RegistryObject<EntityType<EmpireCrossbowmen>> EMPIRE_CROSSBOWMEN =
+            ENTITY_TYPES.register("empire_crossbowmen", () -> EntityType.Builder.of(EmpireCrossbowmen::new, MobCategory.MONSTER)
+                    .sized(1f, 2f).build("empire_crossbowmen"));
+
+    public static final RegistryObject<EntityType<EmpireCaptain>> EMPIRE_CAPTAIN =
+            ENTITY_TYPES.register("empire_captain", () -> EntityType.Builder.of(EmpireCaptain::new, MobCategory.MONSTER)
+                    .sized(1f, 2f).build("empire_captain"));
+
+    public static final RegistryObject<EntityType<EmpireArchLector>> EMPIRE_ARCH_LECTOR =
+            ENTITY_TYPES.register("empire_arch_lector", () -> EntityType.Builder.of(EmpireArchLector::new, MobCategory.MONSTER)
+                    .sized(1f, 2f).build("empire_arch_lector"));
 
 
     public static void register(IEventBus eventBus) {

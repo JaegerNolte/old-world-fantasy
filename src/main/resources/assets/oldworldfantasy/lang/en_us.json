@@ -75,6 +75,9 @@
   "item.oldworldfantasy.orcwarboss_spawn_egg": "Orc Warboss Spawn Egg",
   "item.oldworldfantasy.empire_swordsmen_spawn_egg": "Empire Swordsmen Spawn Egg",
   "item.oldworldfantasy.empire_spearmen_spawn_egg": "Empire Spearmen Spawn Egg",
+  "item.oldworldfantasy.empire_crossbowmen_spawn_egg": "Empire Crossbowmen Spawn Egg",
+  "item.oldworldfantasy.empire_captain_spawn_egg": "Empire Captain Spawn Egg",
+  "item.oldworldfantasy.empire_arch_lector_spawn_egg": "Empire Arch Lector Spawn Egg",
 
   "block.oldworldfantasy.lead_block": "Block of Lead",
   "block.oldworldfantasy.steel_block": "Block of Steel",
@@ -95,5 +98,8 @@
   "entity.oldworldfantasy.biguns": "Orc Big Uns",
   "entity.oldworldfantasy.orcwarboss": "Orc Warboss",
   "entity.oldworldfantasy.empire_swordsmen": "Empire Swordsmen",
-  "entity.oldworldfantasy.empire_spearmen": "Empire Spearmen"
+  "entity.oldworldfantasy.empire_spearmen": "Empire Spearmen",
+  "entity.oldworldfantasy.empire_crossbowmen": "Empire Crossbowmen",
+  "entity.oldworldfantasy.empire_captain": "Empire Captain",
+  "entity.oldworldfantasy.empire_arch_lector": "Empire Arch Lector"
 }

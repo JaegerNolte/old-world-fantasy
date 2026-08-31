@@ -63,6 +63,9 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.ORCWARBOSS_SPAWN_EGG.get());
                         output.accept(ModItems.EMPIRE_SWORDSMEN_SPAWN_EGG.get());
                         output.accept(ModItems.EMPIRE_SPEARMEN_SPAWN_EGG.get());
+                        output.accept(ModItems.EMPIRE_CROSSBOWMEN_SPAWN_EGG.get());
+                        output.accept(ModItems.EMPIRE_CAPTAIN_SPAWN_EGG.get());
+                        output.accept(ModItems.EMPIRE_ARCH_LECTOR_SPAWN_EGG.get());
 
                         output.accept(ModBlocks.LEAD_BLOCK.get());
                         output.accept(ModBlocks.RAW_LEAD_BLOCK.get());
