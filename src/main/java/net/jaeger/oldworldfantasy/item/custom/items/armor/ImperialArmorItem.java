@@ -2,8 +2,9 @@ package net.jaeger.oldworldfantasy.item.custom.items.armor;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
-import net.jaeger.oldworldfantasy.item.ModItems;
 import net.jaeger.oldworldfantasy.client.model.item.armor.ImperialArmorRenderer;
+import net.jaeger.oldworldfantasy.entity.mobs.human.swordsmen.EmpireSwordsmen;
+import net.jaeger.oldworldfantasy.item.ModItems;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.core.Holder;
 import net.minecraft.world.entity.Entity;
@@ -41,9 +42,20 @@ public final class ImperialArmorItem extends ArmorItem implements GeoItem {
             private ImperialArmorRenderer renderer;
 
             @Override
-            public <T extends LivingEntity> HumanoidModel<?> getGeoArmorRenderer(@Nullable T livingEntity, ItemStack itemStack, @Nullable EquipmentSlot equipmentSlot, @Nullable HumanoidModel<T> original) {
-                if (this.renderer == null)
+            public <T extends LivingEntity> HumanoidModel<?> getGeoArmorRenderer(
+                    @Nullable T livingEntity,
+                    ItemStack itemStack,
+                    @Nullable EquipmentSlot equipmentSlot,
+                    @Nullable HumanoidModel<T> original) {
+
+
+                if (livingEntity instanceof EmpireSwordsmen) {
+                    return null;
+                }
+
+                if (this.renderer == null) {
                     this.renderer = new ImperialArmorRenderer();
+                }
 
                 return this.renderer;
             }

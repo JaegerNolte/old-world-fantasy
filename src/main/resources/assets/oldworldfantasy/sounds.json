@@ -23,10 +23,28 @@
       "oldworldfantasy:beastmen_death"
     ]
   },
-    "chaos_horn": {
-      "subtitle": "sounds.oldworldfantasy.chaos_horn",
-      "sounds": [
-        "oldworldfantasy:chaos_horn"
-      ]
-    }
+   "human_ambient": {
+     "subtitle": "sounds.oldworldfantasy.human_ambient",
+     "sounds": [
+       "oldworldfantasy:human_ambient_sound_male"
+     ]
+   },
+   "human_hurt": {
+     "subtitle": "sounds.oldworldfantasy.human_hurt",
+     "sounds": [
+       "oldworldfantasy:human_hurt_sound"
+     ]
+   },
+   "human_death": {
+     "subtitle": "sounds.oldworldfantasy.human_death",
+     "sounds": [
+       "oldworldfantasy:human_death_sound"
+     ]
+   },
+   "chaos_horn": {
+     "subtitle": "sounds.oldworldfantasy.chaos_horn",
+     "sounds": [
+       "oldworldfantasy:chaos_horn"
+     ]
+   }
 }

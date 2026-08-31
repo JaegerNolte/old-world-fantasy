@@ -10,6 +10,7 @@ import net.jaeger.oldworldfantasy.entity.mobs.greenskin.biguns.BigUns;
 import net.jaeger.oldworldfantasy.entity.mobs.greenskin.goblin.Goblin;
 import net.jaeger.oldworldfantasy.entity.mobs.greenskin.orc.Orc;
 import net.jaeger.oldworldfantasy.entity.mobs.greenskin.warboss.OrcWarboss;
+import net.jaeger.oldworldfantasy.entity.mobs.human.swordsmen.EmpireSwordsmen;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -27,5 +28,7 @@ public class ModEventBusEvents {
         event.put(ModEntities.ORC.get(), Orc.createAttributes().build());
         event.put(ModEntities.BIGUNS.get(), BigUns.createAttributes().build());
         event.put(ModEntities.ORCWARBOSS.get(), OrcWarboss.createAttributes().build());
+        event.put(ModEntities.EMPIRE_SWORDSMEN.get(), EmpireSwordsmen.createAttributes().build());
+        event.put(ModEntities.EMPIRE_SPEARMEN.get(), EmpireSwordsmen.createAttributes().build());
     }
 }

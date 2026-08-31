@@ -9,6 +9,8 @@ import net.jaeger.oldworldfantasy.entity.mobs.greenskin.biguns.BigUns;
 import net.jaeger.oldworldfantasy.entity.mobs.greenskin.goblin.Goblin;
 import net.jaeger.oldworldfantasy.entity.mobs.greenskin.orc.Orc;
 import net.jaeger.oldworldfantasy.entity.mobs.greenskin.warboss.OrcWarboss;
+import net.jaeger.oldworldfantasy.entity.mobs.human.spearmen.EmpireSpearmen;
+import net.jaeger.oldworldfantasy.entity.mobs.human.swordsmen.EmpireSwordsmen;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -53,6 +55,14 @@ public class ModEntities {
     public static final RegistryObject<EntityType<OrcWarboss>> ORCWARBOSS =
             ENTITY_TYPES.register("orcwarboss", () -> EntityType.Builder.of(OrcWarboss::new, MobCategory.MONSTER)
                     .sized(1f, 2f).build("orcwarboss"));
+
+    public static final RegistryObject<EntityType<EmpireSwordsmen>> EMPIRE_SWORDSMEN =
+            ENTITY_TYPES.register("empire_swordsmen", () -> EntityType.Builder.of(EmpireSwordsmen::new, MobCategory.MONSTER)
+                    .sized(1f, 2f).build("empire_swordsmen"));
+
+    public static final RegistryObject<EntityType<EmpireSpearmen>> EMPIRE_SPEARMEN =
+            ENTITY_TYPES.register("empire_spearmen", () -> EntityType.Builder.of(EmpireSpearmen::new, MobCategory.MONSTER)
+                    .sized(1f, 2f).build("empire_spearmen"));
 
 
     public static void register(IEventBus eventBus) {

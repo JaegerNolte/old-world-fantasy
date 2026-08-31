@@ -152,6 +152,12 @@ public class ModItems {
     public static final RegistryObject<Item> ORCWARBOSS_SPAWN_EGG = ITEMS.register("orcwarboss_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.ORCWARBOSS, 0x286546, 0x37895f, new Item.Properties()));
 
+    public static final RegistryObject<Item> EMPIRE_SWORDSMEN_SPAWN_EGG = ITEMS.register("empire_swordsmen_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.EMPIRE_SWORDSMEN, 0x8f7772, 0xffc1c2, new Item.Properties()));
+
+    public static final RegistryObject<Item> EMPIRE_SPEARMEN_SPAWN_EGG = ITEMS.register("empire_spearmen_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.EMPIRE_SPEARMEN, 0x8f7772, 0xffc1c2, new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

@@ -73,6 +73,11 @@ public class ModRaids extends SavedData {
     }
 
     public static boolean canJoinRaid(ModRaider pRaider, ModRaid pRaid) {
+        for (ModRaider raider : pRaid.getAllRaiders()) {
+            if (!pRaider.isAlliedTo(raider)) {
+                return false;
+            }
+        }
         return pRaider != null && pRaid != null && pRaid.getLevel() != null
                 ? pRaider.isAlive() && pRaider.canJoinRaid() && pRaider.getNoActionTime() <= 2400 && pRaider.level().dimensionType() == pRaid.getLevel().dimensionType()
                 : false;

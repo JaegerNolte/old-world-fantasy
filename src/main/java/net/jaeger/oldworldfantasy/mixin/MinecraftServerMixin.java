@@ -19,9 +19,9 @@ public class MinecraftServerMixin {
             at = @At(value = "STORE", ordinal = 0)
     )
     private List<CustomSpawner> addModSpawners(List<CustomSpawner> spawners) {
-        List<CustomSpawner> modified = new ArrayList<>(spawners);
-        modified.add(new BeastmanPatrolSpawner());
-        modified.add(new GreenskinPatrolSpawner());
-        return modified;
+        List<CustomSpawner> modEvents = new ArrayList<>(spawners);
+        modEvents.add(new BeastmanPatrolSpawner());
+        modEvents.add(new GreenskinPatrolSpawner());
+        return modEvents;
     }
 }

@@ -9,6 +9,7 @@ public class ModEntityTags {
 
     public static final TagKey<EntityType<?>> BEASTMEN = create("beastmen");
     public static final TagKey<EntityType<?>> GREENSKIN = create("greenskin");
+    public static final TagKey<EntityType<?>> EMPIRE = create("empire");
 
     private static TagKey<EntityType<?>> create(String name) {
         return TagKey.create(Registries.ENTITY_TYPE, OldWorldFantasyMod.res(name));

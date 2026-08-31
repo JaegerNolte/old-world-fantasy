@@ -1,7 +1,9 @@
-// 1.21.1	2026-08-29T14:25:35.1639712	Item Models: oldworldfantasy
+// 1.21.1	2026-08-31T09:34:44.3057539	Item Models: oldworldfantasy
 253686eae1ae94b5994b4092017fb0dcdf517b87 assets/oldworldfantasy/models/item/arcane_coal.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/oldworldfantasy/models/item/bestigor_spawn_egg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/oldworldfantasy/models/item/biguns_spawn_egg.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/oldworldfantasy/models/item/empire_spearmen_spawn_egg.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/oldworldfantasy/models/item/empire_swordsmen_spawn_egg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/oldworldfantasy/models/item/goblin_spawn_egg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/oldworldfantasy/models/item/gor_spawn_egg.json
 0c4ceaa2476ac3f010ce4b736f118c381db9425e assets/oldworldfantasy/models/item/hilt.json

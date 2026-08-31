@@ -22,6 +22,9 @@
   "sounds.oldworldfantasy.beastmen_walk": "Beastman walk sounds",
   "sounds.oldworldfantasy.beastmen_hurt": "Beastman hurt sounds",
   "sounds.oldworldfantasy.beastmen_death": "Beastman death sounds",
+  "sounds.oldworldfantasy.human_ambient": "Human ambient sounds",
+  "sounds.oldworldfantasy.human_hurt": "Human hurt sounds",
+  "sounds.oldworldfantasy.human_death": "Human death sounds",
   "sounds.oldworldfantasy.chaos_horn": "Chaos horn sounds",
 
   "effect.oldworldfantasy.beastmen_omen": "Call of the Beastmen",
@@ -70,6 +73,8 @@
   "item.oldworldfantasy.orc_spawn_egg": "Orc Spawn Egg",
   "item.oldworldfantasy.biguns_spawn_egg": "Big Uns Spawn Egg",
   "item.oldworldfantasy.orcwarboss_spawn_egg": "Orc Warboss Spawn Egg",
+  "item.oldworldfantasy.empire_swordsmen_spawn_egg": "Empire Swordsmen Spawn Egg",
+  "item.oldworldfantasy.empire_spearmen_spawn_egg": "Empire Spearmen Spawn Egg",
 
   "block.oldworldfantasy.lead_block": "Block of Lead",
   "block.oldworldfantasy.steel_block": "Block of Steel",
@@ -88,5 +93,7 @@
   "entity.oldworldfantasy.goblin": "Goblin",
   "entity.oldworldfantasy.orc": "Orc",
   "entity.oldworldfantasy.biguns": "Orc Big Uns",
-  "entity.oldworldfantasy.orcwarboss": "Orc Warboss"
+  "entity.oldworldfantasy.orcwarboss": "Orc Warboss",
+  "entity.oldworldfantasy.empire_swordsmen": "Empire Swordsmen",
+  "entity.oldworldfantasy.empire_spearmen": "Empire Spearmen"
 }
