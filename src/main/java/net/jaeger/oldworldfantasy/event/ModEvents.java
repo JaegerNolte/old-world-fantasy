@@ -2,14 +2,10 @@ package net.jaeger.oldworldfantasy.event;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.effect.ModEffects;
-import net.jaeger.oldworldfantasy.event.entity.player.ModTradeWithMerchantEvent;
-import net.jaeger.oldworldfantasy.world.item.trading.ModMerchant;
 import net.jaeger.oldworldfantasy.world.raids.ModRaid;
 import net.jaeger.oldworldfantasy.world.raids.ModRaids;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -52,12 +48,5 @@ public class ModEvents {
                 player.removeEffect(ModEffects.BEASTMEN_OMEN.getHolder().get());
             }
         }
-    }
-
-    @SubscribeEvent
-    public static void onMerchantTrade(ModTradeWithMerchantEvent event) {
-        Player player = event.getEntity();
-        MerchantOffer offer = event.getMerchantOffer();
-        ModMerchant merchant = event.getMerchant();
     }
 }

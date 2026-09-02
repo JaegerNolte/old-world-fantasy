@@ -74,44 +74,44 @@ public class GreenskinPatrolSpawner implements CustomSpawner {
 
                             int k = (24 + randomsource.nextInt(24)) * (randomsource.nextBoolean() ? -1 : 1);
                             int l = (24 + randomsource.nextInt(24)) * (randomsource.nextBoolean() ? -1 : 1);
-                            BlockPos.MutableBlockPos blockpos$mutableblockpos = player.blockPosition().mutable().move(k, 0, l);
-                            OldWorldFantasyMod.LOG.info("Potential patrol position: {}", blockpos$mutableblockpos);
+                            BlockPos.MutableBlockPos mutableblockpos = player.blockPosition().mutable().move(k, 0, l);
+                            OldWorldFantasyMod.LOG.info("Potential patrol position: {}", mutableblockpos);
 
                             int i1 = 10;
                             if (!pLevel.hasChunksAt(
-                                    blockpos$mutableblockpos.getX() - 10,
-                                    blockpos$mutableblockpos.getZ() - 10,
-                                    blockpos$mutableblockpos.getX() + 10,
-                                    blockpos$mutableblockpos.getZ() + 10
+                                    mutableblockpos.getX() - 10,
+                                    mutableblockpos.getZ() - 10,
+                                    mutableblockpos.getX() + 10,
+                                    mutableblockpos.getZ() + 10
                             )) {
                                 return 0;
                             } else {
 
-                                Holder<Biome> holder = pLevel.getBiome(blockpos$mutableblockpos);
+                                Holder<Biome> holder = pLevel.getBiome(mutableblockpos);
                                 if (holder.is(BiomeTags.WITHOUT_PATROL_SPAWNS)) {
                                     return 0;
                                 } else {
                                     int j1 = 0;
-                                    int k1 = (int)Math.ceil((double)pLevel.getCurrentDifficultyAt(blockpos$mutableblockpos).getEffectiveDifficulty()) + 1;
+                                    int k1 = (int)Math.ceil((double)pLevel.getCurrentDifficultyAt(mutableblockpos).getEffectiveDifficulty()) + 1;
 
                                     for (int l1 = 0; l1 < k1; l1++) {
                                         j1++;
-                                        blockpos$mutableblockpos.setY(
-                                                pLevel.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, blockpos$mutableblockpos).getY()
+                                        mutableblockpos.setY(
+                                                pLevel.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, mutableblockpos).getY()
                                         );
                                         if (l1 == 0) {
-                                            if (!this.spawnPatrolMember(pLevel, blockpos$mutableblockpos, randomsource, true)) {
+                                            if (!this.spawnPatrolMember(pLevel, mutableblockpos, randomsource, true)) {
                                                 break;
                                             }
                                         } else {
-                                            this.spawnPatrolMember(pLevel, blockpos$mutableblockpos, randomsource, false);
+                                            this.spawnPatrolMember(pLevel, mutableblockpos, randomsource, false);
                                         }
 
-                                        blockpos$mutableblockpos.setX(
-                                                blockpos$mutableblockpos.getX() + randomsource.nextInt(5) - randomsource.nextInt(5)
+                                        mutableblockpos.setX(
+                                                mutableblockpos.getX() + randomsource.nextInt(5) - randomsource.nextInt(5)
                                         );
-                                        blockpos$mutableblockpos.setZ(
-                                                blockpos$mutableblockpos.getZ() + randomsource.nextInt(5) - randomsource.nextInt(5)
+                                        mutableblockpos.setZ(
+                                                mutableblockpos.getZ() + randomsource.nextInt(5) - randomsource.nextInt(5)
                                         );
                                     }
 

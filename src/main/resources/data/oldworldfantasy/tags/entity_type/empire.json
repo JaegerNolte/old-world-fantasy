@@ -3,6 +3,8 @@
   "values": [
     "oldworldfantasy:empire_swordsmen",
     "oldworldfantasy:empire_spearmen",
-    "oldworldfantasy:empire_crossbowmen"
+    "oldworldfantasy:empire_crossbowmen",
+    "oldworldfantasy:empire_captain",
+    "oldworldfantasy:empire_arch_lector"
   ]
 }

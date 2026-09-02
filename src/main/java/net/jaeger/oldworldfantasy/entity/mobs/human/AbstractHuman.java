@@ -3,7 +3,6 @@ package net.jaeger.oldworldfantasy.entity.mobs.human;
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.entity.ModEntityTags;
 import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
-import net.jaeger.oldworldfantasy.event.entity.player.ModTradeWithMerchantEvent;
 import net.jaeger.oldworldfantasy.sound.ModSounds;
 import net.jaeger.oldworldfantasy.world.item.trading.ModMerchant;
 import net.minecraft.core.BlockPos;
@@ -23,7 +22,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraftforge.common.MinecraftForge;
 
 import javax.annotation.Nullable;
 
@@ -86,10 +84,6 @@ public abstract class AbstractHuman extends ModRaider implements ModMerchant {
         pOffer.increaseUses();
         this.ambientSoundTime = -this.getAmbientSoundInterval();
         this.rewardTradeXp(pOffer);
-
-        if (this.tradingPlayer != null) {
-            MinecraftForge.EVENT_BUS.post(new ModTradeWithMerchantEvent(this.tradingPlayer, pOffer, this));
-        }
     }
 
     @Override
