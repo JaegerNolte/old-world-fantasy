@@ -41,9 +41,9 @@ public class ModMerchantMenu extends AbstractContainerMenu {
         super(ModMenus.MERCHANT.get(), pContainerId);
         this.trader = pTrader;
         this.tradeContainer = new ModMerchantContainer(pTrader);
-        this.addSlot(new Slot(this.tradeContainer, 0, 136, 37));
-        this.addSlot(new Slot(this.tradeContainer, 1, 162, 37));
-        this.addSlot(new ModMerchantResultSlot(pPlayerInventory.player, pTrader, this.tradeContainer, 2, 220, 37));
+        this.addSlot(new Slot(this.tradeContainer, PAYMENT1_SLOT, 136, 37));
+        this.addSlot(new Slot(this.tradeContainer, PAYMENT2_SLOT, 162, 37));
+        this.addSlot(new ModMerchantResultSlot(pPlayerInventory.player, pTrader, this.tradeContainer, RESULT_SLOT, 220, 37));
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {
@@ -163,40 +163,40 @@ public class ModMerchantMenu extends AbstractContainerMenu {
         this.trader.setTradingPlayer(null);
         if (!this.trader.isClientSide()) {
             if (!pPlayer.isAlive() || pPlayer instanceof ServerPlayer && ((ServerPlayer)pPlayer).hasDisconnected()) {
-                ItemStack itemstack = this.tradeContainer.removeItemNoUpdate(0);
+                ItemStack itemstack = this.tradeContainer.removeItemNoUpdate(PAYMENT1_SLOT);
                 if (!itemstack.isEmpty()) {
                     pPlayer.drop(itemstack, false);
                 }
 
-                itemstack = this.tradeContainer.removeItemNoUpdate(1);
+                itemstack = this.tradeContainer.removeItemNoUpdate(PAYMENT2_SLOT);
                 if (!itemstack.isEmpty()) {
                     pPlayer.drop(itemstack, false);
                 }
             } else if (pPlayer instanceof ServerPlayer) {
-                pPlayer.getInventory().placeItemBackInInventory(this.tradeContainer.removeItemNoUpdate(0));
-                pPlayer.getInventory().placeItemBackInInventory(this.tradeContainer.removeItemNoUpdate(1));
+                pPlayer.getInventory().placeItemBackInInventory(this.tradeContainer.removeItemNoUpdate(PAYMENT1_SLOT));
+                pPlayer.getInventory().placeItemBackInInventory(this.tradeContainer.removeItemNoUpdate(PAYMENT2_SLOT));
             }
         }
     }
 
     public void tryMoveItems(int pSelectedMerchantRecipe) {
         if (pSelectedMerchantRecipe >= 0 && this.getOffers().size() > pSelectedMerchantRecipe) {
-            ItemStack itemstack = this.tradeContainer.getItem(0);
+            ItemStack itemstack = this.tradeContainer.getItem(PAYMENT1_SLOT);
             if (!itemstack.isEmpty()) {
                 if (!this.moveItemStackTo(itemstack, 3, 39, true)) {
                     return;
                 }
 
-                this.tradeContainer.setItem(0, itemstack);
+                this.tradeContainer.setItem(PAYMENT2_SLOT, itemstack);
             }
 
-            ItemStack itemstack1 = this.tradeContainer.getItem(1);
+            ItemStack itemstack1 = this.tradeContainer.getItem(PAYMENT2_SLOT);
             if (!itemstack1.isEmpty()) {
                 if (!this.moveItemStackTo(itemstack1, 3, 39, true)) {
                     return;
                 }
 
-                this.tradeContainer.setItem(1, itemstack1);
+                this.tradeContainer.setItem(PAYMENT2_SLOT, itemstack1);
             }
 
             if (this.tradeContainer.getItem(0).isEmpty() && this.tradeContainer.getItem(1).isEmpty()) {

@@ -1,4 +1,4 @@
-package net.jaeger.oldworldfantasy.entity.client.human.captian;
+package net.jaeger.oldworldfantasy.entity.client.human.captain;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;

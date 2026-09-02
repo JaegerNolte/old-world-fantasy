@@ -14,7 +14,7 @@ import net.jaeger.oldworldfantasy.entity.client.greenskin.goblin.GoblinRenderer;
 import net.jaeger.oldworldfantasy.entity.client.greenskin.orc.OrcRenderer;
 import net.jaeger.oldworldfantasy.entity.client.greenskin.warboss.OrcWarbossRenderer;
 import net.jaeger.oldworldfantasy.entity.client.human.archlector.EmpireArchLectorRenderer;
-import net.jaeger.oldworldfantasy.entity.client.human.captian.EmpireCaptainRenderer;
+import net.jaeger.oldworldfantasy.entity.client.human.captain.EmpireCaptainRenderer;
 import net.jaeger.oldworldfantasy.entity.client.human.crossbowmen.EmpireCrossbowmenRenderer;
 import net.jaeger.oldworldfantasy.entity.client.human.spearmen.EmpireSpearmenRenderer;
 import net.jaeger.oldworldfantasy.entity.client.human.swordsmen.EmpireSwordsmenRenderer;

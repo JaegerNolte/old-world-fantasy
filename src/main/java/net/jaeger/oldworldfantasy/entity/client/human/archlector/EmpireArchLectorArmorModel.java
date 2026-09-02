@@ -9,12 +9,12 @@ public class EmpireArchLectorArmorModel extends GeoModel<EmpireArchLector> {
 
     @Override
     public ResourceLocation getModelResource(EmpireArchLector animatable) {
-        return OldWorldFantasyMod.res("geo/item/armor/empire_soldier_armor_1.geo.json");
+        return OldWorldFantasyMod.res("geo/item/armor/empire_archlector_armor.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(EmpireArchLector animatable) {
-        return OldWorldFantasyMod.res("textures/item/armor/imperial_armor.png");
+        return OldWorldFantasyMod.res("textures/item/armor/archlector_armor.png");
     }
 
     @Override

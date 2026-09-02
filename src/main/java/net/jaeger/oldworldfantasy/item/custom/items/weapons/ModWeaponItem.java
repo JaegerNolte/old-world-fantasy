@@ -106,19 +106,21 @@ public class ModWeaponItem extends SwordItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext tooltipContext, List<Component> tooltip, TooltipFlag flag) {
-        if (type.isHalberd())
+        if (type.isHalberd()) {
             tooltip.add(Component.translatable("tooltip.oldworldfantasy.halberd.hurt").withStyle(ChatFormatting.BLUE));
-        if (type.getArmorPiercing() != 0)
+        }
+        if (type.getArmorPiercing() != 0) {
             tooltip.add(Component.translatable("tooltip.oldworldfantasy.armorpiercing", this.type.getArmorPiercing()).withStyle(ChatFormatting.BLUE));
-        if (this.isLong())
-            tooltip.add(Component.translatable("tooltip.oldworldfantasy.bonusattackreach", this.type.getBonusAttackReach()).withStyle(ChatFormatting.BLUE));
-        if (type.getTwoHanded() == 1)
+        }
+        if (type.getTwoHanded() == 1) {
             tooltip.add(Component.translatable("tooltip.oldworldfantasy.twohandedi").withStyle(ChatFormatting.BLUE));
-        else if (type.getTwoHanded() > 1)
+        } else if (type.getTwoHanded() > 1) {
             tooltip.add(Component.translatable("tooltip.oldworldfantasy.twohandedii").withStyle(ChatFormatting.BLUE));
-        if (this.canBlock())
+        }
+        if (this.canBlock()) {
             tooltip.add(Component.translatable("tooltip.oldworldfantasy.maxdamageblock", this.getMaxBlockDamage()).withStyle(ChatFormatting.BLUE));
-        tooltip.add(Component.translatable("tooltip.oldworldfantasy.weight", this.getWeight()).withStyle(ChatFormatting.YELLOW));
+            tooltip.add(Component.translatable("tooltip.oldworldfantasy.weight", this.getWeight()).withStyle(ChatFormatting.YELLOW));
+        }
         if (this.hasTwoHandedPenalty(stack)) {
             tooltip.add(Component.translatable("tooltip.oldworldfantasy.twohandedpenalty_1").withStyle(ChatFormatting.RED));
             tooltip.add(Component.translatable("tooltip.oldworldfantasy.twohandedpenalty_2").withStyle(ChatFormatting.RED));
@@ -141,10 +143,6 @@ public class ModWeaponItem extends SwordItem {
 
     public float getBonusAttackReach() {
         return type.getBonusAttackReach();
-    }
-
-    public boolean isLong() {
-        return this.getBonusAttackReach() > 0.0;
     }
 
     public float getMaxBlockDamage() {

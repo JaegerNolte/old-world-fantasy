@@ -36,9 +36,7 @@ public class ModNetworking {
                         NetworkDirection.PLAY_TO_CLIENT
                 )
                 .codec(MerchantOfferPacket.STREAM_CODEC)
-                .consumerMainThread((packet, context) -> {
-                    handleMerchantOffers(packet, context);
-                })
+                .consumerMainThread(ModNetworking::handleMerchantOffers)
                 .add();
     }
 

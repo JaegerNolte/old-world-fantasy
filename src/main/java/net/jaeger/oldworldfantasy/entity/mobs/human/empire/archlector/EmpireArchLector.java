@@ -115,7 +115,6 @@ public class EmpireArchLector extends AbstractHuman {
         this.setItemSlot(EquipmentSlot.FEET, new ItemStack(ModItems.IMPERIAL_BOOTS.get()));
 
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.IMPERIAL_SWORD.get()));
-        this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.IMPERIAL_SHIELD.get()));
 
         for (EquipmentSlot slot : new EquipmentSlot[] {
                 EquipmentSlot.HEAD,
@@ -123,7 +122,9 @@ public class EmpireArchLector extends AbstractHuman {
                 EquipmentSlot.LEGS,
                 EquipmentSlot.FEET,
                 EquipmentSlot.OFFHAND
-        }) {this.setDropChance(slot, 0.0F);}
+        }) {
+            this.setDropChance(slot, 0.0F);
+        }
 
         this.createOffers();
         return pSpawnGroupData;
@@ -218,25 +219,12 @@ public class EmpireArchLector extends AbstractHuman {
 
     @Override
     protected InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
-
         if (!this.isClientSide()) {
-
             boolean flag = this.getOffers().isEmpty();
             if (pHand == InteractionHand.MAIN_HAND) {
-
                 if (flag) {
                     return InteractionResult.CONSUME;
                 }
-
-                LOG.info("Trading with player: {}", pPlayer.getName());
-                LOG.info("Opening merchant with {} offers", this.offers.size());
-
-                for (int i = 0; i < this.offers.size(); i++) {
-                    MerchantOffer offer = this.offers.get(i);
-
-                    LOG.info("Offer {} | Cost: {} | Result: {}", i, offer.getBaseCostA(), offer.getResult());
-                }
-
                 startTrading(pPlayer);
             }
         }
@@ -324,13 +312,11 @@ public class EmpireArchLector extends AbstractHuman {
 
     @Override
     public MerchantOffers getOffers() {
-        LOG.info("Getting starting offers. Count: {}", this.offers.size());
         return this.offers;
     }
 
     @Override
     public void overrideOffers(MerchantOffers pOffers) {
-        LOG.info("override Offers was called. New count: {}", pOffers.size());
         this.offers = pOffers;
     }
 
