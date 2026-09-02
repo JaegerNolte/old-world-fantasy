@@ -3,6 +3,8 @@ package net.jaeger.oldworldfantasy.entity.mobs.human;
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.entity.ModEntityTags;
 import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
+import net.jaeger.oldworldfantasy.event.entity.player.ModTradeWithMerchantEvent;
+import net.jaeger.oldworldfantasy.sound.ModSounds;
 import net.jaeger.oldworldfantasy.world.item.trading.ModMerchant;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
@@ -14,12 +16,21 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.goal.OpenDoorGoal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraftforge.common.MinecraftForge;
+
+import javax.annotation.Nullable;
 
 public abstract class AbstractHuman extends ModRaider implements ModMerchant {
+
+    @Nullable
+    private Player tradingPlayer;
 
     protected AbstractHuman(EntityType<? extends ModRaider> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -69,6 +80,31 @@ public abstract class AbstractHuman extends ModRaider implements ModMerchant {
     public final boolean isEmpire() {
         return this.getType().is(ModEntityTags.EMPIRE);
     }
+
+    @Override
+    public void notifyTrade(MerchantOffer pOffer) {
+        pOffer.increaseUses();
+        this.ambientSoundTime = -this.getAmbientSoundInterval();
+        this.rewardTradeXp(pOffer);
+
+        if (this.tradingPlayer != null) {
+            MinecraftForge.EVENT_BUS.post(new ModTradeWithMerchantEvent(this.tradingPlayer, pOffer, this));
+        }
+    }
+
+    @Override
+    public void notifyTradeUpdated(ItemStack pStack) {
+        if (!this.level().isClientSide && this.ambientSoundTime > -this.getAmbientSoundInterval() + 20) {
+            this.ambientSoundTime = -this.getAmbientSoundInterval();
+            this.makeSound(this.getTradeUpdatedSound(!pStack.isEmpty()));
+        }
+    }
+
+    protected SoundEvent getTradeUpdatedSound(boolean pIsYesSound) {
+        return pIsYesSound ? ModSounds.HUMAN_SATISFIED.get() : ModSounds.HUMAN_ANGRY.get();
+    }
+
+    protected abstract void rewardTradeXp(MerchantOffer pOffer);
 
     @Override
     protected ResourceKey<LootTable> getDefaultLootTable() {

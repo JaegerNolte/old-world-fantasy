@@ -8,7 +8,8 @@ import net.minecraft.world.Container;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.*;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
@@ -37,7 +38,7 @@ public class ModMerchantMenu extends AbstractContainerMenu {
     }
 
     public ModMerchantMenu(int pContainerId, Inventory pPlayerInventory, ModMerchant pTrader) {
-        super(MenuType.MERCHANT, pContainerId);
+        super(ModMenus.MERCHANT.get(), pContainerId);
         this.trader = pTrader;
         this.tradeContainer = new ModMerchantContainer(pTrader);
         this.addSlot(new Slot(this.tradeContainer, 0, 136, 37));
@@ -225,8 +226,9 @@ public class ModMerchantMenu extends AbstractContainerMenu {
         }
     }
 
-    public void setOffers(MerchantOffers pOffers) {
-        this.trader.overrideOffers(pOffers);
+    public void setOffers(MerchantOffers offers) {
+        this.trader.overrideOffers(offers);
+        this.tradeContainer.updateSellItem();
     }
 
     public MerchantOffers getOffers() {
@@ -235,5 +237,14 @@ public class ModMerchantMenu extends AbstractContainerMenu {
 
     public boolean showProgressBar() {
         return this.showProgressBar;
+    }
+
+    @Override
+    public boolean clickMenuButton(Player player, int id) {
+        if (id >= 0 && id < this.getOffers().size()) {
+            this.tradeContainer.setSelectionHint(id);
+            return true;
+        }
+        return false;
     }
 }

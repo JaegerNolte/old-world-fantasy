@@ -26,21 +26,33 @@
    "human_ambient": {
      "subtitle": "sounds.oldworldfantasy.human_ambient",
      "sounds": [
-       "oldworldfantasy:human_ambient_sound_male"
+       "oldworldfantasy:human_ambient_male"
      ]
    },
    "human_hurt": {
      "subtitle": "sounds.oldworldfantasy.human_hurt",
      "sounds": [
-       "oldworldfantasy:human_hurt_sound"
+       "oldworldfantasy:human_hurt"
      ]
    },
    "human_death": {
      "subtitle": "sounds.oldworldfantasy.human_death",
      "sounds": [
-       "oldworldfantasy:human_death_sound"
+       "oldworldfantasy:human_death"
      ]
    },
+    "human_angry": {
+      "subtitle": "sounds.oldworldfantasy.human_angry",
+      "sounds": [
+        "oldworldfantasy:human_angry"
+      ]
+    },
+    "human_satisfied": {
+       "subtitle": "sounds.oldworldfantasy.human_satisfied",
+       "sounds": [
+        "oldworldfantasy:human_satisfied"
+      ]
+    },
    "chaos_horn": {
      "subtitle": "sounds.oldworldfantasy.chaos_horn",
      "sounds": [

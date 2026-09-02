@@ -21,8 +21,10 @@ import net.jaeger.oldworldfantasy.entity.client.human.swordsmen.EmpireSwordsmenR
 import net.jaeger.oldworldfantasy.item.ModCreativeModeTabs;
 import net.jaeger.oldworldfantasy.item.ModItems;
 import net.jaeger.oldworldfantasy.loot.ModLootModifiers;
+import net.jaeger.oldworldfantasy.networking.ModNetworking;
 import net.jaeger.oldworldfantasy.sound.ModSounds;
 import net.jaeger.oldworldfantasy.util.ModItemProperties;
+import net.jaeger.oldworldfantasy.world.inventory.ModMenus;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -66,6 +68,7 @@ public class OldWorldFantasyMod {
         ModEntities.register(modEventBus);
 
         ModLootModifiers.register(modEventBus);
+        ModMenus.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(this::commonSetup);
@@ -74,6 +77,7 @@ public class OldWorldFantasyMod {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
 
+        ModNetworking.register();
     }
 
 

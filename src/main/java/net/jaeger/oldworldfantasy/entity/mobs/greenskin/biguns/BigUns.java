@@ -4,6 +4,7 @@ import net.jaeger.oldworldfantasy.entity.ai.goals.GreenskinAttackGoal;
 import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
 import net.jaeger.oldworldfantasy.entity.mobs.beastmen.AbstractBeastmen;
 import net.jaeger.oldworldfantasy.entity.mobs.greenskin.AbstractGreenskin;
+import net.jaeger.oldworldfantasy.entity.mobs.human.AbstractHuman;
 import net.jaeger.oldworldfantasy.item.ModItems;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -72,6 +73,7 @@ public class BigUns extends AbstractGreenskin {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractBeastmen.class, false));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractHuman.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
         this.goalSelector.addGoal(8, new RandomStrollGoal(this, 0.6));
         this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));

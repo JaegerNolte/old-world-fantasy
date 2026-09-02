@@ -234,6 +234,11 @@ public class EmpireCaptain extends AbstractHuman {
     }
 
     @Override
+    protected void rewardTradeXp(MerchantOffer pOffer) {
+
+    }
+
+    @Override
     public int getVillagerXp() {
         return 0;
     }

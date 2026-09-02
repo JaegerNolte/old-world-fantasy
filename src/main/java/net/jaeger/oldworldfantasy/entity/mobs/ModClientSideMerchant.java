@@ -1,8 +1,8 @@
 package net.jaeger.oldworldfantasy.entity.mobs;
 
+import net.jaeger.oldworldfantasy.sound.ModSounds;
 import net.jaeger.oldworldfantasy.world.item.trading.ModMerchant;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.MerchantOffer;
@@ -70,6 +70,6 @@ public class ModClientSideMerchant implements ModMerchant {
 
     @Override
     public SoundEvent getNotifyTradeSound() {
-        return SoundEvents.VILLAGER_YES;
+        return ModSounds.HUMAN_SATISFIED.get();
     }
 }

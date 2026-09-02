@@ -132,6 +132,9 @@ public class ModMerchantContainer implements Container {
     }
 
     public void setSelectionHint(int pCurrentRecipeIndex) {
+        if (pCurrentRecipeIndex < 0 || pCurrentRecipeIndex >= this.merchant.getOffers().size()) {
+            return;
+        }
         this.selectionHint = pCurrentRecipeIndex;
         this.updateSellItem();
     }

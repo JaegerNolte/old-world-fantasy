@@ -5,6 +5,7 @@ import net.jaeger.oldworldfantasy.entity.ai.goals.FrenzyBeastmenAlliesGoal;
 import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
 import net.jaeger.oldworldfantasy.entity.mobs.beastmen.AbstractBeastmen;
 import net.jaeger.oldworldfantasy.entity.mobs.greenskin.AbstractGreenskin;
+import net.jaeger.oldworldfantasy.entity.mobs.human.AbstractHuman;
 import net.jaeger.oldworldfantasy.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -65,6 +66,7 @@ public class Wargor extends AbstractBeastmen {
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractGreenskin.class, false));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractHuman.class, false));
         this.goalSelector.addGoal(8, new RandomStrollGoal(this, 0.6));
         this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));

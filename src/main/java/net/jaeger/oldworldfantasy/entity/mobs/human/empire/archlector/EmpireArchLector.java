@@ -31,7 +31,6 @@ import net.minecraft.world.entity.ai.util.GoalUtils;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
@@ -126,9 +125,7 @@ public class EmpireArchLector extends AbstractHuman {
                 EquipmentSlot.OFFHAND
         }) {this.setDropChance(slot, 0.0F);}
 
-        this.offers.add(
-                new MerchantOffer(new ItemCost(Items.EMERALD, 5), new ItemStack(Items.IRON_INGOT, 3), 10, 1, 0.05F));
-
+        this.createOffers();
         return pSpawnGroupData;
     }
 
@@ -222,19 +219,73 @@ public class EmpireArchLector extends AbstractHuman {
     @Override
     protected InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
 
-        if (!this.level().isClientSide) {
-            if (!this.getOffers().isEmpty()) {
-                this.setTradingPlayer(pPlayer);
+        if (!this.isClientSide()) {
 
-                this.openTradingScreen(
-                        pPlayer,
-                        this.getDisplayName(),
-                        1
-                );
+            boolean flag = this.getOffers().isEmpty();
+            if (pHand == InteractionHand.MAIN_HAND) {
+
+                if (flag) {
+                    return InteractionResult.CONSUME;
+                }
+
+                LOG.info("Trading with player: {}", pPlayer.getName());
+                LOG.info("Opening merchant with {} offers", this.offers.size());
+
+                for (int i = 0; i < this.offers.size(); i++) {
+                    MerchantOffer offer = this.offers.get(i);
+
+                    LOG.info("Offer {} | Cost: {} | Result: {}", i, offer.getBaseCostA(), offer.getResult());
+                }
+
+                startTrading(pPlayer);
             }
         }
 
         return InteractionResult.sidedSuccess(this.level().isClientSide);
+    }
+
+    private void startTrading(Player player) {
+        if (this.offers.isEmpty()) {
+            this.createOffers();
+        }
+
+        this.setTradingPlayer(player);
+        this.openTradingScreen(player, this.getDisplayName(), 1);
+    }
+
+    private void createOffers() {
+        if (!this.offers.isEmpty()) {
+            return;
+        }
+
+        this.offers.add(new MerchantOffer(
+                new ItemCost(ModItems.TEEF.get(), 10),
+                new ItemStack(ModItems.IMPERIAL_HELMET.get(), 3),
+                10,
+                1,
+                0.05F
+        ));
+        this.offers.add(new MerchantOffer(
+                new ItemCost(ModItems.TEEF.get(), 15),
+                new ItemStack(ModItems.IMPERIAL_CHESTPLATE.get(), 3),
+                10,
+                1,
+                0.05F
+        ));
+        this.offers.add(new MerchantOffer(
+                new ItemCost(ModItems.TEEF.get(), 12),
+                new ItemStack(ModItems.IMPERIAL_LEGGINGS.get(), 3),
+                10,
+                1,
+                0.05F
+        ));
+        this.offers.add(new MerchantOffer(
+                new ItemCost(ModItems.TEEF.get(), 8),
+                new ItemStack(ModItems.IMPERIAL_BOOTS.get(), 3),
+                10,
+                1,
+                0.05F
+        ));
     }
 
     @Override
@@ -262,7 +313,7 @@ public class EmpireArchLector extends AbstractHuman {
     }
 
     @Override
-    public void setTradingPlayer(@org.jetbrains.annotations.Nullable Player pTradingPlayer) {
+    public void setTradingPlayer(@Nullable Player pTradingPlayer) {
         this.tradingPlayer = pTradingPlayer;
     }
 
@@ -273,22 +324,20 @@ public class EmpireArchLector extends AbstractHuman {
 
     @Override
     public MerchantOffers getOffers() {
+        LOG.info("Getting starting offers. Count: {}", this.offers.size());
         return this.offers;
     }
 
     @Override
     public void overrideOffers(MerchantOffers pOffers) {
+        LOG.info("override Offers was called. New count: {}", pOffers.size());
         this.offers = pOffers;
     }
 
     @Override
-    public void notifyTrade(MerchantOffer pOffer) {
-
-    }
-
-    @Override
-    public void notifyTradeUpdated(ItemStack pStack) {
-
+    protected void rewardTradeXp(MerchantOffer pOffer) {
+        int i = 3 + this.random.nextInt(4);
+        this.level().addFreshEntity(new ExperienceOrb(this.level(), this.getX(), this.getY() + 0.5, this.getZ(), i));
     }
 
     @Override
@@ -308,7 +357,7 @@ public class EmpireArchLector extends AbstractHuman {
 
     @Override
     public SoundEvent getNotifyTradeSound() {
-        return SoundEvents.VILLAGER_YES;
+        return ModSounds.HUMAN_SATISFIED.get();
     }
 
     @Override

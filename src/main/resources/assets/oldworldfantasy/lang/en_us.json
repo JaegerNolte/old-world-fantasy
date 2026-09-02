@@ -1,6 +1,17 @@
 {
   "creativetab.old_world_fantasy_tab": "Old World Fantasy",
 
+  "merchant.current_level": "Trader's current level",
+  "merchant.deprecated": "Villagers restock up to two times per day.",
+  "merchant.level.1": "Novice",
+  "merchant.level.2": "Apprentice",
+  "merchant.level.3": "Journeyman",
+  "merchant.level.4": "Expert",
+  "merchant.level.5": "Master",
+  "merchant.next_level": "Trader's next level",
+  "merchant.title": "%s - %s",
+  "merchant.trades": "Trades",
+
   "event.oldworldfantasy.raid": "Brayherd Invasion",
   "event.oldworldfantasy.raid.victory.full": "Brayherd Vanquished",
   "event.oldworldfantasy.raid.raiders_remaining": "Raiders Remaining: %s",
@@ -25,6 +36,8 @@
   "sounds.oldworldfantasy.human_ambient": "Human ambient sounds",
   "sounds.oldworldfantasy.human_hurt": "Human hurt sounds",
   "sounds.oldworldfantasy.human_death": "Human death sounds",
+  "sounds.oldworldfantasy.human_angry": "Human angry sounds",
+  "sounds.oldworldfantasy.human_satisfied": "Human satisfied sounds",
   "sounds.oldworldfantasy.chaos_horn": "Chaos horn sounds",
 
   "effect.oldworldfantasy.beastmen_omen": "Call of the Beastmen",

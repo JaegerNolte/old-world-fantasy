@@ -21,6 +21,8 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> HUMAN_AMBIENT = registerSoundEvent("human_ambient");
     public static final RegistryObject<SoundEvent> HUMAN_HURT = registerSoundEvent("human_hurt");
     public static final RegistryObject<SoundEvent> HUMAN_DEATH = registerSoundEvent("human_death");
+    public static final RegistryObject<SoundEvent> HUMAN_ANGRY = registerSoundEvent("human_angry");
+    public static final RegistryObject<SoundEvent> HUMAN_SATISFIED = registerSoundEvent("human_satisfied");
 
     public static final RegistryObject<SoundEvent> CHAOS_HORN = registerSoundEvent("chaos_horn");
 
