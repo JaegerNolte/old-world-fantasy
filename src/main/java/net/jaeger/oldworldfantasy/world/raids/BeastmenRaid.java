@@ -3,6 +3,8 @@ package net.jaeger.oldworldfantasy.world.raids;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
+import net.jaeger.oldworldfantasy.effect.ModEffects;
+import net.jaeger.oldworldfantasy.entity.ModEntities;
 import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
 import net.jaeger.oldworldfantasy.sound.ModSounds;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -23,20 +25,20 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.IExtensibleEnum;
 
 import javax.annotation.Nullable;
 import java.util.*;
-import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public abstract class ModRaid {
+public class BeastmenRaid extends ModRaid {
 
     private static final int SECTION_RADIUS_FOR_FINDING_NEW_VILLAGE_CENTER = 2;
     private static final int ATTEMPT_RAID_FARTHEST = 0;
@@ -55,9 +57,9 @@ public abstract class ModRaid {
     public static final int TICKS_PER_DAY = 24000;
     public static final int DEFAULT_MAX_RAID_OMEN_LEVEL = 5;
     private static final int LOW_MOB_THRESHOLD = 2;
-    private static final Component RAID_NAME_COMPONENT = Component.translatable("event.oldworldfantasy.raid");
-    private static final Component RAID_BAR_VICTORY_COMPONENT = Component.translatable("event.oldworldfantasy.raid.victory.full");
-    private static final Component RAID_BAR_DEFEAT_COMPONENT = Component.translatable("event.oldworldfantasy.raid.defeat.full");
+    private static final Component RAID_NAME_COMPONENT = Component.translatable("event.oldworldfantasy.raid.beastmen");
+    private static final Component RAID_BAR_VICTORY_COMPONENT = Component.translatable("event.oldworldfantasy.raid.victory.full.beastmen");
+    private static final Component RAID_BAR_DEFEAT_COMPONENT = Component.translatable("event.oldworldfantasy.raid.defeat.full.beastmen");
     private static final int HERO_OF_THE_VILLAGE_DURATION = 48000;
     public static final int VALID_RAID_RADIUS_SQR = 9216;
     public static final int RAID_REMOVAL_THRESHOLD_SQR = 12544;
@@ -78,12 +80,13 @@ public abstract class ModRaid {
     private int raidCooldownTicks;
     private final RandomSource random = RandomSource.create();
     private final int numGroups;
-    private ModRaid.RaidStatus status;
+    private BeastmenRaid.RaidStatus status;
     private int celebrationTicks;
     private Optional<BlockPos> waveSpawnPos = Optional.empty();
     private float radius = 3.00f;
 
-    public ModRaid(int pId, ServerLevel pLevel, BlockPos pCenter) {
+    public BeastmenRaid(int pId, ServerLevel pLevel, BlockPos pCenter) {
+        super(pId, pLevel, pCenter);
         this.id = pId;
         this.level = pLevel;
         this.active = true;
@@ -91,10 +94,11 @@ public abstract class ModRaid {
         this.raidEvent.setProgress(0.0F);
         this.center = pCenter;
         this.numGroups = this.getNumGroups(pLevel.getDifficulty());
-        this.status = ModRaid.RaidStatus.ONGOING;
+        this.status = BeastmenRaid.RaidStatus.ONGOING;
     }
 
-    public ModRaid(ServerLevel pLevel, CompoundTag pCompound) {
+    public BeastmenRaid(ServerLevel pLevel, CompoundTag pCompound) {
+        super(pLevel, pCompound);
         this.level = pLevel;
         this.id = pCompound.getInt("Id");
         this.started = pCompound.getBoolean("Started");
@@ -107,7 +111,7 @@ public abstract class ModRaid {
         this.totalHealth = pCompound.getFloat("TotalHealth");
         this.center = new BlockPos(pCompound.getInt("CX"), pCompound.getInt("CY"), pCompound.getInt("CZ"));
         this.numGroups = pCompound.getInt("NumGroups");
-        this.status = ModRaid.RaidStatus.getByName(pCompound.getString("Status"));
+        this.status = BeastmenRaid.RaidStatus.getByName(pCompound.getString("Status"));
         this.heroesOfTheVillage.clear();
         if (pCompound.contains("HeroesOfTheVillage", 9)) {
             for (Tag tag : pCompound.getList("HeroesOfTheVillage", 11)) {
@@ -116,110 +120,39 @@ public abstract class ModRaid {
         }
     }
 
-    public abstract String getRaidType();
-
-    public boolean isOver() {
-        return this.isVictory() || this.isLoss();
+    @Override
+    public String getRaidType() {
+        return "beastmen";
     }
 
-    public boolean isBetweenWaves() {
-        return this.hasFirstWaveSpawned() && this.getTotalRaidersAlive() == 0 && this.raidCooldownTicks > 0;
-    }
-
-    public boolean hasFirstWaveSpawned() {
-        return this.groupsSpawned > 0;
-    }
-
-    public boolean isStopped() {
-        return this.status == ModRaid.RaidStatus.STOPPED;
-    }
-
-    public boolean isVictory() {
-        return this.status == ModRaid.RaidStatus.VICTORY;
-    }
-
-    public boolean isLoss() {
-        return this.status == ModRaid.RaidStatus.LOSS;
-    }
-
-    public float getTotalHealth() {
-        return this.totalHealth;
-    }
-
-    public Set<ModRaider> getAllRaiders() {
-        Set<ModRaider> set = Sets.newHashSet();
-
-        for (Set<ModRaider> set1 : this.groupRaiderMap.values()) {
-            set.addAll(set1);
-        }
-
-        return set;
-    }
-
-    public Level getLevel() {
-        return this.level;
-    }
-
-    public boolean isStarted() {
-        return this.started;
-    }
-
-    public int getGroupsSpawned() {
-        return this.groupsSpawned;
-    }
-
-    public Predicate<ServerPlayer> validPlayer() {
-        return player -> {
-            if (!player.isAlive() || player.isSpectator()) {
-                return false;
-            }
-
-            return this.center.distSqr(player.blockPosition()) <= VALID_RAID_RADIUS_SQR;
-        };
-    }
-
-    public void updatePlayers() {
-        Set<ServerPlayer> set = Sets.newHashSet(this.raidEvent.getPlayers());
-        List<ServerPlayer> list = this.level.getPlayers(this.validPlayer());
-
-        for (ServerPlayer serverplayer : list) {
-            if (!set.contains(serverplayer)) {
-                this.raidEvent.addPlayer(serverplayer);
-            }
-        }
-
-        for (ServerPlayer serverplayer1 : set) {
-            if (!list.contains(serverplayer1)) {
-                this.raidEvent.removePlayer(serverplayer1);
-            }
-        }
-    }
-
-    public int getMaxRaidOmenLevel() {
-        return 5;
-    }
-
-    public int getRaidOmenLevel() {
-        return this.raidOmenLevel;
-    }
-
-    public void setRaidOmenLevel(int pRaidOmenLevel) {
-        this.raidOmenLevel = pRaidOmenLevel;
-    }
-
+    @Override
     public boolean absorbRaidOmen(ServerPlayer pPlayer) {
-        return true;
+        MobEffectInstance mobeffectinstance = pPlayer.getEffect(ModEffects.BEASTMEN_OMEN.getHolder().get());
+        if (mobeffectinstance == null) {
+            return false;
+        } else {
+            this.raidOmenLevel = this.raidOmenLevel + mobeffectinstance.getAmplifier() + 1;
+            this.raidOmenLevel = Mth.clamp(this.raidOmenLevel, 0, this.getMaxRaidOmenLevel());
+            if (!this.hasFirstWaveSpawned()) {
+                pPlayer.awardStat(Stats.RAID_TRIGGER);
+                CriteriaTriggers.RAID_OMEN.trigger(pPlayer);
+            }
+
+            return true;
+        }
     }
 
+    @Override
     public void stop() {
         this.active = false;
         this.raidEvent.removeAllPlayers();
-        this.status = ModRaid.RaidStatus.STOPPED;
+        this.status = BeastmenRaid.RaidStatus.STOPPED;
     }
 
+    @Override
     public void tick() {
         if (!this.isStopped()) {
-            if (this.status == ModRaid.RaidStatus.ONGOING) {
+            if (this.status == BeastmenRaid.RaidStatus.ONGOING) {
                 boolean flag = this.active;
                 this.active = this.level.hasChunkAt(this.center);
                 if (this.level.getDifficulty() == Difficulty.PEACEFUL) {
@@ -242,7 +175,7 @@ public abstract class ModRaid {
 
                 if (!this.level.isVillage(this.center)) {
                     if (this.groupsSpawned > 0) {
-                        this.status = ModRaid.RaidStatus.LOSS;
+                        this.status = BeastmenRaid.RaidStatus.LOSS;
                     } else {
                         this.stop();
                     }
@@ -331,7 +264,7 @@ public abstract class ModRaid {
                     if (this.postRaidTicks < 40) {
                         this.postRaidTicks++;
                     } else {
-                        this.status = ModRaid.RaidStatus.VICTORY;
+                        this.status = BeastmenRaid.RaidStatus.VICTORY;
 
                         for (UUID uuid : this.heroesOfTheVillage) {
                             Entity entity = this.level.getEntity(uuid);
@@ -371,7 +304,8 @@ public abstract class ModRaid {
         }
     }
 
-    protected void moveRaidCenterToNearbyVillageSection() {
+    @Override
+    public void moveRaidCenterToNearbyVillageSection() {
         Stream<SectionPos> stream = SectionPos.cube(SectionPos.of(this.center), VILLAGE_SEARCH_RADIUS);
         stream.filter(this.level::isVillage)
                 .map(SectionPos::center)
@@ -379,7 +313,8 @@ public abstract class ModRaid {
                 .ifPresent(this::setCenter);
     }
 
-    protected Optional<BlockPos> getValidSpawnPos(int pOffsetMultiplier) {
+    @Override
+    public Optional<BlockPos> getValidSpawnPos(int pOffsetMultiplier) {
         for (int i = 0; i < 3; i++) {
             BlockPos blockpos = this.findRandomSpawnPos(pOffsetMultiplier, 1);
             if (blockpos != null) {
@@ -390,26 +325,32 @@ public abstract class ModRaid {
         return Optional.empty();
     }
 
-    protected boolean hasMoreWaves() {
+    @Override
+    public boolean hasMoreWaves() {
         return this.hasBonusWave() ? !this.hasSpawnedBonusWave() : !this.isFinalWave();
     }
 
-    protected boolean isFinalWave() {
+    @Override
+    public boolean isFinalWave() {
         return this.getGroupsSpawned() == this.numGroups;
     }
 
-    protected boolean hasBonusWave() {
+    @Override
+    public boolean hasBonusWave() {
         return this.raidOmenLevel > 1;
     }
 
-    protected boolean hasSpawnedBonusWave() {
+    @Override
+    public boolean hasSpawnedBonusWave() {
         return this.getGroupsSpawned() > this.numGroups;
     }
 
-    protected boolean shouldSpawnBonusGroup() {
+    @Override
+    public boolean shouldSpawnBonusGroup() {
         return this.isFinalWave() && this.getTotalRaidersAlive() == 0 && this.hasBonusWave();
     }
 
+    @Override
     protected void updateRaiders() {
         Iterator<Set<ModRaider>> iterator = this.groupRaiderMap.values().iterator();
         Set<ModRaider> set = Sets.newHashSet();
@@ -442,6 +383,7 @@ public abstract class ModRaid {
         }
     }
 
+    @Override
     public void playSound(BlockPos pPos) {
         float f = 13.0F;
         int i = 64;
@@ -463,10 +405,57 @@ public abstract class ModRaid {
         }
     }
 
+    @Override
     public void spawnGroup(BlockPos pPos) {
-        return;
+        boolean flag = false;
+        int i = this.groupsSpawned + 1;
+        this.totalHealth = 0.0F;
+        DifficultyInstance difficultyinstance = this.level.getCurrentDifficultyAt(pPos);
+        boolean flag1 = this.shouldSpawnBonusGroup();
+
+        for (BeastmenRaid.RaiderType raid$raidertype : BeastmenRaid.RaiderType.VALUES) {
+            int j = this.getDefaultNumSpawns(raid$raidertype, i, flag1) + this.getPotentialBonusSpawns(raid$raidertype, this.random, i, difficultyinstance, flag1);
+            int k = 0;
+
+            for (int l = 0; l < j; l++) {
+                ModRaider raider = raid$raidertype.entityType.create(this.level);
+                if (raider == null) {
+                    break;
+                }
+
+                if (!flag && raider.canBeLeader()) {
+                    raider.setPatrolLeader(true);
+                    this.setLeader(i, raider);
+                    flag = true;
+                }
+
+                this.joinRaid(i, raider, pPos, false);
+                if (raid$raidertype.entityType == ModEntities.UNGOR.get()) {
+                    ModRaider raider1 = null;
+                    if (i == this.getNumGroups(Difficulty.NORMAL)) {
+                        raider1 = ModEntities.GOR.get().create(this.level);
+                    } else if (i >= this.getNumGroups(Difficulty.HARD)) {
+                        if (k == 0) {
+                            raider1 = ModEntities.BESTIGOR.get().create(this.level);
+                        } else {
+                            raider1 = ModEntities.WARGOR.get().create(this.level);
+                        }
+                    }
+                    k++;
+                    if (raider1 != null) {
+                        this.joinRaid(i, raider1, pPos, false);
+                    }
+                }
+            }
+        }
+
+        this.waveSpawnPos = Optional.empty();
+        this.groupsSpawned++;
+        this.updateBossbar();
+        this.setDirty();
     }
 
+    @Override
     public void joinRaid(int pWave, ModRaider pRaider, @Nullable BlockPos pPos, boolean pIsRecruited) {
         boolean flag = this.addWaveMob(pWave, pRaider);
         if (flag) {
@@ -484,10 +473,12 @@ public abstract class ModRaid {
         }
     }
 
+    @Override
     public void updateBossbar() {
         this.raidEvent.setProgress(Mth.clamp(this.getHealthOfLivingRaiders() / this.totalHealth, 0.0F, 1.0F));
     }
 
+    @Override
     public float getHealthOfLivingRaiders() {
         float f = 0.0F;
 
@@ -500,14 +491,17 @@ public abstract class ModRaid {
         return f;
     }
 
+    @Override
     public boolean shouldSpawnGroup() {
         return this.raidCooldownTicks == 0 && (this.groupsSpawned < this.numGroups || this.shouldSpawnBonusGroup()) && this.getTotalRaidersAlive() == 0;
     }
 
+    @Override
     public int getTotalRaidersAlive() {
         return this.groupRaiderMap.values().stream().mapToInt(Set::size).sum();
     }
 
+    @Override
     public void removeFromRaid(ModRaider pRaider, boolean pWanderedOutOfRaid) {
         Set<ModRaider> set = this.groupRaiderMap.get(pRaider.getWave());
         if (set != null) {
@@ -524,21 +518,25 @@ public abstract class ModRaid {
         }
     }
 
+    @Override
     public boolean isInsideRaid(BlockPos pos) {
         return this.center.distSqr(pos) <= this.radius * this.radius;
     }
 
+    @Override
     public void setDirty() {
         this.level.getRaids().setDirty();
     }
 
+    @Override
     @Nullable
     public ModRaider getLeader(int pWave) {
         return this.groupToLeaderMap.get(pWave);
     }
 
+    @Override
     @Nullable
-    protected BlockPos findRandomSpawnPos(int pOffsetMultiplier, int pMaxTry) {
+    public BlockPos findRandomSpawnPos(int pOffsetMultiplier, int pMaxTry) {
         int i = pOffsetMultiplier == 0 ? 2 : 2 - pOffsetMultiplier;
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
         SpawnPlacementType spawnplacementtype = SpawnPlacements.getPlacementType(EntityType.RAVAGER);
@@ -571,10 +569,12 @@ public abstract class ModRaid {
         return null;
     }
 
-    protected boolean addWaveMob(int pWave, ModRaider pRaider) {
+    @Override
+    public boolean addWaveMob(int pWave, ModRaider pRaider) {
         return this.addWaveMob(pWave, pRaider, true);
     }
 
+    @Override
     public boolean addWaveMob(int pWave, ModRaider pRaider, boolean pIsRecruited) {
         this.groupRaiderMap.computeIfAbsent(pWave, p_37746_ -> Sets.newHashSet());
         Set<ModRaider> set = this.groupRaiderMap.get(pWave);
@@ -602,33 +602,74 @@ public abstract class ModRaid {
         return true;
     }
 
+    @Override
     public void setLeader(int pWave, ModRaider pRaider) {
         this.groupToLeaderMap.put(pWave, pRaider);
     }
 
+    @Override
     public void removeLeader(int pWave) {
         this.groupToLeaderMap.remove(pWave);
     }
 
+    @Override
     public BlockPos getCenter() {
         return this.center;
     }
 
-    public void setCenter(BlockPos p_37761_) {
-        this.center = p_37761_;
+    @Override
+    public void setCenter(BlockPos pos) {
+        this.center = pos;
     }
 
+    @Override
     public int getId() {
         return this.id;
     }
 
+    private int getDefaultNumSpawns(BeastmenRaid.RaiderType pRaiderType, int pWave, boolean pShouldSpawnBonusGroup) {
+        return pShouldSpawnBonusGroup ? pRaiderType.spawnsPerWaveBeforeBonus[this.numGroups] : pRaiderType.spawnsPerWaveBeforeBonus[pWave];
+    }
+
+    private int getPotentialBonusSpawns(BeastmenRaid.RaiderType pRaiderType, RandomSource pRandom, int pWave, DifficultyInstance pDifficulty, boolean pShouldSpawnBonusGroup) {
+        Difficulty difficulty = pDifficulty.getDifficulty();
+        boolean flag = difficulty == Difficulty.EASY;
+        boolean flag1 = difficulty == Difficulty.NORMAL;
+        int i;
+        switch (pRaiderType) {
+            case UNGOR:
+            case GOR:
+                if (flag) {
+                    i = pRandom.nextInt(2);
+                } else if (flag1) {
+                    i = 1;
+                } else {
+                    i = 2;
+                }
+                break;
+            case BESTIGOR:
+            default:
+                return 0;
+            case WARGOR:
+                if (flag || pWave <= 2 || pWave == 4) {
+                    return 0;
+                }
+
+                i = 1;
+                break;
+        }
+
+        return i > 0 ? pRandom.nextInt(i + 1) : 0;
+    }
+
+    @Override
     public boolean isActive() {
         return this.active;
     }
 
+    @Override
     public CompoundTag save(CompoundTag pCompound) {
         pCompound.putInt("Id", this.id);
-        pCompound.putString("RaidType", this.getRaidType());
         pCompound.putBoolean("Started", this.started);
         pCompound.putBoolean("Active", this.active);
         pCompound.putLong("TicksActive", this.ticksActive);
@@ -652,6 +693,7 @@ public abstract class ModRaid {
         return pCompound;
     }
 
+    @Override
     public int getNumGroups(Difficulty pDifficulty) {
         switch (pDifficulty) {
             case EASY:
@@ -665,10 +707,12 @@ public abstract class ModRaid {
         }
     }
 
+    @Override
     public void addHeroOfTheVillage(Entity pPlayer) {
         this.heroesOfTheVillage.add(pPlayer.getUUID());
     }
 
+    @Override
     public void trackRemainingRaiders() {
         for (ModRaider raider : this.getAllRaiders()) {
             if (raider.isAlive()) {
@@ -677,26 +721,29 @@ public abstract class ModRaid {
         }
     }
 
-    enum RaidStatus {
-        ONGOING,
-        VICTORY,
-        LOSS,
-        STOPPED;
+    enum RaiderType implements IExtensibleEnum {
+        UNGOR(ModEntities.UNGOR.get(), new int[]{1, 0, 2, 0, 1, 2, 2, 3}),
+        GOR(ModEntities.GOR.get(), new int[]{0, 1, 0, 0, 0, 1, 1, 2}),
+        BESTIGOR(ModEntities.BESTIGOR.get(), new int[]{0, 0, 0, 0, 2, 2, 2, 2}),
+        WARGOR(ModEntities.WARGOR.get(), new int[]{0, 1, 0, 1, 0, 1, 0, 2});
 
-        public static final RaidStatus[] VALUES = values();
+        static RaiderType[] VALUES = values();
+        final EntityType<? extends ModRaider> entityType;
+        final int[] spawnsPerWaveBeforeBonus;
 
-        static ModRaid.RaidStatus getByName(String pName) {
-            for (ModRaid.RaidStatus raid$raidstatus : VALUES) {
-                if (pName.equalsIgnoreCase(raid$raidstatus.name())) {
-                    return raid$raidstatus;
-                }
-            }
-
-            return ONGOING;
+        RaiderType(final EntityType<? extends ModRaider> pEntityType, final int[] pSpawnsPerWaveBeforeBonus) {
+            this.entityType = pEntityType;
+            this.spawnsPerWaveBeforeBonus = pSpawnsPerWaveBeforeBonus;
         }
 
-        public String getName() {
-            return this.name().toLowerCase(Locale.ROOT);
+        public static RaiderType create(String name, EntityType<? extends ModRaider> typeIn, int[] waveCountsIn) {
+            throw new IllegalStateException("Enum not extended");
+        }
+
+        @Override
+        @Deprecated
+        public void init() {
+            VALUES = values();
         }
     }
 }

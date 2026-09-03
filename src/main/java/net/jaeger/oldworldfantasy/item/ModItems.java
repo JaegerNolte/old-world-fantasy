@@ -68,6 +68,9 @@ public class ModItems {
     public static final RegistryObject<Item> TAINTED_HORN = ITEMS.register("tainted_horn",
             () -> new RaidItem(ModEffects.BEASTMEN_OMEN.getHolder().get()));
 
+    public static final RegistryObject<Item> ORC_WARHORN = ITEMS.register("orc_warhorn",
+            () -> new RaidItem(ModEffects.GREENSKIN_OMEN.getHolder().get()));
+
     // Tools and Weapons
     public static final RegistryObject<Item> RUNE_HARDENED_IRON_SWORD = ITEMS.register("rune_hardened_iron_sword",
             () -> new ModWeaponItem(ModItemTier.RUNE_HARDENED_IRON, WeaponTypes.RUNE_HARDENED_SWORD));

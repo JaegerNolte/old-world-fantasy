@@ -30,11 +30,9 @@ public class RaidItem extends Item {
             serverplayer.awardStat(Stats.ITEM_USED.get(this));
         }
 
-        Holder<MobEffect> effects = this.effect;
-
         if (!level.isClientSide) {
             level.playSound(null, livingEntity.blockPosition(), ModSounds.CHAOS_HORN.get(), livingEntity.getSoundSource(),
-                    1.2F, 0.8F);livingEntity.addEffect(new MobEffectInstance(effects, 120000, 1, false, false, true));
+                    1.2F, 0.8F);livingEntity.addEffect(new MobEffectInstance(this.effect, 120000, 1, false, false, true));
         }
 
         stack.consume(1, livingEntity);

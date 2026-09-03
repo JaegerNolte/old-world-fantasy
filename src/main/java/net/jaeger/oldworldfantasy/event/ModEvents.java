@@ -1,11 +1,14 @@
 package net.jaeger.oldworldfantasy.event;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
-import net.jaeger.oldworldfantasy.effect.ModEffects;
 import net.jaeger.oldworldfantasy.world.raids.ModRaid;
 import net.jaeger.oldworldfantasy.world.raids.ModRaids;
+import net.jaeger.oldworldfantasy.world.raids.RaidTypes;
+import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -36,16 +39,27 @@ public class ModEvents {
             return;
         }
         ServerLevel level = player.serverLevel();
-        if (!player.hasEffect(ModEffects.BEASTMEN_OMEN.getHolder().get())) {
-            return;
-        }
-        ModRaids modRaids = ModRaids.get(level);
-        ModRaid existingRaid = modRaids.getRaidAt(player.blockPosition());
-        if (existingRaid == null) {
-            ModRaid raid = modRaids.createOrExtendRaid(player, player.blockPosition());
+        if (!player.getActiveEffects().isEmpty()) {
 
-            if (raid != null) {
-                player.removeEffect(ModEffects.BEASTMEN_OMEN.getHolder().get());
+            ModRaids modRaids = ModRaids.get(level);
+            ModRaid existingRaid = modRaids.getRaidAt(player.blockPosition());
+
+            if (existingRaid == null) {
+
+                for (MobEffectInstance effectInstance : player.getActiveEffects()) {
+                    Holder<MobEffect> effect = effectInstance.getEffect();
+                    String raidType = RaidTypes.getTypeByOmen(effect);
+
+                    if (raidType != null) {
+
+                        ModRaid raid = modRaids.createOrExtendRaid(player, player.blockPosition(), raidType);
+                        if (raid != null) {
+                            player.removeEffect(effect);
+                        }
+
+                        break;
+                    }
+                }
             }
         }
     }

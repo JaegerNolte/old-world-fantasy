@@ -96,6 +96,7 @@ public class OldWorldFantasyMod {
             event.accept(ModItems.SCRAP);
             event.accept(ModItems.TEEF);
             event.accept(ModItems.TAINTED_HORN);
+            event.accept(ModItems.ORC_WARHORN);
 
             event.accept(ModItems.RUNE_HARDENED_IRON_SWORD);
             event.accept(ModItems.RUNE_HARDENED_IRON_PICKAXE);

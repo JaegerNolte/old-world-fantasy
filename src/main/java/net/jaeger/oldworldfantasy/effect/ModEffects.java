@@ -2,6 +2,7 @@ package net.jaeger.oldworldfantasy.effect;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.effect.omens.BeastmenOmen;
+import net.jaeger.oldworldfantasy.effect.omens.GreenskinOmen;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -16,6 +17,9 @@ public class ModEffects {
 
     public static final RegistryObject<MobEffect> BEASTMEN_OMEN = MOB_EFFECTS.register("beastmen_omen",
             () -> new BeastmenOmen(MobEffectCategory.NEUTRAL, 0x36ebab));
+
+    public static final RegistryObject<MobEffect> GREENSKIN_OMEN = MOB_EFFECTS.register("greenskin_omen",
+            () -> new GreenskinOmen(MobEffectCategory.NEUTRAL, 0x36ebab));
 
     public static void register(IEventBus eventBus) {
         MOB_EFFECTS.register(eventBus);

@@ -3,7 +3,6 @@ package net.jaeger.oldworldfantasy.world.raids;
 import com.google.common.collect.Maps;
 import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -14,7 +13,6 @@ import net.minecraft.util.datafix.DataFixTypes;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiRecord;
 import net.minecraft.world.level.GameRules;
-import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.world.phys.Vec3;
@@ -47,6 +45,17 @@ public class ModRaids extends SavedData {
 
     public ModRaid get(int pId) {
         return this.raidMap.get(pId);
+    }
+
+    private static ModRaid createRaidFromTag(ServerLevel level, CompoundTag tag) {
+        return switch (tag.getString("RaidType")) {
+            case "beastmen" -> new BeastmenRaid(level, tag);
+            case "greenskins" -> new GreenskinRaid(level, tag);
+
+            default -> throw new IllegalArgumentException(
+                    "Unknown raid type: " + tag.getString("RaidType")
+            );
+        };
     }
 
     public void tick() {
@@ -84,7 +93,7 @@ public class ModRaids extends SavedData {
     }
 
     @Nullable
-    public ModRaid createOrExtendRaid(ServerPlayer pPlayer, BlockPos pPos) {
+    public ModRaid createOrExtendRaid(ServerPlayer pPlayer, BlockPos pPos, String raidType) {
         if (pPlayer.isSpectator()) {
             return null;
         } else if (this.level.getGameRules().getBoolean(GameRules.RULE_DISABLE_RAIDS)) {
@@ -120,7 +129,7 @@ public class ModRaids extends SavedData {
                     blockpos1 = pPos;
                 }
 
-                ModRaid raid = this.getOrCreateRaid(pPlayer.serverLevel(), blockpos1);
+                ModRaid raid = this.getOrCreateRaid(pPlayer.serverLevel(), blockpos1, raidType);
                 if (!raid.isStarted() && !this.raidMap.containsKey(raid.getId())) {
                     this.raidMap.put(raid.getId(), raid);
                 }
@@ -135,9 +144,21 @@ public class ModRaids extends SavedData {
         }
     }
 
-    private ModRaid getOrCreateRaid(ServerLevel pServerLevel, BlockPos pPos) {
-        ModRaid raid = this.getRaidAt(pPos);
-        return raid != null ? raid : new ModRaid(this.getUniqueId(), pServerLevel, pPos);
+    private ModRaid getOrCreateRaid(ServerLevel level, BlockPos pos, String raidType) {
+        ModRaid raid = this.getRaidAt(pos);
+
+        if (raid != null) {
+            return raid;
+        }
+
+        return switch (raidType) {
+            case "beastmen" -> new BeastmenRaid(this.getUniqueId(), level, pos);
+            case "greenskins" -> new GreenskinRaid(this.getUniqueId(), level, pos);
+
+            default -> throw new IllegalArgumentException(
+                    "Unknown raid type: " + raidType
+            );
+        };
     }
 
     public static ModRaids get(ServerLevel level) {
@@ -153,7 +174,7 @@ public class ModRaids extends SavedData {
 
         for (int i = 0; i < listtag.size(); i++) {
             CompoundTag compoundtag = listtag.getCompound(i);
-            ModRaid raid = new ModRaid(pLevel, compoundtag);
+            ModRaid raid = createRaidFromTag(pLevel, compoundtag);
             raids.raidMap.put(raid.getId(), raid);
         }
 
@@ -173,10 +194,6 @@ public class ModRaids extends SavedData {
 
         pTag.put("Raids", listtag);
         return pTag;
-    }
-
-    public static String getFileId(Holder<DimensionType> pDimensionTypeHolder) {
-        return pDimensionTypeHolder.is(BuiltinDimensionTypes.END) ? "raids_end" : "raids";
     }
 
     @Nullable
