@@ -9,34 +9,20 @@ public class WeaponType {
     private float bonusAttackReach;
     private float sizeFactor;
     private float weight;
-    private int armorPiercing;
-    private int twoHanded;
-    private float maxBlockDamage;
-    private boolean canBlock;
-    private boolean isHalberd;
 
     public WeaponType() {
 
     }
 
-    public static WeaponType of(float baseAttackDamage, float baseAttackSpeed, float bonusAttackReach, float sizeFactor, float weight, int armorPiercing,
-                                int twoHanded, float maxBlockDamage, boolean canBlock, boolean isHalberd) {
+    public static WeaponType of(float baseAttackDamage, float baseAttackSpeed, float bonusAttackReach, float sizeFactor, float weight) {
         WeaponType type = new WeaponType();
         type.baseAttackDamage = baseAttackDamage;
         type.baseAttackSpeed = baseAttackSpeed;
         type.bonusAttackReach = bonusAttackReach;
         type.sizeFactor = sizeFactor;
         type.weight = weight;
-        type.armorPiercing = armorPiercing;
-        type.twoHanded = twoHanded;
-        type.maxBlockDamage = maxBlockDamage;
-        type.canBlock = canBlock;
-        type.isHalberd = isHalberd;
-        return type;
-    }
 
-    public static WeaponType of(float baseAttackDamage, float baseAttackSpeed, float bonusAttackReach, float sizeFactor, float weight, int armorPiercing) {
-        return of(baseAttackDamage, baseAttackSpeed, bonusAttackReach, sizeFactor, weight, armorPiercing, 0, 0.0f, false, false);
+        return type;
     }
 
     public float getAttackSpeed(ModItemTier material) {
@@ -59,28 +45,8 @@ public class WeaponType {
         return this.weight;
     }
 
-    public int getArmorPiercing() {
-        return this.armorPiercing;
-    }
-
     public float getBonusAttackReach() {
         return this.bonusAttackReach;
-    }
-
-    public int getTwoHanded() {
-        return this.twoHanded;
-    }
-
-    public float getMaxBlockDamage() {
-        return this.maxBlockDamage;
-    }
-
-    public boolean canBlock() {
-        return this.canBlock;
-    }
-
-    public boolean isHalberd() {
-        return this.isHalberd;
     }
 
     public int getDurability(ModItemTier material) {

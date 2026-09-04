@@ -7,14 +7,6 @@
 		"0": "oldworldfantasy:item/imperial_greatsword",
 		"particle": "oldworldfantasy:item/imperial_greatsword"
 	},
-	"overrides": [
-		{
-			"predicate": {
-				"blocking": 1
-			},
-			"model": "oldworldfantasy:item/imperial_greatsword_blocking"
-		}
-	],
 	"elements": [
 		{
 			"name": "imperial_greatsword_0",
@@ -473,6 +465,9 @@
 		}
 	],
 	"gui_light": "front",
+	"overrides": [
+		{"predicate": {"blocking": 1}, "model": "oldworldfantasy:item/imperial_greatsword_blocking"}
+	],
 	"display": {
 		"thirdperson_righthand": {
 			"rotation": [0, -90, 45],
@@ -495,8 +490,8 @@
 			"scale": [1.5, 1.5, 1]
 		},
 		"ground": {
-			"translation": [0, 8.75, 7.75],
-			"scale": [1.5, 1.5, 1]
+			"translation": [0, 2, 3.5],
+			"scale": [0.5, 0.5, 0.5]
 		},
 		"head": {
 			"rotation": [0, 90, 0],

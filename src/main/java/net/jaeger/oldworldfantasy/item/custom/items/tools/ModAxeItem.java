@@ -18,6 +18,6 @@ public class ModAxeItem extends AxeItem {
         this.type = type;
 
         this.attackDamage = CombatUtil.getBaseAttackDamage(material, type);
-        this.attackSpeed = CombatUtil.getBaseAttackDamage(material, type);
+        this.attackSpeed = CombatUtil.getBaseAttackSpeed(material, type);
     }
 }

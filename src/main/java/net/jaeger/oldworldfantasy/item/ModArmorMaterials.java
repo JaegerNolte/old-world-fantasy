@@ -21,12 +21,12 @@ public class ModArmorMaterials {
 
     public static final Holder<ArmorMaterial> IMPERIAL_ARMOR_MATERIAL = register("imperial", Util.make(new EnumMap<>(ArmorItem.Type.class),
             attribute -> {
-                attribute.put(ArmorItem.Type.BOOTS, 5);
-                attribute.put(ArmorItem.Type.LEGGINGS, 7);
-                attribute.put(ArmorItem.Type.CHESTPLATE, 9);
-                attribute.put(ArmorItem.Type.HELMET, 5);
+                attribute.put(ArmorItem.Type.BOOTS, 3);
+                attribute.put(ArmorItem.Type.LEGGINGS, 4);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 8);
+                attribute.put(ArmorItem.Type.HELMET, 3);
                 attribute.put(ArmorItem.Type.BODY, 11);
-            }), 15, 4f, 0.1f, () -> ModItems.STEEL_INGOT.get());
+            }), 15, 1f, 0.1f, () -> ModItems.STEEL_INGOT.get());
 
     private static Holder<ArmorMaterial> register(String name, EnumMap<ArmorItem.Type, Integer> typeProtection,
                                                   int enchantability, float toughness, float knockbackResistance,

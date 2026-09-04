@@ -25,15 +25,7 @@
 
   "tooltip.oldworldfantasy.weight": "Weight: %skg",
   "tooltip.oldworldfantasy.overencumbered": "Overencumbered",
-  "tooltip.oldworldfantasy.halberd.hurt": "Has a chance to push the enemy off the horse",
-  "tooltip.oldworldfantasy.slowmovementspeed": "Slow movement speed",
-  "tooltip.oldworldfantasy.effect.laceration": "Laceration",
-  "tooltip.oldworldfantasy.armorpiercing": "%1$f%% armor piercing",
-  "tooltip.oldworldfantasy.twohandedi": "Two-Handed I",
-  "tooltip.oldworldfantasy.twohandedii": "Two-Handed II",
   "tooltip.oldworldfantasy.maxdamageblock": "%1$f max damage block",
-  "tooltip.oldworldfantasy.twohandedpenalty_1": "Attack speed or/and damage reduced due to ",
-  "tooltip.oldworldfantasy.twohandedpenalty_2": "single-handed use of two-handed weapon",
 
   "sounds.oldworldfantasy.beastmen_roar": "Beastman ambient sounds",
   "sounds.oldworldfantasy.beastmen_walk": "Beastman walk sounds",
