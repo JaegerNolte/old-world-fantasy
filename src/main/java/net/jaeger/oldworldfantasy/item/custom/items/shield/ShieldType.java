@@ -32,14 +32,6 @@ public class ShieldType {
         return (int) (this.baseDurability + this.materialModifier * material.getUses());
     }
 
-    public int getBaseDurability() {
-        return this.baseDurability;
-    }
-
-    public float getMaterialFactor() {
-        return this.materialModifier;
-    }
-
     public float getWeight() {
         return this.weight;
     }

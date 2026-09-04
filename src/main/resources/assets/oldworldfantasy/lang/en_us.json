@@ -12,10 +12,13 @@
   "merchant.title": "%s - %s",
   "merchant.trades": "Trades",
 
+  "event.oldworldfantasy.raid": "",
+  "event.oldworldfantasy.raid.victory.full": "Raid Defeated",
+  "event.oldworldfantasy.raid.defeat.full": "Lost to Raid",
   "event.oldworldfantasy.raid.beastmen": "Brayherd Invasion",
   "event.oldworldfantasy.raid.victory.full.beastmen": "Brayherd Vanquished",
   "event.oldworldfantasy.raid.defeat.full.beastmen": "Rise of the unnatural order",
-  "event.oldworldfantasy.raid.greenskin": "Call to WAAAAAAGH",
+  "event.oldworldfantasy.raid.greenskin": "Call of the WAAAAAAGH",
   "event.oldworldfantasy.raid.victory.full.greenskin": "End of the WAAAAAAGH",
   "event.oldworldfantasy.raid.defeat.full.greenskin": "The unstoppable greentide",
   "event.oldworldfantasy.raid.raiders_remaining": "Raiders Remaining: %s",
@@ -44,7 +47,7 @@
   "sounds.oldworldfantasy.chaos_horn": "Chaos horn sounds",
 
   "effect.oldworldfantasy.beastmen_omen": "Call of the Beastmen",
-  "effect.oldworldfantasy.greenskin_omen": "Call of the WAAAAAAGH",
+  "effect.oldworldfantasy.greenskin_omen": "Da Best",
 
   "item.oldworldfantasy.raw_lead": "Raw Lead",
   "item.oldworldfantasy.lead_ingot": "Lead Ingot",
@@ -59,7 +62,6 @@
   "item.oldworldfantasy.scrap": "Scrap",
   "item.oldworldfantasy.teef": "Teef",
   "item.oldworldfantasy.tainted_horn": "Tainted Horn",
-  "item.oldworldfantasy.orc_warhorn": "Orc War Horn",
 
   "item.oldworldfantasy.rune_hardened_iron_sword": "Rune Hardened Iron Sword",
   "item.oldworldfantasy.rune_hardened_iron_pickaxe": "Rune Hardened Iron Pickaxe",

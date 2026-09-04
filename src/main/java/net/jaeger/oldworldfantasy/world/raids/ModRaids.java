@@ -24,7 +24,7 @@ import java.util.Map;
 
 public class ModRaids extends SavedData {
     private static final String RAID_FILE_ID = "mod_raids";
-    private final Map<Integer, ModRaid> raidMap = Maps.newHashMap();
+    public final Map<Integer, ModRaid> raidMap = Maps.newHashMap();
     private final ServerLevel level;
     private int nextAvailableID;
     private int tick;
@@ -151,13 +151,9 @@ public class ModRaids extends SavedData {
             return raid;
         }
 
-        return switch (raidType) {
-            case "beastmen" -> new BeastmenRaid(this.getUniqueId(), level, pos);
-            case "greenskins" -> new GreenskinRaid(this.getUniqueId(), level, pos);
-
-            default -> throw new IllegalArgumentException(
-                    "Unknown raid type: " + raidType
-            );
+        return switch (RaidTypes.getTag(raidType)) {
+            case BEASTMEN -> new BeastmenRaid(this.getUniqueId(), level, pos);
+            case GREENSKINS -> new GreenskinRaid(this.getUniqueId(), level, pos);
         };
     }
 

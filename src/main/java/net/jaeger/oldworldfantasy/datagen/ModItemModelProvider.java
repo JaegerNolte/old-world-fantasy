@@ -31,7 +31,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.SCRAP.get());
         basicItem(ModItems.TEEF.get());
         basicItem(ModItems.TAINTED_HORN.get());
-        basicItem(ModItems.ORC_WARHORN.get());
 
         basicItem(ModItems.IMPERIAL_HELMET.get());
         basicItem(ModItems.IMPERIAL_CHESTPLATE.get());

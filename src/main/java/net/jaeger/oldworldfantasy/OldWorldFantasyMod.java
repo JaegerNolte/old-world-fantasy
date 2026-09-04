@@ -23,7 +23,6 @@ import net.jaeger.oldworldfantasy.item.ModItems;
 import net.jaeger.oldworldfantasy.loot.ModLootModifiers;
 import net.jaeger.oldworldfantasy.networking.ModNetworking;
 import net.jaeger.oldworldfantasy.sound.ModSounds;
-import net.jaeger.oldworldfantasy.util.ModItemProperties;
 import net.jaeger.oldworldfantasy.world.inventory.ModMenus;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.resources.ResourceLocation;
@@ -96,7 +95,6 @@ public class OldWorldFantasyMod {
             event.accept(ModItems.SCRAP);
             event.accept(ModItems.TEEF);
             event.accept(ModItems.TAINTED_HORN);
-            event.accept(ModItems.ORC_WARHORN);
 
             event.accept(ModItems.RUNE_HARDENED_IRON_SWORD);
             event.accept(ModItems.RUNE_HARDENED_IRON_PICKAXE);
@@ -144,9 +142,6 @@ public class OldWorldFantasyMod {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-
-            ModItemProperties.addCustomItemProperties();
-
             EntityRenderers.register(ModEntities.UNGOR.get(), UngorRenderer::new);
             EntityRenderers.register(ModEntities.GOR.get(), GorRenderer::new);
             EntityRenderers.register(ModEntities.BESTIGOR.get(), BestigorRenderer::new);

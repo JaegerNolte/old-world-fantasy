@@ -154,6 +154,11 @@ public class OrcWarboss extends AbstractGreenskin {
     }
 
     @Override
+    protected void triggerOnDeathMobEffects(RemovalReason pRemovalReason) {
+        super.triggerOnDeathMobEffects(pRemovalReason);
+    }
+
+    @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "movement", 1, state -> {
             if (state.isMoving()) {
@@ -169,8 +174,6 @@ public class OrcWarboss extends AbstractGreenskin {
         controllers.add(new AnimationController<>(this, "attack", 0, state ->
                 PlayState.STOP).setAnimationSpeed(2.00).triggerableAnim(attack, ATTACK_ANIMATION));
     }
-
-
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {

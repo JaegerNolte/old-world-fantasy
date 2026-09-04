@@ -1,18 +1,21 @@
 package net.jaeger.oldworldfantasy.item.custom.items.shield;
 
+import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
 import net.jaeger.oldworldfantasy.client.render.tileentity.ModClientRenderer;
 import net.jaeger.oldworldfantasy.item.ModItemTier;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ShieldItem;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
@@ -54,7 +57,7 @@ public class ModShieldItem extends ShieldItem {
 
     @Override
     public int getUseDuration(ItemStack stack, LivingEntity entity) {
-        return (int) (12000 * this.weight);
+        return (int) (1000 * this.weight);
     }
 
     @Override
@@ -71,15 +74,17 @@ public class ModShieldItem extends ShieldItem {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, Level level, Entity entity, int i, boolean selected) {
-        if (this.getWeight() >= 10 && entity instanceof LivingEntity livingentity && (livingentity.getOffhandItem() == stack || livingentity.getMainHandItem() == stack)) {
-            livingentity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 0, false, false, false));
+    public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int i, boolean selected) {
+        if (this.getWeight() >= 10 && entity instanceof LivingEntity livingentity) {
+            if (livingentity.getOffhandItem() == itemStack || livingentity.getMainHandItem() == itemStack) {
+                livingentity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 35, 0, false, false, false));
+            }
+            super.inventoryTick(itemStack, level, entity, i, selected);
         }
-        super.inventoryTick(stack, level, entity, i, selected);
     }
 
     public void registerModelProperty() {
-        ItemProperties.register(this, ResourceLocation.withDefaultNamespace("blocking"), (itemStack, level, entity, useDur) ->
+        ItemProperties.register(this, OldWorldFantasyMod.res("blocking"), (itemStack, level, entity, uses) ->
                 entity != null && entity.isUsingItem() && entity.getUseItem() == itemStack ? 1.0F : 0.0F
         );
     }

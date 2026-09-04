@@ -1,6 +1,8 @@
 package net.jaeger.oldworldfantasy.event;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasyMod;
+import net.jaeger.oldworldfantasy.effect.ModEffects;
+import net.jaeger.oldworldfantasy.entity.ModEntities;
 import net.jaeger.oldworldfantasy.world.raids.ModRaid;
 import net.jaeger.oldworldfantasy.world.raids.ModRaids;
 import net.jaeger.oldworldfantasy.world.raids.RaidTypes;
@@ -9,7 +11,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -24,6 +28,22 @@ public class ModEvents {
 
         if (event.level instanceof ServerLevel serverLevel) {
             ModRaids.get(serverLevel).tick();
+        }
+    }
+
+    @SubscribeEvent
+    public static void onMobDeath(LivingDeathEvent event) {
+        if (event.getEntity().level().isClientSide) {
+            return;
+        }
+
+        if (event.getEntity().level() instanceof ServerLevel level) {
+            if (event.getSource().getEntity() instanceof Player player && isRaidOngoing(level)) {
+                if (event.getEntity().getType() == ModEntities.ORCWARBOSS.get()) {
+                    player.addEffect(new MobEffectInstance(ModEffects.GREENSKIN_OMEN.getHolder().get()
+                            , 120000, 1, false, false, true));
+                }
+            }
         }
     }
 
@@ -62,5 +82,10 @@ public class ModEvents {
                 }
             }
         }
+    }
+
+    public static boolean isRaidOngoing(ServerLevel level){
+        ModRaids raids = ModRaids.get(level);
+        return raids.raidMap.isEmpty();
     }
 }

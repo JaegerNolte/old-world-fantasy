@@ -63,24 +63,24 @@ public abstract class ModRaid {
     public static final int RAID_REMOVAL_THRESHOLD_SQR = 12544;
     private final Map<Integer, ModRaider> groupToLeaderMap = Maps.newHashMap();
     private final Map<Integer, Set<ModRaider>> groupRaiderMap = Maps.newHashMap();
-    private final Set<UUID> heroesOfTheVillage = Sets.newHashSet();
-    private long ticksActive;
-    private BlockPos center;
-    private final ServerLevel level;
-    private boolean started;
-    private final int id;
-    private float totalHealth;
-    private int raidOmenLevel;
-    private boolean active;
-    private int groupsSpawned;
-    private final ServerBossEvent raidEvent = new ServerBossEvent(RAID_NAME_COMPONENT, BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.NOTCHED_10);
-    private int postRaidTicks;
-    private int raidCooldownTicks;
-    private final RandomSource random = RandomSource.create();
-    private final int numGroups;
-    private ModRaid.RaidStatus status;
+    protected final Set<UUID> heroesOfTheVillage = Sets.newHashSet();
+    protected long ticksActive;
+    protected BlockPos center;
+    public ServerLevel level;
+    protected boolean started;
+    protected int id;
+    protected float totalHealth;
+    protected int raidOmenLevel;
+    protected boolean active;
+    protected int groupsSpawned;
+    protected final ServerBossEvent raidEvent = new ServerBossEvent(getRaidNameComponent(), BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.NOTCHED_10);
+    protected int postRaidTicks;
+    protected int raidCooldownTicks;
+    protected RandomSource random = RandomSource.create();
+    protected int numGroups;
+    protected RaidStatus status;
     private int celebrationTicks;
-    private Optional<BlockPos> waveSpawnPos = Optional.empty();
+    protected Optional<BlockPos> waveSpawnPos = Optional.empty();
     private float radius = 3.00f;
 
     public ModRaid(int pId, ServerLevel pLevel, BlockPos pCenter) {
@@ -117,6 +117,18 @@ public abstract class ModRaid {
     }
 
     public abstract String getRaidType();
+
+    protected Component getRaidNameComponent() {
+        return RAID_NAME_COMPONENT;
+    }
+
+    protected Component getRaidBarVictoryComponent() {
+        return RAID_BAR_VICTORY_COMPONENT;
+    }
+
+    protected Component getRaidBarDefeatComponent() {
+        return RAID_BAR_DEFEAT_COMPONENT;
+    }
 
     public boolean isOver() {
         return this.isVictory() || this.isLoss();
@@ -219,7 +231,7 @@ public abstract class ModRaid {
 
     public void tick() {
         if (!this.isStopped()) {
-            if (this.status == ModRaid.RaidStatus.ONGOING) {
+            if (this.status == RaidStatus.ONGOING) {
                 boolean flag = this.active;
                 this.active = this.level.hasChunkAt(this.center);
                 if (this.level.getDifficulty() == Difficulty.PEACEFUL) {
@@ -242,7 +254,7 @@ public abstract class ModRaid {
 
                 if (!this.level.isVillage(this.center)) {
                     if (this.groupsSpawned > 0) {
-                        this.status = ModRaid.RaidStatus.LOSS;
+                        this.status = RaidStatus.LOSS;
                     } else {
                         this.stop();
                     }
@@ -259,6 +271,7 @@ public abstract class ModRaid {
                     if (this.raidCooldownTicks <= 0) {
                         if (this.raidCooldownTicks == 0 && this.groupsSpawned > 0) {
                             this.raidCooldownTicks = 300;
+                            OldWorldFantasyMod.LOG.info("RESETTING COOLDOWN from {} to 300", this.raidCooldownTicks);
                             this.raidEvent.setName(RAID_NAME_COMPONENT);
                             return;
                         }
@@ -296,12 +309,12 @@ public abstract class ModRaid {
                         if (i <= 2) {
                             this.trackRemainingRaiders();
                             this.raidEvent
-                                    .setName(RAID_NAME_COMPONENT.copy().append(" - ").append(Component.translatable("event.oldworldfantasy.raid.raiders_remaining", i)));
+                                    .setName(this.getRaidNameComponent().copy().append(" - ").append(Component.translatable("event.oldworldfantasy.raid.raiders_remaining", i)));
                         } else {
-                            this.raidEvent.setName(RAID_NAME_COMPONENT);
+                            this.raidEvent.setName(this.getRaidNameComponent());
                         }
                     } else {
-                        this.raidEvent.setName(RAID_NAME_COMPONENT);
+                        this.raidEvent.setName(this.getRaidNameComponent());
                     }
                 }
 
@@ -331,7 +344,7 @@ public abstract class ModRaid {
                     if (this.postRaidTicks < 40) {
                         this.postRaidTicks++;
                     } else {
-                        this.status = ModRaid.RaidStatus.VICTORY;
+                        this.status = RaidStatus.VICTORY;
 
                         for (UUID uuid : this.heroesOfTheVillage) {
                             Entity entity = this.level.getEntity(uuid);
@@ -362,16 +375,16 @@ public abstract class ModRaid {
                     this.raidEvent.setVisible(true);
                     if (this.isVictory()) {
                         this.raidEvent.setProgress(0.0F);
-                        this.raidEvent.setName(RAID_BAR_VICTORY_COMPONENT);
+                        this.raidEvent.setName(getRaidBarVictoryComponent());
                     } else {
-                        this.raidEvent.setName(RAID_BAR_DEFEAT_COMPONENT);
+                        this.raidEvent.setName(getRaidBarDefeatComponent());
                     }
                 }
             }
         }
     }
 
-    protected void moveRaidCenterToNearbyVillageSection() {
+    public void moveRaidCenterToNearbyVillageSection() {
         Stream<SectionPos> stream = SectionPos.cube(SectionPos.of(this.center), VILLAGE_SEARCH_RADIUS);
         stream.filter(this.level::isVillage)
                 .map(SectionPos::center)
@@ -379,7 +392,7 @@ public abstract class ModRaid {
                 .ifPresent(this::setCenter);
     }
 
-    protected Optional<BlockPos> getValidSpawnPos(int pOffsetMultiplier) {
+    public Optional<BlockPos> getValidSpawnPos(int pOffsetMultiplier) {
         for (int i = 0; i < 3; i++) {
             BlockPos blockpos = this.findRandomSpawnPos(pOffsetMultiplier, 1);
             if (blockpos != null) {
@@ -390,27 +403,27 @@ public abstract class ModRaid {
         return Optional.empty();
     }
 
-    protected boolean hasMoreWaves() {
+    public boolean hasMoreWaves() {
         return this.hasBonusWave() ? !this.hasSpawnedBonusWave() : !this.isFinalWave();
     }
 
-    protected boolean isFinalWave() {
+    public boolean isFinalWave() {
         return this.getGroupsSpawned() == this.numGroups;
     }
 
-    protected boolean hasBonusWave() {
+    public boolean hasBonusWave() {
         return this.raidOmenLevel > 1;
     }
 
-    protected boolean hasSpawnedBonusWave() {
+    public boolean hasSpawnedBonusWave() {
         return this.getGroupsSpawned() > this.numGroups;
     }
 
-    protected boolean shouldSpawnBonusGroup() {
+    public boolean shouldSpawnBonusGroup() {
         return this.isFinalWave() && this.getTotalRaidersAlive() == 0 && this.hasBonusWave();
     }
 
-    protected void updateRaiders() {
+    public void updateRaiders() {
         Iterator<Set<ModRaider>> iterator = this.groupRaiderMap.values().iterator();
         Set<ModRaider> set = Sets.newHashSet();
 
@@ -463,11 +476,9 @@ public abstract class ModRaid {
         }
     }
 
-    public void spawnGroup(BlockPos pPos) {
-        return;
-    }
+    public abstract void spawnGroup(BlockPos pPos);
 
-    public void joinRaid(int pWave, ModRaider pRaider, @Nullable BlockPos pPos, boolean pIsRecruited) {
+    public void joinRaid(int pWave, ModRaider pRaider, BlockPos pPos, boolean pIsRecruited) {
         boolean flag = this.addWaveMob(pWave, pRaider);
         if (flag) {
             pRaider.setCurrentRaid(this);
@@ -538,7 +549,7 @@ public abstract class ModRaid {
     }
 
     @Nullable
-    protected BlockPos findRandomSpawnPos(int pOffsetMultiplier, int pMaxTry) {
+    public BlockPos findRandomSpawnPos(int pOffsetMultiplier, int pMaxTry) {
         int i = pOffsetMultiplier == 0 ? 2 : 2 - pOffsetMultiplier;
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
         SpawnPlacementType spawnplacementtype = SpawnPlacements.getPlacementType(EntityType.RAVAGER);
@@ -571,7 +582,7 @@ public abstract class ModRaid {
         return null;
     }
 
-    protected boolean addWaveMob(int pWave, ModRaider pRaider) {
+    public boolean addWaveMob(int pWave, ModRaider pRaider) {
         return this.addWaveMob(pWave, pRaider, true);
     }
 
@@ -628,7 +639,6 @@ public abstract class ModRaid {
 
     public CompoundTag save(CompoundTag pCompound) {
         pCompound.putInt("Id", this.id);
-        pCompound.putString("RaidType", this.getRaidType());
         pCompound.putBoolean("Started", this.started);
         pCompound.putBoolean("Active", this.active);
         pCompound.putLong("TicksActive", this.ticksActive);
@@ -639,6 +649,7 @@ public abstract class ModRaid {
         pCompound.putFloat("TotalHealth", this.totalHealth);
         pCompound.putInt("NumGroups", this.numGroups);
         pCompound.putString("Status", this.status.getName());
+        pCompound.putString("RaidType", this.getRaidType());
         pCompound.putInt("CX", this.center.getX());
         pCompound.putInt("CY", this.center.getY());
         pCompound.putInt("CZ", this.center.getZ());
@@ -683,12 +694,12 @@ public abstract class ModRaid {
         LOSS,
         STOPPED;
 
-        public static final RaidStatus[] VALUES = values();
+        private static final RaidStatus[] VALUES = values();
 
-        static ModRaid.RaidStatus getByName(String pName) {
-            for (ModRaid.RaidStatus raid$raidstatus : VALUES) {
-                if (pName.equalsIgnoreCase(raid$raidstatus.name())) {
-                    return raid$raidstatus;
+        static RaidStatus getByName(String pName) {
+            for (RaidStatus raidstatus : VALUES) {
+                if (pName.equalsIgnoreCase(raidstatus.name())) {
+                    return raidstatus;
                 }
             }
 

@@ -5,6 +5,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 
 public enum RaidTypes {
 
@@ -12,16 +13,16 @@ public enum RaidTypes {
     GREENSKINS("greenskins", ModEffects.GREENSKIN_OMEN.getHolder().get());
 //    EMPIRE("empire",ModEffects.BEASTMEN_OMEN.getHolder().get());
 
-    private final String type;
+    private final String name;
     private final Holder<MobEffect> omen;
 
-    RaidTypes(String type, Holder<MobEffect> omen) {
-        this.type = type;
+    RaidTypes(String name, Holder<MobEffect> omen) {
+        this.name = name;
         this.omen = omen;
     }
 
     public String getType() {
-        return this.type;
+        return this.name;
     }
 
     public Holder<MobEffect> getOmen() {
@@ -37,5 +38,12 @@ public enum RaidTypes {
         }
 
         return null;
+    }
+
+    public static RaidTypes getTag(String value) {
+        return Arrays.stream(RaidTypes.values())
+                .filter(types -> types.getType().equalsIgnoreCase(value))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Unknown value: " + value));
     }
 }
