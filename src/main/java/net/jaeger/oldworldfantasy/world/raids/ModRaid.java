@@ -9,7 +9,6 @@ import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.SectionPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
@@ -271,7 +270,6 @@ public abstract class ModRaid {
                     if (this.raidCooldownTicks <= 0) {
                         if (this.raidCooldownTicks == 0 && this.groupsSpawned > 0) {
                             this.raidCooldownTicks = 300;
-                            OldWorldFantasyMod.LOG.info("RESETTING COOLDOWN from {} to 300", this.raidCooldownTicks);
                             this.raidEvent.setName(RAID_NAME_COMPONENT);
                             return;
                         }
@@ -307,9 +305,9 @@ public abstract class ModRaid {
                     this.updateRaiders();
                     if (i > 0) {
                         if (i <= 2) {
-                            this.trackRemainingRaiders();
+//                            this.trackRemainingRaiders();
                             this.raidEvent
-                                    .setName(this.getRaidNameComponent().copy().append(" - ").append(Component.translatable("event.oldworldfantasy.raid.raiders_remaining", i)));
+                                    .setName(this.getRaidNameComponent().copy().append(" - ").append(Component.translatable(RAIDERS_REMAINING, i)));
                         } else {
                             this.raidEvent.setName(this.getRaidNameComponent());
                         }
@@ -637,31 +635,7 @@ public abstract class ModRaid {
         return this.active;
     }
 
-    public CompoundTag save(CompoundTag pCompound) {
-        pCompound.putInt("Id", this.id);
-        pCompound.putBoolean("Started", this.started);
-        pCompound.putBoolean("Active", this.active);
-        pCompound.putLong("TicksActive", this.ticksActive);
-        pCompound.putInt("BadOmenLevel", this.raidOmenLevel);
-        pCompound.putInt("GroupsSpawned", this.groupsSpawned);
-        pCompound.putInt("PreRaidTicks", this.raidCooldownTicks);
-        pCompound.putInt("PostRaidTicks", this.postRaidTicks);
-        pCompound.putFloat("TotalHealth", this.totalHealth);
-        pCompound.putInt("NumGroups", this.numGroups);
-        pCompound.putString("Status", this.status.getName());
-        pCompound.putString("RaidType", this.getRaidType());
-        pCompound.putInt("CX", this.center.getX());
-        pCompound.putInt("CY", this.center.getY());
-        pCompound.putInt("CZ", this.center.getZ());
-        ListTag listtag = new ListTag();
-
-        for (UUID uuid : this.heroesOfTheVillage) {
-            listtag.add(NbtUtils.createUUID(uuid));
-        }
-
-        pCompound.put("HeroesOfTheVillage", listtag);
-        return pCompound;
-    }
+    public abstract CompoundTag save(CompoundTag pCompound);
 
     public int getNumGroups(Difficulty pDifficulty) {
         switch (pDifficulty) {
@@ -680,13 +654,13 @@ public abstract class ModRaid {
         this.heroesOfTheVillage.add(pPlayer.getUUID());
     }
 
-    public void trackRemainingRaiders() {
-        for (ModRaider raider : this.getAllRaiders()) {
-            if (raider.isAlive()) {
-                raider.addEffect(new MobEffectInstance(MobEffects.GLOWING, 12000, 0, false, false));
-            }
-        }
-    }
+//    public void trackRemainingRaiders() {
+//        for (ModRaider raider : this.getAllRaiders()) {
+//            if (raider.isAlive()) {
+//                raider.addEffect(new MobEffectInstance(MobEffects.GLOWING, 12000, 0, false, false));
+//            }
+//        }
+//    }
 
     enum RaidStatus {
         ONGOING,
