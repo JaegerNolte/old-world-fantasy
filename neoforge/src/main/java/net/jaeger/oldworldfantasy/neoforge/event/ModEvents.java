@@ -15,7 +15,6 @@ public class ModEvents {
 
     @SubscribeEvent
     public static void onLevelTick(LevelTickEvent.Post event) {
-
         if (event.getLevel() instanceof ServerLevel serverLevel) {
             ModCommonEvents.onLevelTick(serverLevel);
         }

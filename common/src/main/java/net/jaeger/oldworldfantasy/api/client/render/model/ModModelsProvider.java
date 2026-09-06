@@ -2,6 +2,7 @@ package net.jaeger.oldworldfantasy.api.client.render.model;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.jaeger.oldworldfantasy.OldWorldFantasy;
 import net.jaeger.oldworldfantasy.client.model.item.shield.ModShieldModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -34,8 +35,8 @@ public abstract class ModModelsProvider {
         return location;
     }
 
-    public ModelLayerLocation createLocation(String name) {
-        return new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MOD_ID, name), "main");
+    public static ModelLayerLocation createLocation(String name) {
+        return new ModelLayerLocation(OldWorldFantasy.res(name), "main");
     }
 
     public ModelLayerLocation getModel(Item item) {

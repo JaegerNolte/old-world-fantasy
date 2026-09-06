@@ -8,15 +8,11 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.world.item.trading.MerchantOffers;
 
 
-
 public record MerchantOfferPacket(int containerId, MerchantOffers offers, int level, int xp, boolean showProgress, boolean canRestock) implements CustomPacketPayload {
 
     public static final Type<MerchantOfferPacket> TYPE = new Type<>(OldWorldFantasy.res("merchant_offers"));
 
-    public static final StreamCodec<
-            RegistryFriendlyByteBuf,
-            MerchantOfferPacket
-            > STREAM_CODEC = StreamCodec.composite(
+    public static final StreamCodec<RegistryFriendlyByteBuf, MerchantOfferPacket> STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.VAR_INT,
             MerchantOfferPacket::containerId,
 

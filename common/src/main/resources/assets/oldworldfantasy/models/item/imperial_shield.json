@@ -44,7 +44,7 @@
     "overrides": [
         {
             "predicate": {
-                "blocking": 1
+                "oldworldfantasy:blocking": 1
             },
             "model": "oldworldfantasy:item/imperial_shield_blocking"
         }
