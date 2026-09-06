@@ -1,0 +1,62 @@
+{
+  "beastmen_roar": {
+    "subtitle": "sounds.oldworldfantasy.beastmen_roar",
+    "sounds": [
+      "oldworldfantasy:beastmen_roar"
+    ]
+  },
+  "beastmen_walk": {
+    "subtitle": "sounds.oldworldfantasy.beastmen_walk",
+    "sounds": [
+      "oldworldfantasy:beastmen_walk"
+    ]
+  },
+  "beastmen_hurt": {
+    "subtitle": "sounds.oldworldfantasy.beastmen_hurt",
+    "sounds": [
+      "oldworldfantasy:beastmen_hurt"
+    ]
+  },
+  "beastmen_death": {
+    "subtitle": "sounds.oldworldfantasy.beastmen_death",
+    "sounds": [
+      "oldworldfantasy:beastmen_death"
+    ]
+  },
+   "human_ambient": {
+     "subtitle": "sounds.oldworldfantasy.human_ambient",
+     "sounds": [
+       "oldworldfantasy:human_ambient_male"
+     ]
+   },
+   "human_hurt": {
+     "subtitle": "sounds.oldworldfantasy.human_hurt",
+     "sounds": [
+       "oldworldfantasy:human_hurt"
+     ]
+   },
+   "human_death": {
+     "subtitle": "sounds.oldworldfantasy.human_death",
+     "sounds": [
+       "oldworldfantasy:human_death"
+     ]
+   },
+    "human_angry": {
+      "subtitle": "sounds.oldworldfantasy.human_angry",
+      "sounds": [
+        "oldworldfantasy:human_angry"
+      ]
+    },
+    "human_satisfied": {
+       "subtitle": "sounds.oldworldfantasy.human_satisfied",
+       "sounds": [
+        "oldworldfantasy:human_satisfied"
+      ]
+    },
+   "chaos_horn": {
+     "subtitle": "sounds.oldworldfantasy.chaos_horn",
+     "sounds": [
+       "oldworldfantasy:chaos_horn"
+     ]
+   }
+}

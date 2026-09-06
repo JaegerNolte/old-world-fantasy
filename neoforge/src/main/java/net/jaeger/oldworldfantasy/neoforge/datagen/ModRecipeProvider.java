@@ -1,0 +1,307 @@
+package net.jaeger.oldworldfantasy.neoforge.datagen;
+
+
+import net.jaeger.oldworldfantasy.OldWorldFantasy;
+import net.jaeger.oldworldfantasy.block.ModBlocks;
+import net.jaeger.oldworldfantasy.item.ModItems;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.recipes.*;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.ItemLike;
+import net.neoforged.neoforge.common.conditions.IConditionBuilder;
+
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
+public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
+
+    private List<ItemLike> LEAD_SMELTABLES = List.of(ModItems.RAW_LEAD.get(), ModBlocks.LEAD_ORE.get(), ModBlocks.DEEPSLATE_LEAD_ORE.get());
+
+    public ModRecipeProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pRegistries) {
+        super(pOutput, pRegistries);
+    }
+
+    @Override
+    protected void buildRecipes(RecipeOutput pRecipeOutput) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.LEAD_BLOCK.get())
+            .pattern("lll")
+            .pattern("lll")
+            .pattern("lll")
+            .define('l', ModItems.LEAD_INGOT.get())
+            .unlockedBy("has_lead_ingot", has(ModItems.LEAD_INGOT.get()))
+            .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STEEL_BLOCK.get())
+                .pattern("sss")
+                .pattern("sss")
+                .pattern("sss")
+                .define('s', ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAW_LEAD_BLOCK.get())
+                .pattern("lll")
+                .pattern("lll")
+                .pattern("lll")
+                .define('l', ModItems.RAW_LEAD.get())
+                .unlockedBy("has_raw_lead", has(ModItems.RAW_LEAD.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ARCANE_COAL_BLOCK.get())
+                .pattern("AAA")
+                .pattern("AAA")
+                .pattern("AAA")
+                .define('A', ModItems.ARCANE_COAL.get())
+                .unlockedBy("has_arcane_coal", has(ModItems.ARCANE_COAL.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.LEAD_INGOT.get())
+                .pattern("lll")
+                .pattern("lll")
+                .pattern("lll")
+                .define('l', ModItems.LEAD_NUGGET.get())
+                .unlockedBy("has_lead_nugget", has(ModItems.LEAD_NUGGET.get()))
+                .save(pRecipeOutput, OldWorldFantasy.MOD_ID + ":lead_ingot_from_nuggets");
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_INGOT.get())
+                .pattern("sss")
+                .pattern("sss")
+                .pattern("sss")
+                .define('s', ModItems.STEEL_NUGGET.get())
+                .unlockedBy("has_steel_nugget", has(ModItems.STEEL_NUGGET.get()))
+                .save(pRecipeOutput, OldWorldFantasy.MOD_ID + ":steel_ingot_from_nuggets");
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.RUNE_HARDEN_IRON_INGOT.get(), 2)
+                .pattern("iA ")
+                .pattern("Ai ")
+                .define('A', ModItems.ARCANE_COAL.get())
+                .define('i', Items.IRON_INGOT)
+                .unlockedBy("has_arcane_coal", has(ModItems.ARCANE_COAL.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 2)
+                .pattern("sC ")
+                .pattern("Cs ")
+                .define('C', Items.COAL)
+                .define('s', Items.IRON_INGOT)
+                .unlockedBy("has_coal", has(Items.COAL))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.HILT.get())
+                .pattern("sl ")
+                .define('s', Items.STICK)
+                .define('l', ModItems.LEATHER_STRAP.get())
+                .unlockedBy("has_leather_strap", has(ModItems.LEATHER_STRAP.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.POLE.get())
+                .pattern(" h ")
+                .pattern("s  ")
+                .define('s', Items.STICK)
+                .define('h', ModItems.HILT.get())
+                .unlockedBy("has_hilt", has(ModItems.HILT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.RUNE_HARDENED_IRON_SWORD.get())
+                .pattern(" r ")
+                .pattern(" r ")
+                .pattern(" s ")
+                .define('r', ModItems.RUNE_HARDEN_IRON_INGOT.get())
+                .define('s', Items.STICK)
+                .unlockedBy("has_rune_hardened_iron", has(ModItems.RUNE_HARDEN_IRON_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.RUNE_HARDENED_IRON_PICKAXE.get())
+                .pattern("rrr")
+                .pattern(" s ")
+                .pattern(" s ")
+                .define('r', ModItems.RUNE_HARDEN_IRON_INGOT.get())
+                .define('s', Items.STICK)
+                .unlockedBy("has_rune_hardened_iron", has(ModItems.RUNE_HARDEN_IRON_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.RUNE_HARDENED_IRON_SHOVEL.get())
+                .pattern(" r ")
+                .pattern(" s ")
+                .pattern(" s ")
+                .define('r', ModItems.RUNE_HARDEN_IRON_INGOT.get())
+                .define('s', Items.STICK)
+                .unlockedBy("has_rune_hardened_iron", has(ModItems.RUNE_HARDEN_IRON_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.RUNE_HARDENED_IRON_AXE.get())
+                .pattern("rr ")
+                .pattern("rs ")
+                .pattern(" s ")
+                .define('r', ModItems.RUNE_HARDEN_IRON_INGOT.get())
+                .define('s', Items.STICK)
+                .unlockedBy("has_rune_hardened_iron", has(ModItems.RUNE_HARDEN_IRON_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.RUNE_HARDENED_IRON_HOE.get())
+                .pattern("rr ")
+                .pattern(" s ")
+                .pattern(" s ")
+                .define('r', ModItems.RUNE_HARDEN_IRON_INGOT.get())
+                .define('s', Items.STICK)
+                .unlockedBy("has_rune_hardened_iron", has(ModItems.RUNE_HARDEN_IRON_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IMPERIAL_SWORD.get())
+                .pattern(" s ")
+                .pattern(" s ")
+                .pattern(" h ")
+                .define('s', ModItems.STEEL_INGOT.get())
+                .define('h', ModItems.HILT.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IMPERIAL_GREATSWORD.get())
+                .pattern(" s ")
+                .pattern(" s ")
+                .pattern(" p ")
+                .define('s', ModItems.STEEL_INGOT.get())
+                .define('p', ModItems.POLE.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IMPERIAL_PIKE.get())
+                .pattern(" S ")
+                .pattern(" s ")
+                .pattern(" p ")
+                .define('S', ModItems.STEEL_INGOT.get())
+                .define('s', Items.STICK)
+                .define('p', ModItems.POLE.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IMPERIAL_HALBERD.get())
+                .pattern("SS ")
+                .pattern("Ss ")
+                .pattern(" p ")
+                .define('S', ModItems.STEEL_INGOT.get())
+                .define('s', Items.STICK)
+                .define('p', ModItems.POLE.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.CHOPPA_SWORD.get())
+                .pattern(" s ")
+                .pattern(" s ")
+                .pattern(" b ")
+                .define('s', ModItems.SCRAP.get())
+                .define('b', Items.BONE)
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.CHOPPA_AXE.get())
+                .pattern("ss ")
+                .pattern("sb ")
+                .pattern(" b ")
+                .define('s', ModItems.SCRAP.get())
+                .define('b', Items.BONE)
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
+                .save(pRecipeOutput);
+
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IMPERIAL_HELMET.get())
+                .pattern("sss")
+                .pattern("s s")
+                .define('s', ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IMPERIAL_CHESTPLATE.get())
+                .pattern("s s")
+                .pattern("sss")
+                .pattern("sss")
+                .define('s', ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IMPERIAL_LEGGINGS.get())
+                .pattern("sss")
+                .pattern("s s")
+                .pattern("s s")
+                .define('s', ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IMPERIAL_BOOTS.get())
+                .pattern("s s")
+                .pattern("s s")
+                .define('s', ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IMPERIAL_SHIELD.get())
+                .pattern(" ss")
+                .pattern("sls")
+                .pattern("sss")
+                .define('s', ModItems.STEEL_INGOT.get())
+                .define('l', Items.LEATHER)
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_INGOT.get()))
+                .save(pRecipeOutput);
+
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.LEAD_INGOT.get(), 9)
+                .requires(ModBlocks.LEAD_BLOCK.get())
+                .unlockedBy("has_lead_block", has(ModBlocks.LEAD_BLOCK.get()))
+                .save(pRecipeOutput, OldWorldFantasy.MOD_ID + ":lead_ingot_from_lead_block");
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 9)
+                .requires(ModBlocks.STEEL_BLOCK.get())
+                .unlockedBy("has_steel_block", has(ModBlocks.STEEL_BLOCK.get()))
+                .save(pRecipeOutput, OldWorldFantasy.MOD_ID + ":steel_ingot_from_steel_block");
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.LEAD_NUGGET.get(), 9)
+                .requires(ModItems.LEAD_INGOT.get())
+                .unlockedBy("has_lead_ingot", has(ModItems.LEAD_NUGGET.get()))
+                .save(pRecipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.STEEL_NUGGET.get(), 9)
+                .requires(ModItems.STEEL_INGOT.get())
+                .unlockedBy("has_steel_ingot", has(ModItems.STEEL_NUGGET.get()))
+                .save(pRecipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.RAW_LEAD.get(), 9)
+                .requires(ModBlocks.RAW_LEAD_BLOCK.get())
+                .unlockedBy("has_raw_lead_block", has(ModBlocks.RAW_LEAD_BLOCK.get()))
+                .save(pRecipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.ARCANE_COAL.get(), 9)
+                .requires(ModBlocks.ARCANE_COAL_BLOCK.get())
+                .unlockedBy("has_arcane_coal_block", has(ModBlocks.ARCANE_COAL_BLOCK.get()))
+                .save(pRecipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.LEATHER_STRAP.get(), 6)
+                .requires(Items.LEATHER, 2)
+                .unlockedBy("has_leather", has(Items.LEATHER))
+                .save(pRecipeOutput);
+
+        oreSmelting(pRecipeOutput, LEAD_SMELTABLES, RecipeCategory.MISC, ModItems.LEAD_INGOT.get(), 0.25f, 200, "lead");
+        oreBlasting(pRecipeOutput, LEAD_SMELTABLES, RecipeCategory.MISC, ModItems.LEAD_INGOT.get(), 0.25f, 100, "lead");
+    }
+
+    protected static void oreSmelting(RecipeOutput recipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,
+                                      float pExperience, int pCookingTIme, String pGroup) {
+        oreCooking(recipeOutput, RecipeSerializer.SMELTING_RECIPE, SmeltingRecipe::new, pIngredients, pCategory, pResult,
+                pExperience, pCookingTIme, pGroup, "_from_smelting");
+    }
+
+    protected static void oreBlasting(RecipeOutput recipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,
+                                      float pExperience, int pCookingTime, String pGroup) {
+        oreCooking(recipeOutput, RecipeSerializer.BLASTING_RECIPE, BlastingRecipe::new, pIngredients, pCategory, pResult,
+                pExperience, pCookingTime, pGroup, "_from_blasting");
+    }
+
+    protected static <T extends AbstractCookingRecipe> void oreCooking(RecipeOutput recipeOutput, RecipeSerializer<T> pCookingSerializer, AbstractCookingRecipe.Factory<T> factory,
+                                                                       List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTime, String pGroup, String pRecipeName) {
+        for(ItemLike itemlike : pIngredients) {
+            SimpleCookingRecipeBuilder.generic(Ingredient.of(itemlike), pCategory, pResult, pExperience, pCookingTime, pCookingSerializer, factory).group(pGroup).unlockedBy(getHasName(itemlike), has(itemlike))
+                    .save(recipeOutput, OldWorldFantasy.MOD_ID + ":" + getItemName(pResult) + pRecipeName + "_" + getItemName(itemlike));
+        }
+    }
+}

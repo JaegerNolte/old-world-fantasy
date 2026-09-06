@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "oldworldfantasy:ungor",
+    "oldworldfantasy:gor",
+    "oldworldfantasy:bestigor",
+    "oldworldfantasy:wargor"
+  ]
+}

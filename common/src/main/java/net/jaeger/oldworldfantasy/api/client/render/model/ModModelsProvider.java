@@ -1,0 +1,53 @@
+package net.jaeger.oldworldfantasy.api.client.render.model;
+
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.jaeger.oldworldfantasy.client.model.item.shield.ModShieldModel;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.function.Supplier;
+
+@Environment(EnvType.CLIENT)
+public abstract class ModModelsProvider {
+
+    public final String MOD_ID;
+    public final Map<ModelLayerLocation, Supplier<LayerDefinition>> layers = new HashMap<>();
+    public final Map<ModelLayerLocation, Function<ModelPart, ? extends ModShieldModel>> modelFactories = new HashMap<>();
+
+    protected ModModelsProvider(String modId) {
+        this.MOD_ID = modId;
+    }
+
+    public ModelLayerLocation addShieldModel(String name, Supplier<LayerDefinition> definition, Function<ModelPart, ? extends ModShieldModel> modelFactory) {
+        ModelLayerLocation location = createLocation(name);
+
+        layers.put(location, definition);
+        modelFactories.put(location, modelFactory);
+        return location;
+    }
+
+    public ModelLayerLocation createLocation(String name) {
+        return new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MOD_ID, name), "main");
+    }
+
+    public ModelLayerLocation getModel(Item item) {
+        ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(item);
+        if (!MOD_ID.equals(itemId.getNamespace())) {
+            return null;
+        }
+        ModelLayerLocation location = createLocation(itemId.getPath());
+        return modelFactories.containsKey(location) ? location : null;
+    }
+
+    public Function<ModelPart, ? extends ModShieldModel> getModelFactory(ModelLayerLocation location) {
+        return modelFactories.get(location);
+    }
+}

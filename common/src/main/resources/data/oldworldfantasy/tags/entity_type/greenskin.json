@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "oldworldfantasy:goblin",
+    "oldworldfantasy:orc",
+    "oldworldfantasy:biguns",
+    "oldworldfantasy:orcwarboss"
+  ]
+}

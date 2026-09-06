@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "h": {
+      "item": "oldworldfantasy:hilt"
+    },
+    "s": {
+      "item": "oldworldfantasy:steel_ingot"
+    }
+  },
+  "pattern": [
+    " s ",
+    " s ",
+    " h "
+  ],
+  "result": {
+    "count": 1,
+    "id": "oldworldfantasy:imperial_sword"
+  }
+}

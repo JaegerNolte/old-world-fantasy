@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "r": {
+      "item": "oldworldfantasy:rune_hardened_iron_ingot"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " r ",
+    " r ",
+    " s "
+  ],
+  "result": {
+    "count": 1,
+    "id": "oldworldfantasy:rune_hardened_iron_sword"
+  }
+}

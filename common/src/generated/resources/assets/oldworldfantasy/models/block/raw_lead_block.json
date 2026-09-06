@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "oldworldfantasy:block/raw_lead_block"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "b": {
+      "item": "minecraft:bone"
+    },
+    "s": {
+      "item": "oldworldfantasy:scrap"
+    }
+  },
+  "pattern": [
+    "ss ",
+    "sb ",
+    " b "
+  ],
+  "result": {
+    "count": 1,
+    "id": "oldworldfantasy:choppa_axe"
+  }
+}

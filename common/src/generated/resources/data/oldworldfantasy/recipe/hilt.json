@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "l": {
+      "item": "oldworldfantasy:leather_strap"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "sl "
+  ],
+  "result": {
+    "count": 1,
+    "id": "oldworldfantasy:hilt"
+  }
+}

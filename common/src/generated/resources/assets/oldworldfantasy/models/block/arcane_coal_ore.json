@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "oldworldfantasy:block/arcane_coal_ore"
+  }
+}
