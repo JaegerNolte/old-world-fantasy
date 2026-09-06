@@ -3,11 +3,11 @@ package net.jaeger.oldworldfantasy.client.render.tileentity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 
-public final class ModClientRenderer {
+public class ModClientRenderer {
 
-    private static BlockEntityWithoutLevelRenderer renderer;
+    protected static BlockEntityWithoutLevelRenderer renderer;
 
-    public static BlockEntityWithoutLevelRenderer get() {
+    public static BlockEntityWithoutLevelRenderer getModelRender() {
         if (renderer == null) {
             renderer = new ModBlockEntityWithoutLevelRenderer(
                     Minecraft.getInstance().getBlockEntityRenderDispatcher(),

@@ -465,9 +465,6 @@
 		}
 	],
 	"gui_light": "front",
-	"overrides": [
-		{"predicate": {"blocking": 1}, "model": "oldworldfantasy:item/imperial_greatsword_blocking"}
-	],
 	"display": {
 		"thirdperson_righthand": {
 			"rotation": [0, -90, 45],
