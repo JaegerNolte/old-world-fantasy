@@ -15,6 +15,8 @@ import net.jaeger.oldworldfantasy.entity.mobs.human.empire.captain.EmpireCaptain
 import net.jaeger.oldworldfantasy.entity.mobs.human.empire.crossbowmen.EmpireCrossbowmen;
 import net.jaeger.oldworldfantasy.entity.mobs.human.empire.spearmen.EmpireSpearmen;
 import net.jaeger.oldworldfantasy.entity.mobs.human.empire.swordsmen.EmpireSwordsmen;
+import net.jaeger.oldworldfantasy.entity.mobs.monsters.giants.AbstractGiant;
+import net.jaeger.oldworldfantasy.entity.mobs.monsters.giants.giant.Giant;
 import net.jaeger.oldworldfantasy.entity.mobs.monsters.trolls.AbstractTroll;
 import net.jaeger.oldworldfantasy.entity.mobs.monsters.trolls.stone.StoneTroll;
 import net.minecraft.world.entity.SpawnPlacementTypes;
@@ -46,11 +48,14 @@ public class ModEventBusEvents {
         event.put(ModEntities.EMPIRE_ARCH_LECTOR.get(), EmpireArchLector.createAttributes().build());
 
         event.put(ModEntities.STONE_TROLL.get(), StoneTroll.createAttributes().build());
+        event.put(ModEntities.GIANT.get(), Giant.createAttributes().build());
     }
 
     @SubscribeEvent
     public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
         event.register(ModEntities.STONE_TROLL.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 AbstractTroll::checkTrollSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        event.register(ModEntities.GIANT.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                AbstractGiant::checkGiantSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
     }
 }

@@ -22,6 +22,7 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_ARCANE_COAL_ORE = registerKey("add_arcane_coal_ore");
 
     public static final ResourceKey<BiomeModifier> SPAWN_STONE_TROLL = registerKey("spawn_stone_troll");
+    public static final ResourceKey<BiomeModifier> SPAWN_GIANT = registerKey("spawn_giant");
 
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
@@ -43,6 +44,10 @@ public class ModBiomeModifiers {
         context.register(SPAWN_STONE_TROLL, new BiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
                 List.of(new MobSpawnSettings.SpawnerData(ModEntities.STONE_TROLL.get(), 20, 1, 1))
+        ));
+        context.register(SPAWN_GIANT, new BiomeModifiers.AddSpawnsBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                List.of(new MobSpawnSettings.SpawnerData(ModEntities.GIANT.get(), 10, 1, 1))
         ));
     }
 

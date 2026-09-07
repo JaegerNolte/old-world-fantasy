@@ -1,21 +1,21 @@
 package net.jaeger.oldworldfantasy.entity.ai.goals;
 
-import net.jaeger.oldworldfantasy.entity.mobs.monsters.trolls.AbstractTroll;
+import net.jaeger.oldworldfantasy.entity.mobs.monsters.giants.AbstractGiant;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 
-public class TrollAttackGoal extends MeleeAttackGoal {
+public class GiantAttackGoal extends MeleeAttackGoal {
 
-    private final AbstractTroll troll;
+    private final AbstractGiant giant;
     private final String rawAnimation;
     private int attackDelay = 20;
     private int ticksUntilNextAttack = 40;
     private boolean shouldCountToNextAttack = false;
 
-    public TrollAttackGoal(AbstractTroll troll, double pSpeedModifier, boolean pFollowingTargetEvenIfNotSeen, String rawAnimation) {
-        super(troll, pSpeedModifier, pFollowingTargetEvenIfNotSeen);
-        this.troll = troll;
+    public GiantAttackGoal(AbstractGiant giant, double pSpeedModifier, boolean pFollowingTargetEvenIfNotSeen, String rawAnimation) {
+        super(giant, pSpeedModifier, pFollowingTargetEvenIfNotSeen);
+        this.giant = giant;
         this.rawAnimation = rawAnimation;
     }
 
@@ -32,24 +32,24 @@ public class TrollAttackGoal extends MeleeAttackGoal {
             shouldCountToNextAttack = true;
 
             if (isTimeToStartAttackAnimation()) {
-                this.troll.triggerAnim("attack", rawAnimation); // time animation
-                troll.setAggressive(true);
+                this.giant.triggerAnim("attack", rawAnimation); // time animation
+                giant.setAggressive(true);
             }
 
             if (isTimeToAttack()) {
-                this.troll.getLookControl().setLookAt(pTarget.getX(), pTarget.getY(), pTarget.getZ());
+                this.giant.getLookControl().setLookAt(pTarget.getX(), pTarget.getY(), pTarget.getZ());
                 performAttack(pTarget);
             }
         } else {
             resetAttackCooldown();
             shouldCountToNextAttack = false;
-            troll.setAggressive(false);
-            troll.attackAnim = 0;
+            giant.setAggressive(false);
+            giant.attackAnim = 0;
         }
     }
 
     private boolean isEnemyWithinAttackDistance(LivingEntity pTarget){
-        return this.troll.distanceTo(pTarget) <= 2.5f;
+        return this.giant.distanceTo(pTarget) <= 3.5f;
     }
 
     protected void resetAttackCooldown() {
@@ -66,8 +66,8 @@ public class TrollAttackGoal extends MeleeAttackGoal {
 
     protected void performAttack(LivingEntity pTarget) {
         this.resetAttackCooldown();
-        this.troll.swing(InteractionHand.MAIN_HAND);
-        this.troll.doHurtTarget(pTarget);
+        this.giant.swing(InteractionHand.MAIN_HAND);
+        this.giant.doHurtTarget(pTarget);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class TrollAttackGoal extends MeleeAttackGoal {
 
     @Override
     public void stop() {
-        this.troll.setAggressive(false);
+        this.giant.setAggressive(false);
         super.stop();
     }
 }
