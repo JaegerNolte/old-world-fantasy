@@ -172,7 +172,7 @@ public class GreenskinRaid extends ModRaid {
                 i = 2;
             }
 
-        } else if (pRaiderType == RaiderTypes.ORCWARBOSS) {
+        } else if (pRaiderType == RaiderTypes.BIGUNS) {
 
             if (flag || pWave <= 2 || pWave == 4) {
                 return 0;

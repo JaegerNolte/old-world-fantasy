@@ -167,6 +167,9 @@ public class ModItems {
     public static final RegistrySupplier<Item> EMPIRE_ARCH_LECTOR_SPAWN_EGG = ITEMS.register("empire_arch_lector_spawn_egg",
             () -> new SpawnEggItem(ModEntities.EMPIRE_ARCH_LECTOR.get(), 0x8f7772, 0xffc1c2, new Item.Properties()));
 
+    public static final RegistrySupplier<Item> STONE_TROLL_SPAWN_EGG = ITEMS.register("stone_troll_spawn_egg",
+            () -> new SpawnEggItem(ModEntities.STONE_TROLL.get(), 0x436276, 0x709cb7, new Item.Properties()));
+
     public static void init() {
         ITEMS.register();
     }

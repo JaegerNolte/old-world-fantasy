@@ -1,7 +1,5 @@
 package net.jaeger.oldworldfantasy.api.client.render.model;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.jaeger.oldworldfantasy.OldWorldFantasy;
 import net.jaeger.oldworldfantasy.client.model.item.shield.ModShieldModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -16,7 +14,6 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-@Environment(EnvType.CLIENT)
 public abstract class ModModelsProvider {
 
     public final String MOD_ID;

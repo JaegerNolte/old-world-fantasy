@@ -15,9 +15,14 @@ import net.jaeger.oldworldfantasy.entity.mobs.human.empire.captain.EmpireCaptain
 import net.jaeger.oldworldfantasy.entity.mobs.human.empire.crossbowmen.EmpireCrossbowmen;
 import net.jaeger.oldworldfantasy.entity.mobs.human.empire.spearmen.EmpireSpearmen;
 import net.jaeger.oldworldfantasy.entity.mobs.human.empire.swordsmen.EmpireSwordsmen;
+import net.jaeger.oldworldfantasy.entity.mobs.monsters.trolls.AbstractTroll;
+import net.jaeger.oldworldfantasy.entity.mobs.monsters.trolls.stone.StoneTroll;
+import net.minecraft.world.entity.SpawnPlacementTypes;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 
 @EventBusSubscriber(modid = OldWorldFantasy.MOD_ID,  bus = EventBusSubscriber.Bus.MOD)
 public class ModEventBusEvents {
@@ -39,5 +44,13 @@ public class ModEventBusEvents {
         event.put(ModEntities.EMPIRE_CROSSBOWMEN.get(), EmpireCrossbowmen.createAttributes().build());
         event.put(ModEntities.EMPIRE_CAPTAIN.get(), EmpireCaptain.createAttributes().build());
         event.put(ModEntities.EMPIRE_ARCH_LECTOR.get(), EmpireArchLector.createAttributes().build());
+
+        event.put(ModEntities.STONE_TROLL.get(), StoneTroll.createAttributes().build());
+    }
+
+    @SubscribeEvent
+    public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
+        event.register(ModEntities.STONE_TROLL.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                AbstractTroll::checkTrollSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
     }
 }

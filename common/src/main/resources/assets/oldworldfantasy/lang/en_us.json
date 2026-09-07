@@ -90,6 +90,7 @@
   "item.oldworldfantasy.empire_crossbowmen_spawn_egg": "Empire Crossbowmen Spawn Egg",
   "item.oldworldfantasy.empire_captain_spawn_egg": "Empire Captain Spawn Egg",
   "item.oldworldfantasy.empire_arch_lector_spawn_egg": "Empire Arch Lector Spawn Egg",
+  "item.oldworldfantasy.stone_troll_spawn_egg": "Stone Troll Spawn Egg",
 
   "block.oldworldfantasy.lead_block": "Block of Lead",
   "block.oldworldfantasy.steel_block": "Block of Steel",
@@ -113,5 +114,6 @@
   "entity.oldworldfantasy.empire_spearmen": "Empire Spearmen",
   "entity.oldworldfantasy.empire_crossbowmen": "Empire Crossbowmen",
   "entity.oldworldfantasy.empire_captain": "Empire Captain",
-  "entity.oldworldfantasy.empire_arch_lector": "Empire Arch Lector"
+  "entity.oldworldfantasy.empire_arch_lector": "Empire Arch Lector",
+  "entity.oldworldfantasy.stone_troll": "Stone Troll"
 }

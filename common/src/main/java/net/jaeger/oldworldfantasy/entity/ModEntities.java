@@ -16,6 +16,7 @@ import net.jaeger.oldworldfantasy.entity.mobs.human.empire.captain.EmpireCaptain
 import net.jaeger.oldworldfantasy.entity.mobs.human.empire.crossbowmen.EmpireCrossbowmen;
 import net.jaeger.oldworldfantasy.entity.mobs.human.empire.spearmen.EmpireSpearmen;
 import net.jaeger.oldworldfantasy.entity.mobs.human.empire.swordsmen.EmpireSwordsmen;
+import net.jaeger.oldworldfantasy.entity.mobs.monsters.trolls.stone.StoneTroll;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -78,6 +79,9 @@ public class ModEntities {
             ENTITY_TYPES.register("empire_arch_lector", () -> EntityType.Builder.of(EmpireArchLector::new, MobCategory.MONSTER)
                     .sized(1f, 2f).build("empire_arch_lector"));
 
+    public static final RegistrySupplier<EntityType<StoneTroll>> STONE_TROLL =
+            ENTITY_TYPES.register("stone_troll", () -> EntityType.Builder.of(StoneTroll::new, MobCategory.MONSTER)
+                    .sized(2f, 4f).build("stone_troll"));
 
     public static void init() {
         ENTITY_TYPES.register();

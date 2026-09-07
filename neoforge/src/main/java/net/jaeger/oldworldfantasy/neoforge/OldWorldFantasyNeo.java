@@ -2,19 +2,20 @@ package net.jaeger.oldworldfantasy.neoforge;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasy;
 import net.jaeger.oldworldfantasy.entity.ModEntities;
-import net.jaeger.oldworldfantasy.entity.client.beastmen.bestigor.BestigorRenderer;
-import net.jaeger.oldworldfantasy.entity.client.beastmen.gor.GorRenderer;
-import net.jaeger.oldworldfantasy.entity.client.beastmen.ungor.UngorRenderer;
-import net.jaeger.oldworldfantasy.entity.client.beastmen.wargor.WargorRenderer;
-import net.jaeger.oldworldfantasy.entity.client.greenskin.biguns.BigUnsRenderer;
-import net.jaeger.oldworldfantasy.entity.client.greenskin.goblin.GoblinRenderer;
-import net.jaeger.oldworldfantasy.entity.client.greenskin.orc.OrcRenderer;
-import net.jaeger.oldworldfantasy.entity.client.greenskin.warboss.OrcWarbossRenderer;
-import net.jaeger.oldworldfantasy.entity.client.human.archlector.EmpireArchLectorRenderer;
-import net.jaeger.oldworldfantasy.entity.client.human.captain.EmpireCaptainRenderer;
-import net.jaeger.oldworldfantasy.entity.client.human.crossbowmen.EmpireCrossbowmenRenderer;
-import net.jaeger.oldworldfantasy.entity.client.human.spearmen.EmpireSpearmenRenderer;
-import net.jaeger.oldworldfantasy.entity.client.human.swordsmen.EmpireSwordsmenRenderer;
+import net.jaeger.oldworldfantasy.entity.mobs.beastmen.bestigor.client.BestigorRenderer;
+import net.jaeger.oldworldfantasy.entity.mobs.beastmen.gor.client.GorRenderer;
+import net.jaeger.oldworldfantasy.entity.mobs.beastmen.ungor.client.UngorRenderer;
+import net.jaeger.oldworldfantasy.entity.mobs.beastmen.wargor.client.WargorRenderer;
+import net.jaeger.oldworldfantasy.entity.mobs.greenskin.biguns.client.BigUnsRenderer;
+import net.jaeger.oldworldfantasy.entity.mobs.greenskin.goblin.client.GoblinRenderer;
+import net.jaeger.oldworldfantasy.entity.mobs.greenskin.orc.client.OrcRenderer;
+import net.jaeger.oldworldfantasy.entity.mobs.greenskin.warboss.client.OrcWarbossRenderer;
+import net.jaeger.oldworldfantasy.entity.mobs.human.empire.archlector.client.EmpireArchLectorRenderer;
+import net.jaeger.oldworldfantasy.entity.mobs.human.empire.captain.client.EmpireCaptainRenderer;
+import net.jaeger.oldworldfantasy.entity.mobs.human.empire.crossbowmen.client.EmpireCrossbowmenRenderer;
+import net.jaeger.oldworldfantasy.entity.mobs.human.empire.spearmen.client.EmpireSpearmenRenderer;
+import net.jaeger.oldworldfantasy.entity.mobs.human.empire.swordsmen.client.EmpireSwordsmenRenderer;
+import net.jaeger.oldworldfantasy.entity.mobs.monsters.trolls.stone.client.StoneTrollRenderer;
 import net.jaeger.oldworldfantasy.neoforge.datagen.DataGenerators;
 import net.jaeger.oldworldfantasy.networking.ModNetworking;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -66,6 +67,7 @@ public final class OldWorldFantasyNeo {
             EntityRenderers.register(ModEntities.EMPIRE_CROSSBOWMEN.get(), EmpireCrossbowmenRenderer::new);
             EntityRenderers.register(ModEntities.EMPIRE_CAPTAIN.get(), EmpireCaptainRenderer::new);
             EntityRenderers.register(ModEntities.EMPIRE_ARCH_LECTOR.get(), EmpireArchLectorRenderer::new);
+            EntityRenderers.register(ModEntities.STONE_TROLL.get(), StoneTrollRenderer::new);
         }
     }
 }

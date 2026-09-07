@@ -20,7 +20,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 
-@Environment(EnvType.CLIENT)
+
 public class ModMerchantScreen extends AbstractContainerScreen<ModMerchantMenu> {
     private static final ResourceLocation OUT_OF_STOCK_SPRITE = OldWorldFantasy.res("container/villager/out_of_stock");
     private static final ResourceLocation EXPERIENCE_BAR_BACKGROUND_SPRITE = OldWorldFantasy.res("container/villager/experience_bar_background");

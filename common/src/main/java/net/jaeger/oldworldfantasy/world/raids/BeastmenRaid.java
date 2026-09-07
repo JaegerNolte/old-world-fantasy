@@ -172,7 +172,7 @@ public class BeastmenRaid extends ModRaid {
                 i = 2;
             }
 
-        } else if (pRaiderType == RaiderTypes.WARGOR) {
+        } else if (pRaiderType == RaiderTypes.BESTIGOR) {
 
             if (flag || pWave <= 2 || pWave == 4) {
                 return 0;

@@ -73,7 +73,7 @@ public abstract class AbstractGreenskin extends ModRaider {
     protected ResourceKey<LootTable> getDefaultLootTable() {
         return ResourceKey.create(
                 Registries.LOOT_TABLE,
-                OldWorldFantasy.res("entities/greenskins")
+                OldWorldFantasy.res("entities/greenskin")
         );
     }
 

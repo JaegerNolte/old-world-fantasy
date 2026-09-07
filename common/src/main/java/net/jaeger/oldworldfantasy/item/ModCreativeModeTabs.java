@@ -68,6 +68,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.EMPIRE_CROSSBOWMEN_SPAWN_EGG.get());
                         output.accept(ModItems.EMPIRE_CAPTAIN_SPAWN_EGG.get());
                         output.accept(ModItems.EMPIRE_ARCH_LECTOR_SPAWN_EGG.get());
+                        output.accept(ModItems.STONE_TROLL_SPAWN_EGG.get());
 
                         output.accept(ModBlocks.LEAD_BLOCK.get());
                         output.accept(ModBlocks.RAW_LEAD_BLOCK.get());

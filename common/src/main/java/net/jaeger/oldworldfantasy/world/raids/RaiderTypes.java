@@ -15,6 +15,7 @@ public class RaiderTypes {
     public static final RaiderType ORC = RaiderType.create("orc", ModEntities.ORC.get(), new int[]{0, 1, 0, 0, 0, 1, 1, 2});
     public static final RaiderType BIGUNS = RaiderType.create("biguns", ModEntities.BIGUNS.get(), new int[]{0, 0, 0, 0, 2, 2, 2, 2});
     public static final RaiderType ORCWARBOSS = RaiderType.create("orcwarboss", ModEntities.ORCWARBOSS.get(), new int[]{0, 1, 0, 1, 0, 1, 0, 2});
+    public static final RaiderType STONE_TROLL = RaiderType.create("orcwarboss", ModEntities.STONE_TROLL.get(), new int[]{0, 0, 0, 1, 1, 0, 2, 2});
 
     public static final Map<String, RaiderType> BEASTMEN = Map.ofEntries(
             Map.entry("ungor", UNGOR),
@@ -27,6 +28,7 @@ public class RaiderTypes {
             Map.entry("goblin", GOBLIN),
             Map.entry("orc", ORC),
             Map.entry("biguns", BIGUNS),
-            Map.entry("orcwarboss", ORCWARBOSS)
+            Map.entry("orcwarboss", ORCWARBOSS),
+            Map.entry("stone_troll", STONE_TROLL)
     );
 }
