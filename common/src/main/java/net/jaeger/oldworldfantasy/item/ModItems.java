@@ -173,6 +173,9 @@ public class ModItems {
     public static final RegistrySupplier<Item> GIANT_SPAWN_EGG = ITEMS.register("giant_spawn_egg",
             () -> new SpawnEggItem(ModEntities.GIANT.get(), 0x624d41, 0xc6aaa3, new Item.Properties()));
 
+    public static final RegistrySupplier<Item> GRIFFON_SPAWN_EGG = ITEMS.register("griffon_spawn_egg",
+            () -> new SpawnEggItem(ModEntities.GRIFFON.get(), 0x624d41, 0xc6aaa3, new Item.Properties()));
+
     public static void init() {
         ITEMS.register();
     }

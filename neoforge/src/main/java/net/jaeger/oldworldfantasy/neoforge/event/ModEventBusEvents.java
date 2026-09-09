@@ -17,6 +17,8 @@ import net.jaeger.oldworldfantasy.entity.mobs.human.empire.spearmen.EmpireSpearm
 import net.jaeger.oldworldfantasy.entity.mobs.human.empire.swordsmen.EmpireSwordsmen;
 import net.jaeger.oldworldfantasy.entity.mobs.monsters.giants.AbstractGiant;
 import net.jaeger.oldworldfantasy.entity.mobs.monsters.giants.giant.Giant;
+import net.jaeger.oldworldfantasy.entity.mobs.monsters.griffons.AbstractGriffon;
+import net.jaeger.oldworldfantasy.entity.mobs.monsters.griffons.griffon.Griffon;
 import net.jaeger.oldworldfantasy.entity.mobs.monsters.trolls.AbstractTroll;
 import net.jaeger.oldworldfantasy.entity.mobs.monsters.trolls.stone.StoneTroll;
 import net.minecraft.world.entity.SpawnPlacementTypes;
@@ -26,6 +28,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 
+@SuppressWarnings("removal")
 @EventBusSubscriber(modid = OldWorldFantasy.MOD_ID,  bus = EventBusSubscriber.Bus.MOD)
 public class ModEventBusEvents {
 
@@ -49,6 +52,7 @@ public class ModEventBusEvents {
 
         event.put(ModEntities.STONE_TROLL.get(), StoneTroll.createAttributes().build());
         event.put(ModEntities.GIANT.get(), Giant.createAttributes().build());
+        event.put(ModEntities.GRIFFON.get(), Griffon.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -57,5 +61,7 @@ public class ModEventBusEvents {
                 AbstractTroll::checkTrollSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(ModEntities.GIANT.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 AbstractGiant::checkGiantSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        event.register(ModEntities.GRIFFON.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                AbstractGriffon::checkGriffonSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
     }
 }

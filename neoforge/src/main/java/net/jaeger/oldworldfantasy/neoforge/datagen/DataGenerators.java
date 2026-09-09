@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+@SuppressWarnings("removal")
 @EventBusSubscriber(modid = OldWorldFantasy.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
 

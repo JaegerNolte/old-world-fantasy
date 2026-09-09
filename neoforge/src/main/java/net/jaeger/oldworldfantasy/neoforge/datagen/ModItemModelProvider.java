@@ -55,6 +55,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent(ModItems.EMPIRE_ARCH_LECTOR_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.STONE_TROLL_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.GIANT_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+        withExistingParent(ModItems.GRIFFON_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
     }
 
     private ItemModelBuilder handHeldItem(RegistrySupplier<Item> item) {

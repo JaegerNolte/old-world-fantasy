@@ -17,6 +17,7 @@ import net.jaeger.oldworldfantasy.entity.mobs.human.empire.crossbowmen.EmpireCro
 import net.jaeger.oldworldfantasy.entity.mobs.human.empire.spearmen.EmpireSpearmen;
 import net.jaeger.oldworldfantasy.entity.mobs.human.empire.swordsmen.EmpireSwordsmen;
 import net.jaeger.oldworldfantasy.entity.mobs.monsters.giants.giant.Giant;
+import net.jaeger.oldworldfantasy.entity.mobs.monsters.griffons.griffon.Griffon;
 import net.jaeger.oldworldfantasy.entity.mobs.monsters.trolls.stone.StoneTroll;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
@@ -86,7 +87,11 @@ public class ModEntities {
 
     public static final RegistrySupplier<EntityType<Giant>> GIANT =
             ENTITY_TYPES.register("giant", () -> EntityType.Builder.of(Giant::new, MobCategory.MONSTER)
-                    .sized(2f, 7f).build("stone_troll"));
+                    .sized(2f, 7f).build("giant"));
+
+    public static final RegistrySupplier<EntityType<Griffon>> GRIFFON =
+            ENTITY_TYPES.register("griffon", () -> EntityType.Builder.of(Griffon::new, MobCategory.MONSTER)
+                    .sized(2f, 3.5f).build("griffon"));
 
     public static void init() {
         ENTITY_TYPES.register();

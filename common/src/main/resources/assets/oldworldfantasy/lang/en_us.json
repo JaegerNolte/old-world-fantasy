@@ -76,7 +76,6 @@
 
   "item.oldworldfantasy.red_wine": "Red Wine",
 
-  "item.oldworldfantasy.nurgling_spawn_egg": "Nurgling Spawn Egg",
   "item.oldworldfantasy.ungor_spawn_egg": "Ungor Spawn Egg",
   "item.oldworldfantasy.gor_spawn_egg": "Gor Spawn Egg",
   "item.oldworldfantasy.bestigor_spawn_egg": "Bestigor Spawn Egg",
@@ -92,6 +91,7 @@
   "item.oldworldfantasy.empire_arch_lector_spawn_egg": "Empire Arch Lector Spawn Egg",
   "item.oldworldfantasy.stone_troll_spawn_egg": "Stone Troll Spawn Egg",
   "item.oldworldfantasy.giant_spawn_egg": "Giant Spawn Egg",
+  "item.oldworldfantasy.griffon_spawn_egg": "Griffon Spawn Egg",
 
   "block.oldworldfantasy.lead_block": "Block of Lead",
   "block.oldworldfantasy.steel_block": "Block of Steel",
@@ -102,7 +102,6 @@
   "block.oldworldfantasy.arcane_coal_ore": "Block of Arcane Coal Ore",
   "block.oldworldfantasy.deepslate_arcane_coal_ore": "Block of Deepslate Arcane Coal Ore",
 
-  "entity.oldworldfantasy.nurgling": "Nurgling",
   "entity.oldworldfantasy.ungor": "Ungor",
   "entity.oldworldfantasy.gor": "Gor",
   "entity.oldworldfantasy.bestigor": "Bestigor",
@@ -117,5 +116,6 @@
   "entity.oldworldfantasy.empire_captain": "Empire Captain",
   "entity.oldworldfantasy.empire_arch_lector": "Empire Arch Lector",
   "entity.oldworldfantasy.stone_troll": "Stone Troll",
-  "entity.oldworldfantasy.giant": "Giant"
+  "entity.oldworldfantasy.giant": "Giant",
+  "entity.oldworldfantasy.griffon": "Griffon"
 }

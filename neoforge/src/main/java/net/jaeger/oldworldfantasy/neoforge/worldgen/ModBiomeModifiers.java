@@ -8,6 +8,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BiomeTags;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.neoforged.neoforge.common.world.BiomeModifier;
@@ -23,6 +24,7 @@ public class ModBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> SPAWN_STONE_TROLL = registerKey("spawn_stone_troll");
     public static final ResourceKey<BiomeModifier> SPAWN_GIANT = registerKey("spawn_giant");
+    public static final ResourceKey<BiomeModifier> SPAWN_GRIFFON = registerKey("spawn_griffon");
 
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
@@ -40,14 +42,22 @@ public class ModBiomeModifiers {
                 HolderSet.direct(placedFeature.getOrThrow(ModPlacedFeatures.ARCANE_COAL_ORE_PLACED_KEY)),
                 GenerationStep.Decoration.UNDERGROUND_ORES
         ));
-
         context.register(SPAWN_STONE_TROLL, new BiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
                 List.of(new MobSpawnSettings.SpawnerData(ModEntities.STONE_TROLL.get(), 20, 1, 1))
         ));
         context.register(SPAWN_GIANT, new BiomeModifiers.AddSpawnsBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.PLAINS),
+                        biomes.getOrThrow(Biomes.FOREST),
+                        biomes.getOrThrow(Biomes.WINDSWEPT_GRAVELLY_HILLS),
+                        biomes.getOrThrow(Biomes.WINDSWEPT_HILLS)
+                ),
+                List.of(new MobSpawnSettings.SpawnerData(ModEntities.GIANT.get(), 3, 1, 1))
+        ));
+        context.register(SPAWN_GRIFFON, new BiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-                List.of(new MobSpawnSettings.SpawnerData(ModEntities.GIANT.get(), 10, 1, 1))
+                List.of(new MobSpawnSettings.SpawnerData(ModEntities.GRIFFON.get(), 25, 1, 1))
         ));
     }
 

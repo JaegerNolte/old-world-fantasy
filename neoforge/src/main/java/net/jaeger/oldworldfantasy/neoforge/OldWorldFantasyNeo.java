@@ -16,6 +16,7 @@ import net.jaeger.oldworldfantasy.entity.mobs.human.empire.crossbowmen.client.Em
 import net.jaeger.oldworldfantasy.entity.mobs.human.empire.spearmen.client.EmpireSpearmenRenderer;
 import net.jaeger.oldworldfantasy.entity.mobs.human.empire.swordsmen.client.EmpireSwordsmenRenderer;
 import net.jaeger.oldworldfantasy.entity.mobs.monsters.giants.giant.client.GiantRenderer;
+import net.jaeger.oldworldfantasy.entity.mobs.monsters.griffons.griffon.client.GriffonRenderer;
 import net.jaeger.oldworldfantasy.entity.mobs.monsters.trolls.stone.client.StoneTrollRenderer;
 import net.jaeger.oldworldfantasy.neoforge.datagen.DataGenerators;
 import net.jaeger.oldworldfantasy.networking.ModNetworking;
@@ -51,6 +52,7 @@ public final class OldWorldFantasyNeo {
 
     }
 
+    @SuppressWarnings("removal")
     @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
@@ -70,6 +72,7 @@ public final class OldWorldFantasyNeo {
             EntityRenderers.register(ModEntities.EMPIRE_ARCH_LECTOR.get(), EmpireArchLectorRenderer::new);
             EntityRenderers.register(ModEntities.STONE_TROLL.get(), StoneTrollRenderer::new);
             EntityRenderers.register(ModEntities.GIANT.get(), GiantRenderer::new);
+            EntityRenderers.register(ModEntities.GRIFFON.get(), GriffonRenderer::new);
         }
     }
 }

@@ -13,6 +13,7 @@ public class ModEntityTags {
     public static final TagKey<EntityType<?>> EMPIRE = create("empire");
     public static final TagKey<EntityType<?>> TROLL = create("troll");
     public static final TagKey<EntityType<?>> GIANT = create("giant");
+    public static final TagKey<EntityType<?>> GRIFFON = create("griffon");
 
     private static TagKey<EntityType<?>> create(String name) {
         return TagKey.create(Registries.ENTITY_TYPE, OldWorldFantasy.res(name));
