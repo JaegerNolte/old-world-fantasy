@@ -3,7 +3,7 @@ package net.jaeger.oldworldfantasy.entity.mobs.monsters.griffons;
 import dev.architectury.registry.menu.MenuRegistry;
 import net.jaeger.oldworldfantasy.OldWorldFantasy;
 import net.jaeger.oldworldfantasy.entity.ModEntityTags;
-import net.jaeger.oldworldfantasy.entity.mobs.ModRaider;
+import net.jaeger.oldworldfantasy.entity.util.FlyingMount;
 import net.jaeger.oldworldfantasy.world.inventory.saddle.AbstractGriffonMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -20,12 +20,13 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.OldUsersConverter;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.*;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.DismountHelper;
@@ -34,38 +35,41 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.AnimatableManager;
 
 import java.util.Optional;
 import java.util.UUID;
 
-public class AbstractGriffon extends ModRaider implements ContainerListener, HasCustomInventoryScreen, OwnableEntity, Saddleable {
+public class AbstractGriffon extends TamableAnimal implements ContainerListener, HasCustomInventoryScreen, OwnableEntity, Saddleable, FlyingMount, GeoEntity {
 
     private static final EntityDataAccessor<Byte> DATA_ID_FLAGS = SynchedEntityData.defineId(AbstractGriffon.class, EntityDataSerializers.BYTE);
-    private static final EntityDataAccessor<Optional<UUID>> DATA_OWNER = SynchedEntityData.defineId(AbstractGriffon.class, EntityDataSerializers.OPTIONAL_UUID);
-    private static final EntityDataAccessor<Boolean> DATA_FLYING = SynchedEntityData.defineId(AbstractGriffon.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Optional<UUID>> OWNER = SynchedEntityData.defineId(AbstractGriffon.class, EntityDataSerializers.OPTIONAL_UUID);
+    private static final EntityDataAccessor<Boolean> FLYING = SynchedEntityData.defineId(AbstractGriffon.class, EntityDataSerializers.BOOLEAN);
     public SimpleContainer inventory;
     @Nullable
     private UUID owner;
 
-    protected AbstractGriffon(EntityType<? extends ModRaider> pEntityType, Level pLevel) {
+    private boolean isFlying;
+
+    protected AbstractGriffon(EntityType<? extends TamableAnimal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         this.createInventory();
     }
 
-    @Override
-    public void applyRaidBuffs(ServerLevel pLevel, int pWave, boolean pUnused) {
-
-    }
-
-    @Override
-    public SoundEvent getCelebrateSound() {
-        return null;
+    public static AttributeSupplier.Builder createAttributes() {
+        return Animal.createLivingAttributes()
+                .add(Attributes.FOLLOW_RANGE, 30.0F)
+                .add(Attributes.MOVEMENT_SPEED, 0.30F)
+                .add(Attributes.MAX_HEALTH, 55)
+                .add(Attributes.ATTACK_DAMAGE, 5.0F);
     }
 
     @Override
@@ -103,22 +107,27 @@ public class AbstractGriffon extends ModRaider implements ContainerListener, Has
         return false;
     }
 
+    @Override
+    public @Nullable AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
+        return null;
+    }
+
     @Nullable
     @Override
     public UUID getOwnerUUID() {
-        return this.entityData.get(DATA_OWNER).orElse(null);
+        return this.entityData.get(OWNER).orElse(null);
     }
 
     public void setOwnerUUID(@Nullable UUID uuid) {
-        this.entityData.set(DATA_OWNER, Optional.ofNullable(uuid));
+        this.entityData.set(OWNER, Optional.ofNullable(uuid));
     }
 
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(DATA_ID_FLAGS, (byte)0);
-        builder.define(DATA_OWNER, Optional.empty());
-        builder.define(DATA_FLYING, false);
+        builder.define(OWNER, Optional.empty());
+        builder.define(FLYING, false);
     }
 
     protected boolean getFlag(int i) {
@@ -152,13 +161,18 @@ public class AbstractGriffon extends ModRaider implements ContainerListener, Has
     }
 
     public boolean isFlying() {
-        return this.entityData.get(DATA_FLYING);
+        if (level().isClientSide) {
+            return this.isFlying = this.entityData.get(FLYING).booleanValue();
+        }
+        return isFlying;
     }
 
     public void setFlying(boolean flying) {
-        this.entityData.set(DATA_FLYING, flying);
+        this.entityData.set(FLYING, flying);
+        if (!level().isClientSide) {
+            this.isFlying = flying;
+        }
     }
-
 
     @Nullable
     protected SoundEvent getEatingSound() {
@@ -302,6 +316,11 @@ public class AbstractGriffon extends ModRaider implements ContainerListener, Has
         this.syncSaddleToClients();
     }
 
+    @Override
+    public boolean isFood(ItemStack itemStack) {
+        return false;
+    }
+
     protected void spawnTamingParticles(boolean bl) {
         ParticleOptions particleOptions = bl ? ParticleTypes.HEART : ParticleTypes.SMOKE;
 
@@ -314,25 +333,7 @@ public class AbstractGriffon extends ModRaider implements ContainerListener, Has
     }
 
     @Override
-    public boolean causeFallDamage(float f, float g, DamageSource damageSource) {
-        if (f > 1.0F) {
-            this.playSound(SoundEvents.HORSE_LAND, 0.4F, 1.0F);
-        }
-
-        int i = this.calculateFallDamage(f, g);
-        if (i <= 0) {
-            return false;
-        }
-
-        this.hurt(damageSource, i);
-        if (this.isVehicle()) {
-            for (Entity entity : this.getIndirectPassengers()) {
-                entity.hurt(damageSource, i);
-            }
-        }
-
-        this.playBlockFallSound();
-        return true;
+    protected void checkFallDamage(double d, boolean bl, BlockState blockState, BlockPos blockPos) {
     }
 
     @Override
@@ -343,14 +344,6 @@ public class AbstractGriffon extends ModRaider implements ContainerListener, Has
             this.spawnTamingParticles(false);
         } else {
             super.handleEntityEvent(b);
-        }
-    }
-
-    @Override
-    protected void positionRider(Entity entity, Entity.MoveFunction moveFunction) {
-        super.positionRider(entity, moveFunction);
-        if (entity instanceof LivingEntity) {
-            ((LivingEntity)entity).yBodyRot = this.yBodyRot;
         }
     }
 
@@ -406,70 +399,97 @@ public class AbstractGriffon extends ModRaider implements ContainerListener, Has
     @Nullable
     @Override
     public LivingEntity getControllingPassenger() {
-        if (this.isSaddled() && this.getFirstPassenger() instanceof Player player) {
-            return player;
+        for (Entity passenger : this.getPassengers()) {
+            if (passenger instanceof Player player
+                    && this.isOwnedBy(player)
+                    && this.getTarget() != passenger) {
+                return player;
+            }
         }
-        return super.getControllingPassenger();
+
+        return null;
+    }
+
+    @Nullable
+    public Player getRidingPlayer() {
+        LivingEntity passenger = getControllingPassenger();
+        return passenger instanceof Player player ? player : null;
     }
 
     @Override
-    public void travel(Vec3 travelVector) {
-        LivingEntity controller = this.getControllingPassenger();
+    protected @NotNull Vec3 getRiddenInput(Player player, @NotNull Vec3 travelVector) {
+        float strafe = player.xxa * 0.5F;
+        float forward = player.zza;
 
-        if (controller instanceof Player player) {
-            OldWorldFantasy.LOG.info("Controlling player: {}", player.getName());
-            this.setYRot(player.getYRot());
-            this.yRotO = this.getYRot();
-            this.setXRot(player.getXRot() * 0.5F);
-            this.yBodyRot = this.getYRot();
-            this.yHeadRot = this.getYRot();
+        if (forward <= 0.0F) {
+            forward *= 0.25F;
+        }
 
-            float strafe = player.xxa * 0.5F;
-            float forward = player.zza;
+        return new Vec3(strafe, 0.0D, forward);
+    }
 
-            if (forward <= 0.0F) {
-                forward *= 0.25F;
-            }
+    @Override
+    public void travel(@NotNull Vec3 travelVector) {
+        Player player = getRidingPlayer();
 
-            if (this.isFlying()) {
-                OldWorldFantasy.LOG.info("Flying: {}", isFlying());
-                this.setNoGravity(true);
-                travelFlying(player, forward, strafe);
-            } else {
-                OldWorldFantasy.LOG.info("Flying: {}", isFlying());
-                this.setNoGravity(false);
-                super.travel(new Vec3(strafe, travelVector.y, forward));
-            }
+        if (player == null) {
+            setNoGravity(isFlying());
+            super.travel(travelVector);
             return;
         }
 
-        OldWorldFantasy.LOG.info("Setting default behaviour");
-        this.setNoGravity(this.isFlying());
-        super.travel(travelVector);
+        setYRot(player.getYRot());
+        yRotO = getYRot();
+        setXRot(player.getXRot() * 0.5F);
+        yBodyRot = getYRot();
+        yHeadRot = getYRot();
+
+        if (isFlying()) {
+            setNoGravity(true);
+
+            if (isControlledByLocalInstance()) {
+                float speed = 0.5F;
+
+                Vec3 look = player.getLookAngle();
+                Vec3 forward = look.scale(player.zza);
+                Vec3 right = new Vec3(-look.z, 0.0D, look.x).normalize();
+                Vec3 strafe = right.scale(player.xxa);
+                Vec3 movement = forward.add(strafe);
+
+                if (movement.lengthSqr() > 1.0D) {
+                    movement = movement.normalize();
+                }
+
+                movement = movement.scale(speed);
+                setDeltaMovement(movement);
+                move(MoverType.SELF, getDeltaMovement());
+                setDeltaMovement(getDeltaMovement().scale(0.9D));
+            }
+
+            return;
+        }
+
+        setNoGravity(false);
+        if (isControlledByLocalInstance()) {
+            setSpeed(getRiddenSpeed(player));
+            super.travel(travelVector);
+        }
     }
 
-    private void travelFlying(Player player, float forward, float strafe) {
-        float speed = 0.5F;
+    @Override
+    protected float getRiddenSpeed(@NotNull Player player) {
+        return (float) this.getAttributeValue(Attributes.MOVEMENT_SPEED);
+    }
 
-        Vec3 lookVec = player.getLookAngle();
-        Vec3 motionIntent = Vec3.ZERO;
-        if (forward > 0) motionIntent = motionIntent.add(lookVec);
-        if (forward < 0) motionIntent = motionIntent.subtract(lookVec);
-
-        if (strafe != 0) {
-            Vec3 sideVec = lookVec.cross(new Vec3(0, 1, 0)).normalize();
-            if (strafe > 0) motionIntent = motionIntent.subtract(sideVec);
-            if (strafe < 0) motionIntent = motionIntent.add(sideVec);
+    @Override
+    public void positionRider(@NotNull Entity passenger, @NotNull MoveFunction callback) {
+        super.positionRider(passenger, callback);
+        if (this.hasPassenger(passenger)) {
+            yBodyRot = getYRot();
+            setYHeadRot(passenger.getYHeadRot());
+            setYBodyRot(passenger.getYRot());
         }
-
-        if (motionIntent.lengthSqr() > 1.0D) {
-            motionIntent = motionIntent.normalize();
-        }
-
-        Vec3 finalMovement = motionIntent.scale(speed);
-        this.setDeltaMovement(finalMovement);
-        this.move(MoverType.SELF, this.getDeltaMovement());
-        this.setDeltaMovement(this.getDeltaMovement().scale(0.91D));
+        passenger.setPos(this.getX(), this.getY() + 2.5F, this.getZ());
     }
 
     @Nullable
@@ -552,24 +572,5 @@ public class AbstractGriffon extends ModRaider implements ContainerListener, Has
     @Override
     protected Vec3 getPassengerAttachmentPoint(Entity entity, EntityDimensions entityDimensions, float f) {
         return super.getPassengerAttachmentPoint(entity, entityDimensions, f);
-    }
-
-    @Override
-    public void aiStep() {
-        if (this.getControllingPassenger() instanceof Player) {
-            super.aiStep();
-            return;
-        }
-        super.aiStep();
-    }
-
-    @Override
-    public void tick() {
-        super.tick();
-
-        if (this.getControllingPassenger() instanceof Player) {
-            this.getXRot();
-            this.getNavigation().stop();
-        }
     }
 }

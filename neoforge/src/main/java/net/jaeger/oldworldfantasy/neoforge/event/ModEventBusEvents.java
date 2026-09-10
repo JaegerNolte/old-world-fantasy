@@ -18,7 +18,6 @@ import net.jaeger.oldworldfantasy.entity.mobs.human.empire.swordsmen.EmpireSword
 import net.jaeger.oldworldfantasy.entity.mobs.monsters.giants.AbstractGiant;
 import net.jaeger.oldworldfantasy.entity.mobs.monsters.giants.giant.Giant;
 import net.jaeger.oldworldfantasy.entity.mobs.monsters.griffons.AbstractGriffon;
-import net.jaeger.oldworldfantasy.entity.mobs.monsters.griffons.griffon.Griffon;
 import net.jaeger.oldworldfantasy.entity.mobs.monsters.trolls.AbstractTroll;
 import net.jaeger.oldworldfantasy.entity.mobs.monsters.trolls.stone.StoneTroll;
 import net.minecraft.world.entity.SpawnPlacementTypes;
@@ -52,7 +51,7 @@ public class ModEventBusEvents {
 
         event.put(ModEntities.STONE_TROLL.get(), StoneTroll.createAttributes().build());
         event.put(ModEntities.GIANT.get(), Giant.createAttributes().build());
-        event.put(ModEntities.GRIFFON.get(), Griffon.createAttributes().build());
+        event.put(ModEntities.GRIFFON.get(), AbstractGriffon.createAttributes().build());
     }
 
     @SubscribeEvent
