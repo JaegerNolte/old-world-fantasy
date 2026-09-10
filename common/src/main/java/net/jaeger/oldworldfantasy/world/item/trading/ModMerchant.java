@@ -2,7 +2,7 @@ package net.jaeger.oldworldfantasy.world.item.trading;
 
 import net.jaeger.oldworldfantasy.networking.ModNetworking;
 import net.jaeger.oldworldfantasy.networking.packet.MerchantOfferPacket;
-import net.jaeger.oldworldfantasy.world.inventory.ModMerchantMenu;
+import net.jaeger.oldworldfantasy.world.inventory.merchant.ModMerchantMenu;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;

@@ -1,6 +1,9 @@
 {
   "creativetab.old_world_fantasy_tab": "Old World Fantasy",
 
+  "key.categories.oldworldfantasy": "Old World Fantasy",
+  "key.oldworldfantasy.toggle_flight": "Toggle mob flight",
+
   "merchant.current_level": "Trader's current level",
   "merchant.deprecated": "Villagers restock up to two times per day.",
   "merchant.level.1": "Novice",

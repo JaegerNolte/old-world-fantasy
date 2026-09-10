@@ -9,10 +9,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -51,7 +48,6 @@ public class Griffon extends AbstractGriffon {
 
     @Override
     protected void registerGoals() {
-        super.registerGoals();
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(2, new GriffonAttackGoal(this, 1.5, false, attack));
         this.goalSelector.addGoal(1, new LeapAtTargetGoal(this, 0.3F));
@@ -80,7 +76,7 @@ public class Griffon extends AbstractGriffon {
                 .add(Attributes.FOLLOW_RANGE, 30.0F)
                 .add(Attributes.MOVEMENT_SPEED, 0.30F)
                 .add(Attributes.MAX_HEALTH, 55)
-                .add(Attributes.ATTACK_DAMAGE, 2.5F);
+                .add(Attributes.ATTACK_DAMAGE, 5.0F);
     }
 
     @Nullable
@@ -158,6 +154,11 @@ public class Griffon extends AbstractGriffon {
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return this.cache;
+    }
+
+    @Override
+    public boolean canUseSlot(EquipmentSlot arg) {
+        return true;
     }
 
     @Override

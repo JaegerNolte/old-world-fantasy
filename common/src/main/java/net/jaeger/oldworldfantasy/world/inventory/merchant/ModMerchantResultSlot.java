@@ -1,4 +1,4 @@
-package net.jaeger.oldworldfantasy.world.inventory;
+package net.jaeger.oldworldfantasy.world.inventory.merchant;
 
 import net.jaeger.oldworldfantasy.world.item.trading.ModMerchant;
 import net.minecraft.stats.Stats;

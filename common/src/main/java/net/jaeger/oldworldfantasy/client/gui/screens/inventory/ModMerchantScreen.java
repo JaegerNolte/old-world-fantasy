@@ -6,7 +6,7 @@ import net.fabricmc.api.Environment;
 import net.jaeger.oldworldfantasy.OldWorldFantasy;
 import net.jaeger.oldworldfantasy.networking.ModNetworking;
 import net.jaeger.oldworldfantasy.networking.packet.SelectMerchantTradePacket;
-import net.jaeger.oldworldfantasy.world.inventory.ModMerchantMenu;
+import net.jaeger.oldworldfantasy.world.inventory.merchant.ModMerchantMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;

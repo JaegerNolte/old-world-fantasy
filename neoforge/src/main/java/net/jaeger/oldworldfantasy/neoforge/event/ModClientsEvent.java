@@ -2,6 +2,7 @@ package net.jaeger.oldworldfantasy.neoforge.event;
 
 import net.jaeger.oldworldfantasy.OldWorldFantasy;
 import net.jaeger.oldworldfantasy.client.gui.screens.inventory.ModMerchantScreen;
+import net.jaeger.oldworldfantasy.client.gui.screens.saddle.GriffonScreen;
 import net.jaeger.oldworldfantasy.client.model.ModModels;
 import net.jaeger.oldworldfantasy.event.ModClient;
 import net.jaeger.oldworldfantasy.item.ModItems;
@@ -32,6 +33,7 @@ public class ModClientsEvent {
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(ModMenus.MERCHANT.get(), ModMerchantScreen::new);
+        event.register(ModMenus.GRIFFON.get(), GriffonScreen::new);
     }
 
     @SubscribeEvent

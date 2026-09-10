@@ -1,6 +1,7 @@
-package net.jaeger.oldworldfantasy.world.inventory;
+package net.jaeger.oldworldfantasy.world.inventory.merchant;
 
 import net.jaeger.oldworldfantasy.entity.mobs.ModClientSideMerchant;
+import net.jaeger.oldworldfantasy.world.inventory.ModMenus;
 import net.jaeger.oldworldfantasy.world.item.trading.ModMerchant;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
