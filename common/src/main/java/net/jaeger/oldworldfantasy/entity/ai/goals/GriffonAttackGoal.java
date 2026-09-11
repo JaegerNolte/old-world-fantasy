@@ -32,7 +32,7 @@ public class GriffonAttackGoal extends MeleeAttackGoal {
             shouldCountToNextAttack = true;
 
             if (isTimeToStartAttackAnimation()) {
-                this.griffon.triggerAnim("attack", rawAnimation); // time animation
+                this.griffon.triggerAnim("attack", rawAnimation);
                 griffon.setAggressive(true);
             }
 

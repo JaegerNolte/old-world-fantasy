@@ -2,7 +2,7 @@
 	"format_version": "1.8.0",
 	"animations": {
 		"ANIM_TROLL_ATTACKING": {
-			"loop": true
+			"loop": false
 		},
 		"ANIM_TROLL_WALKING": {
 			"loop": true,
