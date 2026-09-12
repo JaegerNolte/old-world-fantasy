@@ -475,13 +475,26 @@ public class AbstractGriffon extends TamableAnimal implements ContainerListener,
         yHeadRot = getYRot();
 
         if (isFlying()) {
-            setNoGravity(true);
+            setNoGravity(false);
 
             if (isControlledByLocalInstance()) {
                 float speed = 0.5F;
 
                 Vec3 look = player.getLookAngle();
-                Vec3 forward = look.scale(player.zza);
+
+                double deltaY = 4.9D;
+
+                if (player.zza > 0)
+                {
+                    deltaY = (player.getLookAngle().y * 10) + 9.8D;
+                }
+
+
+                OldWorldFantasy.LOG.info("Current Y Rotation: {}", player.getLookAngle().y);
+
+                double movementBoost = (1 - player.getLookAngle().y) * 10;
+
+                Vec3 forward = new Vec3(look.scale(player.zza + movementBoost).x, this.getDeltaMovement().y - 9.8D + deltaY ,look.scale(player.zza + movementBoost).z);
                 Vec3 right = new Vec3(look.z, 0.0D, -look.x).normalize();
                 Vec3 strafe = right.scale(player.xxa);
                 Vec3 movement = forward.add(strafe);
@@ -509,6 +522,22 @@ public class AbstractGriffon extends TamableAnimal implements ContainerListener,
             super.travel(travelVector);
         }
     }
+
+    /*
+    @Override
+    protected void tickRidden(Player player, Vec3 vec3) {
+        super.tickRidden(player, vec3);
+
+        if (player.getLookAngle().y > 0.1D)
+        {
+            //player looking up
+        }
+        if (player.getLookAngle().y < -0.1D)
+        {
+            //player looking down
+        }
+    }
+    */
 
     @Override
     protected float getRiddenSpeed(@NotNull Player player) {
