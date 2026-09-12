@@ -6,8 +6,6 @@ public interface FlyingMount {
 
     Player getRidingPlayer();
 
-    boolean isRidingPlayer(Player player);
-
     boolean isFlying();
 
     default boolean isGoingUp() {

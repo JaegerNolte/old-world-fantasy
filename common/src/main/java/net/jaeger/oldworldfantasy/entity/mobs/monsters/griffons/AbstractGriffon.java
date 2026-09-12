@@ -20,7 +20,6 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.players.OldUsersConverter;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
@@ -51,20 +50,15 @@ import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.AnimatableManager;
 
-import java.util.Optional;
 import java.util.UUID;
 
 public class AbstractGriffon extends TamableAnimal implements ContainerListener, HasCustomInventoryScreen, OwnableEntity, Saddleable, FlyingMount, GeoEntity {
 
     private static final EntityDataAccessor<Byte> DATA_ID_FLAGS = SynchedEntityData.defineId(AbstractGriffon.class, EntityDataSerializers.BYTE);
-    private static final EntityDataAccessor<Optional<UUID>> OWNER = SynchedEntityData.defineId(AbstractGriffon.class, EntityDataSerializers.OPTIONAL_UUID);
     private static final EntityDataAccessor<Boolean> FLYING = SynchedEntityData.defineId(AbstractGriffon.class, EntityDataSerializers.BOOLEAN);
     public SimpleContainer inventory;
-    @Nullable
-    private UUID owner;
 
     private boolean isFlying;
-    private boolean isSitting;
 
     protected AbstractGriffon(EntityType<? extends TamableAnimal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -119,21 +113,10 @@ public class AbstractGriffon extends TamableAnimal implements ContainerListener,
         return null;
     }
 
-    @Nullable
-    @Override
-    public UUID getOwnerUUID() {
-        return this.entityData.get(OWNER).orElse(null);
-    }
-
-    public void setOwnerUUID(@Nullable UUID uuid) {
-        this.entityData.set(OWNER, Optional.ofNullable(uuid));
-    }
-
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(DATA_ID_FLAGS, (byte)0);
-        builder.define(OWNER, Optional.empty());
         builder.define(FLYING, false);
     }
 
@@ -149,14 +132,6 @@ public class AbstractGriffon extends TamableAnimal implements ContainerListener,
         } else {
             this.entityData.set(DATA_ID_FLAGS, (byte)(flags & ~flag));
         }
-    }
-
-    public void setTamed(boolean value) {
-        this.setFlag(2, value);
-    }
-
-    public boolean isTamed() {
-        return this.getFlag(2);
     }
 
     public void setEating(boolean value) {
@@ -185,9 +160,12 @@ public class AbstractGriffon extends TamableAnimal implements ContainerListener,
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
         Item item = itemStack.getItem();
+        InteractionResult interactionResult = super.mobInteract(player, hand);
         if (!this.level().isClientSide || this.isFood(itemStack)) {
-            if (this.isTamed()) {
+            OldWorldFantasy.LOG.info("INTERACT");
+            if (this.isTame()) {
                 if (this.isFood(itemStack) && this.getHealth() < this.getMaxHealth()) {
+                    OldWorldFantasy.LOG.info("FEED ATTEMPT");
                     itemStack.consume(1, player);
                     FoodProperties foodProperties = itemStack.get(DataComponents.FOOD);
                     float f = foodProperties != null ? foodProperties.nutrition() : 1.0F;
@@ -197,8 +175,8 @@ public class AbstractGriffon extends TamableAnimal implements ContainerListener,
 
                 if (itemStack.is(ModItems.HILT)) {
                     if (this.isOwnedBy(player) && player.isSecondaryUseActive()) {
-                        InteractionResult interactionResult = super.mobInteract(player, hand);
                         if (!interactionResult.consumesAction() && this.isOwnedBy(player)) {
+                            OldWorldFantasy.LOG.info("SIT ATTEMPT");
                             this.setOrderedToSit(!this.isOrderedToSit());
                             this.jumping = false;
                             this.navigation.stop();
@@ -212,24 +190,34 @@ public class AbstractGriffon extends TamableAnimal implements ContainerListener,
                     return InteractionResult.PASS;
                 } else {
                     if (this.isOwnedBy(player)) {
-                        this.doPlayerRide(player);
-                        return InteractionResult.sidedSuccess(this.level().isClientSide);
-                    }
-                    if (player.isSecondaryUseActive()) {
-                        this.openCustomInventoryScreen(player);
-                        return InteractionResult.sidedSuccess(this.level().isClientSide);
+                        if (player.isSecondaryUseActive()) {
+                            OldWorldFantasy.LOG.info("INVENTORY ATTEMPT");
+                            this.openCustomInventoryScreen(player);
+                            return InteractionResult.sidedSuccess(this.level().isClientSide);
+                        }
+                        if (this.isSaddled()) {
+                            OldWorldFantasy.LOG.info("RIDE ATTEMPT");
+                            this.doPlayerRide(player);
+                            return InteractionResult.sidedSuccess(this.level().isClientSide);
+                        }
                     }
                 }
+
                 return InteractionResult.PASS;
+            } else if (itemStack.is(Items.BEEF)) {
+                if (!this.level().isClientSide) {
+                    OldWorldFantasy.LOG.info("TAME START");
+                    itemStack.consume(1, player);
+                    this.tryToTame(player);
+                }
             }
-        } else if (itemStack.is(Items.BEEF)) {
-            if (!this.level().isClientSide) {
-                itemStack.consume(1, player);
-                this.tryToTame(player);
-            }
-            return InteractionResult.sidedSuccess(this.level().isClientSide);
+
+            return interactionResult;
+        } else {
+
+            boolean bl = this.isOwnedBy(player) || this.isTame() || itemStack.is(Items.BEEF) && !this.isTame();
+            return bl ? InteractionResult.CONSUME : InteractionResult.PASS;
         }
-        return super.mobInteract(player, hand);
     }
 
     @Override
@@ -241,24 +229,15 @@ public class AbstractGriffon extends TamableAnimal implements ContainerListener,
         } else if (livingEntity instanceof Player player && livingEntity2 instanceof Player player2 && !player2.canHarmPlayer(player)) {
             return false;
         } else {
-            return livingEntity instanceof TamableAnimal && isTamed()
+            return livingEntity instanceof TamableAnimal && isTame()
                     ? false
-                    : !(livingEntity instanceof TamableAnimal tamableAnimal && tamableAnimal.isTame());
+                    : !(livingEntity instanceof AbstractGriffon griffon && isTame());
         }
-    }
-
-    @Override
-    public boolean isOrderedToSit() {
-        return this.isSitting;
-    }
-
-    @Override
-    public void setOrderedToSit(boolean isSitting) {
-        this.isSitting = isSitting;
     }
 
     private void tryToTame(Player player) {
         if (this.random.nextInt(3) == 0) {
+            OldWorldFantasy.LOG.info("TAME ATTEMPT");
             this.tame(player);
             this.navigation.stop();
             this.setTarget(null);
@@ -266,11 +245,6 @@ public class AbstractGriffon extends TamableAnimal implements ContainerListener,
         } else {
             this.level().broadcastEntityEvent(this, (byte) 6);
         }
-    }
-
-    public void tame(Player player) {
-        this.setTamed(true);
-        this.setOwnerUUID(player.getUUID());
     }
 
     public boolean isOwnedBy(LivingEntity livingEntity) {
@@ -328,13 +302,7 @@ public class AbstractGriffon extends TamableAnimal implements ContainerListener,
     public void addAdditionalSaveData(CompoundTag compoundTag) {
         super.addAdditionalSaveData(compoundTag);
         compoundTag.putBoolean("EatingMeat", this.isEating());
-        compoundTag.putBoolean("Tame", this.isTamed());
         compoundTag.putBoolean("Flying", this.isFlying());
-        compoundTag.putBoolean("Sitting", this.isSitting);
-        if (this.getOwnerUUID() != null) {
-            compoundTag.putUUID("Owner", this.getOwnerUUID());
-        }
-
         if (!this.inventory.getItem(0).isEmpty()) {
             compoundTag.put("SaddleItem", this.inventory.getItem(0).save(this.registryAccess()));
         }
@@ -344,21 +312,7 @@ public class AbstractGriffon extends TamableAnimal implements ContainerListener,
     public void readAdditionalSaveData(CompoundTag compoundTag) {
         super.readAdditionalSaveData(compoundTag);
         this.setEating(compoundTag.getBoolean("EatingMeat"));
-        this.setTamed(compoundTag.getBoolean("Tame"));
         this.setFlying(compoundTag.getBoolean("Flying"));
-        this.isSitting = compoundTag.getBoolean("Sitting");
-        this.setInSittingPose(this.isSitting);
-        UUID uUID;
-        if (compoundTag.hasUUID("Owner")) {
-            uUID = compoundTag.getUUID("Owner");
-        } else {
-            String string = compoundTag.getString("Owner");
-            uUID = OldUsersConverter.convertMobOwnerIfNecessary(this.getServer(), string);
-        }
-
-        if (uUID != null) {
-            this.setOwnerUUID(uUID);
-        }
 
         if (compoundTag.contains("SaddleItem", 10)) {
             ItemStack itemStack = ItemStack.parse(this.registryAccess(), compoundTag.getCompound("SaddleItem")).orElse(ItemStack.EMPTY);
@@ -421,6 +375,7 @@ public class AbstractGriffon extends TamableAnimal implements ContainerListener,
 
     protected void doPlayerRide(Player player) {
         this.setEating(false);
+        this.setOrderedToSit(false);
         if (!this.level().isClientSide) {
             player.setYRot(this.getYRot());
             player.setXRot(this.getXRot());
@@ -431,7 +386,7 @@ public class AbstractGriffon extends TamableAnimal implements ContainerListener,
     @Override
     public void openCustomInventoryScreen(Player player) {
         if (!this.level().isClientSide && player instanceof ServerPlayer serverPlayer) {
-            if ((!this.isVehicle() || this.hasPassenger(player)) && this.isTamed()) {
+            if ((!this.isVehicle() || this.hasPassenger(player)) && this.isTame()) {
                 MenuRegistry.openExtendedMenu(serverPlayer, new MenuProvider() {
                     @Override
                     public Component getDisplayName() {
@@ -455,7 +410,7 @@ public class AbstractGriffon extends TamableAnimal implements ContainerListener,
 
     @Override
     public boolean isSaddleable() {
-        return this.isAlive() && this.isTamed();
+        return this.isAlive() && this.isTame();
     }
 
     @Override
@@ -482,15 +437,13 @@ public class AbstractGriffon extends TamableAnimal implements ContainerListener,
         return null;
     }
 
+    @Override
     @Nullable
     public Player getRidingPlayer() {
-        LivingEntity passenger = getControllingPassenger();
-        return passenger instanceof Player player ? player : null;
-    }
-
-    @Override
-    public boolean isRidingPlayer(Player player) {
-        return false;
+        if (this.getControllingPassenger() instanceof Player) {
+            return (Player) this.getControllingPassenger();
+        }
+        return null;
     }
 
     @Override
