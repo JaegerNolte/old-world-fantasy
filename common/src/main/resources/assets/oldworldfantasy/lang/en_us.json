@@ -2,7 +2,7 @@
   "creativetab.old_world_fantasy_tab": "Old World Fantasy",
 
   "key.categories.oldworldfantasy": "Old World Fantasy",
-  "key.oldworldfantasy.toggle_flight": "Toggle mob flight",
+  "key.oldworldfantasy.toggle_flight": "Toggle Mob Flight",
 
   "merchant.current_level": "Trader's current level",
   "merchant.deprecated": "Villagers restock up to two times per day.",
@@ -20,10 +20,10 @@
   "event.oldworldfantasy.raid.defeat.full": "Lost to Raid",
   "event.oldworldfantasy.raid.beastmen": "Brayherd Invasion",
   "event.oldworldfantasy.raid.victory.full.beastmen": "Brayherd Vanquished",
-  "event.oldworldfantasy.raid.defeat.full.beastmen": "Rise of the unnatural order",
+  "event.oldworldfantasy.raid.defeat.full.beastmen": "The Unnatural Order",
   "event.oldworldfantasy.raid.greenskin": "Call of the WAAAAAAGH",
   "event.oldworldfantasy.raid.victory.full.greenskin": "End of the WAAAAAAGH",
-  "event.oldworldfantasy.raid.defeat.full.greenskin": "The unstoppable greentide",
+  "event.oldworldfantasy.raid.defeat.full.greenskin": "The Unstoppable Greentide",
   "event.oldworldfantasy.raid.raiders_remaining": "Raiders Remaining: %s",
 
   "tooltip.oldworldfantasy.weight": "Weight: %skg",

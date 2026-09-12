@@ -34,7 +34,7 @@ public class Griffon extends AbstractGriffon {
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
-        this.goalSelector.addGoal(2, new LeapAtTargetGoal(this, 0.3F));
+        this.goalSelector.addGoal(2, new LeapAtTargetGoal(this, 0.5F));
         this.goalSelector.addGoal(2, new GriffonAttackGoal(this, 1.5, false, attack));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, LivingEntity.class, false));
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
@@ -98,7 +98,7 @@ public class Griffon extends AbstractGriffon {
                     return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_GRIFFON_SITTING"));
                 }
             } else {
-                state.setControllerSpeed(2);
+                state.setControllerSpeed(3);
                 return state.setAndContinue(RawAnimation.begin().thenLoop("ANIM_GRIFFON_FLYING"));
             }
         }

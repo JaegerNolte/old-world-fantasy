@@ -489,6 +489,11 @@ public class AbstractGriffon extends TamableAnimal implements ContainerListener,
     }
 
     @Override
+    public boolean isRidingPlayer(Player player) {
+        return false;
+    }
+
+    @Override
     protected @NotNull Vec3 getRiddenInput(Player player, @NotNull Vec3 travelVector) {
         float strafe = player.xxa * 0.5F;
         float forward = player.zza;

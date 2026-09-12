@@ -71,6 +71,22 @@ public class GriffonAttackGoal extends MeleeAttackGoal {
     }
 
     @Override
+    public boolean canUse() {
+        if (griffon.isInSittingPose() || griffon.isVehicle()) {
+            return false;
+        }
+        return super.canUse();
+    }
+
+    @Override
+    public boolean canContinueToUse() {
+        if (griffon.isInSittingPose() || griffon.isVehicle()) {
+            return false;
+        }
+        return super.canContinueToUse();
+    }
+
+    @Override
     public void tick() {
         super.tick();
         if (shouldCountToNextAttack) {
